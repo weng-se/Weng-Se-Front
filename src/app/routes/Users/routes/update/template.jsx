@@ -144,17 +144,10 @@ const Template = (component) => {
                                 </FormControl>
                             </div>
 
-                            <Button
-                                type="submit"
-                                onClick={() => {component.updateUser(component.state) }}
-                                variant="contained"
-                                color="primary">
-                                SAVE </Button>
-                            &nbsp;
-                            <Button
-                                variant="contained"
-                                color="primary">
-                                DISCARD </Button>
+                            <div style={{ float: 'right', marginBottom: '20px' }}>
+                                <Button type="reset" variant="contained" color="default" onClick={() => {component.discard()}}> DISCARD </Button>
+                                <Button type="submit" variant="contained" color="primary" onClick={() => {component.updateUser(component.state) }} style={{ marginLeft: '5px' }}> SAVE </Button>
+                            </div>
 
                         </ValidatorForm>
                     </div>

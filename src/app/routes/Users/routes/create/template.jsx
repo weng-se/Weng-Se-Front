@@ -1,14 +1,15 @@
 import React from 'react';
-import { 
-    ValidatorForm, 
-    TextValidator 
+import {
+    ValidatorForm,
+    TextValidator
 } from 'react-material-ui-form-validator';
-import { makeStyles } from '@material-ui/core/styles';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Grid from '@material-ui/core/Grid';
-import { 
-    CardContent, 
-    CardHeader, 
-    FormControl, 
+import {
+    CardContent,
+    CardHeader,
+    FormControl,
     Card,
     Button,
     TextField
@@ -31,35 +32,32 @@ const roles = [
         value: 'ROLE_ADMIN',
         label: 'ADMINISTRATEUR',
     }
-    
+
 ];
 
-// const useStyles = makeStyles(theme => ({
-//     root: {
-//       flexGrow: 1,
-//     },
-//     paper: {
-//       padding: theme.spacing(2),
-//       textAlign: 'center',
-//       color: theme.palette.text.secondary,
-//     },
-// }));
-
 const Template = (component) => {
-
+    const {
+        username,
+        email,
+        phoneNumber,
+        password,
+        repeatPassword,
+        disabled,
+        role,
+        note
+    } = component.state;
     return (
         <React.Fragment>
-            <div className="app-wrapper">
-                <div className="row animated slideInUpTiny animation-duration-3">
-                    <Card style={{ width: '70%', margin: 'auto' }}>
-                        <CardContent>
-                            <CardHeader titleTypographyProps={{ align: 'left' }} title={'Create a new user account:'} />
-                            <div className="align-items-center justify-content-between">
-                                <ValidatorForm style={{ width: '100%' }} onSubmit={component.handleSubmit} noValidate autoComplete="off">
-                                   
+            <div className="row animated slideInUpTiny animation-duration-3">
+                <Card style={{ width: '60%', margin: 'auto' }}>
+                    <CardContent>
+                        <CardHeader titleTypographyProps={{ align: 'left' }} title={'Create a new user account:'} />
+                        <div className="align-items-center justify-content-between">
+                            <ValidatorForm style={{ width: '100%' }} onSubmit={component.handleSubmit} noValidate autoComplete="off">
+
                                 <Grid container spacing={3}>
                                     <Grid item xs={6}>
-                                        <FormControl style={{ width: '100%', padding:'5px' }}>
+                                        <FormControl style={{ width: '100%', padding: '5px' }}>
                                             <TextValidator
                                                 id="username"
                                                 name="username"
@@ -69,7 +67,7 @@ const Template = (component) => {
                                                 variant="outlined"
                                                 placeholder="Username"
                                                 required="true"
-                                                value={component.state.username}
+                                                value={username}
                                                 validators={['required']}
                                                 errorMessages={['Username field is required']}
                                             />
@@ -77,7 +75,7 @@ const Template = (component) => {
                                     </Grid>
 
                                     <Grid item xs={6}>
-                                        <FormControl style={{ width: '100%', padding:'5px' }} >
+                                        <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
                                                 id="email"
                                                 name="email"
@@ -87,7 +85,7 @@ const Template = (component) => {
                                                 variant="outlined"
                                                 placeholder="Email"
                                                 required="true"
-                                                value={component.state.email}
+                                                value={email}
                                                 validators={['required', 'isEmail']}
                                                 errorMessages={['Email field is required', 'email is not valid']}
                                             />
@@ -95,7 +93,7 @@ const Template = (component) => {
                                     </Grid>
 
                                     <Grid item xs={12}>
-                                        <FormControl style={{ width: '100%', padding:'5px' }} >
+                                        <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
                                                 id="phoneNumber"
                                                 name="phoneNumber"
@@ -105,7 +103,7 @@ const Template = (component) => {
                                                 variant="outlined"
                                                 placeholder="Phone"
                                                 required="true"
-                                                value={component.state.phoneNumber}
+                                                value={phoneNumber}
                                                 validators={['required']}
                                                 errorMessages={['Phone number field is required']}
                                             />
@@ -113,7 +111,7 @@ const Template = (component) => {
                                     </Grid>
 
                                     <Grid item xs={6}>
-                                        <FormControl style={{ width: '100%', padding:'5px' }} >
+                                        <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
                                                 type="password"
                                                 name="password"
@@ -124,7 +122,7 @@ const Template = (component) => {
                                                 variant="outlined"
                                                 placeholder="Password"
                                                 required="true"
-                                                value={component.state.password}
+                                                value={password}
                                                 validators={['required']}
                                                 errorMessages={['Password field is required']}
                                             />
@@ -132,7 +130,7 @@ const Template = (component) => {
                                     </Grid>
 
                                     <Grid item xs={6}>
-                                        <FormControl style={{ width: '100%', padding:'5px' }} >
+                                        <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
                                                 label="Repeat password"
                                                 onChange={component.handleChange}
@@ -144,13 +142,13 @@ const Template = (component) => {
                                                 required="true"
                                                 validators={['isPasswordMatch', 'required']}
                                                 errorMessages={['password mismatch', 'this field is required']}
-                                                value={component.state.repeatPassword}
-                                                />
+                                                value={repeatPassword}
+                                            />
                                         </FormControl>
                                     </Grid>
 
                                     <Grid item xs={12}>
-                                        <FormControl style={{ width: '100%', padding:'5px' }}>
+                                        <FormControl style={{ width: '100%', padding: '5px' }}>
                                             <TextValidator
                                                 id="standard-select-currency-native"
                                                 select
@@ -162,7 +160,7 @@ const Template = (component) => {
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
-                                                value={component.state.roles}
+                                                value={role}
                                             >
                                                 {roles.map(option => (
                                                     <option key={option.value} value={option.value}>
@@ -174,7 +172,7 @@ const Template = (component) => {
                                     </Grid>
 
                                     <Grid item xs={12}>
-                                        <FormControl style={{ width: '100%', padding:'5px' }} >
+                                        <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextField
                                                 type="textarea"
                                                 id="note"
@@ -187,36 +185,41 @@ const Template = (component) => {
                                                 multiline={true}
                                                 rows={3}
                                                 rowsMax={4}
-                                                value={component.state.note}
+                                                value={note}
                                             />
                                         </FormControl>
                                     </Grid>
+
+                                    <Grid item xs={12}>
+                                        <FormControlLabel control={
+                                            <Switch
+                                                checked={disabled}
+                                                onChange={component.handleSwicth}
+                                                value="checkedB"
+                                                color="primary"
+                                                name="disabled"
+                                                id="disabled"
+                                                inputProps={{ 'aria-label': 'primary checkbox' }}
+                                            />
+                                        } label="Status (Disabled)" />
+                                    </Grid>
+
                                 </Grid>
 
-                                    <Button
-                                        type="submit"
-                                        variant="contained"
-                                        color="primary">  SAVE
-                                        </Button>
-                                    &nbsp;
-                                        <Button
-                                        type="reset"
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={() => component.reset()}>  DISCARD
-                                        </Button>
+                                <div style={{ float: 'right', marginBottom: '20px' }}>
+                                    <Button type="reset" variant="contained" color="default" onClick={() => component.reset()}> DISCARD </Button>
+                                    <Button type="submit" variant="contained" color="primary" style={{ marginLeft: '5px' }}> SAVE </Button>
+                                </div>
 
-                                </ValidatorForm>
+                            </ValidatorForm>
 
-                            </div>
-                        </CardContent>
-                    </Card>
-                </div>
+                        </div>
+                    </CardContent>
+                </Card>
             </div>
             <ToastContainer position={toast.POSITION.TOP_RIGHT} />
         </React.Fragment>
     )
-
 }
 
 

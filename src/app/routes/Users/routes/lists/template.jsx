@@ -10,63 +10,66 @@ import MUIDataTable from "mui-datatables";
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import EditUser from './../update/';
 
-const Template = (component) => {
+const styles = theme => ({
+    datatables: {
+        fontSize: theme.typography.pxToRem(15),
+        flexBasis: '16%',
+        flexShrink: 0,
+    }
+});
 
+const Template = (component) => {
     return (
         <React.Fragment>
-            <div className="app-wrapper">
+            <MuiThemeProvider theme={component.getMuiTheme()}>
+                <MUIDataTable
+                    title={"Users List"}
+                    id="muiUserDataTable"
+                    data={Array.from(component.state.users)}
+                    columns={component.columns}
+                    options={component.options}
+                />
+            </MuiThemeProvider>
 
-                <MuiThemeProvider theme={component.getMuiTheme()}>
-                    <MUIDataTable
-                        title={"Users List"}
-                        id="muiUserDataTable"
-                        data={Array.from(component.state.users)}
-                        columns={component.columns}
-                        options={component.options}
-                    />
-                </MuiThemeProvider>
-
-                <Dialog
-                    open={component.state.open}
-                    onClose={component.handleClose}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description">
-                    <DialogTitle id="alert-dialog-title">{"Confirm"}</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                            {"Are you sure you want to delete user permanently ?"}
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={component.handleClose} color="primary">
-                            Cancel
+            <Dialog
+                open={component.state.open}
+                onClose={component.handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description">
+                <DialogTitle id="alert-dialog-title">{"Are you sure to delete?"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        {"Are you sure you want to delete user permanently ?"}
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={component.handleClose} color="primary">
+                        Cancel
                         </Button>
-                        <Button onClick={component.handleConfirm} color="primary" autoFocus>
-                            Confirm
+                    <Button onClick={component.handleConfirm} color="primary" autoFocus>
+                        Confirm
                         </Button>
-                    </DialogActions>
-                </Dialog>
+                </DialogActions>
+            </Dialog>
 
-                {component.props.progress !== 100 &&
-                    <div className="loader-view">
-                        <CircularProgress />
-                    </div>
-                }
+            {component.props.progress !== 100 &&
+                <div className="loader-view">
+                    <CircularProgress />
+                </div>
+            }
 
-                <Dialog
-                    fullWidth="true"
-                    open={component.state._open}
-                    onClose={component._handleClose}
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby="alert-dialog-description">
-                    <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
-                            <EditUser />
-                        </DialogContentText>
-                    </DialogContent>
-                </Dialog>
-
-            </div>
+            <Dialog
+                fullWidth="true"
+                open={component.state._open}
+                onClose={component._handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description">
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                        <EditUser />
+                    </DialogContentText>
+                </DialogContent>
+            </Dialog>
         </React.Fragment>
     )
 

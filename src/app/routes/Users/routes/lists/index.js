@@ -23,6 +23,7 @@ import {
 import compose from 'recompose/compose';
 import Template from './template';
 import './style.css';
+import axios from 'axios';
 
 
 const styles = {
@@ -46,8 +47,7 @@ class Lists extends React.Component {
             setOpen: false,
             _open: false,
             _setOpen: false,
-            uid: null,
-            row: null
+            uid: null
         }
         this.columns = [];
         this.options = {}
@@ -57,10 +57,8 @@ class Lists extends React.Component {
     getMuiTheme = () => createMuiTheme({
         overrides: {
           MUIDataTableBodyCell: {
-            root: {
-                '&:nth-child(1)': {
-                    width: 40
-                }
+            root:  {
+                padding: '2px 6px 2px 20px' 
             }
           }
         }
@@ -71,14 +69,20 @@ class Lists extends React.Component {
         var index = this.state.users.findIndex(x=> x.id === id);
         if (index === -1)
             console.log('error')
-        else
-          this.setState({
-            users: [
-               ...this.state.users.slice(0,index),
-               Object.assign({}, this.state.users[index], { disabled: !this.state.users[index].disabled }),
-               ...this.state.users.slice(index+1)
-            ]
-          });
+        else {
+            this.setState({
+                users: [
+                   ...this.state.users.slice(0,index),
+                   Object.assign({}, this.state.users[index], { disabled: !this.state.users[index].disabled }),
+                   ...this.state.users.slice(index+1)
+                ]
+            });
+            axios.post(`http://localhost:4000/api/Users/update?where={"id":"${id}"}`, { 'disabled': !this.state.users[index].disabled })
+                .then((response) => console.log(response))
+                .catch((error) => console.log('status', error));
+        }
+          
+
     }
 
     componentWillMount() {
@@ -115,21 +119,11 @@ class Lists extends React.Component {
                         <Avatar className={"mui-avatar-datatables"}>
                             { value && 
                                 value !== '' ? 
-                                value.slice(0,2)  : 
+                                value.slice(0,1)  : 
                                 ''
                             }
                         </Avatar>
                     )
-                }
-            },
-            {
-                name: "id",
-                label: "id",
-                options: {
-                    sort: false,
-                    print: false,
-                    download: false,
-                    display: false
                 }
             },
             {
@@ -167,7 +161,7 @@ class Lists extends React.Component {
                         <Switch 
                             color="primary"
                             checked={value}
-                            onChange={this.handleSwitch}
+                            onChange={() => this.handleSwitch(tableMeta.rowData[0])}
                         />
                     )
                 }
@@ -180,16 +174,8 @@ class Lists extends React.Component {
             responsive: 'scroll',
             rowsPerPage: 10,
             rowsPerPageOptions: [5,10,15,20,25,50],
-            onRowsDelete: (rowData, data) => {
-                console.log('onRowsDelete!', rowData);
-            },
-            onRowClick: (rowData, rowMeta) => {
-
-            },
-            onCellClick: (rowData, rowMeta) => {
-                if(rowMeta.colIndex === 6) {
-                    
-                }
+            onRowsDelete: (rowsDeleted) => {
+                console.log('data!', rowsDeleted.data);
             },
             customToolbar: () => {
                 return (
@@ -204,8 +190,11 @@ class Lists extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.users) {
+        if (nextProps.users) 
             this.setState({ users: nextProps.users })
+        if(typeof(nextProps.users.count) !== undefined) {
+            if(nextProps.users.count === 1)
+                this.props.getUsers();
         }
     }
 
@@ -214,11 +203,16 @@ class Lists extends React.Component {
     }
 
     handleClickOpen = (uid) => {
-        this.setState({ open: true, uid: uid })
+        this.setState({ 
+            open: true, 
+            uid: uid 
+        })
     }
 
     handleConfirm = () => {
-        this.setState({ open: false })
+        this.setState({ 
+            open: false 
+        })
         this.props.removeUser(this.state.uid)
     }
 
@@ -226,17 +220,21 @@ class Lists extends React.Component {
         this.setState({ open: false });
     }
 
-    handleSwitch = () => {
-        this.updateStatus('5d166559a2e1bb1b2285a725');
+    handleSwitch = (id) => {
+       this.updateStatus(id);
     }
 
     _handleClickOpen = (uid) => {
         this.props.getUser(uid);
-        this.setState({ _open: true })
+        this.setState({ 
+            _open: true 
+        })
     }
 
     _handleClose = () => {
-        this.setState({ _open: false })
+        this.setState({ 
+            _open: false 
+        })
     }
 
     render() {
@@ -255,7 +253,7 @@ const mapDispatchToProps = (dispatch) => {
         getUsers: () => dispatch(fetchUsersRequest()),
         getUser: (uid) => dispatch(getUserRequest(uid)),
         removeUser: (uid) => dispatch(deleteUserRequest(uid)),
-        updateStatus: () => dispatch(statusUserRequest())
+        switchStatus: () => dispatch(statusUserRequest())
     }
 }
 

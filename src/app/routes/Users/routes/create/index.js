@@ -42,6 +42,12 @@ class Create extends React.Component {
         });
     }
 
+    handleSwicth = (e) => {
+        this.setState({
+            disabled: !this.state.disabled
+        })
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.error) {
             if (!toast.isActive('toastError')) {
@@ -52,7 +58,7 @@ class Create extends React.Component {
                     toastId: 'toastError'
                 });
             }
-        } else if (nextProps.data) {
+        } else if (nextProps.error === null && nextProps.data) {
             if (!toast.isActive('toastSuccess')) {
                 toast.success('Your account has been successfully created !', {
                     delay: 1000,
@@ -62,12 +68,14 @@ class Create extends React.Component {
                 });
             }
             setTimeout(() => { 
-                this.reset(); 
+                this.reset();
+                this.props.history.push('/app/users/lists');
             }, 2000);
+            
         }
     }
 
-    handleSubmit = e => {
+    handleSubmit = (e) => {
         e.preventDefault();
         this.props.createUser(this.state);
     }
@@ -80,6 +88,7 @@ class Create extends React.Component {
             repeatPassword: '',
             phoneNumber: '',
             username: '',
+            disabled: false,
             role: 'ROLE_GESTIONNAIRE',
             note: ''
         });

@@ -74,6 +74,10 @@ class Update extends React.Component {
         })
     }
 
+    discard = () => {
+        
+    }
+
 
     render() {
         return (Template(this));
