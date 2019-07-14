@@ -1,25 +1,24 @@
 import React from 'react';
 import {
-    ValidatorForm,
-    TextValidator
-} from 'react-material-ui-form-validator';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Grid from '@material-ui/core/Grid';
-import {
     CardContent,
     CardHeader,
     FormControl,
     Card,
     Button,
+    Grid,
     TextField
 } from '@material-ui/core';
+import {
+    ValidatorForm,
+    TextValidator
+} from 'react-material-ui-form-validator';
 import {
     toast,
     ToastContainer,
 } from 'react-toastify';
 
-const roles = [
+
+const status = [
     {
         value: 'ROLE_GESTIONNAIRE',
         label: 'GESTIONNAIRE',
@@ -32,26 +31,23 @@ const roles = [
         value: 'ROLE_ADMIN',
         label: 'ADMINISTRATEUR',
     }
-
 ];
 
 const Template = (component) => {
     const {
-        username,
-        email,
-        phoneNumber,
-        password,
-        repeatPassword,
-        disabled,
-        role,
-        note
+        customer,
+        numberOfCheque,
+        bank,
+        comment,
+        amount,
+        remiseNumber
     } = component.state;
     return (
         <React.Fragment>
             <div className="row animated slideInUpTiny animation-duration-3">
                 <Card style={{ width: '60%', margin: 'auto' }}>
                     <CardContent>
-                        <CardHeader titleTypographyProps={{ align: 'left' }} title={'Create a new user account:'} />
+                        <CardHeader titleTypographyProps={{ align: 'left' }} title={'Create a new chèque:'} />
                         <div className="align-items-center justify-content-between">
                             <ValidatorForm style={{ width: '100%' }} onSubmit={component.handleSubmit} noValidate autoComplete="off">
 
@@ -59,16 +55,16 @@ const Template = (component) => {
                                     <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }}>
                                             <TextValidator
-                                                id="username"
-                                                name="username"
-                                                label="Username"
+                                                id="customer"
+                                                name="customer"
+                                                label="Customer"
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
-                                                value={username}
+                                                value={customer}
                                                 validators={['required']}
-                                                errorMessages={['Username field is required']}
+                                                errorMessages={['Customer field is required']}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -76,33 +72,16 @@ const Template = (component) => {
                                     <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                id="email"
-                                                name="email"
-                                                label="Email"
+                                                id="bank"
+                                                name="bank"
+                                                label="Bank"
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
-                                                value={email}
-                                                validators={['required', 'isEmail']}
-                                                errorMessages={['Email field is required', 'email is not valid']}
-                                            />
-                                        </FormControl>
-                                    </Grid>
-
-                                    <Grid item xs={12}>
-                                        <FormControl style={{ width: '100%', padding: '5px' }} >
-                                            <TextValidator
-                                                id="phoneNumber"
-                                                name="phoneNumber"
-                                                label="Phone"
-                                                onChange={component.handleChange}
-                                                margin="dense"
-                                                variant="outlined"
-                                                required="true"
-                                                value={phoneNumber}
+                                                value={bank}
                                                 validators={['required']}
-                                                errorMessages={['Phone number field is required']}
+                                                errorMessages={['Bank field is required']}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -110,17 +89,53 @@ const Template = (component) => {
                                     <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                type="password"
-                                                name="password"
-                                                id="password"
-                                                label="Password"
+                                                id="number"
+                                                type="number"
+                                                name="numberOfCheque"
+                                                label="Number Of Cheque"
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
-                                                value={password}
+                                                value={numberOfCheque}
                                                 validators={['required']}
-                                                errorMessages={['Password field is required']}
+                                                errorMessages={['numberOfCheque field is required']}
+                                            />
+                                        </FormControl>
+                                    </Grid>
+
+
+                                    <Grid item xs={6}>
+                                        <FormControl style={{ width: '100%', padding: '5px' }} >
+                                            <TextValidator
+                                                id="bank"
+                                                name="bank"
+                                                label="Bank"
+                                                onChange={component.handleChange}
+                                                margin="dense"
+                                                variant="outlined"
+                                                required="true"
+                                                value={bank}
+                                                validators={['required']}
+                                                errorMessages={['Bank field is required']}
+                                            />
+                                        </FormControl>
+                                    </Grid>
+
+
+                                    <Grid item xs={6}>
+                                        <FormControl style={{ width: '100%', padding: '5px' }} >
+                                            <TextValidator
+                                                id="amount"
+                                                name="amount"
+                                                label="Amount"
+                                                onChange={component.handleChange}
+                                                margin="dense"
+                                                variant="outlined"
+                                                required="true"
+                                                value={amount}
+                                                validators={['required']}
+                                                errorMessages={['Amount field is required']}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -128,36 +143,36 @@ const Template = (component) => {
                                     <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="Repeat password"
+                                                id="remiseNumber"
+                                                name="remiseNumber"
+                                                label="Remise Number"
                                                 onChange={component.handleChange}
-                                                name="repeatPassword"
-                                                type="password"
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
-                                                validators={['isPasswordMatch', 'required']}
-                                                errorMessages={['password mismatch', 'this field is required']}
-                                                value={repeatPassword}
+                                                value={remiseNumber}
+                                                validators={['required']}
+                                                errorMessages={['Remise Number field is required']}
                                             />
                                         </FormControl>
                                     </Grid>
 
-                                    <Grid item xs={12}>
-                                        <FormControl style={{ width: '100%', padding: '5px' }}>
+                                    <Grid item xs={6}>
+                                        <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                id="standard-select-currency-native"
+                                                id="standard-select-status-native"
                                                 select
-                                                name="role"
-                                                label="Roles"
+                                                name="status"
+                                                label="Status"
                                                 onChange={component.handleChange}
                                                 SelectProps={{ native: true }}
-                                                helperText="Please select role"
+                                                helperText="Please select status"
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
-                                                value={role}
+                                                value={status}
                                             >
-                                                {roles.map(option => (
+                                                {status.map(option => (
                                                     <option key={option.value} value={option.value}>
                                                         {option.label}
                                                     </option>
@@ -168,34 +183,21 @@ const Template = (component) => {
 
                                     <Grid item xs={12}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
-                                            <TextField
+                                            <TextValidator
+                                                id="comment"
+                                                name="comment"
+                                                label="Comment"
                                                 type="textarea"
-                                                id="note"
-                                                name="note"
-                                                label="Note"
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
                                                 multiline={true}
+                                                value={comment}
                                                 rows={3}
                                                 rowsMax={4}
-                                                value={note}
                                             />
                                         </FormControl>
-                                    </Grid>
-
-                                    <Grid item xs={12}>
-                                        <FormControlLabel control={
-                                            <Switch
-                                                checked={disabled}
-                                                onChange={component.handleSwicth}
-                                                value="checkedB"
-                                                color="primary"
-                                                name="disabled"
-                                                id="disabled"
-                                                inputProps={{ 'aria-label': 'primary checkbox' }}
-                                            />
-                                        } label="Status (Disabled)" />
                                     </Grid>
 
                                 </Grid>
@@ -213,7 +215,9 @@ const Template = (component) => {
             </div>
             <ToastContainer position={toast.POSITION.TOP_RIGHT} />
         </React.Fragment>
+
     )
+
 }
 
 

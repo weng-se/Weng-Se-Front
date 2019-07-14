@@ -12,6 +12,8 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import ButtonGroup from '@material-ui/core/Button';
+import Chip from '@material-ui/core/Chip';
+import DoneIcon from '@material-ui/icons/Done';
 import { createMuiTheme } from '@material-ui/core/styles';
 import Toolbar from "./Toolbar";
 import {
@@ -24,7 +26,6 @@ import compose from 'recompose/compose';
 import Template from './template';
 import './style.css';
 import axios from 'axios';
-
 
 const styles = {
     checked: {},
@@ -78,7 +79,7 @@ class Lists extends React.Component {
                 ]
             });
             axios.post(`http://localhost:4000/api/Users/update?where={"id":"${id}"}`, { 'disabled': !this.state.users[index].disabled })
-                .then((response) => console.log(response))
+                .then((response) => {console.log(response)})
                 .catch((error) => console.log('status', error));
         }
           
@@ -153,7 +154,36 @@ class Lists extends React.Component {
             },
             {
                 name: 'disabled',
-                label: "STATUS",
+                label: "Status",
+                options: {
+                    sort: false,
+                    customBodyRender: (value, tableMeta, updateValue) => {
+                        if(value) {
+                            return (
+                                <Chip
+                                    size="small"
+                                    color="secondary"
+                                    label={"Inactive"}
+                                    deleteIcon={<DoneIcon />}
+                                />
+                            )
+                        }
+                        if(!value) {
+                            return (
+                                <Chip
+                                    size="small"
+                                    color="primary"
+                                    label={"Active"}
+                                    deleteIcon={<DoneIcon />}
+                                />
+                            )
+                        }
+                    }
+                }
+            },
+            {
+                name: 'disabled',
+                label: "Enable/Disable",
                 options: {
                     sort: false,
                     print: false,
@@ -271,6 +301,7 @@ const mapStateToProps = (state) => {
         user: user
     }
 }
+
 export default compose(
     withStyles(styles),
     connect(

@@ -6,6 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Card from '@material-ui/core/Card';
 import MUIDataTable from "mui-datatables";
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import EditUser from './../update/';
@@ -21,15 +22,18 @@ const styles = theme => ({
 const Template = (component) => {
     return (
         <React.Fragment>
-            <MuiThemeProvider theme={component.getMuiTheme()}>
-                <MUIDataTable
-                    title={"Users List"}
-                    id="muiUserDataTable"
-                    data={Array.from(component.state.users)}
-                    columns={component.columns}
-                    options={component.options}
-                />
-            </MuiThemeProvider>
+
+            <Card>
+                <MuiThemeProvider theme={component.getMuiTheme()}>
+                    <MUIDataTable
+                        title={"Users List"}
+                        id="muiUserDataTable"
+                        data={Array.from(component.state.users)}
+                        columns={component.columns}
+                        options={component.options}
+                    />
+                </MuiThemeProvider>
+            </Card>
 
             <Dialog
                 open={component.state.open}

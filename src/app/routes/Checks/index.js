@@ -1,21 +1,17 @@
 import React from 'react';
-import CardBox from 'components/CardBox/index';
-import DataTable from './Components/DataTable';
+import {Redirect, Route, Switch} from 'react-router-dom';
+import asyncComponent from '../../../util/asyncComponent';
 
-class Checks extends React.Component {
-
-    render() {
-        return (
-            <div className="app-wrapper">
-                <div className="row animated slideInUpTiny animation-duration-3">
-                    <CardBox styleName="col-12" cardStyle=" p-0" heading="List des cheques"
-                            headerOutside>
-                        <DataTable/>
-                    </CardBox>
-                </div>
-            </div>
-        );
-    }
-}
+const Checks = ({match}) => (
+    <div className="app-wrapper">
+        <Switch>
+            <Route path={`${match.url}/lists`} component={asyncComponent(() => import('./routes/lists'))}/>
+            <Route path={`${match.url}/create`} component={asyncComponent(() => import('./routes/create'))}/>
+            <Route path={`${match.url}/import`} component={asyncComponent(() => import('./routes/import'))}/>
+        </Switch>
+    </div>
+);
 
 export default Checks;
+
+
