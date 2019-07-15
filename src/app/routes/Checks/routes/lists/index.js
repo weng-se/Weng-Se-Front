@@ -110,9 +110,15 @@ class Checks extends React.Component {
                 }
             },
             {
-                name: "",
+                name: "customer",
                 label: "Customer",
-                options: {}
+                options: {
+                    customBodyRender: (value, tableMeta, updateValue) =>  {
+                        if(value) {
+                            return(<span>{ value.firstName + ' ' + value.lastName }</span>)
+                        }
+                    }
+                }
             },
             {
                 name: "number",
@@ -260,8 +266,6 @@ class Checks extends React.Component {
                 checks: nextProps.checks 
             })
         }
-
-        
 
         if(nextProps.check) {
 

@@ -19,8 +19,8 @@ import {
 
 const status = [
     {
-        value: 'SUBMIT',
-        label: 'SUBMIT',
+        value: 'DISCHARGER',
+        label: 'DISCHARGER',
     },
     {
         value: 'WAITING',
