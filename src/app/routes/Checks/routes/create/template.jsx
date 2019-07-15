@@ -34,27 +34,26 @@ const status = [
 
 const banks = [
     {
-        value: 'CIH',
-        label: 'CIH BANK',
+        value: 'SG',
+        label: 'SG',
     },
     {
-        value: 'BMCE',
-        label: 'BMCE BANK',
+        value: 'BNP',
+        label: 'BNP',
     },
     {
-        value: 'ATTIJARI',
-        label: 'ATTIJARI BANK',
+        value: 'LCL',
+        label: 'LCL',
     },
     {
-        value: 'BMCI',
-        label: 'BMCI BANK',
+        value: 'HSBC',
+        label: 'HSBC',
     },
     {
-        value: 'POPULAR',
-        label: 'POPULAIRE BANK',
+        value: 'LBP',
+        label: 'LBP',
     }
 ];
-
 
 const Template = (component) => {
     const {

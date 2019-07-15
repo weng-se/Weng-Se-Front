@@ -33,4 +33,7 @@ class Toolbar extends React.Component {
 
 }
 
-export default withStyles(defaultToolbarStyles, { name: "Toolbar" })(Toolbar);
+export default withStyles(
+  defaultToolbarStyles, 
+  { name: "Toolbar" }
+  )(Toolbar);

@@ -1,5 +1,27 @@
 import React from 'react';
+import { 
+    toast 
+} from 'react-toastify';
+import {
+    connect
+} from 'react-redux';
+import {
+    withStyles
+} from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+import compose from 'recompose/compose';
 import Template from './template';
+
+const styles = {
+    checked: {},
+    size: {
+        width: 40,
+        height: 40,
+    },
+    sizeIcon: {
+        fontSize: 20,
+    },
+};
 
 
 class Create extends React.Component {
@@ -33,6 +55,10 @@ class Create extends React.Component {
             
     }
 
+    componentWillReceiveProps(nextProps) {
+
+    }
+
     render() {
         return (Template(this));
     }
@@ -43,4 +69,19 @@ Create.propTypes = {
     
 };
 
-export default Create;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        
+    }
+}
+
+const mapStateToProps = (state) => {
+    
+}
+
+export default compose(
+    withStyles(styles),
+    connect(
+        mapStateToProps, 
+        mapDispatchToProps
+))(Create);

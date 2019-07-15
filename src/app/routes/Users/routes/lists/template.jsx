@@ -8,7 +8,13 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Card from '@material-ui/core/Card';
 import MUIDataTable from "mui-datatables";
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { 
+    MuiThemeProvider 
+} from '@material-ui/core/styles';
+import {
+    toast,
+    ToastContainer
+} from 'react-toastify';
 import EditUser from './../update/';
 
 const styles = theme => ({
@@ -33,6 +39,11 @@ const Template = (component) => {
                         options={component.options}
                     />
                 </MuiThemeProvider>
+                {component.props.progress !== 100 &&
+                    <div className="loader-view">
+                        <CircularProgress />
+                    </div>
+                }
             </Card>
 
             <Dialog
@@ -56,12 +67,6 @@ const Template = (component) => {
                 </DialogActions>
             </Dialog>
 
-            {component.props.progress !== 100 &&
-                <div className="loader-view">
-                    <CircularProgress />
-                </div>
-            }
-
             <Dialog
                 fullWidth="true"
                 open={component.state._open}
@@ -74,6 +79,7 @@ const Template = (component) => {
                     </DialogContentText>
                 </DialogContent>
             </Dialog>
+            <ToastContainer position={toast.POSITION.TOP_RIGHT} />
         </React.Fragment>
     )
 

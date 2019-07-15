@@ -14,7 +14,9 @@ import EditIcon from '@material-ui/icons/Edit';
 import ButtonGroup from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
 import DoneIcon from '@material-ui/icons/Done';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { 
+    createMuiTheme 
+} from '@material-ui/core/styles';
 import Toolbar from "./Toolbar";
 import {
     fetchUsersRequest,
@@ -22,6 +24,9 @@ import {
     statusUserRequest,
     getUserRequest
 } from '../../../../../actions/Users';
+import {
+    toast
+} from 'react-toastify';
 import compose from 'recompose/compose';
 import Template from './template';
 import './style.css';
@@ -199,7 +204,7 @@ class Lists extends React.Component {
         ];
         this.options = {
             filter: true,
-            selectableRows: true,
+            selectableRows: 'none',
             filterType: 'dropdown',
             responsive: 'scroll',
             rowsPerPage: 10,
@@ -217,15 +222,6 @@ class Lists extends React.Component {
 
     componentDidMount() {
         this.props.getUsers();
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.users) 
-            this.setState({ users: nextProps.users })
-        if(typeof(nextProps.users.count) !== undefined) {
-            if(nextProps.users.count === 1)
-                this.props.getUsers();
-        }
     }
 
     removeUser = (uid) => {
@@ -265,6 +261,31 @@ class Lists extends React.Component {
         this.setState({ 
             _open: false 
         })
+    }
+
+    componentWillReceiveProps(nextProps) {
+
+        if (nextProps.users)  {
+            this.setState({ 
+                users: nextProps.users 
+            })
+        }
+
+        if(typeof(nextProps.users.count) !== undefined) {
+            if(nextProps.users.count === 1) {
+                if (!toast.isActive('success')) {
+                    toast.success('Successfully deleted user !', {
+                        delay: 1000,
+                        autoClose: true,
+                        closeButton: true,
+                        toastId: 'success'
+                    });
+                }
+                setTimeout(() => {
+                    this.props.getUsers();
+                }, 2000);
+            }
+        }
     }
 
     render() {
