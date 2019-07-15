@@ -8,6 +8,9 @@ import {
 import {
     withStyles
 } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import ButtonGroup from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
 import DoneIcon from '@material-ui/icons/Done';
 import compose from 'recompose/compose';
@@ -48,9 +51,36 @@ class Checks extends React.Component {
         }
     })
 
+    removeCheck = (id) => {
+        fetch(`http://localhost:4000/api/checks/${id}`, {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'}
+        })
+        .then((response) => console.log(response))
+        .catch((error) => { console.error(error) })
+    }
+
 
     componentWillMount() {
         this.columns = [
+            {
+                name: "id",
+                label: "Options",
+                options: {
+                    sort: false,
+                    print: false,
+                    download: false,
+                    customBodyRender: (value, tableMeta, updateValue) => (
+                        <React.Fragment>
+                            <ButtonGroup size="sm" size="small">
+                                <IconButton size="sm" onClick={() => this.removeCheck(value)}>
+                                    <DeleteIcon fontSize="small" />
+                                </IconButton>
+                            </ButtonGroup>
+                        </React.Fragment>
+                    )
+                }
+            },
             {
                 name: "",
                 label: "Customer",
