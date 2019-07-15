@@ -12,8 +12,9 @@ import Chip from '@material-ui/core/Chip';
 import DoneIcon from '@material-ui/icons/Done';
 import compose from 'recompose/compose';
 import moment from 'moment';
-import Template from './template';
 import Toolbar from '../../Components/Toolbar';
+import Template from './template';
+
 
 
 const styles = {
@@ -105,6 +106,7 @@ class Checks extends React.Component {
                 name: "remise.issuedDate",
                 label: "Remise Issued Date",
                 options: {
+                    sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <span>{ moment(value).format('MMM D, YYYY')  }</span>
                     )
