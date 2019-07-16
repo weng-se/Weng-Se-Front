@@ -1,6 +1,6 @@
 import React from 'react';
-import { 
-    toast 
+import {
+    toast
 } from 'react-toastify';
 import {
     connect
@@ -29,6 +29,70 @@ class Create extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            check: {
+                number: 0,
+                bank: 'SG',
+                amount: 0,
+                customerId: '',
+                remiseId: '',
+                status: 'WAITING',
+                issuedDate: '2019-02-25',
+                comment: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout',
+                cashingDateDesired: '2019-02-25',
+            },
+            selectedDate: null,
+            setSelectedDate: null,
+            customers: []
+        }
+    }
+
+    handleDateChange = (setSelectedDate) => {
+        this.setState({
+            setSelectedDate
+        })
+    }
+
+    handleChange = (e) => {
+        this.setState({ check: 
+            { 
+                ...this.state.check, 
+                [e.target.name] : e.target.value 
+            } 
+        })
+    }
+
+    componentDidMount() {
+        this.getCustomers();
+    }
+
+    getCustomers = () => {
+        fetch('http://localhost:4000/api/costumers')
+            .then((response) => response.json())
+            .then((customers) => this.setState({
+                customers
+            }))
+            .catch((error) => console.error(error));
+    }
+
+    saveCheck = () => {
+        fetch('http://localhost:4000/api/checks', {
+            method: 'post',
+            body: JSON.stringify(this.state.check)
+        }).then((response) => {
+            console.log(response.json());
+        }).then((data) => {
+            console.log('Created Gist:', data);
+        }).catch((error) => {
+            console.error(error);
+        })
+    }
+
+    componentWillReceiveProps(nextProps) {
+
+    }
+
+    reset = () => {
+        this.setState({
             customer: null,
             numberOfCheque: null,
             bank: null,
@@ -37,26 +101,9 @@ class Create extends React.Component {
             remiseNumber: null,
             issuedDate: new Date('now'),
             cashingDateDesired: new Date('now'),
-            selectedDate: null, 
+            selectedDate: null,
             setSelectedDate: null,
-            customers: []
-        }
-    }
-
-    handleDateChange = (setSelectedDate) => {
-        this.setState({ setSelectedDate })
-    }
-
-    componentDidMount() {
-        fetch('http://localhost:4000/api/costumers')
-            .then((response) => response.json())
-            .then((customers) => this.setState({ customers }))
-            .catch((error) => console.error(error));
-            
-    }
-
-    componentWillReceiveProps(nextProps) {
-
+        })
     }
 
     render() {
@@ -66,22 +113,24 @@ class Create extends React.Component {
 
 
 Create.propTypes = {
-    
+
 };
 
 const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+}
+
+const mapStateToProps = (state) => {
     return {
         
     }
 }
 
-const mapStateToProps = (state) => {
-    
-}
-
 export default compose(
     withStyles(styles),
     connect(
-        mapStateToProps, 
+        mapStateToProps,
         mapDispatchToProps
-))(Create);
+    ))(Create);

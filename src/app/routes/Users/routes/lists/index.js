@@ -66,6 +66,13 @@ class Lists extends React.Component {
             root:  {
                 padding: '2px 6px 2px 20px' 
             }
+          },
+          MUIDataTableBodyRow: {
+            root: {
+              '&:nth-child(odd)': { 
+                backgroundColor: '#F2F2F2'
+              }
+            }
           }
         }
     })
@@ -95,7 +102,7 @@ class Lists extends React.Component {
         this.columns = [
             {
                 name: "id",
-                label: "OPTIONS",
+                label: "Options",
                 options: {
                     sort: false,
                     print: false,
@@ -116,7 +123,7 @@ class Lists extends React.Component {
             },
             {
                 name: "username",
-                label: "PHOTO",
+                label: "Photo",
                 options: {
                     sort: false,
                     print: false,
@@ -134,17 +141,17 @@ class Lists extends React.Component {
             },
             {
                 name: "username",
-                label: "USERNAME",
+                label: "Username",
                 options: {}
             },
             {
                 name: "email",
-                label: "EMAIL ADDRESS",
+                label: "Email Address",
                 options: {}
             },
             {
                 name: "role",
-                label: "ROLE",
+                label: "Role",
                 options: {
                     customBodyRender: (value, tableMeta, updateValue) => {
                         if (value === "ROLE_ADMIN") {

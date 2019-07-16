@@ -14,15 +14,15 @@ class Create extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
-            repeatPassword: '',
-            photoURL: '',
-            phoneNumber: '',
-            username: '',
+            email: null,
+            password: null,
+            repeatPassword: null,
+            photoURL: null,
+            phoneNumber: null,
+            username: null,
             disabled: false,
             role: 'ROLE_GESTIONNAIRE',
-            note: ''
+            note: null
         }
     }
 
@@ -83,14 +83,14 @@ class Create extends React.Component {
 
     reset() {
         this.setState({
-            email: '',
-            password: '',
-            repeatPassword: '',
-            phoneNumber: '',
-            username: '',
+            email: null,
+            password: null,
+            repeatPassword: null,
+            phoneNumber: null,
+            username: null,
             disabled: false,
             role: 'ROLE_GESTIONNAIRE',
-            note: ''
+            note: null
         });
     }
 

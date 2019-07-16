@@ -57,16 +57,10 @@ const banks = [
 
 const Template = (component) => {
     const {
-        customer,
-        numberOfCheque,
-        bank,
-        comment,
-        amount,
-        remiseNumber,
-        issuedDate,
-        cashingDateDesired,
+        check,
         customers
     } = component.state;
+    console.log(check);
     return (
         <React.Fragment>
             <div className="row animated slideInUpTiny animation-duration-3">
@@ -74,17 +68,17 @@ const Template = (component) => {
                     <CardContent>
                         <CardHeader titleTypographyProps={{ align: 'left' }} title={'Create a new cheks:'} />
                         <div className="align-items-center justify-content-between">
-                            <ValidatorForm style={{ width: '100%' }} onSubmit={component.handleSubmit} noValidate autoComplete="off">
+                            <ValidatorForm style={{ width: '100%' }} onSubmit={component.saveCheck} noValidate autoComplete="off">
 
                                 <Grid container spacing={3}>
                                     <Grid item xs={12}>
                                         <FormControl style={{ width: '100%', padding: '5px' }}>
 
                                             <TextValidator
-                                                id="customer"
+                                                id="customerId"
                                                 select
-                                                name="customer"
-                                                label="Customer"
+                                                name="customerId"
+                                                label="customerId"
                                                 onChange={component.handleChange}
                                                 SelectProps={{ native: true }}
                                                 margin="dense"
@@ -115,7 +109,7 @@ const Template = (component) => {
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
-                                                value={bank}
+                                                value={check.bank}
                                             >
                                                 {banks.map(option => (
                                                     <option key={option.value} value={option.value}>
@@ -137,7 +131,7 @@ const Template = (component) => {
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
-                                                value={numberOfCheque}
+                                                value={check.number}
                                                 validators={['required']}
                                                 errorMessages={['numberOfCheque field is required']}
                                             />
@@ -154,7 +148,7 @@ const Template = (component) => {
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
-                                                value={amount}
+                                                value={check.amount}
                                                 validators={['required']}
                                                 errorMessages={['Amount field is required']}
                                             />
@@ -171,7 +165,7 @@ const Template = (component) => {
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
-                                                value={remiseNumber}
+                                                value={check.remiseNumber}
                                                 validators={['required']}
                                                 errorMessages={['Remise Number field is required']}
                                             />
@@ -191,7 +185,7 @@ const Template = (component) => {
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
-                                                value={status}
+                                                value={check.status}
                                             >
                                                 {status.map(option => (
                                                     <option key={option.value} value={option.value}>
@@ -215,7 +209,7 @@ const Template = (component) => {
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
-                                                value={issuedDate}
+                                                value={check.issuedDate}
                                                 validators={['required']}
                                                 errorMessages={['Issued Date field is required']}
                                             />
@@ -233,7 +227,7 @@ const Template = (component) => {
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
-                                                value={cashingDateDesired}
+                                                value={check.cashingDateDesired}
                                                 validators={['required']}
                                                 errorMessages={['Cashing Date Desired field is required']}
                                             />
@@ -252,7 +246,7 @@ const Template = (component) => {
                                                 variant="outlined"
                                                 required="true"
                                                 multiline={true}
-                                                value={comment}
+                                                value={check.comment}
                                                 rows={3}
                                                 rowsMax={4}
                                             />

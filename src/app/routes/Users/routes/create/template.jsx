@@ -142,7 +142,7 @@ const Template = (component) => {
                                         </FormControl>
                                     </Grid>
 
-                                    <Grid item xs={12}>
+                                    <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }}>
                                             <TextValidator
                                                 id="standard-select-currency-native"
@@ -166,6 +166,20 @@ const Template = (component) => {
                                         </FormControl>
                                     </Grid>
 
+                                    <Grid item xs={6}>
+                                        <FormControlLabel style={{ marginTop: '10px', marginLeft: '10px' }} control={
+                                            <Switch
+                                                checked={disabled}
+                                                onChange={component.handleSwicth}
+                                                value="checkedB"
+                                                color="primary"
+                                                name="disabled"
+                                                id="disabled"
+                                                inputProps={{ 'aria-label': 'primary checkbox' }}
+                                            />
+                                        } label="Status (Disabled)" />
+                                    </Grid>
+
                                     <Grid item xs={12}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextField
@@ -182,20 +196,6 @@ const Template = (component) => {
                                                 value={note}
                                             />
                                         </FormControl>
-                                    </Grid>
-
-                                    <Grid item xs={12}>
-                                        <FormControlLabel control={
-                                            <Switch
-                                                checked={disabled}
-                                                onChange={component.handleSwicth}
-                                                value="checkedB"
-                                                color="primary"
-                                                name="disabled"
-                                                id="disabled"
-                                                inputProps={{ 'aria-label': 'primary checkbox' }}
-                                            />
-                                        } label="Status (Disabled)" />
                                     </Grid>
 
                                 </Grid>

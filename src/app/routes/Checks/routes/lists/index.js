@@ -65,6 +65,13 @@ class Checks extends React.Component {
             root:  {
                 padding: '2px 6px 2px 20px' 
             }
+          },
+          MUIDataTableBodyRow: {
+            root: {
+              '&:nth-child(odd)': { 
+                backgroundColor: '#F2F2F2'
+              }
+            }
           }
         }
     })
@@ -100,8 +107,8 @@ class Checks extends React.Component {
                     download: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <React.Fragment>
-                            <ButtonGroup size="sm" size="small">
-                                <IconButton size="sm" onClick={() => this.removeCheck(value)}>
+                            <ButtonGroup size="small">
+                                <IconButton size="small" onClick={() => this.removeCheck(value)}>
                                     <DeleteIcon fontSize="small" />
                                 </IconButton>
                             </ButtonGroup>
@@ -155,7 +162,11 @@ class Checks extends React.Component {
                 label: "Amount",
                 options: {
                     customBodyRender: (value, tableMeta, updateValue) => (
-                        <span>€ {value}</span>
+                        <Chip
+                            size="small"
+                            color="default"
+                            label={'€' + value}
+                        />
                     )
                 }
             },
@@ -218,7 +229,7 @@ class Checks extends React.Component {
                   <Toolbar/>
                 );
             },
-            customToolbarSelect: () => {
+            customToolbarSelect: (selectedRows) => {
                 return (
                     <React.Fragment>
                         <Tooltip title={"Create Remise"}>
