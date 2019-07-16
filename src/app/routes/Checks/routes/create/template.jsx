@@ -58,7 +58,8 @@ const banks = [
 const Template = (component) => {
     const {
         check,
-        customers
+        customers,
+        remises
     } = component.state;
     console.log(check);
     return (
@@ -92,7 +93,7 @@ const Template = (component) => {
                                                     </option>
                                                 ))}
                                             </TextValidator>
-                                        
+
                                         </FormControl>
 
                                     </Grid>
@@ -158,17 +159,23 @@ const Template = (component) => {
                                     <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                id="remiseNumber"
-                                                name="remiseNumber"
+                                                id="standard-select-status-native"
+                                                select
+                                                name="remise_id"
                                                 label="Remise Number"
                                                 onChange={component.handleChange}
+                                                SelectProps={{ native: true }}
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
-                                                value={check.remiseNumber}
-                                                validators={['required']}
-                                                errorMessages={['Remise Number field is required']}
-                                            />
+                                                value={(remises[0]) ? remises[0].id : ""}
+                                            >
+                                                {remises.map(option => (
+                                                    <option key={option.value} value={option.id}>
+                                                        {option.number}
+                                                    </option>
+                                                ))}
+                                            </TextValidator>
                                         </FormControl>
                                     </Grid>
 

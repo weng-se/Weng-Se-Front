@@ -42,7 +42,8 @@ class Create extends React.Component {
             },
             selectedDate: null,
             setSelectedDate: null,
-            customers: []
+            customers: [],
+            remises: []
         }
     }
 
@@ -63,14 +64,20 @@ class Create extends React.Component {
 
     componentDidMount() {
         this.getCustomers();
+        this.getRemises();
     }
 
     getCustomers = () => {
         fetch('http://localhost:4000/api/costumers')
             .then((response) => response.json())
-            .then((customers) => this.setState({
-                customers
-            }))
+            .then((customers) => this.setState({ customers }))
+            .catch((error) => console.error(error));
+    }
+
+    getRemises = () => {
+        fetch('http://localhost:4000/api/remises')
+            .then((response) => response.json())
+            .then((remises) => this.setState({ remises }))
             .catch((error) => console.error(error));
     }
 
@@ -78,13 +85,10 @@ class Create extends React.Component {
         fetch('http://localhost:4000/api/checks', {
             method: 'post',
             body: JSON.stringify(this.state.check)
-        }).then((response) => {
-            console.log(response.json());
-        }).then((data) => {
-            console.log('Created Gist:', data);
-        }).catch((error) => {
-            console.error(error);
         })
+        .then((response) => console.log(response.json()) )
+        .then((data) => console.log('Created Gist:', data))
+        .catch((error) => console.error(error))
     }
 
     componentWillReceiveProps(nextProps) {
@@ -133,4 +137,4 @@ export default compose(
     connect(
         mapStateToProps,
         mapDispatchToProps
-    ))(Create);
+))(Create);
