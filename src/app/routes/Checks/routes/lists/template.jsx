@@ -125,10 +125,6 @@ const Template = (component) => {
                         </Button>
                 </DialogActions>
             </Dialog>
-
-
-
-
             <ToastContainer position={toast.POSITION.TOP_RIGHT} />
         </React.Fragment>
 

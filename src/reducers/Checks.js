@@ -6,13 +6,18 @@ import {
     REQUEST_DELETE_CHECK,
     REQUEST_DELETE_CHECK_FAILURE,
     REQUEST_DELETE_CHECK_SUCCESS,
+    
+    REQUEST_CREATE_CHECK,
+    REQUEST_CREATE_CHECK_SUCCESS,
+    REQUEST_CREATE_CHECK_FAILURE,
 } from "../constants/ActionTypes";
 
 const INIT_STATE = {
     checks: null,
     progress: 0,
     error: false,
-    deleted: false
+    deleted: false,
+    created: false
 };
 
 
@@ -59,6 +64,32 @@ export default (state = INIT_STATE, action) => {
             }
         }
         case REQUEST_DELETE_CHECK_FAILURE: {
+            return {
+                ...state,
+                progress: 100,
+                check: action.payload
+            }
+        }
+
+
+
+
+
+        case REQUEST_CREATE_CHECK: {
+            return {
+                ...state,
+                progress: 0
+            }
+        }
+        case REQUEST_CREATE_CHECK_SUCCESS: {
+            return {
+                ...state,
+                progress: 100,
+                created: true,
+                check: action.payload
+            }
+        }
+        case REQUEST_CREATE_CHECK_FAILURE: {
             return {
                 ...state,
                 progress: 100,

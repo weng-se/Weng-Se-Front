@@ -203,7 +203,7 @@ class Checks extends React.Component {
                                 />
                             )
                         }
-                        if(value === 'waiting') {
+                        if(value === 'WAITING') {
                             return (
                                 <Chip
                                     size="small"

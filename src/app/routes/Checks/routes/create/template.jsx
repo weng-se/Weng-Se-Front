@@ -61,7 +61,6 @@ const Template = (component) => {
         customers,
         remises
     } = component.state;
-    console.log(check);
     return (
         <React.Fragment>
             <div className="row animated slideInUpTiny animation-duration-3">
@@ -113,7 +112,7 @@ const Template = (component) => {
                                                 value={check.bank}
                                             >
                                                 {banks.map(option => (
-                                                    <option key={option.value} value={option.value}>
+                                                    <option key={option.id} value={option.id}>
                                                         {option.label}
                                                     </option>
                                                 ))}
@@ -126,8 +125,8 @@ const Template = (component) => {
                                             <TextValidator
                                                 id="number"
                                                 type="number"
-                                                name="numberOfCheque"
-                                                label="Number Of Cheque"
+                                                name="number"
+                                                label="Number Cheque"
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
@@ -182,7 +181,7 @@ const Template = (component) => {
                                     <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                id="standard-select-status-native"
+                                                id="status"
                                                 select
                                                 name="status"
                                                 label="Status"

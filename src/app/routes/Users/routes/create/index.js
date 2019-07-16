@@ -50,21 +50,21 @@ class Create extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.error) {
-            if (!toast.isActive('toastError')) {
+            if (!toast.isActive('error')) {
                 toast.error('Fix: “something went wrong” while creating account !', {
                     delay: 1000,
                     autoClose: true,
                     closeButton: true,
-                    toastId: 'toastError'
+                    toastId: 'error'
                 });
             }
         } else if (nextProps.error === null && nextProps.data) {
-            if (!toast.isActive('toastSuccess')) {
+            if (!toast.isActive('success')) {
                 toast.success('Your account has been successfully created !', {
                     delay: 1000,
                     autoClose: true,
                     closeButton: true,
-                    toastId: 'toastSuccess'
+                    toastId: 'success'
                 });
             }
             setTimeout(() => { 

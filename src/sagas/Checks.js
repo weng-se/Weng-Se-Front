@@ -6,7 +6,9 @@ import {
     takeLatest
 } from "redux-saga/effects";
 import {
-    REQUEST_FETCH_CHECKS, REQUEST_DELETE_CHECK,
+    REQUEST_FETCH_CHECKS, 
+    REQUEST_DELETE_CHECK, 
+    REQUEST_CREATE_CHECK,
 } from "../constants/ActionTypes";
 import {
     fetchChecksProgress,
@@ -14,7 +16,10 @@ import {
     fetchChecksError,
     deleteCheckProgress,
     deleteCheckSuccess,
-    deleteCheckError
+    deleteCheckError,
+    createCheckError,
+    createCheckSuccess,
+    createCheckProgress
 } from "../actions/Checks";
 import axios from 'axios';
 
@@ -46,6 +51,42 @@ export function* watchFetchChecks() {
     yield takeLatest(REQUEST_FETCH_CHECKS, getChecks);
 }
 
+
+
+
+
+
+function* createCheck(action) {
+    let payload = null, error = null;
+    try {
+        yield put(createCheckProgress());
+        yield axios.post(`http://localhost:4000/api/checks`, action.formData)
+            .then((res) => {
+                if (res.status == 200)
+                    payload = res.data
+            }).catch((error) => {
+                error = error
+            });
+
+        if (payload) yield put(createCheckSuccess(payload));
+        else yield put(createCheckError(error));
+
+    } catch (error) {
+        yield put(createCheckError(error));
+    }
+}
+export function* watchCreateCheck() {
+    yield takeLatest(REQUEST_CREATE_CHECK, createCheck);
+}
+
+
+
+
+
+
+
+
+
 function* deleteCheck(data) {
     let payload = null, error = null;
     try {
@@ -76,6 +117,7 @@ export function* watchDeleteChecks() {
 export default function* rootSaga() {
     yield all([
         fork(watchFetchChecks),
-        fork(watchDeleteChecks)
+        fork(watchDeleteChecks),
+        fork(watchCreateCheck)
     ]);
 }

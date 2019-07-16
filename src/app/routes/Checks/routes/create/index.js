@@ -11,6 +11,9 @@ import {
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import Template from './template';
+import { 
+    createCheckRequest 
+} from '../../../../../actions/Checks';
 
 const styles = {
     checked: {},
@@ -34,10 +37,10 @@ class Create extends React.Component {
                 bank: 'SG',
                 amount: 0,
                 customerId: '',
-                remiseId: '',
+                remise_id: '',
                 status: 'WAITING',
                 issuedDate: '2019-02-25',
-                comment: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout',
+                comment: 'It is a long established fact that a reader',
                 cashingDateDesired: '2019-02-25',
             },
             selectedDate: null,
@@ -82,16 +85,38 @@ class Create extends React.Component {
     }
 
     saveCheck = () => {
-        fetch('http://localhost:4000/api/checks', {
-            method: 'post',
-            body: JSON.stringify(this.state.check)
-        })
-        .then((response) => console.log(response.json()) )
-        .then((data) => console.log('Created Gist:', data))
-        .catch((error) => console.error(error))
+        this.props.createCheck(this.state.check);
     }
 
     componentWillReceiveProps(nextProps) {
+
+        console.log('nextProps', nextProps);
+        
+        if(nextProps.check && nextProps.created) {
+            if (!toast.isActive('success')) {
+                toast.success('Successfully Created !', {
+                    delay: 1000,
+                    autoClose: true,
+                    closeButton: true,
+                    toastId: 'success'
+                });
+            }
+            this.reset();
+            setTimeout(() => { 
+                this.props.history.push('/app/checks/lists');
+            }, 1000);
+        }
+
+        if (nextProps.error) {
+            if (!toast.isActive('error')) {
+                toast.error('Fix: “something went wrong” while creating account !', {
+                    delay: 1000,
+                    autoClose: true,
+                    closeButton: true,
+                    toastId: 'error'
+                });
+            }
+        }
 
     }
 
@@ -122,13 +147,22 @@ Create.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        createCheck: (formData) => dispatch(createCheckRequest(formData)),
     }
 }
 
 const mapStateToProps = (state) => {
+    const {
+        check,
+        created,
+        progress,
+        error
+    } = state.checks;
     return {
-        
+        check: check,
+        created: created,
+        progress: progress,
+        error: error
     }
 }
 

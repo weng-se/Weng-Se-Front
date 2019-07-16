@@ -7,7 +7,12 @@ import {
     REQUEST_DELETE_CHECK,
     REQUEST_DELETE_CHECK_SUCCESS,
     REQUEST_DELETE_CHECK_FAILURE,
-    REQUEST_DELETE_CHECK_PROGRESS
+    REQUEST_DELETE_CHECK_PROGRESS,
+
+    REQUEST_CREATE_CHECK,
+    REQUEST_CREATE_CHECK_SUCCESS,
+    REQUEST_CREATE_CHECK_FAILURE,
+    REQUEST_CREATE_CHECK_PROGRESS
 } from '../constants/ActionTypes'
 
 
@@ -70,6 +75,39 @@ export const deleteCheckError = (error) => {
 export const deleteCheckProgress = () => {
     return {
         type: REQUEST_DELETE_CHECK_PROGRESS,
+        progress: 0
+    };
+};
+
+/**
+ * ==================  (CREATE CHECKS) ==================
+ */
+export const createCheckRequest = (formData) => {
+    return {
+        type: REQUEST_CREATE_CHECK,
+        formData: formData,
+        progress: 0
+    };
+};
+export const createCheckSuccess = (payload) => {
+    return {
+        type: REQUEST_CREATE_CHECK_SUCCESS,
+        payload: payload,
+        deleted : true,
+        progress: 100
+    };
+};
+export const createCheckError = (error) => {
+    return {
+        type: REQUEST_CREATE_CHECK_FAILURE,
+        error: true,
+        deleted : false,
+        progress: 100
+    }
+};
+export const createCheckProgress = () => {
+    return {
+        type: REQUEST_CREATE_CHECK_PROGRESS,
         progress: 0
     };
 };

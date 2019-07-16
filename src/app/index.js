@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Header from 'components/Header/index';
 import Sidebar from 'containers/SideNav/index';
@@ -16,6 +16,15 @@ import { isIOS, isMobile } from 'react-device-detect';
 import asyncComponent from '../util/asyncComponent';
 import TopNav from 'components/TopNav';
 import ColorOption from 'containers/Customizer/ColorOption';
+
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={(props) => (
+    localStorage.getItem('user_role') === 'ROLE_ADMIN'
+      ? <Component {...props} />
+      : <Redirect to={'/app/404'} />
+  )} />
+)
 
 
 class App extends React.Component {
@@ -57,9 +66,7 @@ class App extends React.Component {
                 <Route path={`${match.url}/checks`} component={asyncComponent(() => import('./routes/Checks'))} />
                 <Route path={`${match.url}/dashboard`} component={asyncComponent(() => import('./routes/Dashboard'))} />
                 <Route path={`${match.url}/remises`} component={asyncComponent(() => import('./routes/Remises'))} />
-                { localStorage.getItem('user_role') === 'ROLE_ADMIN' && 
-                  <Route path={`${match.url}/users`} component={asyncComponent(() => import('./routes/Users'))} />
-                }
+                <PrivateRoute path={`${match.url}/users`} component={asyncComponent(() => import('./routes/Users'))}/>
                 <Route path={`${match.url}/profile`} component={asyncComponent(() => import('./routes/Profile'))} />
                 <Route path={`${match.url}/batch`} component={asyncComponent(() => import('./routes/Batch'))} />
                 <Route path={`*`} component={asyncComponent(() => import('components/Error404'))} />
