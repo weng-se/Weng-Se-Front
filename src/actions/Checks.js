@@ -173,14 +173,14 @@ export const checkEditSuccess = (payload) => {
     return {
         type: REQUEST_EDIT_CHECK_SUCCESS,
         payload: payload,
-        updated : true,
+        updated: true,
         progress: 100
     }
 }
 export const checkEditError = (error) => {
     return {
         type: REQUEST_EDIT_CHECK_FAILURE,
-        error: error,
+        error: true,
         progress: 100
     }
 }

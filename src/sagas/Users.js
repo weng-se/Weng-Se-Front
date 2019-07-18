@@ -122,6 +122,11 @@ export function* watchDeleteUser() {
 function* editUser(action) {
     let payload = null,
         error = null;
+
+
+        console.log('saga', action.formData);
+        return false;
+    
     try {
         yield axios.post(`http://localhost:4000/api/Users/update?where={"id":"${action.formData.id}"}`, action.formData)
             .then((res) => payload = res.data)

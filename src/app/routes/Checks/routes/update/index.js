@@ -11,8 +11,8 @@ import {
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import Template from './template';
-import { 
-    checkEditRequest 
+import {
+    checkEditRequest
 } from '../../../../../actions/Checks';
 
 const styles = {
@@ -33,6 +33,7 @@ class Update extends React.Component {
         super(props);
         this.state = {
             check: {
+                id: '',
                 number: 0,
                 bank: '',
                 amount: 0,
@@ -57,11 +58,11 @@ class Update extends React.Component {
     }
 
     handleChange = (e) => {
-        this.setState({ check: 
-            { 
-                ...this.state.check, 
-                [e.target.name] : e.target.value 
-            } 
+        this.setState({
+            check: {
+                ...this.state.check,
+                [e.target.name]: e.target.value
+            }
         })
     }
 
@@ -73,14 +74,18 @@ class Update extends React.Component {
     getCustomers = () => {
         fetch('http://localhost:4000/api/costumers')
             .then((response) => response.json())
-            .then((customers) => this.setState({ customers }))
+            .then((customers) => this.setState({
+                customers
+            }))
             .catch((error) => console.error(error));
     }
 
     getRemises = () => {
         fetch('http://localhost:4000/api/remises')
             .then((response) => response.json())
-            .then((remises) => this.setState({ remises }))
+            .then((remises) => this.setState({
+                remises
+            }))
             .catch((error) => console.error(error));
     }
 
@@ -88,31 +93,33 @@ class Update extends React.Component {
         this.props.updateCheck(this.state.check);
     }
 
-    formatTime(dates){
+    formatTime(dates) {
         var dt = new Date();
         return dt.toISOString(dates).split('T')[0];
     }
 
     componentWillReceiveProps(nextProps) {
 
-    
-        this.setState({ check: 
-            { 
-                ...this.state.check, 
-                number: nextProps.check.number,
-                bank: nextProps.check.bank,
-                amount: nextProps.check.amount,
-                customerId: nextProps.check.customerId,
-                remise_id: nextProps.check.remise_id,
-                status: nextProps.check.status,
-                issuedDate: this.formatTime(nextProps.check.issuedDate),
-                comment: nextProps.check.comment,
-                cashingDateDesired: this.formatTime(nextProps.check.cashingDateDesired)
-            } 
-        })
+        if (nextProps.check) {
+            this.setState({
+                check: {
+                    ...this.state.check,
+                    id: nextProps.check.id,
+                    number: nextProps.check.number,
+                    bank: nextProps.check.bank,
+                    amount: nextProps.check.amount,
+                    customerId: nextProps.check.customerId,
+                    remise_id: nextProps.check.remise_id,
+                    status: nextProps.check.status,
+                    issuedDate: this.formatTime(nextProps.check.issuedDate),
+                    comment: nextProps.check.comment,
+                    cashingDateDesired: this.formatTime(nextProps.check.cashingDateDesired)
+                }
+            })
+        }
 
 
-        if (nextProps.error &&  nextProps.check === undefined) {
+        if (nextProps.error && nextProps.check === undefined) {
             if (!toast.isActive('editToastError')) {
                 toast.error('Fix: “something went wrong” while updating account !', {
                     delay: 1000,
@@ -122,8 +129,8 @@ class Update extends React.Component {
                 });
             }
         }
-        
-        if(nextProps.updated && nextProps.check !== undefined) {
+
+        if (nextProps.updated && nextProps.check !== undefined) {
             if (!toast.isActive('editToastSuccess')) {
                 toast.success('User has been successfully updated !', {
                     delay: 1000,
@@ -132,9 +139,6 @@ class Update extends React.Component {
                     toastId: 'editToastSuccess'
                 });
             }
-            setTimeout(() => { 
-                window.location.reload();
-            }, 2000);
         }
 
     }
@@ -175,4 +179,4 @@ export default compose(
     connect(
         mapStateToProps,
         mapDispatchToProps
-))(Update);
+    ))(Update);
