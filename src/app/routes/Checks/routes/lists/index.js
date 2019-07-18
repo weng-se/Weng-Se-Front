@@ -18,7 +18,7 @@ import {
 } from '../../../../../actions/Checks';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import ButtonGroup from '@material-ui/core/Button';
+import EditIcon from '@material-ui/icons/Edit';
 import Chip from '@material-ui/core/Chip';
 import DoneIcon from '@material-ui/icons/Done';
 import Tooltip from "@material-ui/core/Tooltip";
@@ -51,8 +51,9 @@ class Checks extends React.Component {
             open: false,
             setOpen: false,
             show: false,
-            setShow: false,
+            openUpdateDialog: false,
             check: null,
+            checkId: null,
             remise: {
 
             }
@@ -107,11 +108,14 @@ class Checks extends React.Component {
                     download: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <React.Fragment>
-                            <ButtonGroup size="small">
+                            <div size="small">
                                 <IconButton size="small" onClick={() => this.removeCheck(value)}>
                                     <DeleteIcon fontSize="small" />
                                 </IconButton>
-                            </ButtonGroup>
+                                <IconButton size="small" onClick={() => this.getUpdatedCheck(value)}>
+                                    <EditIcon fontSize="small" />
+                                </IconButton>
+                            </div>
                         </React.Fragment>
                     )
                 }
@@ -253,7 +257,7 @@ class Checks extends React.Component {
         })
     }
 
-    handleRequestClose = () => {
+    closeRemiseDialog = () => {
         this.setState({
             show: false
         })
@@ -268,7 +272,24 @@ class Checks extends React.Component {
         this.setState({
           [event.target.name]: event.target.value
         });
-      }
+    }
+
+
+
+    getUpdatedCheck = (checkId) => {
+        this.setState({ 
+            openUpdateDialog: true,
+            checkId: checkId
+        });
+    }
+    
+    closeUpdateDialog = () => {
+        this.setState({ openUpdateDialog: false });
+    }
+
+    handleConfirmUpdate = () => {
+        window.alert('Successfully Updated!');
+    }
 
     componentWillReceiveProps(nextProps) {
 

@@ -13,6 +13,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+import Update from './../update/';
 import {
     MuiThemeProvider
 } from '@material-ui/core/styles';
@@ -74,7 +75,7 @@ const Template = (component) => {
             </Dialog>
 
 
-            <Dialog open={component.state.show} onClose={component.handleRequestClose}>
+            <Dialog open={component.state.show} onClose={component.closeRemiseDialog}>
                 <DialogTitle>Nouvelle remise</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
@@ -117,7 +118,7 @@ const Template = (component) => {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={component.handleRequestClose} color="secondary">
+                    <Button onClick={component.closeRemiseDialog} color="secondary">
                         Annuler
                         </Button>
                     <Button onClick={component.saveRemise} color="primary">
@@ -125,6 +126,18 @@ const Template = (component) => {
                         </Button>
                 </DialogActions>
             </Dialog>
+
+
+            <Dialog
+                open={component.state.openUpdateDialog}
+                onClose={component.closeUpdateDialog}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description">
+                <DialogContent>
+                    <Update/>
+                </DialogContent>
+            </Dialog>
+
             <ToastContainer position={toast.POSITION.TOP_RIGHT} />
         </React.Fragment>
 

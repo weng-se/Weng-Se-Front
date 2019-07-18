@@ -27,7 +27,7 @@ const styles = {
 };
 
 
-class Create extends React.Component {
+class Update extends React.Component {
 
     constructor(props) {
         super(props);
@@ -84,55 +84,12 @@ class Create extends React.Component {
             .catch((error) => console.error(error));
     }
 
-    saveCheck = () => {
-        this.props.createCheck(this.state.check);
+    editCheck = () => {
+        this.props.editCheck(this.state.check);
     }
 
     componentWillReceiveProps(nextProps) {
 
-        console.log('nextProps', nextProps);
-        
-        if(nextProps.check && nextProps.created) {
-            if (!toast.isActive('success')) {
-                toast.success('Successfully Created !', {
-                    delay: 1000,
-                    autoClose: true,
-                    closeButton: true,
-                    toastId: 'success'
-                });
-            }
-            this.reset();
-            setTimeout(() => { 
-                this.props.history.push('/app/checks/lists');
-            }, 1000);
-        }
-
-        if (nextProps.error) {
-            if (!toast.isActive('error')) {
-                toast.error('Fix: “something went wrong” while creating account !', {
-                    delay: 1000,
-                    autoClose: true,
-                    closeButton: true,
-                    toastId: 'error'
-                });
-            }
-        }
-
-    }
-
-    reset = () => {
-        this.setState({
-            customer: null,
-            numberOfCheque: null,
-            bank: null,
-            comment: null,
-            amount: null,
-            remiseNumber: null,
-            issuedDate: new Date('now'),
-            cashingDateDesired: new Date('now'),
-            selectedDate: null,
-            setSelectedDate: null,
-        })
     }
 
     render() {
@@ -141,13 +98,13 @@ class Create extends React.Component {
 }
 
 
-Create.propTypes = {
-    progress: PropTypes.number.isRequired
+Update.propTypes = {
+
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createCheck: (formData) => dispatch(createCheckRequest(formData)),
+        editCheck: (formData) => {}
     }
 }
 
@@ -171,4 +128,4 @@ export default compose(
     connect(
         mapStateToProps,
         mapDispatchToProps
-))(Create);
+))(Update);
