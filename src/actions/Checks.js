@@ -12,7 +12,16 @@ import {
     REQUEST_CREATE_CHECK,
     REQUEST_CREATE_CHECK_SUCCESS,
     REQUEST_CREATE_CHECK_FAILURE,
-    REQUEST_CREATE_CHECK_PROGRESS
+    REQUEST_CREATE_CHECK_PROGRESS,
+    
+    REQUEST_GET_CHECK,
+    REQUEST_GET_CHECK_SUCCESS,
+    REQUEST_GET_CHECK_FAILURE,
+    REQUEST_GET_CHECK_PROGRESS,
+    
+    REQUEST_EDIT_CHECK,
+    REQUEST_EDIT_CHECK_SUCCESS,
+    REQUEST_EDIT_CHECK_FAILURE
 } from '../constants/ActionTypes'
 
 
@@ -111,3 +120,67 @@ export const createCheckProgress = () => {
         progress: 0
     };
 };
+
+
+
+
+/**
+ * ==================  (GET CHECK) ==================
+ */
+export const getCheckRequest = (id) => {
+    return {
+        type: REQUEST_GET_CHECK,
+        id: id,
+        progress: 0
+    };
+};
+export const getCheckSuccess = (payload) => {
+    return {
+        type: REQUEST_GET_CHECK_SUCCESS,
+        payload: payload,
+        deleted : true,
+        progress: 100
+    };
+};
+export const getCheckError = (error) => {
+    return {
+        type: REQUEST_GET_CHECK_FAILURE,
+        error: true,
+        deleted : false,
+        progress: 100
+    }
+};
+export const getCheckProgress = () => {
+    return {
+        type: REQUEST_GET_CHECK_PROGRESS,
+        progress: 0
+    };
+};
+
+/**
+ * ==================  (UPDATE CHECKS) ==================
+ */
+
+export const checkEditRequest = (formData) => {
+    return {
+        type: REQUEST_EDIT_CHECK,
+        formData: formData,
+        progress: 0
+    }
+}
+
+export const checkEditSuccess = (payload) => {
+    return {
+        type: REQUEST_EDIT_CHECK_SUCCESS,
+        payload: payload,
+        updated : true,
+        progress: 100
+    }
+}
+export const checkEditError = (error) => {
+    return {
+        type: REQUEST_EDIT_CHECK_FAILURE,
+        error: error,
+        progress: 100
+    }
+}

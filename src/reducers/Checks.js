@@ -10,6 +10,14 @@ import {
     REQUEST_CREATE_CHECK,
     REQUEST_CREATE_CHECK_SUCCESS,
     REQUEST_CREATE_CHECK_FAILURE,
+
+    REQUEST_GET_CHECK,
+    REQUEST_GET_CHECK_SUCCESS,
+    REQUEST_GET_CHECK_FAILURE,
+
+    REQUEST_EDIT_CHECK,
+    REQUEST_EDIT_CHECK_SUCCESS,
+    REQUEST_EDIT_CHECK_FAILURE,
 } from "../constants/ActionTypes";
 
 const INIT_STATE = {
@@ -17,7 +25,8 @@ const INIT_STATE = {
     progress: 0,
     error: false,
     deleted: false,
-    created: false
+    created: false,
+    updated: false
 };
 
 
@@ -74,7 +83,6 @@ export default (state = INIT_STATE, action) => {
 
 
 
-
         case REQUEST_CREATE_CHECK: {
             return {
                 ...state,
@@ -96,6 +104,56 @@ export default (state = INIT_STATE, action) => {
                 check: action.payload
             }
         }
+
+
+
+        case REQUEST_GET_CHECK: {
+            return {
+                ...state,
+                progress: 0
+            }
+        }
+        case REQUEST_GET_CHECK_SUCCESS: {
+            return {
+                ...state,
+                progress: 100,
+                check: action.payload
+            }
+        }
+        case REQUEST_GET_CHECK_FAILURE: {
+            return {
+                ...state,
+                progress: 100,
+                error: true
+            }
+        }
+
+
+
+
+
+        case REQUEST_EDIT_CHECK: {
+            return {
+                ...state,
+                progress: 100
+            }
+        }
+        case REQUEST_EDIT_CHECK_SUCCESS: {
+            return {
+                ...state,
+                progress: 100,
+                updated: true,
+                check: action.payload
+            }
+        }
+        case REQUEST_EDIT_CHECK_FAILURE: {
+            return {
+                ...state,
+                progress: 0,
+                error: true
+            }
+        }
+
 
         default:
             return state;

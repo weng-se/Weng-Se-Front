@@ -14,7 +14,8 @@ import {
 } from 'react-toastify';
 import { 
     fetchChecksRequest, 
-    deleteCheckRequest 
+    deleteCheckRequest, 
+    getCheckRequest
 } from '../../../../../actions/Checks';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -53,7 +54,6 @@ class Checks extends React.Component {
             show: false,
             openUpdateDialog: false,
             check: null,
-            checkId: null,
             remise: {
 
             }
@@ -156,7 +156,7 @@ class Checks extends React.Component {
                 options: {
                     sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
-                        <span>{ moment(value).format('MMM D, YYYY')  }</span>
+                        <span>{ moment(value).format('L')  }</span>
                     )
                 }
                 
@@ -187,7 +187,7 @@ class Checks extends React.Component {
                 options: {
                     sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
-                        <span>{ moment(value).format('MMM D, YYYY')  }</span>
+                        <span>{ moment(value).format('L')  }</span>
                     )
                 }
             },
@@ -277,10 +277,8 @@ class Checks extends React.Component {
 
 
     getUpdatedCheck = (checkId) => {
-        this.setState({ 
-            openUpdateDialog: true,
-            checkId: checkId
-        });
+        this.setState({ openUpdateDialog: true });
+        this.props.getCheck(checkId)
     }
     
     closeUpdateDialog = () => {
@@ -345,6 +343,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getChecks: () => dispatch(fetchChecksRequest()),
         deleteCheck: (id) => dispatch(deleteCheckRequest(id)),
+        getCheck : (id) => dispatch(getCheckRequest(id)),
         saveRemise : () => {}
     }
 }

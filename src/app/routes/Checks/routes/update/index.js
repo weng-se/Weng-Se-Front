@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import Template from './template';
 import { 
-    createCheckRequest 
+    checkEditRequest 
 } from '../../../../../actions/Checks';
 
 const styles = {
@@ -34,14 +34,14 @@ class Update extends React.Component {
         this.state = {
             check: {
                 number: 0,
-                bank: 'SG',
+                bank: '',
                 amount: 0,
                 customerId: '',
-                remise_id: '',
-                status: 'WAITING',
-                issuedDate: '2019-02-25',
-                comment: 'It is a long established fact that a reader',
-                cashingDateDesired: '2019-02-25',
+                remiseId: '',
+                status: '',
+                issuedDate: '',
+                comment: '',
+                cashingDateDesired: '',
             },
             selectedDate: null,
             setSelectedDate: null,
@@ -85,10 +85,57 @@ class Update extends React.Component {
     }
 
     editCheck = () => {
-        this.props.editCheck(this.state.check);
+        this.props.updateCheck(this.state.check);
+    }
+
+    formatTime(dates){
+        var dt = new Date();
+        return dt.toISOString(dates).split('T')[0];
     }
 
     componentWillReceiveProps(nextProps) {
+
+    
+        this.setState({ check: 
+            { 
+                ...this.state.check, 
+                number: nextProps.check.number,
+                bank: nextProps.check.bank,
+                amount: nextProps.check.amount,
+                customerId: nextProps.check.customerId,
+                remise_id: nextProps.check.remise_id,
+                status: nextProps.check.status,
+                issuedDate: this.formatTime(nextProps.check.issuedDate),
+                comment: nextProps.check.comment,
+                cashingDateDesired: this.formatTime(nextProps.check.cashingDateDesired)
+            } 
+        })
+
+
+        if (nextProps.error &&  nextProps.check === undefined) {
+            if (!toast.isActive('editToastError')) {
+                toast.error('Fix: “something went wrong” while updating account !', {
+                    delay: 1000,
+                    autoClose: true,
+                    closeButton: true,
+                    toastId: 'editToastError'
+                });
+            }
+        }
+        
+        if(nextProps.updated && nextProps.check !== undefined) {
+            if (!toast.isActive('editToastSuccess')) {
+                toast.success('User has been successfully updated !', {
+                    delay: 1000,
+                    autoClose: true,
+                    closeButton: true,
+                    toastId: 'editToastSuccess'
+                });
+            }
+            setTimeout(() => { 
+                window.location.reload();
+            }, 2000);
+        }
 
     }
 
@@ -104,21 +151,21 @@ Update.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        editCheck: (formData) => {}
+        updateCheck: (formData) => dispatch(checkEditRequest(formData)),
     }
 }
 
 const mapStateToProps = (state) => {
     const {
         check,
-        created,
         progress,
+        updated,
         error
     } = state.checks;
     return {
         check: check,
-        created: created,
         progress: progress,
+        updated: updated,
         error: error
     }
 }

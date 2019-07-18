@@ -63,7 +63,7 @@ const Template = (component) => {
     } = component.state;
     return (
         <React.Fragment>
-            <ValidatorForm style={{ width: '100%' }} onSubmit={component.saveCheck} noValidate autoComplete="off">
+            <ValidatorForm style={{ width: '100%' }} onSubmit={component.editCheck} noValidate autoComplete="off">
 
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
@@ -79,7 +79,7 @@ const Template = (component) => {
                                 margin="dense"
                                 variant="outlined"
                                 required="true"
-                                value={(customers[0]) ? customers[0].id : ""}
+                                value={check.customerId}
                             >
                                 {customers.map(option => (
                                     <option key={option.id} value={option.id}>
@@ -155,14 +155,14 @@ const Template = (component) => {
                             <TextValidator
                                 id="standard-select-status-native"
                                 select
-                                name="remise_id"
+                                name="remiseId"
                                 label="Remise Number"
                                 onChange={component.handleChange}
                                 SelectProps={{ native: true }}
                                 margin="dense"
                                 variant="outlined"
                                 required="true"
-                                value={(remises[0]) ? remises[0].id : ""}
+                                value={check.remiseId}
                             >
                                 {remises.map(option => (
                                     <option key={option.value} value={option.id}>
@@ -257,7 +257,7 @@ const Template = (component) => {
                 </Grid>
 
                 <div style={{ float: 'right', marginBottom: '20px' }}>
-                    <Button type="reset" variant="contained" color="default" onClick={() => component.reset()}> DISCARD </Button>
+                    <Button type="reset" variant="contained" color="default"> DISCARD </Button>
                     <Button type="submit" variant="contained" color="primary" style={{ marginLeft: '5px' }}> SAVE </Button>
                 </div>
 
