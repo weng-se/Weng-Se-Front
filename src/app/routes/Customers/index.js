@@ -1,22 +1,17 @@
 import React from 'react';
-// import ContainerHeader from './node_modules/components/ContainerHeader/index';
-// import IntlMessages from './node_modules/util/IntlMessages';
+import {Redirect, Route, Switch} from 'react-router-dom';
+import asyncComponent from '../../../util/asyncComponent';
 
-class SamplePage extends React.Component {
+const Customers = ({match}) => (
+    <div className="app-wrapper">
+        <Switch>
+            <Route path={`${match.url}/lists`} component={asyncComponent(() => import('./routes/lists'))}/>
+            <Route path={`${match.url}/create`} component={asyncComponent(() => import('./routes/create'))}/>
+            <Route path={`${match.url}/import`} component={asyncComponent(() => import('./routes/import'))}/>
+        </Switch>
+    </div>
+);
 
-    render() {
-        return (
-            <div className="app-wrapper">
-                {/* <ContainerHeader match={this.props.match} title={<IntlMessages id="pages.samplePage"/>}/> */}
-                <div className="d-flex justify-content-center">
-                    <h1>
-                        {/* <IntlMessages id="pages.samplePage.description"/> */}
-                    </h1>
-                </div>
+export default Customers;
 
-            </div>
-        );
-    }
-}
 
-export default SamplePage;

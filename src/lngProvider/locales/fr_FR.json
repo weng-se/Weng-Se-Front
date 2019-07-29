@@ -576,6 +576,7 @@
   "pages.listCustomers": "Liste des clients",
   "pages.addCustomers": "Ajouter un client",
   "pages.updateCustomers": "Modifier un client",
+  "pages.importCustomers": "Importer des clients",
   "sidebar.managementRemises": "Gestion des remises",
   "pages.listChecks": "Liste des chèques",
   "pages.listRemises": "Liste des remises",

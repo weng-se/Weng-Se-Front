@@ -19,16 +19,20 @@ import {
 
 const status = [
     {
-        value: 'DISCHARGER',
-        label: 'DISCHARGER',
+        value: 'VALIDATED',
+        label: 'VALIDATED',
     },
     {
         value: 'WAITING',
         label: 'WAITING',
     },
     {
-        value: 'DONE',
-        label: 'DONE',
+        value: 'REJECTED',
+        label: 'REJECTED',
+    },
+    {
+        value: 'PARTIEL',
+        label: 'PARTIEL',
     }
 ];
 

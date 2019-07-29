@@ -583,6 +583,7 @@
   "pages.listCustomers": "List of customers",
   "pages.addCustomers": "Add a customer",
   "pages.updateCustomers": "Edit a customer",
+  "pages.importCustomers": "Import customers",
   "sidebar.managementRemises": "Manage remises",
   "pages.listChecks": "List of checks",
   "pages.listRemises": "List of remises",

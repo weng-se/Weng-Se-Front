@@ -197,7 +197,7 @@ class Checks extends React.Component {
                 options: {
                     sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => {
-                        if(value === 'string') {
+                        if(value === 'VALIDATED') {
                             return (
                                 <Chip
                                     size="small"
@@ -217,6 +217,29 @@ class Checks extends React.Component {
                                 />
                             )
                         }
+
+                        if(value === 'REJECTED') {
+                            return (
+                                <Chip
+                                    size="small"
+                                    color="secondary"
+                                    label={value}
+                                    deleteIcon={<DoneIcon />}
+                                />
+                            )
+                        }
+
+                        if(value === 'PARTIEL') {
+                            return (
+                                <Chip
+                                    size="small"
+                                    color="secondary"
+                                    label={value}
+                                    deleteIcon={<DoneIcon />}
+                                />
+                            )
+                        }
+
                     }
                 }
             }
