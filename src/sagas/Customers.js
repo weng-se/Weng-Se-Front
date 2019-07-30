@@ -196,7 +196,7 @@ function* getCustomer(action) {
         error = null;
 
     try {
-        yield axios.get(`http://localhost:4000/api/costumers/${action.user}`)
+        yield axios.get(`http://localhost:4000/api/costumers/${action.customer}`)
             .then((res) => payload = res.data)
             .catch((error) => error = error);
         if (payload) yield put(getcustomerSuccess(payload));

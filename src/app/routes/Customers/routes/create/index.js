@@ -20,56 +20,77 @@ class Create extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            "isRemoved ": false,
-            "type": "",
-            "civility": "",
-            "firstName": "Test",
-            "lastName": "12/02/2018",
-            "dateBirth": "2019-02-12T21:30:41.676Z",
-            "pictureSrc": "",
-            "email": "",
-            "newsletter": true,
-            "sendEmailing": true,
-            "sendSMS": true,
-            "department": "",
-            "timezone": "",
-            "address": "",
-            "city": "",
-            "country": "",
-            "websiteURL": "",
-            "skype": "",
-            "phone": "",
-            "mobile": "",
-            "fax": "",
-            "title": "",
-            "status": "",
-            "bank": "",
-            "iban": "",
-            "bic": "",
-            "oldId": "",
-            "family": "",
-            "tva": "",
-            "accountingAccount": "",
-            "tvaCode": "",
-            "tvaExport": "",
-            "siren": "",
-            "siret": "",
-            "salesPerson": "",
-            "isActive": true,
-            "language": true,
-            "paymentMethod": "",
-            "bankReglement": "",
-            "lastOrder": "2019-02-12T21:30:41.676Z"
+            customer: {
+                isRemoved: false,
+                type: "",
+                civility: "",
+                firstName: "",
+                lastName: "",
+                dateBirth: "2019-02-12",
+                pictureSrc: "",
+                email: "",
+                newsletter: true,
+                sendEmailing: true,
+                sendSMS: true,
+                department: "",
+                timezone: "",
+                address: "",
+                city: "",
+                country: "",
+                region: "",
+                websiteURL: "",
+                skype: "",
+                phone: "",
+                mobile: "",
+                fax: "",
+                title: "",
+                status: "",
+                bank: "",
+                iban: "",
+                bic: "",
+                oldId: "",
+                family: "",
+                tva: "",
+                accountingAccount: "",
+                tvaCode: "",
+                tvaExport: "",
+                siren: "",
+                siret: "",
+                salesPerson: "",
+                isActive: true,
+                language: true,
+                paymentMethod: "",
+                bankReglement: "",
+                lastOrder: "2019-02-12"
+            },
+            selectedDate: new Date('2014-08-18T21:11:54'),
+            setSelectedDate: new Date('2014-08-18T21:11:54')
         }
     }
 
     componentDidMount() {
-      
+
     }
 
     handleChange = (e) => {
+        this.setState({ customer: 
+            { 
+                ...this.state.check, 
+                [e.target.name] : e.target.value 
+            } 
+        })
+    }
+
+
+    selectCountry(val) {
         this.setState({
-            [e.target.name]: e.target.value
+            country: val
+        });
+    }
+
+    selectRegion(val) {
+        this.setState({
+            region: val
         });
     }
 

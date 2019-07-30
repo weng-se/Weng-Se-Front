@@ -49,6 +49,7 @@
     "react-circular-progressbar": "^1.0.0",
     "react-ckeditor-component": "^1.1.0",
     "react-color": "^2.17.0",
+    "react-country-region-selector": "^1.4.3",
     "react-custom-scrollbars": "^4.2.1",
     "react-d3-speedometer": "^0.4.2",
     "react-device-detect": "^1.6.1",

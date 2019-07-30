@@ -19,7 +19,8 @@ import {
 import Toolbar from "./Toolbar";
 import {
     fetchCustomersRequest, 
-    deleteCustomerRequest
+    deleteCustomerRequest,
+    getCustomerRequest
 } from '../../../../../actions/Customers';
 import {
     toast
@@ -49,7 +50,7 @@ class Lists extends React.Component {
             setOpen: false,
             _open: false,
             _setOpen: false,
-            uid: null
+            id: null
         }
         this.columns = [];
         this.options = {}
@@ -212,14 +213,14 @@ class Lists extends React.Component {
         this.props.getCustomers();
     }
 
-    removeCustomer = (uid) => {
-        this.handleClickOpen(uid);
+    removeCustomer = (id) => {
+        this.handleClickOpen(IDBCursorWithValue);
     }
 
-    handleClickOpen = (uid) => {
+    handleClickOpen = (id) => {
         this.setState({ 
             open: true, 
-            uid: uid 
+            id: id 
         })
     }
 
@@ -238,8 +239,8 @@ class Lists extends React.Component {
        this.updateStatus(id);
     }
 
-    _handleClickOpen = (uid) => {
-        this.props.getUser(uid);
+    _handleClickOpen = (id) => {
+        this.props.getCustomer(id);
         this.setState({ 
             _open: true 
         })
@@ -292,6 +293,7 @@ Lists.propTypes = {
 const mapDispatchToProps = (dispatch) => {
     return {
         getCustomers: () => dispatch(fetchCustomersRequest()),
+        getCustomer: (id) => dispatch(getCustomerRequest(id)),
         removeCustomer: (id) => dispatch(deleteCustomerRequest(id)),
     }
 }

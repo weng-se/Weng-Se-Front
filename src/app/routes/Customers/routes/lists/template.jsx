@@ -8,8 +8,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Card from '@material-ui/core/Card';
 import MUIDataTable from "mui-datatables";
-import { 
-    MuiThemeProvider 
+import {
+    MuiThemeProvider
 } from '@material-ui/core/styles';
 import {
     toast,
@@ -74,7 +74,7 @@ const Template = (component) => {
                 aria-describedby="alert-dialog-description">
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                     
+
                     </DialogContentText>
                 </DialogContent>
             </Dialog>
