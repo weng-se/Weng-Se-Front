@@ -35,7 +35,7 @@ const Template = (component) => {
     } = component.state;
     return (
         <React.Fragment>
-            <ValidatorForm style={{ width: '100%' }} onSubmit={component.handleSubmit} noValidate autoComplete="off">
+            <ValidatorForm style={{ width: '100%' }} onSubmit={component.editCheck} noValidate autoComplete="off">
 
 
                 <Grid container spacing={3}>
@@ -531,7 +531,7 @@ const Template = (component) => {
 
 
                 <div style={{ float: 'right', marginBottom: '20px' }}>
-                    <Button type="reset" variant="contained" color="default" onClick={() => component.reset()}> DISCARD </Button>
+                    <Button type="reset" variant="contained" color="default"> DISCARD </Button>
                     <Button type="submit" variant="contained" color="primary" style={{ marginLeft: '5px' }}> SAVE </Button>
                 </div>
 

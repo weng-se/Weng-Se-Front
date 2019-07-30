@@ -110,6 +110,7 @@ class Update extends React.Component {
             this.setState({
                 customer: {
                     ...this.state.customer,
+                    id: nextProps.customer.id,
                     type: nextProps.customer.type,
                     civility: nextProps.customer.civility,
                     firstName: nextProps.customer.firstName,

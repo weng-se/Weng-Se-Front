@@ -120,7 +120,12 @@ class Lists extends React.Component {
             {
                 name: "civility",
                 label: "Civility",
-                options: {}
+                options: {
+                    customBodyRender: (value, tableMeta, updateValue) => {
+                        if(value == "MEN") return(<span>HOMME</span>)
+                        else if(value == "WOMEN") return(<span>FEMME</span>)
+                    }
+                }
             },
             {
                 name: "address",
@@ -249,9 +254,10 @@ class Lists extends React.Component {
 
 
         if(nextProps.customer) {
-            if(nextProps.customer.count === 1) {
+
+            if(nextProps.customer.count === 1 && nextProps.deleted) {  
                 if (!toast.isActive('success')) {
-                    toast.success('Successfully deleted customer !', {
+                    toast.success('successfully deleted !', {
                         delay: 1000,
                         autoClose: true,
                         closeButton: true,
@@ -260,9 +266,25 @@ class Lists extends React.Component {
                 }
                 setTimeout(() => {
                     this.props.getCustomers();
-                }, 100);
+                }, 2000);
             }
+
+            if(nextProps.customer.count === 0 && nextProps.deleted) {
+                if (!toast.isActive('error')) {
+                    toast.error('Error deleting item !', {
+                        delay: 1000,
+                        autoClose: true,
+                        closeButton: true,
+                        toastId: 'error'
+                    });
+                }
+            }
+
+            
+
         }
+
+        
 
        
     }
