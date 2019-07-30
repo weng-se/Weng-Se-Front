@@ -119,13 +119,13 @@ export function* watchDeleteUser() {
  * ÈDIT USER
  */
 
-function* editUser(action) {
+function* editUser(data) {
     let payload = null,
         error = null;
 
-    
+
     try {
-        yield axios.post(`http://localhost:4000/api/Users/update?where={"id":"${action.formData.id}"}`, action.formData)
+        yield axios.post(`http://localhost:4000/api/Users/update?where={"id":"${data.formData.id}"}`, data.formData)
             .then((res) => payload = res.data)
             .catch((error) => error = error);
         if (payload) yield put(userEditSuccess(payload));

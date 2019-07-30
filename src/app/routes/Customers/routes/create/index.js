@@ -75,12 +75,11 @@ class Create extends React.Component {
     handleChange = (e) => {
         this.setState({ customer: 
             { 
-                ...this.state.check, 
+                ...this.state.customer, 
                 [e.target.name] : e.target.value 
             } 
         })
     }
-
 
     selectCountry(val) {
         this.setState({
@@ -129,48 +128,51 @@ class Create extends React.Component {
 
 
     reset() {
-        this.setState({
-            "isRemoved ": false,
-            "type": "string",
-            "civility": "string",
-            "firstName": "Test",
-            "lastName": "12/02/2018",
-            "dateBirth": "2019-02-12T21:30:41.676Z",
-            "pictureSrc": "string",
-            "email": "string",
-            "newsletter": true,
-            "sendEmailing": true,
-            "sendSMS": true,
-            "department": "string",
-            "timezone": "string",
-            "address": "string",
-            "city": "string",
-            "country": "string",
-            "websiteURL": "string",
-            "skype": "string",
-            "phone": "string",
-            "mobile": "string",
-            "fax": "string",
-            "title": "string",
-            "status": "string",
-            "bank": "string",
-            "iban": "string",
-            "bic": "string",
-            "oldId": "string",
-            "family": "string",
-            "tva": "string",
-            "accountingAccount": "string",
-            "tvaCode": "string",
-            "tvaExport": "string",
-            "siren": "string",
-            "siret": "string",
-            "salesPerson": "string",
-            "isActive": true,
-            "language": true,
-            "paymentMethod": "string",
-            "bankReglement": "string",
-            "lastOrder": ""
-        });
+        this.setState({ customer: 
+            { 
+                ...this.state.customer, 
+                type: "",
+                civility: "",
+                firstName: "",
+                lastName: "",
+                dateBirth: "2019-02-12",
+                pictureSrc: "",
+                email: "",
+                newsletter: true,
+                sendEmailing: true,
+                sendSMS: true,
+                department: "",
+                timezone: "",
+                address: "",
+                city: "",
+                country: "",
+                region: "",
+                websiteURL: "",
+                skype: "",
+                phone: "",
+                mobile: "",
+                fax: "",
+                title: "",
+                status: "",
+                bank: "",
+                iban: "",
+                bic: "",
+                oldId: "",
+                family: "",
+                tva: "",
+                accountingAccount: "",
+                tvaCode: "",
+                tvaExport: "",
+                siren: "",
+                siret: "",
+                salesPerson: "",
+                isActive: true,
+                language: true,
+                paymentMethod: "",
+                bankReglement: "",
+                lastOrder: new Date("now")
+            } 
+        })
     }
 
 

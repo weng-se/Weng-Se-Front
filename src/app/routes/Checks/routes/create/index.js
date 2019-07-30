@@ -11,8 +11,8 @@ import {
 import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import Template from './template';
-import { 
-    createCheckRequest 
+import {
+    createCheckRequest
 } from '../../../../../actions/Checks';
 
 const styles = {
@@ -57,11 +57,11 @@ class Create extends React.Component {
     }
 
     handleChange = (e) => {
-        this.setState({ check: 
-            { 
-                ...this.state.check, 
-                [e.target.name] : e.target.value 
-            } 
+        this.setState({
+            check: {
+                ...this.state.check,
+                [e.target.name]: e.target.value
+            }
         })
     }
 
@@ -73,14 +73,18 @@ class Create extends React.Component {
     getCustomers = () => {
         fetch('http://localhost:4000/api/costumers')
             .then((response) => response.json())
-            .then((customers) => this.setState({ customers }))
+            .then((customers) => this.setState({
+                customers
+            }))
             .catch((error) => console.error(error));
     }
 
     getRemises = () => {
         fetch('http://localhost:4000/api/remises')
             .then((response) => response.json())
-            .then((remises) => this.setState({ remises }))
+            .then((remises) => this.setState({
+                remises
+            }))
             .catch((error) => console.error(error));
     }
 
@@ -90,9 +94,7 @@ class Create extends React.Component {
 
     componentWillReceiveProps(nextProps) {
 
-        console.log('nextProps', nextProps);
-        
-        if(nextProps.check && nextProps.created) {
+        if (nextProps.check && nextProps.created) {
             if (!toast.isActive('success')) {
                 toast.success('Successfully Created !', {
                     delay: 1000,
@@ -102,7 +104,7 @@ class Create extends React.Component {
                 });
             }
             this.reset();
-            setTimeout(() => { 
+            setTimeout(() => {
                 this.props.history.push('/app/checks/lists');
             }, 1000);
         }
@@ -122,14 +124,17 @@ class Create extends React.Component {
 
     reset = () => {
         this.setState({
-            customer: null,
-            numberOfCheque: null,
-            bank: null,
-            comment: null,
-            amount: null,
-            remiseNumber: null,
-            issuedDate: new Date('now'),
-            cashingDateDesired: new Date('now'),
+            check: {
+                ...this.state.check,
+                customer: null,
+                numberOfCheque: null,
+                bank: null,
+                comment: null,
+                amount: null,
+                remiseNumber: null,
+                issuedDate: new Date('now'),
+                cashingDateDesired: new Date('now')
+            },
             selectedDate: null,
             setSelectedDate: null,
         })
@@ -171,4 +176,4 @@ export default compose(
     connect(
         mapStateToProps,
         mapDispatchToProps
-))(Create);
+    ))(Create);

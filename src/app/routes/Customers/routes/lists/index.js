@@ -167,7 +167,7 @@ class Lists extends React.Component {
                     customBodyRender: (value, tableMeta, updateValue) => {
                         return (
                             <Link 
-                                href={value}
+                                href={ "http://" + value}
                                 target="_blank"
                             >{value}</Link>
                         )
@@ -214,7 +214,7 @@ class Lists extends React.Component {
     }
 
     removeCustomer = (id) => {
-        this.handleClickOpen(IDBCursorWithValue);
+        this.handleClickOpen(id);
     }
 
     handleClickOpen = (id) => {
@@ -228,7 +228,7 @@ class Lists extends React.Component {
         this.setState({ 
             open: false 
         })
-        this.props.removeCustomer(this.state.uid)
+        this.props.removeCustomer(this.state.id)
     }
 
     handleClose = () => {
@@ -259,6 +259,7 @@ class Lists extends React.Component {
                 customers: nextProps.customers 
             })
         }
+        
 
 
         if(typeof(nextProps.customers.count) !== undefined) {
@@ -287,6 +288,7 @@ class Lists extends React.Component {
 }
 
 Lists.propTypes = {
+    customers: PropTypes.array.isRequired,
     progress: PropTypes.number.isRequired
 };
 

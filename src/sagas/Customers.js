@@ -70,52 +70,11 @@ export function* watchFetchCustomers() {
 
 function* createCustomer(data) {
     let payload = null,
-        error = null,
-        userData = data.formData;
+        error = null;
+
     try {
         yield put(createCustomerProgress());
-        yield axios.post('http://localhost:4000/api/costumers', {
-                "isRemoved ": false,
-                "type": "string",
-                "civility": "string",
-                "firstName": "Test",
-                "lastName": "12/02/2018",
-                "dateBirth": "2019-02-12T21:30:41.676Z",
-                "pictureSrc": "string",
-                "email": "string",
-                "newsletter": true,
-                "sendEmailing": true,
-                "sendSMS": true,
-                "department": "string",
-                "timezone": "string",
-                "address": "string",
-                "city": "string",
-                "country": "string",
-                "websiteURL": "string",
-                "skype": "string",
-                "phone": "string",
-                "mobile": "string",
-                "fax": "string",
-                "title": "string",
-                "status": "string",
-                "bank": "string",
-                "iban": "string",
-                "bic": "string",
-                "oldId": "string",
-                "family": "string",
-                "tva": "string",
-                "accountingAccount": "string",
-                "tvaCode": "string",
-                "tvaExport": "string",
-                "siren": "string",
-                "siret": "string",
-                "salesPerson": "string",
-                "isActive": true,
-                "language": true,
-                "paymentMethod": "string",
-                "bankReglement": "string",
-                "lastOrder": "2019-02-12T21:30:41.676Z"
-            })
+        yield axios.post('http://localhost:4000/api/costumers', data.formData.customer)
             .then((res) => {
                 if (res.status == 200)
                     payload = res.data
@@ -166,13 +125,13 @@ export function* watchDeleteCustomer() {
  * ÈDIT USER
  */
 
-function* editCustomer(action) {
+function* editCustomer(data) {
     let payload = null,
         error = null;
 
     try {
         yield put(editCustomerProgress());
-        yield axios.post(`http://localhost:4000/api/costumers/update?where={"id":"${action.formData.id}"}`, action.formData)
+        yield axios.post(`http://localhost:4000/api/costumers/update?where={"id":"${data.formData.id}"}`, data.formData)
             .then((res) => payload = res.data)
             .catch((error) => error = error);
         if (payload) yield put(editCustomerSuccess(payload));

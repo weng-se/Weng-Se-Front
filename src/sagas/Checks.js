@@ -166,10 +166,10 @@ export function* watchGetCheck() {
  * ÈDIT USER
  */
 
-function* editCheck(action) {
+function* editCheck(data) {
     let payload = null, error = null;
     try {
-        yield axios.post(`http://localhost:4000/api/checks/update?where={"id":"${action.formData.id}"}`, action.formData)
+        yield axios.post(`http://localhost:4000/api/checks/update?where={"id":"${data.formData.id}"}`, data.formData)
             .then((res) => payload = res.data)
             .catch((error) => error = error);
         if (payload) yield put(checkEditSuccess(payload));

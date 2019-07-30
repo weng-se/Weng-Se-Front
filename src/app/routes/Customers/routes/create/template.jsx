@@ -123,7 +123,6 @@ const Template = (component) => {
                                                 label="Civility"
                                                 onChange={component.handleChange}
                                                 SelectProps={{ native: true }}
-                                                helperText="Please select role"
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
@@ -492,7 +491,6 @@ const Template = (component) => {
                                         </FormControl>
                                     </Grid>
 
-
                                     <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
@@ -501,34 +499,65 @@ const Template = (component) => {
                                                 name="family"
                                                 margin="dense"
                                                 variant="outlined"
-                                                required="true"
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
-                                                validators={['required']}
-                                                errorMessages={['Family field is required']}
                                                 value={customer.family}
                                             />
                                         </FormControl>
                                     </Grid>
 
-                                    <Grid item xs={12}>
+                                    <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
-                                            <TextField
-                                                type="textarea"
-                                                id="note"
-                                                name="note"
-                                                label="Note"
+                                            <TextValidator
+                                                label="Payment Method"
                                                 onChange={component.handleChange}
+                                                name="paymentMethod"
                                                 margin="dense"
                                                 variant="outlined"
-                                                multiline={true}
-                                                rows={3}
-                                                rowsMax={4}
-                                                value={"note"}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                                value={customer.paymentMethod}
                                             />
                                         </FormControl>
                                     </Grid>
+
+
+                                    <Grid item xs={6}>
+                                        <FormControl style={{ width: '100%', padding: '5px' }} >
+                                            <TextValidator
+                                                label="Title"
+                                                onChange={component.handleChange}
+                                                name="title"
+                                                margin="dense"
+                                                variant="outlined"
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                                value={customer.title}
+                                            />
+                                        </FormControl>
+                                    </Grid>
+
+
+                                    <Grid item xs={6}>
+                                        <FormControl style={{ width: '100%', padding: '5px' }} >
+                                            <TextValidator
+                                                label="Status"
+                                                onChange={component.handleChange}
+                                                name="status"
+                                                margin="dense"
+                                                variant="outlined"
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
+                                                value={customer.status}
+                                            />
+                                        </FormControl>
+                                    </Grid>
+
+                                    
 
                                 </Grid>
 
