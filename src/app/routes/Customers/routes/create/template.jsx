@@ -125,8 +125,7 @@ const Template = (component) => {
                                                 SelectProps={{ native: true }}
                                                 margin="dense"
                                                 variant="outlined"
-                                                required="true"
-                                                value={civilities[0]}
+                                                value={customer.civility}
                                             >
                                                 {civilities.map(option => (
                                                     <option key={option.value} value={option.value}>
@@ -206,10 +205,13 @@ const Template = (component) => {
                                                 name="address"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
                                                 value={customer.address}
+                                                validators={['required']}
+                                                errorMessages={['Address field is required']}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -223,10 +225,13 @@ const Template = (component) => {
                                                 name="country"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
                                                 value={customer.country}
+                                                validators={['required']}
+                                                errorMessages={['Country field is required']}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -239,10 +244,13 @@ const Template = (component) => {
                                                 name="city"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
                                                 value={customer.city}
+                                                validators={['required']}
+                                                errorMessages={['City field is required']}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -289,12 +297,9 @@ const Template = (component) => {
                                                 name="phone"
                                                 margin="dense"
                                                 variant="outlined"
-                                                required="true"
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
-                                                validators={['required']}
-                                                errorMessages={['Phone field is required']}
                                                 value={customer.phone}
                                             />
                                         </FormControl>
@@ -308,12 +313,9 @@ const Template = (component) => {
                                                 name="mobile"
                                                 margin="dense"
                                                 variant="outlined"
-                                                required="true"
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
-                                                validators={['required']}
-                                                errorMessages={['Mobile field is required']}
                                                 value={customer.mobile}
                                             />
                                         </FormControl>
@@ -344,12 +346,9 @@ const Template = (component) => {
                                                 name="bank"
                                                 margin="dense"
                                                 variant="outlined"
-                                                required="true"
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
-                                                validators={['required']}
-                                                errorMessages={['Bank field is required']}
                                                 value={customer.bank}
                                             />
                                         </FormControl>
@@ -363,12 +362,9 @@ const Template = (component) => {
                                                 name="iban"
                                                 margin="dense"
                                                 variant="outlined"
-                                                required="true"
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
-                                                validators={['required']}
-                                                errorMessages={['Iban field is required']}
                                                 value={customer.iban}
                                             />
                                         </FormControl>
@@ -382,12 +378,9 @@ const Template = (component) => {
                                                 name="bic"
                                                 margin="dense"
                                                 variant="outlined"
-                                                required="true"
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
-                                                validators={['required']}
-                                                errorMessages={['Bic field is required']}
                                                 value={customer.bic}
                                             />
                                         </FormControl>
@@ -401,12 +394,9 @@ const Template = (component) => {
                                                 name="siren"
                                                 margin="dense"
                                                 variant="outlined"
-                                                required="true"
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
-                                                validators={['required']}
-                                                errorMessages={['Siren field is required']}
                                                 value={customer.siren}
                                             />
                                         </FormControl>
@@ -421,12 +411,9 @@ const Template = (component) => {
                                                 name="siret"
                                                 margin="dense"
                                                 variant="outlined"
-                                                required="true"
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
-                                                validators={['required']}
-                                                errorMessages={['Siret field is required']}
                                                 value={customer.siret}
                                             />
                                         </FormControl>
@@ -441,12 +428,9 @@ const Template = (component) => {
                                                 name="tvaExport"
                                                 margin="dense"
                                                 variant="outlined"
-                                                required="true"
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
-                                                validators={['required']}
-                                                errorMessages={['TVA Export field is required']}
                                                 value={customer.siret}
                                             />
                                         </FormControl>
@@ -460,12 +444,9 @@ const Template = (component) => {
                                                 name="tva"
                                                 margin="dense"
                                                 variant="outlined"
-                                                required="true"
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
-                                                validators={['required']}
-                                                errorMessages={['tva field is required']}
                                                 value={customer.tva}
                                             />
                                         </FormControl>
@@ -480,12 +461,9 @@ const Template = (component) => {
                                                 name="tvaCode"
                                                 margin="dense"
                                                 variant="outlined"
-                                                required="true"
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
-                                                validators={['required']}
-                                                errorMessages={['TVA Code field is required']}
                                                 value={customer.tvaCode}
                                             />
                                         </FormControl>
@@ -532,10 +510,13 @@ const Template = (component) => {
                                                 name="title"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
                                                 value={customer.title}
+                                                validators={['required']}
+                                                errorMessages={['Title field is required']}
                                             />
                                         </FormControl>
                                     </Grid>

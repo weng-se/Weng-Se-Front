@@ -15,6 +15,7 @@ import {
     toast,
     ToastContainer
 } from 'react-toastify';
+import Update from './../update/';
 
 const styles = theme => ({
     datatables: {
@@ -74,7 +75,7 @@ const Template = (component) => {
                 aria-describedby="alert-dialog-description">
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-
+                        <Update/>
                     </DialogContentText>
                 </DialogContent>
             </Dialog>

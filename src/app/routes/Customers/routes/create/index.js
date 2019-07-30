@@ -21,9 +21,8 @@ class Create extends React.Component {
         super(props);
         this.state = {
             customer: {
-                isRemoved: false,
                 type: "",
-                civility: "",
+                civility: "MEN",
                 firstName: "",
                 lastName: "",
                 dateBirth: "2019-02-12",
@@ -104,7 +103,10 @@ class Create extends React.Component {
                     toastId: 'error'
                 });
             }
-        } else if (nextProps.error === null && nextProps.customers) {
+        }
+        
+        
+        if (nextProps.error === null && nextProps.customer) {
             if (!toast.isActive('success')) {
                 toast.success('Customer successfully created !', {
                     delay: 1000,
@@ -132,7 +134,7 @@ class Create extends React.Component {
             { 
                 ...this.state.customer, 
                 type: "",
-                civility: "",
+                civility: "MEN",
                 firstName: "",
                 lastName: "",
                 dateBirth: "2019-02-12",
@@ -195,11 +197,13 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     const {
         customers,
+        customer,
         progress,
         error
     } = state.customers;
     return {
         customers: customers,
+        customer: customer,
         progress: progress,
         error: error
     }

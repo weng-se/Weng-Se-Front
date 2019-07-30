@@ -24,7 +24,9 @@ const INIT_STATE = {
     customers: null,
     progress: 0,
     error: null,
-    customer: null
+    customer: null,
+    updated: false,
+    deleted: false
 };
 
 
@@ -66,7 +68,7 @@ export default (state = INIT_STATE, action) => {
                 ...state,
                 error: null,
                 progress: 100,
-                customers: action.payload
+                customer: action.payload
             }
         }
         case REQUEST_CREATE_CUSTOMER_FAILURE: {
@@ -74,7 +76,7 @@ export default (state = INIT_STATE, action) => {
                 ...state,
                 progress: 100,
                 error: action.error,
-                customers: action.payload
+                customer: action.payload
             }
         }
 
@@ -91,7 +93,8 @@ export default (state = INIT_STATE, action) => {
                 ...state,
                 error: null,
                 progress: 100,
-                customers: action.payload
+                customer: action.payload,
+                deleted: true
             }
         }
         case REQUEST_DELETE_CUSTOMER_FAILURE: {
@@ -99,7 +102,7 @@ export default (state = INIT_STATE, action) => {
                 ...state,
                 progress: 100,
                 error: action.error,
-                customers: action.payload
+                customer: action.payload
             }
         }
 
@@ -114,7 +117,8 @@ export default (state = INIT_STATE, action) => {
             return {
                 ...state,
                 error: false,
-                customer: action.payload
+                customer: action.payload,
+                updated: true
             }
         }
         case REQUEST_EDIT_CUSTOMER_FAILURE: {

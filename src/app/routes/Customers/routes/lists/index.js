@@ -103,26 +103,13 @@ class Lists extends React.Component {
                 }
             },
             {
-                name: "pictureSrc",
-                label: "Photo",
-                options: {
-                    sort: false,
-                    print: false,
-                    download: false,
-                    customBodyRender: (value, tableMeta, updateValue) => (
-                        <Avatar className={"mui-avatar-datatables"}>
-                            { value && 
-                                value !== '' ? 
-                                value.slice(0,1)  : 
-                                ''
-                            }
-                        </Avatar>
-                    )
-                }
-            },
-            {
                 name: "firstName",
                 label: "First Name",
+                options: {}
+            },
+            {
+                name: "lastName",
+                label: "Last Name",
                 options: {}
             },
             {
@@ -259,11 +246,10 @@ class Lists extends React.Component {
                 customers: nextProps.customers 
             })
         }
-        
 
 
-        if(typeof(nextProps.customers.count) !== undefined) {
-            if(nextProps.customers.count === 1) {
+        if(nextProps.customer) {
+            if(nextProps.customer.count === 1) {
                 if (!toast.isActive('success')) {
                     toast.success('Successfully deleted customer !', {
                         delay: 1000,
@@ -301,13 +287,16 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state);
     const {
         customers,
+        customer,
         progress,
         error
     } = state.customers;
     return {
         customers: customers,
+        customer: customer,
         progress: progress,
         error: error
     }
