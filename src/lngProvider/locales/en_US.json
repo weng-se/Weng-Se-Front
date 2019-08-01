@@ -644,6 +644,12 @@
   "label.tvaCode": "Tva Code",
   "label.siret": "Siret",
   "label.siren": "Siren",
+  "label.issuedDate": "Issued Date",
+  "label.number": "Number",
+  "label.amount": "Amount",
+  "label.customer": "Customer",
+  "label.comment": "Comment",
+  "label.cashingDateDesired": "cashing Date Desired",
   "pages.createNewCustomer": "Create New Customer",
   "pages.createNewSupplier": "Create New Supplier",
   "pages.createNewUser": "Create New User"

@@ -637,6 +637,12 @@
   "label.tvaCode": "Code de tva",
   "label.siret": "Siret",
   "label.siren": "Siren",
+  "label.issuedDate": "Date de publication",
+  "label.number": "Numéro",
+  "label.amount": "Montant",
+  "label.customer": "Client",
+  "label.comment": "Commentaire",
+  "label.cashingDateDesired": "Date d'encaissement souhaitée",
   "pages.createNewCustomer": "Créer un nouveau client",
   "pages.createNewSupplier": "Créer un nouveau fournisseur",
   "pages.createNewUser": "Créer un nouveau utilisateur"

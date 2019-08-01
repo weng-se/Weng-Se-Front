@@ -29,6 +29,7 @@ import moment from 'moment';
 import Toolbar from '../../Components/Toolbar';
 import Template from './template';
 import './style.css';
+import { FormattedMessage } from 'react-intl';
 
 
 const styles = {
@@ -101,7 +102,7 @@ class Checks extends React.Component {
         this.columns = [
             {
                 name: "id",
-                label: "Options",
+                label: <FormattedMessage id="label.options"/>,
                 options: {
                     sort: false,
                     print: false,
@@ -122,7 +123,7 @@ class Checks extends React.Component {
             },
             {
                 name: "customer",
-                label: "Customer",
+                label: <FormattedMessage id="label.customer"/>,
                 options: {
                     customBodyRender: (value, tableMeta, updateValue) =>  {
                         if(value) {
@@ -133,26 +134,26 @@ class Checks extends React.Component {
             },
             {
                 name: "number",
-                label: "Number",
+                label: <FormattedMessage id="label.number"/>,
                 options: {}
             },
             {
                 name: "bank",
-                label: "Bank",
+                label: <FormattedMessage id="label.bank"/>,
                 options: {
                     sort: false,
                 }
             },
             {
                 name: 'comment',
-                label: "Comment",
+                label: <FormattedMessage id="label.comment"/>,
                 options: {
                     sort: false
                 }
             },
             {
                 name: "cashingDateDesired",
-                label: "Cashing Date Desired",
+                label: <FormattedMessage id="label.cashingDateDesired"/>,
                 options: {
                     sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
@@ -163,7 +164,7 @@ class Checks extends React.Component {
             },
             {
                 name: "amount",
-                label: "Amount",
+                label: <FormattedMessage id="label.amount"/>,
                 options: {
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <Chip
@@ -176,14 +177,14 @@ class Checks extends React.Component {
             },
             {
                 name: "remise.number",
-                label: "Remise Number",
+                label: <FormattedMessage id="label.number"/>,
                 options: {
 
                 }
             },
             {
                 name: "remise.issuedDate",
-                label: "Remise Issued Date",
+                label: <FormattedMessage id="label.issuedDate"/>,
                 options: {
                     sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
@@ -193,7 +194,7 @@ class Checks extends React.Component {
             },
             {
                 name: 'status',
-                label: "Status",
+                label: <FormattedMessage id="label.status"/>,
                 options: {
                     sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => {
