@@ -30,6 +30,7 @@ import compose from 'recompose/compose';
 import Template from './template';
 import './style.css';
 import axios from 'axios';
+import { FormattedMessage } from 'react-intl';
 
 const styles = {
     checked: {},
@@ -41,6 +42,7 @@ const styles = {
         fontSize: 20,
     },
 };
+
 
 class Lists extends React.Component {
 
@@ -101,7 +103,7 @@ class Lists extends React.Component {
         this.columns = [
             {
                 name: "id",
-                label: "Options",
+                label: <FormattedMessage id="label.options"/>,
                 options: {
                     sort: false,
                     print: false,
@@ -140,12 +142,12 @@ class Lists extends React.Component {
             },
             {
                 name: "username",
-                label: "Username",
+                label: <FormattedMessage id="label.username" />,
                 options: {}
             },
             {
                 name: "email",
-                label: "Email Address",
+                label: <FormattedMessage id="label.email" />,
                 options: {}
             },
             {
@@ -165,7 +167,7 @@ class Lists extends React.Component {
             },
             {
                 name: 'disabled',
-                label: "Status",
+                label: <FormattedMessage id="label.status" />,
                 options: {
                     sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => {

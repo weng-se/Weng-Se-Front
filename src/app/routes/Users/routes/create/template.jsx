@@ -62,7 +62,7 @@ const Template = (component) => {
                                             <TextValidator
                                                 id="username"
                                                 name="username"
-                                                label="Username"
+                                                label={<FormattedMessage id="label.username" />}
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
@@ -79,7 +79,7 @@ const Template = (component) => {
                                             <TextValidator
                                                 id="email"
                                                 name="email"
-                                                label="Email"
+                                                label={<FormattedMessage id="label.email" />}
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
@@ -96,7 +96,7 @@ const Template = (component) => {
                                             <TextValidator
                                                 id="phoneNumber"
                                                 name="phoneNumber"
-                                                label="Phone"
+                                                label={<FormattedMessage id="label.phone" />}
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
@@ -114,7 +114,7 @@ const Template = (component) => {
                                                 type="password"
                                                 name="password"
                                                 id="password"
-                                                label="Password"
+                                                label={<FormattedMessage id="label.password" />}
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
@@ -129,7 +129,7 @@ const Template = (component) => {
                                     <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="Repeat password"
+                                                label={<FormattedMessage id="label.repeatPassword" />}
                                                 onChange={component.handleChange}
                                                 name="repeatPassword"
                                                 type="password"
@@ -187,7 +187,7 @@ const Template = (component) => {
                                                 type="textarea"
                                                 id="note"
                                                 name="note"
-                                                label="Note"
+                                                label={<FormattedMessage id="label.note" />}
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"

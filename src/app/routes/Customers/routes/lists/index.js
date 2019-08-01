@@ -27,6 +27,7 @@ import {
 } from 'react-toastify';
 import compose from 'recompose/compose';
 import Template from './template';
+import { FormattedMessage } from 'react-intl';
 import './style.css';
 
 const styles = {
@@ -83,7 +84,7 @@ class Lists extends React.Component {
         this.columns = [
             {
                 name: "id",
-                label: "Options",
+                label: <FormattedMessage id="label.options"/>,
                 options: {
                     sort: false,
                     print: false,
@@ -104,22 +105,22 @@ class Lists extends React.Component {
             },
             {
                 name: "firstName",
-                label: "First Name",
+                label: <FormattedMessage id="label.firstName"/>,
                 options: {}
             },
             {
                 name: "lastName",
-                label: "Last Name",
+                label: <FormattedMessage id="label.lastName"/>,
                 options: {}
             },
             {
                 name: "type",
-                label: "Type",
+                label: <FormattedMessage id="label.type"/>,
                 options: {}
             },
             {
                 name: "civility",
-                label: "Civility",
+                label: <FormattedMessage id="label.civility"/>,
                 options: {
                     customBodyRender: (value, tableMeta, updateValue) => {
                         if(value == "MEN") return(<span>HOMME</span>)
@@ -129,32 +130,32 @@ class Lists extends React.Component {
             },
             {
                 name: "address",
-                label: "Address",
+                label: <FormattedMessage id="label.address"/>,
                 options: {}
             },
             {
                 name: "email",
-                label: "Email Address",
+                label: <FormattedMessage id="label.email"/>,
                 options: {}
             },
             {
                 name: "phone",
-                label: "Phone",
+                label: <FormattedMessage id="label.phone"/>,
                 options: {}
             },
             {
                 name: 'bank',
-                label: "bank",
+                label: <FormattedMessage id="label.bank"/>,
                 options: {}
             },
             {
                 name: 'iban',
-                label: "iban",
+                label: <FormattedMessage id="label.iban"/>,
                 options: {}
             },
             {
                 name: 'websiteURL',
-                label: "website",
+                label: <FormattedMessage id="label.website"/>,
                 options: {
                     customBodyRender: (value, tableMeta, updateValue) => {
                         return (
@@ -168,7 +169,7 @@ class Lists extends React.Component {
             },
             {
                 name: 'status',
-                label: "Status",
+                label: <FormattedMessage id="label.status"/>,
                 options: {
                     customBodyRender: (value, tableMeta, updateValue) => {
                         return (

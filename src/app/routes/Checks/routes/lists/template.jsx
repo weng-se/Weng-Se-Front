@@ -22,6 +22,7 @@ import {
     ToastContainer
 } from 'react-toastify';
 import Card from '@material-ui/core/Card';
+import { FormattedMessage } from 'react-intl';
 
 const styles = theme => ({
     datatables: {
@@ -38,7 +39,7 @@ const Template = (component) => {
                 <Card>
                     <MuiThemeProvider theme={component.getMuiTheme()}>
                         <MUIDataTable
-                            title={"Listes des chèques"}
+                            title={<FormattedMessage id="pages.listChecks" />}
                             id="muiChecksDataTable"
                             data={Array.from(component.state.checks)}
                             columns={component.columns}
@@ -119,11 +120,11 @@ const Template = (component) => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={component.closeRemiseDialog} color="secondary">
-                        Annuler
-                        </Button>
+                        <FormattedMessage id="label.discard" />
+                    </Button>
                     <Button onClick={component.saveRemise} color="primary">
-                        Créer
-                        </Button>
+                        <FormattedMessage id="label.save" />
+                    </Button>
                 </DialogActions>
             </Dialog>
 
@@ -134,7 +135,7 @@ const Template = (component) => {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description">
                 <DialogContent>
-                    <Update/>
+                    <Update />
                 </DialogContent>
             </Dialog>
 

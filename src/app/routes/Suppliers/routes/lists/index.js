@@ -17,7 +17,7 @@ import {
     getSupplierRequest
     
 } from '../../../../../actions/Suppliers';
-
+import { FormattedMessage } from 'react-intl';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -118,13 +118,13 @@ class Suppliers extends React.Component {
         }
     })
 
-    componentDidMount() {
+    componentWillMount() {
 
         this.columns = [
             
                 {
                     name: "id",
-                    label: "Options",
+                    label: <FormattedMessage id="label.options"/>,
                     options: {
                         sort: false,
                         print: false,
@@ -145,7 +145,7 @@ class Suppliers extends React.Component {
                 },
                 {
                 name: "firstName",
-                label: "FirstName",
+                label: <FormattedMessage id="label.firstName"/>,
                 options: {
                  filter: false,
                  sort: false,
@@ -153,7 +153,7 @@ class Suppliers extends React.Component {
                },
                {
                name: "lastName",
-                label: "LastName",
+                label: <FormattedMessage id="label.lastName"/>,
                 options: {
                  filter: false,
                  sort: false,
@@ -161,7 +161,7 @@ class Suppliers extends React.Component {
                },
                {
                 name: "city",
-                label: "City",
+                label: <FormattedMessage id="label.city"/>,
                 options: {
                  filter: false,
                  sort: false,
@@ -169,7 +169,7 @@ class Suppliers extends React.Component {
                },
                {
                 name: "phone",
-                label: "Phone",
+                label: <FormattedMessage id="label.phone"/>,
                 options: {
                  filter: false,
                  sort: false,
@@ -177,7 +177,7 @@ class Suppliers extends React.Component {
                },
                {
                name: "email",
-               label: "Email",
+               label: <FormattedMessage id="label.email"/>,
                options: {
                filter: false,
                sort: false,
@@ -185,7 +185,7 @@ class Suppliers extends React.Component {
                },
                {
                name: "manager",
-               label: "Manager",
+               label: <FormattedMessage id="label.manager"/>,
                options: {
                filter: false,
                sort: false,
@@ -193,15 +193,26 @@ class Suppliers extends React.Component {
                },
                {
                    name: "department",
-                   label: "department",
+                   label: <FormattedMessage id="label.department"/>,
                    options: {
                     filter: false,
                     sort: false,
                    }
                },
         ];
-        this.options = {}
+        this.options = {
+            filter: true,
+            selectableRows: 'none',
+            filterType: 'dropdown',
+            responsive: 'scroll',
+            rowsPerPage: 10,
+            rowsPerPageOptions: [5,10,15,20,25,50],
+        }
 
+    }
+
+
+    componentDidMount() {
         this.props.getSuppliers()
     }
 
@@ -231,8 +242,6 @@ class Suppliers extends React.Component {
     }
 
     render() {
-     
-        
         return (Template(this));
     }
 }
@@ -246,7 +255,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 const mapStateToProps = (state) => {
-    
     const {
         suppliers,
         progress,
@@ -261,10 +269,7 @@ const mapStateToProps = (state) => {
         deleted: deleted,
         error: error,
         supplier: supplier,
-        
-       
     }
-
 }
 
 export default compose(

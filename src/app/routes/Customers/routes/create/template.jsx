@@ -59,7 +59,7 @@ const Template = (component) => {
                                             <TextValidator
                                                 id="firstName"
                                                 name="firstName"
-                                                label="firstName"
+                                                label={<FormattedMessage id="label.firstName" />}
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
@@ -79,7 +79,7 @@ const Template = (component) => {
                                             <TextValidator
                                                 id="lastName"
                                                 name="lastName"
-                                                label="lastName"
+                                                label={<FormattedMessage id="label.lastName" />}
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
@@ -100,7 +100,7 @@ const Template = (component) => {
                                             <TextValidator
                                                 id="type"
                                                 name="type"
-                                                label="Type"
+                                                label={<FormattedMessage id="label.type" />}
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
@@ -121,7 +121,7 @@ const Template = (component) => {
                                                 id="civility"
                                                 select
                                                 name="civility"
-                                                label="Civility"
+                                                label={<FormattedMessage id="label.civility" />}
                                                 onChange={component.handleChange}
                                                 SelectProps={{ native: true }}
                                                 margin="dense"
@@ -144,7 +144,7 @@ const Template = (component) => {
                                             <TextValidator
                                                 id="email"
                                                 name="email"
-                                                label="Email"
+                                                label={<FormattedMessage id="label.email" />}
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
@@ -164,7 +164,7 @@ const Template = (component) => {
                                             <TextValidator
                                                 id="dateBirth"
                                                 name="dateBirth"
-                                                label="Date Birth"
+                                                label={<FormattedMessage id="label.birthDate"/>}
                                                 type="date"
                                                 onChange={component.handleChange}
                                                 margin="dense"
@@ -183,7 +183,7 @@ const Template = (component) => {
                                                 type="department"
                                                 name="department"
                                                 id="department"
-                                                label="Department"
+                                                label={<FormattedMessage id="label.department"/>}
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
@@ -201,7 +201,7 @@ const Template = (component) => {
                                     <Grid item xs={12}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="Address"
+                                                label={<FormattedMessage id="label.address"/>}
                                                 onChange={component.handleChange}
                                                 name="address"
                                                 margin="dense"
@@ -221,7 +221,7 @@ const Template = (component) => {
                                     <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }}>
                                             <TextValidator
-                                                label="Country"
+                                                label={<FormattedMessage id="label.country"/>}
                                                 onChange={component.handleChange}
                                                 name="country"
                                                 margin="dense"
@@ -240,7 +240,7 @@ const Template = (component) => {
                                     <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }}>
                                             <TextValidator
-                                                label="City"
+                                                label={<FormattedMessage id="label.city"/>}
                                                 onChange={component.handleChange}
                                                 name="city"
                                                 margin="dense"
@@ -260,7 +260,7 @@ const Template = (component) => {
                                     <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="website"
+                                                label={<FormattedMessage id="label.website"/>}
                                                 onChange={component.handleChange}
                                                 name="websiteURL"
                                                 margin="dense"
@@ -277,7 +277,7 @@ const Template = (component) => {
                                     <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="Skype"
+                                                label={<FormattedMessage id="label.skype"/>}
                                                 onChange={component.handleChange}
                                                 name="skype"
                                                 margin="dense"
@@ -293,7 +293,7 @@ const Template = (component) => {
                                     <Grid item xs={4}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="phone"
+                                                label={<FormattedMessage id="label.phone"/>}
                                                 onChange={component.handleChange}
                                                 name="phone"
                                                 margin="dense"
@@ -309,7 +309,7 @@ const Template = (component) => {
                                     <Grid item xs={4}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="mobile"
+                                                label={<FormattedMessage id="label.mobile"/>}
                                                 onChange={component.handleChange}
                                                 name="mobile"
                                                 margin="dense"
@@ -325,7 +325,7 @@ const Template = (component) => {
                                     <Grid item xs={4}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="fax"
+                                                label={<FormattedMessage id="label.fax"/>}
                                                 onChange={component.handleChange}
                                                 name="fax"
                                                 margin="dense"
@@ -342,7 +342,7 @@ const Template = (component) => {
                                     <Grid item xs={3}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="Bank"
+                                                label={<FormattedMessage id="label.bank"/>}
                                                 onChange={component.handleChange}
                                                 name="bank"
                                                 margin="dense"
@@ -358,7 +358,7 @@ const Template = (component) => {
                                     <Grid item xs={3}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="Iban"
+                                                label={<FormattedMessage id="label.iban"/>}
                                                 onChange={component.handleChange}
                                                 name="iban"
                                                 margin="dense"
@@ -374,7 +374,7 @@ const Template = (component) => {
                                     <Grid item xs={3}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="Bic"
+                                                label={<FormattedMessage id="label.mobile"/>}
                                                 onChange={component.handleChange}
                                                 name="bic"
                                                 margin="dense"
@@ -390,7 +390,7 @@ const Template = (component) => {
                                     <Grid item xs={3}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="Siren"
+                                                label={<FormattedMessage id="label.siren"/>}
                                                 onChange={component.handleChange}
                                                 name="siren"
                                                 margin="dense"
@@ -407,7 +407,7 @@ const Template = (component) => {
                                     <Grid item xs={3}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="Siret"
+                                                label={<FormattedMessage id="label.siret"/>}
                                                 onChange={component.handleChange}
                                                 name="siret"
                                                 margin="dense"
@@ -440,7 +440,7 @@ const Template = (component) => {
                                     <Grid item xs={3}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="Tva"
+                                                label={<FormattedMessage id="label.tva"/>}
                                                 onChange={component.handleChange}
                                                 name="tva"
                                                 margin="dense"
@@ -457,7 +457,7 @@ const Template = (component) => {
                                     <Grid item xs={3}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="Tva Code"
+                                                label={<FormattedMessage id="label.tvaCode"/>}
                                                 onChange={component.handleChange}
                                                 name="tvaCode"
                                                 margin="dense"
@@ -473,7 +473,7 @@ const Template = (component) => {
                                     <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="family"
+                                                label={<FormattedMessage id="label.family"/>}
                                                 onChange={component.handleChange}
                                                 name="family"
                                                 margin="dense"
@@ -489,7 +489,7 @@ const Template = (component) => {
                                     <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="Payment Method"
+                                                label={<FormattedMessage id="label.paymentMethod"/>}
                                                 onChange={component.handleChange}
                                                 name="paymentMethod"
                                                 margin="dense"
@@ -506,7 +506,7 @@ const Template = (component) => {
                                     <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="Title"
+                                                label={<FormattedMessage id="label.title"/>}
                                                 onChange={component.handleChange}
                                                 name="title"
                                                 margin="dense"
@@ -526,7 +526,7 @@ const Template = (component) => {
                                     <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label="Status"
+                                                label={<FormattedMessage id="label.status"/>}
                                                 onChange={component.handleChange}
                                                 name="status"
                                                 margin="dense"

@@ -5,7 +5,7 @@ import {
 } from 'react-material-ui-form-validator';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
+import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
 import Grid from '@material-ui/core/Grid';
 import {
     CardContent,
@@ -42,7 +42,7 @@ const Template = (component) => {
             <div className="row animated slideInUpTiny animation-duration-3">
                 <Card style={{ width: '80%', margin: 'auto' }}>
                     <CardContent>
-                        <CardHeader titleTypographyProps={{ align: 'left' }} title={<FormattedMessage id="pages.createNewSupplier"/>} />
+                        <CardHeader titleTypographyProps={{ align: 'left' }} title={<FormattedMessage id="pages.createNewSupplier" />} />
                         <div className="align-items-center justify-content-between">
                             <ValidatorForm style={{ width: '100%' }} onSubmit={component.handleSubmit} noValidate autoComplete="off">
 
@@ -132,7 +132,7 @@ const Template = (component) => {
                                         </FormControl>
                                     </Grid>
 
-                                  
+
 
                                     <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
@@ -224,7 +224,7 @@ const Template = (component) => {
                                                     shrink: true,
                                                 }}
                                                 value={supplier.addressLine2}
-                                                
+
                                             />
                                         </FormControl>
                                     </Grid>
@@ -241,7 +241,7 @@ const Template = (component) => {
                                                     shrink: true,
                                                 }}
                                                 value={supplier.addressLine3}
-                                                
+
                                             />
                                         </FormControl>
                                     </Grid>
@@ -258,7 +258,7 @@ const Template = (component) => {
                                                     shrink: true,
                                                 }}
                                                 value={supplier.addressLine4}
-                                                
+
                                             />
                                         </FormControl>
                                     </Grid>
@@ -275,7 +275,7 @@ const Template = (component) => {
                                                     shrink: true,
                                                 }}
                                                 value={supplier.addressLine5}
-                                                
+
                                             />
                                         </FormControl>
                                     </Grid>
@@ -515,8 +515,8 @@ const Template = (component) => {
                                             />
                                         </FormControl>
                                     </Grid>
-                                    
-                                    
+
+
                                     <Grid item xs={3}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
@@ -602,14 +602,14 @@ const Template = (component) => {
                                         </FormControl>
                                     </Grid>
 
-                                    
+
 
                                 </Grid>
 
 
                                 <div style={{ float: 'right', marginBottom: '20px' }}>
                                     <Button type="reset" variant="contained" color="default" onClick={() => component.reset()}> <FormattedMessage id="label.discard" /> </Button>
-                                    <Button type="submit" variant="contained" color="primary" onClick = { () => component.handleSubmit()} style={{ marginLeft: '5px' }}> <FormattedMessage id="label.save" /> </Button>
+                                    <Button type="submit" variant="contained" color="primary" onClick={() => component.handleSubmit()} style={{ marginLeft: '5px' }}> <FormattedMessage id="label.save" /> </Button>
                                 </div>
 
                             </ValidatorForm>
