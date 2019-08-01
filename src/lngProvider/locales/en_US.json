@@ -624,8 +624,12 @@
   "label.bank": "Bank",
   "label.iban": "Iban",
   "label.options": "Options",
+  "label.userame": "Username",
+  "label.password": "Password",
+  "label.photo": "Photo",
   "label.save": "Save",
   "label.discard": "Discard",
   "pages.createNewCustomer": "Create New Customer",
-  "pages.createNewSupplier": "Create New Supplier"
+  "pages.createNewSupplier": "Create New Supplier",
+  "pages.createNewUser": "Create New User"
 }

@@ -12,6 +12,7 @@ import {
     ToastContainer,
     toast
 } from 'react-toastify';
+import { FormattedHTMLMessage } from 'react-intl';
 
 const roles = [
     {
@@ -145,8 +146,8 @@ const Template = (component) => {
                             </div>
 
                             <div style={{ float: 'right', marginBottom: '20px' }}>
-                                <Button type="reset" variant="contained" color="default" onClick={() => {component.discard()}}> DISCARD </Button>
-                                <Button type="submit" variant="contained" color="primary" onClick={() => {component.updateUser(component.state) }} style={{ marginLeft: '5px' }}> SAVE </Button>
+                                <Button type="reset" variant="contained" color="default" onClick={() => {component.discard()}}> <FormattedHTMLMessage id="label.discard"/> </Button>
+                                <Button type="submit" variant="contained" color="primary" onClick={() => {component.updateUser(component.state) }} style={{ marginLeft: '5px' }}> <FormattedHTMLMessage id="label.save"/> </Button>
                             </div>
 
                         </ValidatorForm>

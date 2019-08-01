@@ -285,11 +285,11 @@ class SidenavContent extends Component {
               </span>
             </Button>
             <ul className="sub-menu">
-              <li>
+              {/* <li>
                 <NavLink className="prepend-icon" to="/app/batch">
                   <span className="nav-text"><IntlMessages id="pages.batch" /></span>
                 </NavLink>
-              </li>
+              </li> */}
             </ul>
           </li>
 
