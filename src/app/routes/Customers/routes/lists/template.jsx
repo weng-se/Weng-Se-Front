@@ -15,6 +15,7 @@ import {
     toast,
     ToastContainer
 } from 'react-toastify';
+import {FormattedMessage, FormattedHTMLMessage} from 'react-intl';
 import Update from './../update/';
 
 const styles = theme => ({
@@ -32,7 +33,7 @@ const Template = (component) => {
             <Card>
                 <MuiThemeProvider theme={component.getMuiTheme()}>
                     <MUIDataTable
-                        title={"Customers List"}
+                        title={ <FormattedHTMLMessage id="pages.listCustomers"/> }
                         id="muiCustomersDataTable"
                         data={Array.from(component.state.customers)}
                         columns={component.columns}

@@ -23,6 +23,7 @@ import {
     toast,
     ToastContainer,
 } from 'react-toastify';
+import { FormattedMessage } from 'react-intl';
 
 const civilities = [
     {
@@ -46,7 +47,7 @@ const Template = (component) => {
             <div className="row animated slideInUpTiny animation-duration-3">
                 <Card style={{ width: '80%', margin: 'auto' }}>
                     <CardContent>
-                        <CardHeader titleTypographyProps={{ align: 'left' }} title={'Create a new user account:'} />
+                        <CardHeader titleTypographyProps={{ align: 'left' }} title={<FormattedMessage id="pages.createNewCustomer"/>} />
                         <div className="align-items-center justify-content-between">
                             <ValidatorForm style={{ width: '100%' }} onSubmit={component.handleSubmit} noValidate autoComplete="off">
 
@@ -544,8 +545,8 @@ const Template = (component) => {
 
 
                                 <div style={{ float: 'right', marginBottom: '20px' }}>
-                                    <Button type="reset" variant="contained" color="default" onClick={() => component.reset()}> DISCARD </Button>
-                                    <Button type="submit" variant="contained" color="primary" style={{ marginLeft: '5px' }}> SAVE </Button>
+                                    <Button type="reset" variant="contained" color="default" onClick={() => component.reset()}> <FormattedMessage id="label.discard" /> </Button>
+                                    <Button type="submit" variant="contained" color="primary" style={{ marginLeft: '5px' }}> <FormattedMessage id="label.save" /> </Button>
                                 </div>
 
                             </ValidatorForm>

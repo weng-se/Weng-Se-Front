@@ -6,6 +6,7 @@ import Orders from './Orders';
 import Users from './Users';
 import Checks from './Checks';
 import Customers from './Customers';
+import Suppliers from './Suppliers';
 
 
 export default (history) => combineReducers({
@@ -15,5 +16,6 @@ export default (history) => combineReducers({
   users: Users,
   orders: Orders,
   checks: Checks,
-  customers: Customers
+  customers: Customers,
+  suppliers: Suppliers
 });

@@ -4,6 +4,7 @@ import OrdersSagas from './Orders';
 import UsersSagas from './Users';
 import ChecksSagas from './Checks';
 import CustomersSagas from './Customers';
+import SuppliersSagas from './Suppliers';
 
 
 export default function* rootSaga(getState) {
@@ -12,6 +13,7 @@ export default function* rootSaga(getState) {
         OrdersSagas(),
         UsersSagas(),
         ChecksSagas(),
-        CustomersSagas()
+        CustomersSagas(),
+        SuppliersSagas()
     ]);
 }

@@ -567,6 +567,7 @@
   "pages.listSuppliers": "Liste des fournisseurs",
   "pages.addSuppliers": "Ajouter un fournisseur",
   "pages.updateSuppliers": "Modifier un fournisseur",
+  "pages.importSuppliers": "Importer des fournisseurs",
   "pages.dashboard.reporting1": "Reporting 1",
   "pages.dashboard.reporting2": "Reporting 2",
   "pages.dashboard.reporting3": "Reporting 3",
@@ -605,5 +606,19 @@
   "sidebar.users": "Utilisateurs",
   "pages.batch": "batch",
   "sidebar.batch": "batch",
-  "sidebar.administration" : "administration"
+  "sidebar.administration" : "administration",
+  "label.firstName": "Prénom",
+  "label.lastName": "Nom",
+  "label.type": "Type",
+  "label.civility": "Civilité",
+  "label.address": "Adresse",
+  "label.website": "Site web",
+  "label.status": "Status",
+  "label.bank": "Banque",
+  "label.iban": "Iban",
+  "label.options": "Options",
+  "label.save": "Sauvegrader",
+  "label.discard": "Annuler",
+  "pages.createNewCustomer": "Créer un nouveau client",
+  "pages.createNewSupplier": "Créer un nouveau Fournisseur"
 }
