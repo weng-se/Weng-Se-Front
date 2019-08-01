@@ -649,8 +649,10 @@
   "label.amount": "Amount",
   "label.customer": "Customer",
   "label.comment": "Comment",
+  "label.remiseNumber": "Remise Number",
   "label.cashingDateDesired": "cashing Date Desired",
   "pages.createNewCustomer": "Create New Customer",
   "pages.createNewSupplier": "Create New Supplier",
-  "pages.createNewUser": "Create New User"
+  "pages.createNewUser": "Create New User",
+  "pages.createNewCheck": "Create New Check"
 }

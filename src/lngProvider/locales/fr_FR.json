@@ -642,8 +642,10 @@
   "label.amount": "Montant",
   "label.customer": "Client",
   "label.comment": "Commentaire",
+  "label.remiseNumber": "Numéro de la remise",
   "label.cashingDateDesired": "Date d'encaissement souhaitée",
   "pages.createNewCustomer": "Créer un nouveau client",
   "pages.createNewSupplier": "Créer un nouveau fournisseur",
-  "pages.createNewUser": "Créer un nouveau utilisateur"
+  "pages.createNewUser": "Créer un nouveau utilisateur",
+  "pages.createNewCheck": "Créer un nouveau check"
 }
