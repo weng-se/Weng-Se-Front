@@ -14,6 +14,7 @@ import Template from './template';
 import {
     editSupplierRequest
 } from '../../../../../actions/Suppliers';
+import { FormattedMessage } from 'react-intl';
 
 const styles = {
     checked: {},
