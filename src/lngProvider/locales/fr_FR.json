@@ -637,9 +637,9 @@
   "label.tvaCode": "Code de tva",
   "label.siret": "Siret",
   "label.siren": "Siren",
-  "label.issuedDate": "Date de publication",
+  "label.issuedDate": "Date de réception",
   "label.number": "Numéro",
-  "label.amount": "Montant",
+  "label.amount": "Montant (€)",
   "label.customer": "Client",
   "label.comment": "Commentaire",
   "label.remiseNumber": "Numéro de la remise",
@@ -647,5 +647,5 @@
   "pages.createNewCustomer": "Créer un nouveau client",
   "pages.createNewSupplier": "Créer un nouveau fournisseur",
   "pages.createNewUser": "Créer un nouveau utilisateur",
-  "pages.createNewCheck": "Créer un nouveau check"
+  "pages.createNewCheck": "Créer un nouveau chèque"
 }

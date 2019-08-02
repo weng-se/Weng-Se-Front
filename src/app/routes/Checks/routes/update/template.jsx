@@ -19,41 +19,84 @@ import {
 
 const status = [
     {
-        value: 'DISCHARGER',
-        label: 'DISCHARGER',
+        value: 'VALIDATED',
+        label: 'Encaissé',
     },
     {
         value: 'WAITING',
-        label: 'WAITING',
+        label: 'En attente',
     },
     {
-        value: 'DONE',
-        label: 'DONE',
+        value: 'REJECTED',
+        label: 'Rejeter',
+    },
+    {
+        value: 'TOCHANGE',
+        label: 'A changer',
     }
 ];
 
+
 const banks = [
+    {
+        value: '',
+        label: '--------',
+    },
     {
         value: 'SG',
         label: 'SG',
     },
     {
-        value: 'BNP',
-        label: 'BNP',
+        value: 'BRED',
+        label: 'BRED',
+    },
+    {
+        value: 'BP',
+        label: 'BP',
+    },
+    {
+        value: 'BQ POST',
+        label: 'BQ POST',
     },
     {
         value: 'LCL',
         label: 'LCL',
     },
     {
+        value: 'CIC',
+        label: 'CIC',
+    },
+    {
+        value: 'BNP',
+        label: 'BNP',
+    },
+    {
         value: 'HSBC',
         label: 'HSBC',
     },
     {
-        value: 'LBP',
-        label: 'LBP',
+        value: 'CDN',
+        label: 'CDN',
+    },
+    {
+        value: 'CA',
+        label: 'CA',
+    },
+    {
+        value: 'BQ KOLB',
+        label: 'BQ KOLB',
+    },
+    {
+        value: 'CAIXA DEPOSITOS',
+        label: 'CAIXA DEPOSITOS',
+    },
+    {
+        value: 'BDC',
+        label: 'BDC',
     }
 ];
+
+
 
 const Template = (component) => {
     const {
@@ -80,6 +123,9 @@ const Template = (component) => {
                                 variant="outlined"
                                 required="true"
                                 value={check.customerId}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                             >
                                 {customers.map(option => (
                                     <option key={option.id} value={option.id}>
@@ -105,6 +151,9 @@ const Template = (component) => {
                                 variant="outlined"
                                 required="true"
                                 value={check.bank}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                             >
                                 {banks.map(option => (
                                     <option key={option.id} value={option.id}>
@@ -127,6 +176,9 @@ const Template = (component) => {
                                 variant="outlined"
                                 required="true"
                                 value={check.number}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                                 validators={['required']}
                                 errorMessages={['numberOfCheque field is required']}
                             />
@@ -144,6 +196,9 @@ const Template = (component) => {
                                 variant="outlined"
                                 required="true"
                                 value={check.amount}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                                 validators={['required']}
                                 errorMessages={['Amount field is required']}
                             />
@@ -163,6 +218,9 @@ const Template = (component) => {
                                 variant="outlined"
                                 required="true"
                                 value={check.remiseId}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                             >
                                 {remises.map(option => (
                                     <option key={option.value} value={option.id}>
@@ -187,6 +245,9 @@ const Template = (component) => {
                                 variant="outlined"
                                 required="true"
                                 value={check.status}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                             >
                                 {status.map(option => (
                                     <option key={option.value} value={option.value}>
@@ -211,6 +272,9 @@ const Template = (component) => {
                                 variant="outlined"
                                 required="true"
                                 value={check.issuedDate}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                                 validators={['required']}
                                 errorMessages={['Issued Date field is required']}
                             />
@@ -228,6 +292,9 @@ const Template = (component) => {
                                 margin="dense"
                                 variant="outlined"
                                 required="true"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                                 value={check.cashingDateDesired}
                                 validators={['required']}
                                 errorMessages={['Cashing Date Desired field is required']}
@@ -248,6 +315,9 @@ const Template = (component) => {
                                 required="true"
                                 multiline={true}
                                 value={check.comment}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                                 rows={3}
                                 rowsMax={4}
                             />

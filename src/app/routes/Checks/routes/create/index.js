@@ -33,14 +33,14 @@ class Create extends React.Component {
         super(props);
         this.state = {
             check: {
-                number: 0,
-                bank: 'SG',
-                amount: 0,
+                number: '',
+                bank: '',
+                amount: '',
                 customerId: '',
                 remise_id: '',
                 status: 'WAITING',
-                issuedDate: '2019-02-25',
-                comment: 'It is a long established fact that a reader',
+                issuedDate: new Date("now"),
+                comment: '',
                 cashingDateDesired: '2019-02-25',
             },
             selectedDate: null,
@@ -106,7 +106,7 @@ class Create extends React.Component {
             this.reset();
             setTimeout(() => {
                 this.props.history.push('/app/checks/lists');
-            }, 1000);
+            }, 100);
         }
 
         if (nextProps.error) {
@@ -126,12 +126,14 @@ class Create extends React.Component {
         this.setState({
             check: {
                 ...this.state.check,
-                customer: null,
-                numberOfCheque: null,
-                bank: null,
-                comment: null,
-                amount: null,
-                remiseNumber: null,
+                customer: '',
+                numberOfCheque: '',
+                number: '',
+                bank: '',
+                comment: '',
+                amount: '',
+                remiseNumber: '',
+                status: 'WAITING',
                 issuedDate: new Date('now'),
                 cashingDateDesired: new Date('now')
             },
