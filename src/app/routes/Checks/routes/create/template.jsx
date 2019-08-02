@@ -142,11 +142,12 @@ const Template = (component) => {
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
-                                                value={(customers[0]) ? customers[0].id : ""}
+                                                value={""}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
                                             >
+                                                <option value={""}>-----</option>
                                                 {customers.map(option => (
                                                     <option key={option.id} value={option.id}>
                                                         {option.firstName + ' ' + option.lastName}

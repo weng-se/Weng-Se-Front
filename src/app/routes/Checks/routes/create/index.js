@@ -133,6 +133,7 @@ class Create extends React.Component {
                 comment: '',
                 amount: '',
                 remiseNumber: '',
+                customerId: '',
                 status: 'WAITING',
                 issuedDate: new Date('now'),
                 cashingDateDesired: new Date('now')
