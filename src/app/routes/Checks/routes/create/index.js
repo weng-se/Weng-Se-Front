@@ -139,12 +139,19 @@ class Create extends React.Component {
                 remiseNumber: '',
                 customerId: '',
                 status: 'WAITING',
-                issuedDate: new Date('now'),
-                cashingDateDesired: new Date('now')
+                issuedDate: new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) + '-' + ('0' + new Date().getDate()).slice(-2),
+                cashingDateDesired: new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) + '-' + ('0' + new Date().getDate()).slice(-2)
             },
             selectedDate: null,
             setSelectedDate: null,
         })
+    }
+
+    returnToList = () => {
+        this.reset();
+        setTimeout(() => {
+            this.props.history.push('/app/checks/lists');
+        }, 100);
     }
 
     render() {
