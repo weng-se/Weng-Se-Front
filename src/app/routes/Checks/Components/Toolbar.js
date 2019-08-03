@@ -4,6 +4,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import AddIcon from "@material-ui/icons/Add";
 import { withStyles } from "@material-ui/core/styles";
 import { NavLink } from 'react-router-dom';
+import { FormattedMessage } from "react-intl";
 
 const defaultToolbarStyles = {
   iconButton: {
@@ -20,11 +21,10 @@ class Toolbar extends React.Component {
     const { classes } = this.props;
     return (
       <React.Fragment>
-        <Tooltip title={"Create"}>
+        <Tooltip title={<FormattedMessage id="pages.createCheck"/>}>
           <NavLink to="create">
-            <IconButton className={classes.iconButton} onClick={this.handleClick}>
-              <AddIcon className={classes.deleteIcon} />
-            </IconButton>
+            <IconButton onClick={this.handleClick}></IconButton>
+            <FormattedMessage id="pages.createCheck"/>
           </NavLink>
         </Tooltip>
       </React.Fragment>

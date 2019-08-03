@@ -226,7 +226,7 @@ const Template = (component) => {
                                         </FormControl>
                                     </Grid>
 
-                                    <Grid item xs={6}>
+                                    {/* <Grid item xs={6}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
                                                 id="standard-select-status-native"
@@ -250,10 +250,10 @@ const Template = (component) => {
                                                 ))}
                                             </TextValidator>
                                         </FormControl>
-                                    </Grid>
+                                    </Grid> */}
 
-                                    <Grid item xs={6}>
-                                        {/* <FormControl style={{ width: '100%', padding: '5px' }} >
+                                     {/* <Grid item xs={6}>
+                                       <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
                                                 id="status"
                                                 select
@@ -273,8 +273,8 @@ const Template = (component) => {
                                                     </option>
                                                 ))}
                                             </TextValidator>
-                                        </FormControl> */}
-                                    </Grid>
+                                        </FormControl> 
+                                    </Grid>*/}
 
                                     {/* date */}
 

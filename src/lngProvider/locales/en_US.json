@@ -654,5 +654,6 @@
   "pages.createNewCustomer": "Create New Customer",
   "pages.createNewSupplier": "Create New Supplier",
   "pages.createNewUser": "Create New User",
-  "pages.createNewCheck": "Create New Check"
+  "pages.createNewCheck": "Create New Check",
+  "pages.createCheck": "Create Check"
 }

@@ -647,5 +647,6 @@
   "pages.createNewCustomer": "Créer un nouveau client",
   "pages.createNewSupplier": "Créer un nouveau fournisseur",
   "pages.createNewUser": "Créer un nouveau utilisateur",
-  "pages.createNewCheck": "Créer un nouveau chèque"
+  "pages.createNewCheck": "Créer un nouveau chèque",
+  "pages.createCheck": "Ajouter un chèque"
 }
