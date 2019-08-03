@@ -39,9 +39,9 @@ class Create extends React.Component {
                 customerId: '',
                 remise_id: '',
                 status: 'WAITING',
-                issuedDate: new Date("now"),
+                issuedDate: new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) + '-' + ('0' + new Date().getDate()).slice(-2),
                 comment: '',
-                cashingDateDesired: '2019-02-25',
+                cashingDateDesired: new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) + '-' + ('0' + new Date().getDate()).slice(-2),
             },
             selectedDate: null,
             setSelectedDate: null,
@@ -91,6 +91,10 @@ class Create extends React.Component {
     saveCheck = () => {
         this.props.createCheck(this.state.check);
     }
+
+
+
+
 
     componentWillReceiveProps(nextProps) {
 

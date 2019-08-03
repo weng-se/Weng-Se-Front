@@ -15,6 +15,7 @@ import {
     toast,
     ToastContainer,
 } from 'react-toastify';
+import { FormattedMessage } from 'react-intl';
 
 
 const status = [
@@ -116,7 +117,7 @@ const Template = (component) => {
                                 id="customerId"
                                 select
                                 name="customerId"
-                                label="customerId"
+                                label={<FormattedMessage id="label.customer"/>}
                                 onChange={component.handleChange}
                                 SelectProps={{ native: true }}
                                 margin="dense"
@@ -127,6 +128,7 @@ const Template = (component) => {
                                     shrink: true,
                                 }}
                             >
+                                <option value={""}>----</option>
                                 {customers.map(option => (
                                     <option key={option.id} value={option.id}>
                                         {option.firstName + ' ' + option.lastName}
@@ -144,7 +146,7 @@ const Template = (component) => {
                                 id="standard-select-status-native"
                                 select
                                 name="bank"
-                                label="Bank"
+                                label={<FormattedMessage id="label.bank"/>}
                                 onChange={component.handleChange}
                                 SelectProps={{ native: true }}
                                 margin="dense"
@@ -190,7 +192,7 @@ const Template = (component) => {
                             <TextValidator
                                 id="amount"
                                 name="amount"
-                                label="Amount"
+                                label={<FormattedMessage id="label.amount"/>}
                                 onChange={component.handleChange}
                                 margin="dense"
                                 variant="outlined"
@@ -237,7 +239,7 @@ const Template = (component) => {
                                 id="status"
                                 select
                                 name="status"
-                                label="Status"
+                                label={<FormattedMessage id="label.status"/>}
                                 onChange={component.handleChange}
                                 SelectProps={{ native: true }}
                                 helperText="Please select status"
@@ -266,7 +268,7 @@ const Template = (component) => {
                                 type="date"
                                 id="issuedDate"
                                 name="issuedDate"
-                                label="Issued Date"
+                                label={<FormattedMessage id="label.issuedDate"/>}
                                 onChange={component.handleChange}
                                 margin="dense"
                                 variant="outlined"
@@ -287,7 +289,7 @@ const Template = (component) => {
                                 type="date"
                                 id="cashingDateDesired"
                                 name="cashingDateDesired"
-                                label="Cashing Date Desired"
+                                label={<FormattedMessage id="label.cashingDateDesired"/>}
                                 onChange={component.handleChange}
                                 margin="dense"
                                 variant="outlined"
@@ -307,7 +309,7 @@ const Template = (component) => {
                             <TextValidator
                                 id="comment"
                                 name="comment"
-                                label="Comment"
+                                label={<FormattedMessage id="label.comment"/>}
                                 type="textarea"
                                 onChange={component.handleChange}
                                 margin="dense"
@@ -327,8 +329,8 @@ const Template = (component) => {
                 </Grid>
 
                 <div style={{ float: 'right', marginBottom: '20px' }}>
-                    <Button type="reset" variant="contained" color="default"> DISCARD </Button>
-                    <Button type="submit" variant="contained" color="primary" style={{ marginLeft: '5px' }}> SAVE </Button>
+                    <Button type="reset" variant="contained" color="default"> <FormattedMessage id="label.discard"/> </Button>
+                    <Button type="submit" variant="contained" color="primary" style={{ marginLeft: '5px' }}> <FormattedMessage id="label.save"/> </Button>
                 </div>
 
             </ValidatorForm>
