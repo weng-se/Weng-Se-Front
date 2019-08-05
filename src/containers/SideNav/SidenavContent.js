@@ -254,12 +254,12 @@ class SidenavContent extends Component {
             </Button>
             <ul className="sub-menu">
               <li>
-                <NavLink className="prepend-icon" to="/app/bank/lists">
+                <NavLink className="prepend-icon" to="/app/banks/lists">
                   <span className="nav-text"><IntlMessages id="pages.listBank" /></span>
                 </NavLink>
               </li>
               <li>
-                <NavLink className="prepend-icon" to="/app/bank/create">
+                <NavLink className="prepend-icon" to="/app/banks/create">
                   <span className="nav-text"><IntlMessages id="pages.addBank" /></span>
                 </NavLink>
               </li>

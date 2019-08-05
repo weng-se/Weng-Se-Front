@@ -649,6 +649,7 @@
   "label.amount": "Amount (€)",
   "label.customer": "Customer",
   "label.comment": "Comment",
+  "label.contact": "Contact",
   "label.remiseNumber": "Remise Number",
   "label.cashingDateDesired": "cashing Date Desired",
   "pages.createNewCustomer": "Create New Customer",
@@ -661,5 +662,9 @@
   "label.saveAndCreateOther": "Save & create other",
   "sidebar.bank": "Banks",
   "pages.listBank": "List Of Banks",
-  "pages.addBank": "Create Bank"
+  "pages.addBank": "Create Bank",
+  "pages.createNewBank": "Create Bank",
+  "label.bankName": "Name",
+  "label.valid": "Valid",
+  "label.invalid": "Invalid"
 }

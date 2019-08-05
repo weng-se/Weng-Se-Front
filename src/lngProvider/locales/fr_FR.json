@@ -642,6 +642,7 @@
   "label.amount": "Montant (€)",
   "label.customer": "Client",
   "label.comment": "Commentaire",
+  "label.contact": "Contact",
   "label.remiseNumber": "Numéro de la remise",
   "label.cashingDateDesired": "Date d'encaissement souhaitée",
   "pages.createNewCustomer": "Créer un nouveau client",
@@ -654,5 +655,9 @@
   "label.saveAndCreateOther": "Sauvegarder et créer un autre",
   "sidebar.bank": "Banques",
   "pages.listBank": "Liste des banques",
-  "pages.addBank": "Ajouter une banque"
+  "pages.addBank": "Ajouter une banque",
+  "pages.createNewBank": "Créer une nouvelle banque",
+  "label.bankName": "Nom",
+  "label.valid": "Valide",
+  "label.invalid": "Invalide"
 }
