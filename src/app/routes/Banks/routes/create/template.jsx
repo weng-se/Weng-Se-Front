@@ -23,11 +23,11 @@ const status = [
         label: '',
     },
     {
-        value: 'VALIDE',
+        value: 'VALID',
         label: 'Valide',
     },
     {
-        value: 'INVALIDE',
+        value: 'INVALID',
         label: 'Invalide',
     }
 ];
@@ -154,7 +154,7 @@ const Template = (component) => {
                                 </Grid>
 
                                 <div style={{ float: 'right', marginBottom: '20px' }}>
-                                    <Button type="button" variant="contained" color="default" onClick={() => component.formReset()}>
+                                    <Button type="button" variant="contained" color="default" onClick={() => component.backtolist()}>
                                         <FormattedMessage id="label.discard" />
                                     </Button>
                                     <Button type="submit" variant="contained" color="primary" style={{ marginLeft: '5px' }}>

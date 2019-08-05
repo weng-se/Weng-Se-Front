@@ -104,6 +104,12 @@ class Create extends React.Component {
         })
     }
 
+
+    backtolist = () => {
+        this.formReset();
+        this.props.history.push('/app/banks/lists');
+    }
+
     render() {
         return (Template(this));
     }

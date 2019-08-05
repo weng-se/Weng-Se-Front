@@ -664,6 +664,7 @@
   "pages.listBank": "List Of Banks",
   "pages.addBank": "Create Bank",
   "pages.createNewBank": "Create Bank",
+  "label.addBank": "Add Bank",
   "label.bankName": "Name",
   "label.valid": "Valid",
   "label.invalid": "Invalid"

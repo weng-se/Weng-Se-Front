@@ -115,8 +115,6 @@ class Create extends React.Component {
             // }
 
 
-            console.log('', nextProps.other);
-
         }
 
         if (nextProps.error) {

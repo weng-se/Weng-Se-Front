@@ -6,12 +6,15 @@ import {
     takeLatest
 } from "redux-saga/effects";
 import {
-    REQUEST_CREATE_BANK,
+    REQUEST_CREATE_BANK, REQUEST_FETCH_BANK,
 } from "../constants/ActionTypes";
 import {
     createBankProgress, 
     createBankSuccess, 
-    createBankError
+    createBankError,
+    fetchBankProgress,
+    fetchBankSuccess,
+    fetchBankError
 } from "../actions/Banks";
 import axios from 'axios';
 
@@ -40,8 +43,41 @@ export function* watchCreateBank() {
 }
 
 
+
+function* fetchBanks() {
+    let payload = null,
+        error = null;
+    try {
+        yield put(fetchBankProgress());
+        yield axios.get(`http://localhost:4000/api/banks`, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((res) => {
+                if (res.status == 200)
+                    payload = res.data
+            }).catch((error) => {
+                error = error
+            });
+
+        if (payload) yield put(fetchBankSuccess(payload));
+        else yield put(fetchBankError(error));
+
+    } catch (error) {
+        yield put(fetchBankError(error));
+    }
+}
+export function* watchFetchBanks() {
+    yield takeLatest(REQUEST_FETCH_BANK, fetchBanks);
+}
+
+
+
+
 export default function* rootSaga() {
     yield all([
         fork(watchCreateBank),
+        fork(watchFetchBanks)
     ]);
 }

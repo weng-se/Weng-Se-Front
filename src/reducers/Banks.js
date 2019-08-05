@@ -3,6 +3,10 @@ import {
     REQUEST_CREATE_BANK,
     REQUEST_CREATE_BANK_SUCCESS,
     REQUEST_CREATE_BANK_FAILURE,
+
+    REQUEST_FETCH_BANK,
+    REQUEST_FETCH_BANK_SUCCESS,
+    REQUEST_FETCH_BANK_FAILURE,
    
 } from "../constants/ActionTypes";
 
@@ -41,6 +45,29 @@ export default (state = INIT_STATE, action) => {
                 error: true
             }
         }
+
+
+        case REQUEST_FETCH_BANK: {
+            return {
+                ...state,
+                progress: 0
+            }
+        }
+        case REQUEST_FETCH_BANK_SUCCESS: {
+            return {
+                ...state,
+                progress: 100,
+                banks: action.payload
+            }
+        }
+        case REQUEST_FETCH_BANK_FAILURE: {
+            return {
+                ...state,
+                progress: 100,
+                error: true
+            }
+        }
+
         default:
             return state;
     }

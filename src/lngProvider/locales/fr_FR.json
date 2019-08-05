@@ -657,6 +657,7 @@
   "pages.listBank": "Liste des banques",
   "pages.addBank": "Ajouter une banque",
   "pages.createNewBank": "Créer une nouvelle banque",
+  "label.addBank": "Ajouter une banque",
   "label.bankName": "Nom",
   "label.valid": "Valide",
   "label.invalid": "Invalide"
