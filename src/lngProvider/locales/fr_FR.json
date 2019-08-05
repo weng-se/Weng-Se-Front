@@ -659,6 +659,7 @@
   "pages.createNewBank": "Créer une nouvelle banque",
   "label.addBank": "Ajouter une banque",
   "label.bankName": "Nom",
+  "pages.importBank": "Importer des banques",
   "label.valid": "Valide",
   "label.invalid": "Invalide"
 }

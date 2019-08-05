@@ -263,6 +263,11 @@ class SidenavContent extends Component {
                   <span className="nav-text"><IntlMessages id="pages.addBank" /></span>
                 </NavLink>
               </li>
+              <li>
+                <NavLink className="prepend-icon" to="/app/banks/import">
+                  <span className="nav-text"><IntlMessages id="pages.importBank" /></span>
+                </NavLink>
+              </li>
             </ul>
           </li>
 
