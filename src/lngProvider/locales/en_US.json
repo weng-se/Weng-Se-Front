@@ -655,5 +655,11 @@
   "pages.createNewSupplier": "Create New Supplier",
   "pages.createNewUser": "Create New User",
   "pages.createNewCheck": "Create New Check",
-  "pages.createCheck": "Create Check"
+  "pages.createCheck": "Create Check",
+  "pages.updateCheckTitle": "Update Check",
+  "label.checkUpdatedSuccessfully": "Check Updated Successfully",
+  "label.saveAndCreateOther": "Save & create other",
+  "sidebar.bank": "Banks",
+  "pages.listBank": "List Of Banks",
+  "pages.addBank": "Create Bank"
 }

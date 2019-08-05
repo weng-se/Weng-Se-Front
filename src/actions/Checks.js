@@ -13,6 +13,7 @@ import {
     REQUEST_CREATE_CHECK_SUCCESS,
     REQUEST_CREATE_CHECK_FAILURE,
     REQUEST_CREATE_CHECK_PROGRESS,
+    REQUEST_CREATE_CHECK_OTHER_SUCCESS,
     
     REQUEST_GET_CHECK,
     REQUEST_GET_CHECK_SUCCESS,
@@ -21,7 +22,7 @@ import {
     
     REQUEST_EDIT_CHECK,
     REQUEST_EDIT_CHECK_SUCCESS,
-    REQUEST_EDIT_CHECK_FAILURE
+    REQUEST_EDIT_CHECK_FAILURE,
 } from '../constants/ActionTypes'
 
 
@@ -91,10 +92,11 @@ export const deleteCheckProgress = () => {
 /**
  * ==================  (CREATE CHECKS) ==================
  */
-export const createCheckRequest = (formData) => {
+export const createCheckRequest = (formData, bool) => {
     return {
         type: REQUEST_CREATE_CHECK,
         formData: formData,
+        bool: bool,
         progress: 0
     };
 };
@@ -102,15 +104,24 @@ export const createCheckSuccess = (payload) => {
     return {
         type: REQUEST_CREATE_CHECK_SUCCESS,
         payload: payload,
-        deleted : true,
+        created : true,
         progress: 100
     };
 };
+export const createOtherCheckSuccess = (payload) => {
+    return {
+        type: REQUEST_CREATE_CHECK_OTHER_SUCCESS,
+        payload: payload,
+        created : true,
+        other : true,
+        progress: 100
+    };
+};
+
 export const createCheckError = (error) => {
     return {
         type: REQUEST_CREATE_CHECK_FAILURE,
         error: true,
-        deleted : false,
         progress: 100
     }
 };

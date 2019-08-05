@@ -14,6 +14,7 @@ import Template from './template';
 import {
     checkEditRequest
 } from '../../../../../actions/Checks';
+import { FormattedMessage } from 'react-intl';
 
 const styles = {
     checked: {},
@@ -34,9 +35,9 @@ class Update extends React.Component {
         this.state = {
             check: {
                 id: '',
-                number: 0,
+                number: '',
                 bank: '',
-                amount: 0,
+                amount: '',
                 customerId: '',
                 remiseId: '',
                 status: '',
@@ -132,16 +133,18 @@ class Update extends React.Component {
 
         if (nextProps.updated && nextProps.check !== undefined) {
             if (!toast.isActive('editToastSuccess')) {
-                toast.success('User has been successfully updated !', {
+                toast.success(<FormattedMessage id="label.checkUpdatedSuccessfully"/>, {
                     delay: 1000,
                     autoClose: true,
                     closeButton: true,
                     toastId: 'editToastSuccess'
                 });
             }
+            
         }
 
     }
+
 
     render() {
         return (Template(this));
@@ -179,4 +182,4 @@ export default compose(
     connect(
         mapStateToProps,
         mapDispatchToProps
-    ))(Update);
+))(Update);

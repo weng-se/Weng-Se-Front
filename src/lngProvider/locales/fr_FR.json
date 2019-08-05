@@ -648,5 +648,11 @@
   "pages.createNewSupplier": "Créer un nouveau fournisseur",
   "pages.createNewUser": "Créer un nouveau utilisateur",
   "pages.createNewCheck": "Créer un nouveau chèque",
-  "pages.createCheck": "Ajouter un chèque"
+  "pages.createCheck": "Ajouter un chèque",
+  "pages.updateCheckTitle": "Modifier un chèque",
+  "label.checkUpdatedSuccessfully": "chèque Modifier avec success",
+  "label.saveAndCreateOther": "Sauvegarder et créer un autre",
+  "sidebar.bank": "Banques",
+  "pages.listBank": "Liste des banques",
+  "pages.addBank": "Ajouter une banque"
 }

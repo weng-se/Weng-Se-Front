@@ -1,12 +1,13 @@
 import React from "react";
 import IconButton from "@material-ui/core/IconButton";
+import Button from "@material-ui/core/Button";
 import Tooltip from "@material-ui/core/Tooltip";
 import AddIcon from "@material-ui/icons/Add";
 import { withStyles } from "@material-ui/core/styles";
 import { NavLink } from 'react-router-dom';
 import { FormattedMessage } from "react-intl";
 
-const defaultToolbarStyles = {
+const styles = {
   iconButton: {
   },
 };
@@ -22,10 +23,11 @@ class Toolbar extends React.Component {
     return (
       <React.Fragment>
         <Tooltip title={<FormattedMessage id="pages.createCheck"/>}>
-          <NavLink to="create">
-            <IconButton onClick={this.handleClick}></IconButton>
-            <FormattedMessage id="pages.createCheck"/>
-          </NavLink>
+            <Button size="small" variant="contained" className={classes.button}>
+              <NavLink to="create" style={{ color: '#666' }}>
+                <FormattedMessage id="pages.createCheck"/>
+              </NavLink>
+            </Button>
         </Tooltip>
       </React.Fragment>
     );
@@ -34,6 +36,6 @@ class Toolbar extends React.Component {
 }
 
 export default withStyles(
-  defaultToolbarStyles, 
+  styles, 
   { name: "Toolbar" }
   )(Toolbar);

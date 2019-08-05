@@ -26,7 +26,8 @@ import {
     getCheckSuccess,
     getCheckError,
     checkEditSuccess,
-    checkEditError
+    checkEditError,
+    createOtherCheckSuccess
 } from "../actions/Checks";
 import axios from 'axios';
 
@@ -66,12 +67,14 @@ export function* watchFetchChecks() {
  */
 
 
-function* createCheck(action) {
+function* createCheck(data) {
     let payload = null,
         error = null;
+
     try {
+
         yield put(createCheckProgress());
-        yield axios.post(`http://localhost:4000/api/checks`, action.formData)
+        yield axios.post(`http://localhost:4000/api/checks`, data.formData)
             .then((res) => {
                 if (res.status == 200)
                     payload = res.data
@@ -79,8 +82,13 @@ function* createCheck(action) {
                 error = error
             });
 
-        if (payload) yield put(createCheckSuccess(payload));
-        else yield put(createCheckError(error));
+        if(data.bool)  {   
+            if (payload) yield put(createCheckSuccess(payload));
+            else yield put(createCheckError(error));
+        }else {
+            if (payload) yield put(createOtherCheckSuccess(payload));
+            else yield put(createCheckError(error));
+        }
 
     } catch (error) {
         yield put(createCheckError(error));
@@ -167,7 +175,8 @@ export function* watchGetCheck() {
  */
 
 function* editCheck(data) {
-    let payload = null, error = null;
+    let payload = null,
+        error = null;
     try {
         yield axios.post(`http://localhost:4000/api/checks/update?where={"id":"${data.formData.id}"}`, data.formData)
             .then((res) => payload = res.data)

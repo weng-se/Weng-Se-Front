@@ -16,6 +16,10 @@ import { isIOS, isMobile } from 'react-device-detect';
 import asyncComponent from '../util/asyncComponent';
 import TopNav from 'components/TopNav';
 import ColorOption from 'containers/Customizer/ColorOption';
+import {
+  toast,
+  ToastContainer,
+} from 'react-toastify';
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -73,6 +77,7 @@ class App extends React.Component {
               </Switch>
             </div>
             <Footer />
+            <ToastContainer position={toast.POSITION.TOP_RIGHT} />
           </main>
         </div>
         <ColorOption/>

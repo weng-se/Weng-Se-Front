@@ -134,12 +134,21 @@ const Template = (component) => {
                 onClose={component.closeUpdateDialog}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description">
+                <DialogTitle id="alert-dialog-slide-title">{<FormattedMessage id="pages.updateCheckTitle"/>}</DialogTitle>
                 <DialogContent>
                     <Update />
                 </DialogContent>
+                <DialogActions>
+                    <Button onClick={component.closeUpdateDialog} color="primary">
+                        <FormattedMessage id="label.discard"/>
+                    </Button>
+                    <Button type="submit" onClick={component.closeAfterSubmit} form="updateCheckFrom" color="primary">
+                        <FormattedMessage id="label.save"/>
+                    </Button>
+                </DialogActions>
             </Dialog>
 
-            <ToastContainer position={toast.POSITION.TOP_RIGHT} />
+            
         </React.Fragment>
 
     )

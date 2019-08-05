@@ -244,6 +244,28 @@ class SidenavContent extends Component {
             </ul>
           </li>
 
+
+          <li className="menu">
+            <Button>
+              <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
+              <span className="nav-text">
+                <IntlMessages id="sidebar.bank" />
+              </span>
+            </Button>
+            <ul className="sub-menu">
+              <li>
+                <NavLink className="prepend-icon" to="/app/bank/lists">
+                  <span className="nav-text"><IntlMessages id="pages.listBank" /></span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="prepend-icon" to="/app/bank/create">
+                  <span className="nav-text"><IntlMessages id="pages.addBank" /></span>
+                </NavLink>
+              </li>
+            </ul>
+          </li>
+
           { localStorage.getItem('user_role') === "ROLE_ADMIN" &&
           <li className="menu">
             <Button>

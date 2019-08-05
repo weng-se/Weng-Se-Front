@@ -18,6 +18,7 @@ import {
     REQUEST_EDIT_CHECK,
     REQUEST_EDIT_CHECK_SUCCESS,
     REQUEST_EDIT_CHECK_FAILURE,
+    REQUEST_CREATE_CHECK_OTHER_SUCCESS,
 } from "../constants/ActionTypes";
 
 const INIT_STATE = {
@@ -26,7 +27,8 @@ const INIT_STATE = {
     error: false,
     deleted: false,
     created: false,
-    updated: false
+    updated: false,
+    other: false
 };
 
 
@@ -94,6 +96,15 @@ export default (state = INIT_STATE, action) => {
                 ...state,
                 progress: 100,
                 created: true,
+                check: action.payload
+            }
+        }
+        case REQUEST_CREATE_CHECK_OTHER_SUCCESS: {
+            return {
+                ...state,
+                progress: 100,
+                created: true,
+                other: true,
                 check: action.payload
             }
         }

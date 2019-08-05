@@ -43,6 +43,7 @@ class Create extends React.Component {
                 comment: '',
                 cashingDateDesired: new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) + '-' + ('0' + new Date().getDate()).slice(-2),
             },
+            bool: false,
             selectedDate: null,
             setSelectedDate: null,
             customers: [],
@@ -89,11 +90,8 @@ class Create extends React.Component {
     }
 
     saveCheck = () => {
-        this.props.createCheck(this.state.check);
+        this.props.createCheck(this.state.check, this.state.bool);
     }
-
-
-
 
 
     componentWillReceiveProps(nextProps) {
@@ -107,10 +105,18 @@ class Create extends React.Component {
                     toastId: 'success'
                 });
             }
+            
             this.reset();
-            setTimeout(() => {
-                this.props.history.push('/app/checks/lists');
-            }, 100);
+
+            // if(nextProps.other) {
+            //     setTimeout(() => {
+            //         this.props.history.push('/app/checks/lists');
+            //     }, 100);
+            // }
+
+
+            console.log('', nextProps.other);
+
         }
 
         if (nextProps.error) {
@@ -125,6 +131,12 @@ class Create extends React.Component {
         }
 
     }
+
+    setBool = (val) => {
+        this.setState({
+            bool : val
+        })
+    } 
 
     reset = () => {
         this.setState({
@@ -147,7 +159,7 @@ class Create extends React.Component {
         })
     }
 
-    returnToList = () => {
+    discard = () => {
         this.reset();
         setTimeout(() => {
             this.props.history.push('/app/checks/lists');
@@ -161,12 +173,14 @@ class Create extends React.Component {
 
 
 Create.propTypes = {
+    error: PropTypes.bool,
+    created: PropTypes.bool,
     progress: PropTypes.number.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createCheck: (formData) => dispatch(createCheckRequest(formData)),
+        createCheck: (formData, bool) => dispatch(createCheckRequest(formData, bool)),
     }
 }
 
@@ -175,13 +189,15 @@ const mapStateToProps = (state) => {
         check,
         created,
         progress,
-        error
+        error,
+        other
     } = state.checks;
     return {
         check: check,
         created: created,
         progress: progress,
-        error: error
+        error: error,
+        other: other
     }
 }
 
