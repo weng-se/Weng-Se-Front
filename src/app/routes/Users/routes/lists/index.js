@@ -143,17 +143,22 @@ class Lists extends React.Component {
             {
                 name: "username",
                 label: <FormattedMessage id="label.username" />,
-                options: {}
+                options: {
+                    sort: false
+                }
             },
             {
                 name: "email",
                 label: <FormattedMessage id="label.email" />,
-                options: {}
+                options: {
+                    sort: false
+                }
             },
             {
                 name: "role",
                 label: "Role",
                 options: {
+                    sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => {
                         if (value === "ROLE_ADMIN") {
                             return ("ADMINISTRATEUR")

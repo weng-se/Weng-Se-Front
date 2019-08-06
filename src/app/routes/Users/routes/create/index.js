@@ -80,6 +80,10 @@ class Create extends React.Component {
         this.props.createUser(this.state);
     }
 
+    backtolist = () => {
+        this.reset();
+        this.props.history.push('/app/users/lists');
+    }
 
     reset() {
         this.setState({

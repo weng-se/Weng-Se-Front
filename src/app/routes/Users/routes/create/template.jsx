@@ -50,7 +50,7 @@ const Template = (component) => {
     return (
         <React.Fragment>
             <div className="row animated slideInUpTiny animation-duration-3">
-                <Card style={{ width: '50%', margin: 'auto' }}>
+                <Card style={{ width: '55%', margin: 'auto' }}>
                     <CardContent>
                         <CardHeader titleTypographyProps={{ align: 'left' }} title={<FormattedMessage id="pages.createNewUser"/>} />
                         <div className="align-items-center justify-content-between">
@@ -158,7 +158,7 @@ const Template = (component) => {
                                         </FormControl>
                                     </Grid>
 
-                                    <Grid item xs={6}>
+                                    <Grid item xs={12}>
                                         <FormControl style={{ width: '100%', padding: '5px' }}>
                                             <TextValidator
                                                 id="standard-select-currency-native"
@@ -167,7 +167,6 @@ const Template = (component) => {
                                                 label="Roles"
                                                 onChange={component.handleChange}
                                                 SelectProps={{ native: true }}
-                                                helperText="Please select role"
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
@@ -185,7 +184,7 @@ const Template = (component) => {
                                         </FormControl>
                                     </Grid>
 
-                                    <Grid item xs={6}>
+                                    <Grid item xs={12}>
                                         <FormControlLabel style={{ marginTop: '10px', marginLeft: '10px' }} control={
                                             <Switch
                                                 checked={disabled}
@@ -223,7 +222,7 @@ const Template = (component) => {
                                 </Grid>
 
                                 <div style={{ float: 'right', marginBottom: '20px' }}>
-                                    <Button type="reset" variant="contained" color="default" onClick={() => component.reset()}> <FormattedMessage id="label.discard" /> </Button>
+                                    <Button type="button" variant="contained" color="default" onClick={() => component.backtolist()}> <FormattedMessage id="label.discard" /> </Button>
                                     <Button type="submit" variant="contained" color="primary" style={{ marginLeft: '5px' }}> <FormattedMessage id="label.save" /> </Button>
                                 </div>
 

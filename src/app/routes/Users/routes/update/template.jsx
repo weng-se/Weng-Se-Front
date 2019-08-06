@@ -106,7 +106,6 @@ const Template = (component) => {
                                         label="Roles"
                                         onChange={component.handleChange}
                                         SelectProps={{ native: true }}
-                                        helperText="Please select role"
                                         margin="dense"
                                         variant="outlined"
                                         required="true"
