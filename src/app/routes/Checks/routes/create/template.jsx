@@ -96,6 +96,7 @@ const banks = [
 ];
 
 
+
 const Template = (component) => {
     const {
         check,
