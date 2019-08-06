@@ -48,7 +48,7 @@ const Template = (component) => {
 
                                 <Grid container spacing={3}>
 
-                                    <Grid item xs={6}>
+                                    <Grid item xs={12}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
                                                 id="title"
@@ -69,7 +69,7 @@ const Template = (component) => {
                                         </FormControl>
                                     </Grid>
 
-                                    <Grid item xs={6}>
+                                    <Grid item xs={12}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
                                                 id="name"
@@ -89,7 +89,7 @@ const Template = (component) => {
                                         </FormControl>
                                     </Grid>
 
-                                    <Grid item xs={6}>
+                                    <Grid item xs={12}>
                                         <FormControl style={{ width: '100%', padding: '5px' }}>
                                             <TextValidator
                                                 id="status"
@@ -112,7 +112,7 @@ const Template = (component) => {
                                         </FormControl>
                                     </Grid>
 
-                                    <Grid item xs={6}>
+                                    <Grid item xs={12}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
                                                 id="contact"

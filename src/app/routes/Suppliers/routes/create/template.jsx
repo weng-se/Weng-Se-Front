@@ -601,7 +601,7 @@ const Template = (component) => {
                                 </Grid>
 
                                 <div style={{ float: 'right', marginBottom: '20px' }}>
-                                    <Button type="reset" variant="contained" color="default" onClick={() => component.reset()}> <FormattedMessage id="label.discard" /> </Button>
+                                    <Button type="button" variant="contained" color="default" onClick={() => component.backtolist()}> <FormattedMessage id="label.discard" /> </Button>
                                     <Button type="submit" variant="contained" color="primary" onClick={() => component.handleSubmit()} style={{ marginLeft: '5px' }}> <FormattedMessage id="label.save" /> </Button>
                                 </div>
 

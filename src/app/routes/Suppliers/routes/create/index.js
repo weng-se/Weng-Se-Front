@@ -77,14 +77,12 @@ class Add extends React.Component {
     }
     
     handleSubmit = (e) => {
-        console.log("hey")
         //e.preventDefault();
         this.props.createSupplier(this.state.supplier);
     }
 
     componentWillReceiveProps(nextProps) {
 
-        console.log('nextProps', nextProps);
         
         if(nextProps.supplier && nextProps.created) {
             if (!toast.isActive('success')) {
@@ -168,8 +166,12 @@ class Add extends React.Component {
     }
 
 
+    backtolist = () => {
+        this.props.history.push('/app/suppliers/lists');
+    }
+
+
     render() {
-        
         return (Template(this));
     }
 
@@ -187,13 +189,11 @@ const mapStateToProps = (state) => {
         error,
         supplier,
         created
-
     } = state.suppliers;
     return {
-
-        error: error,
-        supplier: supplier,
-        created: created
+        error,
+        supplier,
+        created
     }
 }
 

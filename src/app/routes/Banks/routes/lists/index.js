@@ -222,6 +222,19 @@ class Banks extends React.Component {
         }
     }
 
+
+    openDialog = () => {
+        this.setState({ 
+            open: false
+        })
+    }
+
+    closeDialog = () => {
+        this.setState({ 
+            open: false
+        })
+    }
+
     render() {
         return (Template(this));
     }

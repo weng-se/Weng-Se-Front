@@ -671,5 +671,6 @@
   "label.invalid": "Invalid",
   "label.checkNumber": "Check Number",
   "label.createRemise": "Create Remise",
+  "label.createSupplier": "Create Supplier",
   "label.wantToDelete": "Are you sure you want to delete ?"
 }

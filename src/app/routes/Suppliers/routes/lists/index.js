@@ -27,6 +27,7 @@ import {
     toast 
 } from 'react-toastify';
 import Template from './template';
+import Toolbar from './Toolbar';
 import './style.css';
 //import IntlMessages from '../../../Customers/node_modules/util/IntlMessages';
 //import DataTable from './Components/DataTable';
@@ -207,6 +208,11 @@ class Suppliers extends React.Component {
             responsive: 'scroll',
             rowsPerPage: 10,
             rowsPerPageOptions: [5,10,15,20,25,50],
+            customToolbar: () => {
+                return (
+                  <Toolbar/>
+                );
+            },
         }
 
     }

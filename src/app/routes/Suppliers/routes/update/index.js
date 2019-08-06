@@ -186,6 +186,10 @@ class Update extends React.Component {
     }
 
 
+    backtolist = () => {
+        this.props.history.push('/app/suppliers/lists');
+    }
+
     render() {
         return (Template(this));
     }

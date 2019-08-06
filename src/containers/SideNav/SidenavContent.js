@@ -142,11 +142,6 @@ class SidenavContent extends Component {
                 </NavLink>
               </li>
               <li>
-                <NavLink className="prepend-icon" to="/app/suppliers/create">
-                  <span className="nav-text"><IntlMessages id="pages.addSuppliers" /></span>
-                </NavLink>
-              </li>
-              <li>
                 <NavLink className="prepend-icon" to="/app/suppliers/import">
                   <span className="nav-text"><IntlMessages id="pages.importSuppliers" /></span>
                 </NavLink>

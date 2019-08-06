@@ -664,5 +664,6 @@
   "label.invalid": "Invalide",
   "label.checkNumber": "Numéro de chèque",
   "label.createRemise": "Créer une remise",
+  "label.createSupplier": "Créer un fournisseur",
   "label.wantToDelete": "Etes-vous sûr que vous voulez supprimer ?"
 }

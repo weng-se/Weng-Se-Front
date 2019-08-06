@@ -35,6 +35,7 @@ const styles = theme => ({
 const Template = (component) => {
     return (
         <React.Fragment>
+
             <div className="row animated slideInUpTiny animation-duration-3">
                 <Card style={{ width: "100%" }}>
                     <MuiThemeProvider theme={component.getMuiTheme()}>
@@ -53,6 +54,17 @@ const Template = (component) => {
                     }
                 </Card>
             </div>
+
+            <Dialog
+                open={component.state.open}
+                onClose={component.closeDialog}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description">
+                <DialogContent>
+                    
+                </DialogContent>
+            </Dialog>
+
         </React.Fragment>
     )
 
