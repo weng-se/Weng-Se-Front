@@ -6,7 +6,7 @@ import {
     takeLatest
 } from "redux-saga/effects";
 import {
-    REQUEST_CREATE_BANK, REQUEST_FETCH_BANK,
+    REQUEST_CREATE_BANK, REQUEST_FETCH_BANK, REQUEST_DELETE_BANK,
 } from "../constants/ActionTypes";
 import {
     createBankProgress, 
@@ -14,7 +14,10 @@ import {
     createBankError,
     fetchBankProgress,
     fetchBankSuccess,
-    fetchBankError
+    fetchBankError,
+    deleteBankProgress,
+    deleteBankSuccess,
+    deleteBankError
 } from "../actions/Banks";
 import axios from 'axios';
 
@@ -75,9 +78,40 @@ export function* watchFetchBanks() {
 
 
 
+function* deleteBank(data) {
+    let payload = null,
+        error = null;
+    try {
+        yield put(deleteBankProgress());
+        yield axios.delete(`http://localhost:4000/api/bank/${data.id}`, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((res) => {
+                if (res.status == 200)
+                    payload = res.data
+            }).catch((error) => {
+                error = error
+            });
+
+        if (payload) yield put(deleteBankSuccess(payload));
+        else yield put(deleteBankError(error));
+
+    } catch (error) {
+        yield put(deleteBankError(error));
+    }
+}
+export function* watchDeleteBank() {
+    yield takeLatest(REQUEST_DELETE_BANK, deleteBank);
+}
+
+
+
 export default function* rootSaga() {
     yield all([
         fork(watchCreateBank),
-        fork(watchFetchBanks)
+        fork(watchFetchBanks),
+        fork(watchDeleteBank)
     ]);
 }

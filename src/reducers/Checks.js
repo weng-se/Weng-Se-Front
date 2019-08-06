@@ -142,7 +142,6 @@ export default (state = INIT_STATE, action) => {
 
 
 
-
         case REQUEST_EDIT_CHECK: {
             return {
                 ...state,

@@ -39,6 +39,7 @@ const Template = (component) => {
                 <Card>
                     <MuiThemeProvider theme={component.getMuiTheme()}>
                         <MUIDataTable
+                            key={"fr"}
                             title={<FormattedMessage id="pages.listChecks" />}
                             id="muiChecksDataTable"
                             data={Array.from(component.state.checks)}

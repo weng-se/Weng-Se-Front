@@ -253,7 +253,7 @@ class Header extends React.Component {
                 <DropdownMenu right>
                   <CardHeader styleName="align-items-center"
                               heading={<IntlMessages id="appNotification.title"/>}/>
-                  <AppNotification/>
+                  {/* <AppNotification/> */}
                 </DropdownMenu>
               </Dropdown>
             </li>
@@ -277,7 +277,7 @@ class Header extends React.Component {
                 <DropdownMenu right>
                   <CardHeader styleName="align-items-center"
                               heading={<IntlMessages id="mailNotification.title"/>}/>
-                  <MailNotification/>
+                  {/* <MailNotification/> */}
                 </DropdownMenu>
               </Dropdown>
             </li>

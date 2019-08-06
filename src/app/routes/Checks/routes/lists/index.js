@@ -19,6 +19,7 @@ import {
 } from '../../../../../actions/Checks';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
 import Chip from '@material-ui/core/Chip';
 import DoneIcon from '@material-ui/icons/Done';
@@ -101,23 +102,12 @@ class Checks extends React.Component {
     componentWillMount() {
         this.columns = [
             {
-                name: "id",
-                label: <FormattedMessage id="label.options"/>,
+                name: "remise.issuedDate",
+                label: <FormattedMessage id="label.issuedDate"/>,
                 options: {
                     sort: false,
-                    print: false,
-                    download: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
-                        <React.Fragment>
-                            <div size="small">
-                                <IconButton size="small" onClick={() => this.removeCheck(value)}>
-                                    <DeleteIcon fontSize="small" />
-                                </IconButton>
-                                <IconButton size="small" onClick={() => this.getUpdatedCheck(value)}>
-                                    <EditIcon fontSize="small" />
-                                </IconButton>
-                            </div>
-                        </React.Fragment>
+                        <span>{ moment(value).format('L')  }</span>
                     )
                 }
             },
@@ -145,6 +135,20 @@ class Checks extends React.Component {
                 }
             },
             {
+                name: "amount",
+                label: <FormattedMessage id="label.amount"/>,
+                options: {
+                    sort: false,
+                    customBodyRender: (value, tableMeta, updateValue) => (
+                        <Chip
+                            size="small"
+                            color="default"
+                            label={'€' + value}
+                        />
+                    )
+                }
+            },
+            {
                 name: 'comment',
                 label: <FormattedMessage id="label.comment"/>,
                 options: {
@@ -161,36 +165,6 @@ class Checks extends React.Component {
                     )
                 }
                 
-            },
-            {
-                name: "amount",
-                label: <FormattedMessage id="label.amount"/>,
-                options: {
-                    customBodyRender: (value, tableMeta, updateValue) => (
-                        <Chip
-                            size="small"
-                            color="default"
-                            label={'€' + value}
-                        />
-                    )
-                }
-            },
-            {
-                name: "remise.number",
-                label: <FormattedMessage id="label.number"/>,
-                options: {
-
-                }
-            },
-            {
-                name: "remise.issuedDate",
-                label: <FormattedMessage id="label.issuedDate"/>,
-                options: {
-                    sort: false,
-                    customBodyRender: (value, tableMeta, updateValue) => (
-                        <span>{ moment(value).format('L')  }</span>
-                    )
-                }
             },
             {
                 name: 'status',
@@ -243,7 +217,36 @@ class Checks extends React.Component {
 
                     }
                 }
-            }
+            },
+            {
+                name: "remise.number",
+                label: <FormattedMessage id="label.number"/>,
+                options: {
+
+                }
+            },
+            {
+                name: "id",
+                label: <FormattedMessage id="label.options"/>,
+                options: {
+                    sort: false,
+                    print: false,
+                    download: false,
+                    customBodyRender: (value, tableMeta, updateValue) => (
+                        <React.Fragment>
+                            <div size="small">
+                                {/* <IconButton size="small" onClick={() => this.removeCheck(value)}>
+                                    <DeleteIcon fontSize="small" />
+                                </IconButton> */}
+                                <IconButton size="small" onClick={() => this.getUpdatedCheck(value)}>
+                                    <EditIcon fontSize="small" />
+                                </IconButton>
+                            </div>
+                        </React.Fragment>
+                    )
+                }
+            },
+            
         ];
         this.options = {
             filter: true,
@@ -251,6 +254,7 @@ class Checks extends React.Component {
             filterType: 'dropdown',
             responsive: 'scroll',
             rowsPerPage: 10,
+            resizableColumns: false,
             rowsPerPageOptions: [5,10,15,20,25,50],
             customToolbar: () => {
                 return (
@@ -261,9 +265,9 @@ class Checks extends React.Component {
                 return (
                     <React.Fragment>
                         <Tooltip title={"Create Remise"}>
-                            <IconButton onClick={this.openRemiseDialog}>
-                                <AddIcon />
-                            </IconButton>
+                            <Button onClick={this.openRemiseDialog}>
+                                <FormattedMessage id="label.createRemise"/> 
+                            </Button>
                         </Tooltip>
                     </React.Fragment>
                 );

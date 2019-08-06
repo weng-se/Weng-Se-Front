@@ -668,5 +668,8 @@
   "label.bankName": "Name",
   "pages.importBank": "Import Banks",
   "label.valid": "Valid",
-  "label.invalid": "Invalid"
+  "label.invalid": "Invalid",
+  "label.checkNumber": "Check Number",
+  "label.createRemise": "Create Remise",
+  "label.wantToDelete": "Are you sure you want to delete ?"
 }

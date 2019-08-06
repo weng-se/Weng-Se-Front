@@ -13,7 +13,8 @@ import {
     toast 
 } from 'react-toastify';
 import { 
-    fetchBanksRequest,
+    fetchBanksRequest, 
+    deleteBankRequest,
 } from '../../../../../actions/Banks';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -79,13 +80,13 @@ class Banks extends React.Component {
                     sort: false,
                     print: false,
                     download: false,
-                    customBodyRender: (value, tableMeta, updateValue) => (
+                    customBodyRender: (id, tableMeta, updateValue) => (
                         <React.Fragment>
                             <div size="small">
-                                <IconButton size="small" onClick={() => this.removeCheck(value)}>
+                                <IconButton size="small" onClick={() => this.removeBank(id)}>
                                     <DeleteIcon fontSize="small" />
                                 </IconButton>
-                                <IconButton size="small" onClick={() => this.getUpdatedCheck(value)}>
+                                <IconButton size="small" onClick={() => this.getUpdatedCheck(id)}>
                                     <EditIcon fontSize="small" />
                                 </IconButton>
                             </div>
@@ -150,7 +151,7 @@ class Banks extends React.Component {
             filterType: 'dropdown',
             responsive: 'stacked',
             rowsPerPage: 10,
-            rowsPerPageOptions: [5,10,15,20,25,50],
+            rowsPerPageOptions: [10,15,20,25,50],
             customToolbar: () => {
                 return (
                   <Toolbar/>
@@ -172,6 +173,14 @@ class Banks extends React.Component {
 
     componentDidMount() {
         this.props.fetchBanks();
+    }
+
+
+    removeBank = (id) => {
+        var confirm = window.confirm("Are you sure you want to delete ?");
+        if(confirm == true) {
+            this.props.deleteBank(id);
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -226,7 +235,8 @@ Banks.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchBanks: () => dispatch(fetchBanksRequest())
+        fetchBanks: () => dispatch(fetchBanksRequest()),
+        deleteBank: (id) => dispatch(deleteBankRequest(id))
     }
 }
 

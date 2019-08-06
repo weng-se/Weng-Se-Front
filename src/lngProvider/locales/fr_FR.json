@@ -613,7 +613,7 @@
   "label.civility": "Civilité",
   "label.address": "Adresse",
   "label.website": "Site web",
-  "label.status": "Status",
+  "label.status": "Statut",
   "label.bank": "Banque",
   "label.iban": "Iban",
   "label.options": "Options",
@@ -661,5 +661,8 @@
   "label.bankName": "Nom",
   "pages.importBank": "Importer des banques",
   "label.valid": "Valide",
-  "label.invalid": "Invalide"
+  "label.invalid": "Invalide",
+  "label.checkNumber": "Numéro de chèque",
+  "label.createRemise": "Créer une remise",
+  "label.wantToDelete": "Etes-vous sûr que vous voulez supprimer ?"
 }

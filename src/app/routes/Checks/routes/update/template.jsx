@@ -121,6 +121,7 @@ const Template = (component) => {
                                 SelectProps={{ native: true }}
                                 margin="dense"
                                 variant="outlined"
+                                disabled={ (localStorage.getItem("user_role") == "ROLE_ADMIN") ? false : true }
                                 required="true"
                                 value={check.customerId}
                                 InputLabelProps={{
@@ -150,6 +151,7 @@ const Template = (component) => {
                                 SelectProps={{ native: true }}
                                 margin="dense"
                                 variant="outlined"
+                                disabled={ (localStorage.getItem("user_role") == "ROLE_ADMIN") ? false : true }
                                 required="true"
                                 value={check.bank}
                                 InputLabelProps={{
@@ -171,10 +173,11 @@ const Template = (component) => {
                                 id="number"
                                 type="text"
                                 name="number"
-                                label={<FormattedMessage id="label.number" />}
+                                label={<FormattedMessage id="label.checkNumber" />}
                                 onChange={component.handleChange}
                                 margin="dense"
                                 variant="outlined"
+                                disabled={ (localStorage.getItem("user_role") == "ROLE_ADMIN") ? false : true }
                                 required="true"
                                 value={check.number}
                                 InputLabelProps={{
@@ -196,6 +199,7 @@ const Template = (component) => {
                                 margin="dense"
                                 variant="outlined"
                                 required="true"
+                                disabled={ (localStorage.getItem("user_role") == "ROLE_ADMIN") ? false : true }
                                 value={check.amount}
                                 InputLabelProps={{
                                     shrink: true,
@@ -218,6 +222,7 @@ const Template = (component) => {
                                 SelectProps={{ native: true }}
                                 margin="dense"
                                 variant="outlined"
+                                disabled={ (localStorage.getItem("user_role") == "ROLE_ADMIN") ? false : true }
                                 required="true"
                                 value={check.status}
                                 InputLabelProps={{
@@ -246,6 +251,7 @@ const Template = (component) => {
                                 margin="dense"
                                 variant="outlined"
                                 required="true"
+                                disabled={ (localStorage.getItem("user_role") == "ROLE_ADMIN") ? false : true }
                                 value={check.issuedDate}
                                 InputLabelProps={{
                                     shrink: true,
@@ -266,6 +272,7 @@ const Template = (component) => {
                                 onChange={component.handleChange}
                                 margin="dense"
                                 variant="outlined"
+                                disabled={ (localStorage.getItem("user_role") == "ROLE_ADMIN") ? false : true }
                                 required="true"
                                 InputLabelProps={{
                                     shrink: true,

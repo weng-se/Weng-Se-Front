@@ -60,7 +60,7 @@ export const fetchChecksProgress = () => {
 /**
  * ==================  (DELETE CHECKS) ==================
  */
-export const deleteCheckRequest = () => {
+export const deleteCheckRequest = (id) => {
     return {
         type: REQUEST_DELETE_CHECK,
         progress: 0

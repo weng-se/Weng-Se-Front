@@ -7,7 +7,12 @@ import {
     REQUEST_FETCH_BANK,
     REQUEST_FETCH_BANK_SUCCESS,
     REQUEST_FETCH_BANK_FAILURE,
-    REQUEST_FETCH_BANK_PROGRESS
+    REQUEST_FETCH_BANK_PROGRESS,
+
+    REQUEST_DELETE_CHECK,
+    REQUEST_DELETE_BANK_SUCCESS,
+    REQUEST_DELETE_BANK_FAILURE,
+    REQUEST_DELETE_BANK_PROGRESS
     
 } from '../constants/ActionTypes';
 
@@ -74,4 +79,38 @@ export const createBankProgress = () => {
         type: REQUEST_CREATE_BANK_PROGRESS,
         progress: 0
     }
+};
+
+
+/**
+ * ==================  (DELETE BANK) ==================
+ */
+
+export const deleteBankRequest = () => {
+    return {
+        type: REQUEST_DELETE_CHECK,
+        progress: 0
+    };
+};
+export const deleteBankSuccess = (payload) => {
+    return {
+        type: REQUEST_DELETE_BANK_SUCCESS,
+        payload: payload,
+        deleted : true,
+        progress: 100
+    };
+};
+export const deleteBankError = (error) => {
+    return {
+        type: REQUEST_DELETE_BANK_FAILURE,
+        error: true,
+        deleted : false,
+        progress: 100
+    }
+};
+export const deleteBankProgress = () => {
+    return {
+        type: REQUEST_DELETE_BANK_PROGRESS,
+        progress: 0
+    };
 };

@@ -7,6 +7,9 @@ import {
     REQUEST_FETCH_BANK,
     REQUEST_FETCH_BANK_SUCCESS,
     REQUEST_FETCH_BANK_FAILURE,
+    REQUEST_DELETE_BANK,
+    REQUEST_DELETE_BANK_SUCCESS,
+    REQUEST_DELETE_BANK_FAILURE,
    
 } from "../constants/ActionTypes";
 
@@ -64,6 +67,31 @@ export default (state = INIT_STATE, action) => {
             return {
                 ...state,
                 progress: 100,
+                error: true
+            }
+        }
+
+
+
+
+        case REQUEST_DELETE_BANK: {
+            return {
+                ...state,
+                progress: 100
+            }
+        }
+        case REQUEST_DELETE_BANK_SUCCESS: {
+            return {
+                ...state,
+                progress: 100,
+                deleted: true,
+                bank: action.payload
+            }
+        }
+        case REQUEST_DELETE_BANK_FAILURE: {
+            return {
+                ...state,
+                progress: 0,
                 error: true
             }
         }

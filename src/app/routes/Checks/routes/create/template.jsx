@@ -174,7 +174,7 @@ const Template = (component) => {
                                                 id="number"
                                                 type="text"
                                                 name="number"
-                                                label={<FormattedMessage id="label.number" />}
+                                                label={<FormattedMessage id="label.checkNumber" />}
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"

@@ -6,7 +6,7 @@ import CustomScrollbars from 'util/CustomScrollbars';
 
 const LanguageSwitcher = ({switchLanguage, handleRequestClose}) => {
   return (
-    <CustomScrollbars className="messages-list language-list scrollbar" style={{height: 230}}>
+    <CustomScrollbars className="messages-list language-list scrollbar" style={{height: 90}}>
       <ul className="list-unstyled">
         {languageData.map((language, index) => <LanguageItem key={index} language={language}
                                                              handleRequestClose={handleRequestClose}
