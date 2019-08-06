@@ -12,7 +12,13 @@ import {
     REQUEST_DELETE_CHECK,
     REQUEST_DELETE_BANK_SUCCESS,
     REQUEST_DELETE_BANK_FAILURE,
-    REQUEST_DELETE_BANK_PROGRESS
+    REQUEST_DELETE_BANK_PROGRESS,
+    
+    REQUEST_GET_BANK,
+    REQUEST_GET_BANK_SUCCESS,
+    REQUEST_GET_BANK_FAILURE, 
+    REQUEST_GET_BANK_PROGRESS,
+    REQUEST_DELETE_BANK
     
 } from '../constants/ActionTypes';
 
@@ -86,9 +92,10 @@ export const createBankProgress = () => {
  * ==================  (DELETE BANK) ==================
  */
 
-export const deleteBankRequest = () => {
+export const deleteBankRequest = (id) => {
     return {
-        type: REQUEST_DELETE_CHECK,
+        type: REQUEST_DELETE_BANK,
+        id: id,
         progress: 0
     };
 };
@@ -113,4 +120,39 @@ export const deleteBankProgress = () => {
         type: REQUEST_DELETE_BANK_PROGRESS,
         progress: 0
     };
+};
+
+
+/**
+ * ==================  (DELETE BANK) ==================
+ */
+
+export const getBankRequest = (id) => {
+    return {
+        type: REQUEST_GET_BANK,
+        id: id,
+        progress: 0
+    };
+};
+export const getBankSuccess = (payload) => {
+    return {
+        type: REQUEST_GET_BANK_SUCCESS,
+        payload: payload,
+        deleted : true,
+        progress: 100
+    };
+};
+export const getBankError = (error) => {
+    return {
+        type: REQUEST_GET_BANK_FAILURE,
+        error: true,
+        deleted : false,
+        progress: 100
+    }
+};
+export const getBankProgress = () => {
+    return {
+        type: REQUEST_GET_BANK_PROGRESS,
+        progress: 0
+    }
 };

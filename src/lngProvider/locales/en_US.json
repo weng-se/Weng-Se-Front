@@ -672,5 +672,8 @@
   "label.checkNumber": "Check Number",
   "label.createRemise": "Create Remise",
   "label.createSupplier": "Create Supplier",
-  "label.wantToDelete": "Are you sure you want to delete ?"
+  "label.wantToDelete": "Are you sure you want to delete ?",
+  "pages.titleUpdateBank": "Update Bank",
+  "label.createNewCustomer": "Create customer",
+  "label.createNewUser": "Create User"
 }

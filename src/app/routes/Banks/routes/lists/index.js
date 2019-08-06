@@ -15,6 +15,7 @@ import {
 import { 
     fetchBanksRequest, 
     deleteBankRequest,
+    getBankRequest,
 } from '../../../../../actions/Banks';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -86,7 +87,7 @@ class Banks extends React.Component {
                                 <IconButton size="small" onClick={() => this.removeBank(id)}>
                                     <DeleteIcon fontSize="small" />
                                 </IconButton>
-                                <IconButton size="small" onClick={() => this.getUpdatedCheck(id)}>
+                                <IconButton size="small" onClick={() => this.handleClickOpen(id)}>
                                     <EditIcon fontSize="small" />
                                 </IconButton>
                             </div>
@@ -191,7 +192,7 @@ class Banks extends React.Component {
             })
         }
 
-        if(nextProps.check) {
+        if(nextProps.bank) {
 
             if(nextProps.bank.count === 1 && nextProps.deleted) {  
                 if (!toast.isActive('success')) {
@@ -202,6 +203,9 @@ class Banks extends React.Component {
                         toastId: 'success'
                     });
                 }
+                setTimeout(() => {
+                    this.props.fetchBanks();
+                }, 200);
             }
 
             if(nextProps.bank.count === 0 && nextProps.deleted) {
@@ -223,13 +227,20 @@ class Banks extends React.Component {
     }
 
 
-    openDialog = () => {
+    handleClickOpen = (id) => {
+        this.props.getBank(id);
+        this.setState({ open: true });
+    }
+
+    handleClose = () => {
         this.setState({ 
             open: false
         })
     }
 
-    closeDialog = () => {
+
+    handleUpdate = () => {
+        alert('submit request update');
         this.setState({ 
             open: false
         })
@@ -249,20 +260,26 @@ Banks.propTypes = {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchBanks: () => dispatch(fetchBanksRequest()),
-        deleteBank: (id) => dispatch(deleteBankRequest(id))
+        deleteBank: (id) => dispatch(deleteBankRequest(id)),
+        getBank : (id) => dispatch(getBankRequest(id))
     }
 }
 
 const mapStateToProps = (state) => {
+    console.log(state);
     const {
         banks,
         error,
-        progress
+        bank,
+        progress,
+        deleted
     } = state.banks;
     return {
         banks,
         error,
-        progress
+        bank,
+        progress,
+        deleted
     }
 }
   

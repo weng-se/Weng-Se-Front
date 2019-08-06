@@ -665,5 +665,8 @@
   "label.checkNumber": "Numéro de chèque",
   "label.createRemise": "Créer une remise",
   "label.createSupplier": "Créer un fournisseur",
-  "label.wantToDelete": "Etes-vous sûr que vous voulez supprimer ?"
+  "label.wantToDelete": "Etes-vous sûr que vous voulez supprimer ?",
+  "pages.titleUpdateBank": "Modifier une banque",
+  "label.createNewCustomer": "Ajouter un client",
+  "label.createNewUser": "Ajouter un utilisateur"
 }

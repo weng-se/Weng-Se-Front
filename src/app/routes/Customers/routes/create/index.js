@@ -71,6 +71,11 @@ class Create extends React.Component {
 
     }
 
+    backtolist = () => {
+        this.reset();
+        this.props.history.push('/app/customers/lists');
+    }
+
     handleChange = (e) => {
         this.setState({ customer: 
             { 

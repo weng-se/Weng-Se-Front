@@ -6,7 +6,10 @@ import {
     takeLatest
 } from "redux-saga/effects";
 import {
-    REQUEST_CREATE_BANK, REQUEST_FETCH_BANK, REQUEST_DELETE_BANK,
+    REQUEST_CREATE_BANK, 
+    REQUEST_FETCH_BANK, 
+    REQUEST_DELETE_BANK, 
+    REQUEST_GET_BANK,
 } from "../constants/ActionTypes";
 import {
     createBankProgress, 
@@ -17,7 +20,10 @@ import {
     fetchBankError,
     deleteBankProgress,
     deleteBankSuccess,
-    deleteBankError
+    deleteBankError,
+    getBankSuccess,
+    getBankError,
+    getBankProgress
 } from "../actions/Banks";
 import axios from 'axios';
 
@@ -81,9 +87,10 @@ export function* watchFetchBanks() {
 function* deleteBank(data) {
     let payload = null,
         error = null;
+
     try {
         yield put(deleteBankProgress());
-        yield axios.delete(`http://localhost:4000/api/bank/${data.id}`, {
+        yield axios.delete(`http://localhost:4000/api/banks/${data.id}`, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -108,10 +115,43 @@ export function* watchDeleteBank() {
 
 
 
+
+
+function* getBank(data) {
+    let payload = null,
+        error = null;
+    try {
+        yield put(getBankProgress());
+        yield axios.get(`http://localhost:4000/api/banks/${data.id}`, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then((res) => {
+                if (res.status == 200)
+                    payload = res.data
+            }).catch((error) => {
+                error = error
+            });
+
+        if (payload) yield put(getBankSuccess(payload));
+        else yield put(getBankError(error));
+
+    } catch (error) {
+        yield put(getBankError(error));
+    }
+}
+export function* watchGetBank() {
+    yield takeLatest(REQUEST_GET_BANK, getBank);
+}
+
+
+
 export default function* rootSaga() {
     yield all([
         fork(watchCreateBank),
         fork(watchFetchBanks),
-        fork(watchDeleteBank)
+        fork(watchDeleteBank),
+        fork(watchGetBank)
     ]);
 }

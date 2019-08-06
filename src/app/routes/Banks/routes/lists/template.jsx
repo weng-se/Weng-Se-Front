@@ -55,15 +55,10 @@ const Template = (component) => {
                 </Card>
             </div>
 
-            <Dialog
+            <Update
                 open={component.state.open}
-                onClose={component.closeDialog}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description">
-                <DialogContent>
-                    
-                </DialogContent>
-            </Dialog>
+                onClose={component.handleClose}
+                onSave={component.handleUpdate} />
 
         </React.Fragment>
     )

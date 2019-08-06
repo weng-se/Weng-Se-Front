@@ -50,7 +50,7 @@ const Template = (component) => {
     return (
         <React.Fragment>
             <div className="row animated slideInUpTiny animation-duration-3">
-                <Card style={{ width: '60%', margin: 'auto' }}>
+                <Card style={{ width: '50%', margin: 'auto' }}>
                     <CardContent>
                         <CardHeader titleTypographyProps={{ align: 'left' }} title={<FormattedMessage id="pages.createNewUser"/>} />
                         <div className="align-items-center justify-content-between">
@@ -68,6 +68,9 @@ const Template = (component) => {
                                                 variant="outlined"
                                                 required="true"
                                                 value={username}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
                                                 validators={['required']}
                                                 errorMessages={['Username field is required']}
                                             />
@@ -85,6 +88,9 @@ const Template = (component) => {
                                                 variant="outlined"
                                                 required="true"
                                                 value={email}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
                                                 validators={['required', 'isEmail']}
                                                 errorMessages={['Email field is required', 'email is not valid']}
                                             />
@@ -102,6 +108,9 @@ const Template = (component) => {
                                                 variant="outlined"
                                                 required="true"
                                                 value={phoneNumber}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
                                                 validators={['required']}
                                                 errorMessages={['Phone number field is required']}
                                             />
@@ -120,6 +129,9 @@ const Template = (component) => {
                                                 variant="outlined"
                                                 required="true"
                                                 value={password}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
                                                 validators={['required']}
                                                 errorMessages={['Password field is required']}
                                             />
@@ -136,6 +148,9 @@ const Template = (component) => {
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
                                                 validators={['isPasswordMatch', 'required']}
                                                 errorMessages={['password mismatch', 'this field is required']}
                                                 value={repeatPassword}
@@ -157,6 +172,9 @@ const Template = (component) => {
                                                 variant="outlined"
                                                 required="true"
                                                 value={role}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
                                             >
                                                 {roles.map(option => (
                                                     <option key={option.value} value={option.value}>
@@ -195,6 +213,9 @@ const Template = (component) => {
                                                 rows={3}
                                                 rowsMax={4}
                                                 value={note}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
                                             />
                                         </FormControl>
                                     </Grid>

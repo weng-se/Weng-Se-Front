@@ -101,6 +101,9 @@ const Template = (component) => {
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                }}
                                                 value={bank.status}
                                             >
                                                 {status.map(option => (
