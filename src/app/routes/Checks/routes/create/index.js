@@ -46,8 +46,10 @@ class Create extends React.Component {
             bool: false,
             selectedDate: null,
             setSelectedDate: null,
+            searchText: '',
             customers: [],
-            remises: []
+            remises: [],
+            banks: []
         }
     }
 
@@ -69,6 +71,7 @@ class Create extends React.Component {
     componentDidMount() {
         this.getCustomers();
         this.getRemises();
+        this.getBanks();
     }
 
     getCustomers = () => {
@@ -85,6 +88,16 @@ class Create extends React.Component {
             .then((response) => response.json())
             .then((remises) => this.setState({
                 remises
+            }))
+            .catch((error) => console.error(error));
+    }
+
+
+    getBanks = () => {
+        fetch('http://localhost:4000/api/banks')
+            .then((response) => response.json())
+            .then((banks) => this.setState({
+                banks
             }))
             .catch((error) => console.error(error));
     }
@@ -167,6 +180,7 @@ class Create extends React.Component {
     render() {
         return (Template(this));
     }
+
     
 }
 

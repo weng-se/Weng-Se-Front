@@ -16,6 +16,17 @@ import {
 } from 'react-toastify';
 import { FormattedMessage } from 'react-intl';
 
+const colors = [
+    'Red',
+    'Orange',
+    'Yellow',
+    'Green',
+    'Blue',
+    'Purple',
+    'Black',
+    'White',
+];
+
 
 const status = [
     {
@@ -36,64 +47,64 @@ const status = [
     }
 ];
 
-const banks = [
-    {
-        value: '',
-        label: '',
-    },
-    {
-        value: 'SG',
-        label: 'SG',
-    },
-    {
-        value: 'BRED',
-        label: 'BRED',
-    },
-    {
-        value: 'BP',
-        label: 'BP',
-    },
-    {
-        value: 'BQ POST',
-        label: 'BQ POST',
-    },
-    {
-        value: 'LCL',
-        label: 'LCL',
-    },
-    {
-        value: 'CIC',
-        label: 'CIC',
-    },
-    {
-        value: 'BNP',
-        label: 'BNP',
-    },
-    {
-        value: 'HSBC',
-        label: 'HSBC',
-    },
-    {
-        value: 'CDN',
-        label: 'CDN',
-    },
-    {
-        value: 'CA',
-        label: 'CA',
-    },
-    {
-        value: 'BQ KOLB',
-        label: 'BQ KOLB',
-    },
-    {
-        value: 'CAIXA DEPOSITOS',
-        label: 'CAIXA DEPOSITOS',
-    },
-    {
-        value: 'BDC',
-        label: 'BDC',
-    }
-];
+// const banks = [
+//     {
+//         value: '',
+//         label: '',
+//     },
+//     {
+//         value: 'SG',
+//         label: 'SG',
+//     },
+//     {
+//         value: 'BRED',
+//         label: 'BRED',
+//     },
+//     {
+//         value: 'BP',
+//         label: 'BP',
+//     },
+//     {
+//         value: 'BQ POST',
+//         label: 'BQ POST',
+//     },
+//     {
+//         value: 'LCL',
+//         label: 'LCL',
+//     },
+//     {
+//         value: 'CIC',
+//         label: 'CIC',
+//     },
+//     {
+//         value: 'BNP',
+//         label: 'BNP',
+//     },
+//     {
+//         value: 'HSBC',
+//         label: 'HSBC',
+//     },
+//     {
+//         value: 'CDN',
+//         label: 'CDN',
+//     },
+//     {
+//         value: 'CA',
+//         label: 'CA',
+//     },
+//     {
+//         value: 'BQ KOLB',
+//         label: 'BQ KOLB',
+//     },
+//     {
+//         value: 'CAIXA DEPOSITOS',
+//         label: 'CAIXA DEPOSITOS',
+//     },
+//     {
+//         value: 'BDC',
+//         label: 'BDC',
+//     }
+// ];
 
 
 
@@ -101,7 +112,8 @@ const Template = (component) => {
     const {
         check,
         customers,
-        remises
+        remises,
+        banks
     } = component.state;
     return (
         <React.Fragment>
@@ -126,7 +138,7 @@ const Template = (component) => {
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
-                                                value={""}
+                                                value={check.customerId}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -160,9 +172,10 @@ const Template = (component) => {
                                                     shrink: true,
                                                 }}
                                             >
+                                                <option value=""></option>
                                                 {banks.map(option => (
-                                                    <option key={option.id} value={option.id}>
-                                                        {option.label}
+                                                    <option key={option.id} value={option.name}>
+                                                        {option.title}
                                                     </option>
                                                 ))}
                                             </TextValidator>
@@ -275,12 +288,14 @@ const Template = (component) => {
 
                                 </Grid>
 
+
+
                                 <div style={{ float: 'right', marginBottom: '20px' }}>
-                                    <Button type="button" variant="contained" color="default" onClick={() => component.discard()}> 
-                                        <FormattedMessage id="label.discard" /> 
+                                    <Button type="button" variant="contained" color="default" onClick={() => component.discard()}>
+                                        <FormattedMessage id="label.discard" />
                                     </Button>
-                                    <Button type="submit" variant="contained" color="primary" onClick={() => component.setBool(false)} style={{ marginLeft: '5px' }}>  
-                                        <FormattedMessage id="label.save" /> 
+                                    <Button type="submit" variant="contained" color="primary" onClick={() => component.setBool(false)} style={{ marginLeft: '5px' }}>
+                                        <FormattedMessage id="label.save" />
                                     </Button>
                                 </div>
 
