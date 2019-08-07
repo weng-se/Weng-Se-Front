@@ -52,6 +52,15 @@ class Banks extends React.Component {
             banks: [],
             open: false,
             setOpen: false,
+            bank: {
+            status: "",
+              title: "",
+              name: "",
+              contact: "",
+              createdBy: "",
+              editedBy: "",
+              comment: ""
+            }
         }
     }
 
@@ -228,7 +237,8 @@ class Banks extends React.Component {
 
 
     handleClickOpen = (id) => {
-        this.props.getBank(id);
+        // this.props.getBank(id);
+        this.setState({ id: id });
         this.setState({ open: true });
     }
 
@@ -260,13 +270,11 @@ Banks.propTypes = {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchBanks: () => dispatch(fetchBanksRequest()),
-        deleteBank: (id) => dispatch(deleteBankRequest(id)),
-        getBank : (id) => dispatch(getBankRequest(id))
+        deleteBank: (id) => dispatch(deleteBankRequest(id))
     }
 }
 
 const mapStateToProps = (state) => {
-    console.log(state);
     const {
         banks,
         error,

@@ -58,8 +58,9 @@ const Template = (component) => {
             <Update
                 open={component.state.open}
                 onClose={component.handleClose}
-                onSave={component.handleUpdate} />
-
+                onSave={component.handleUpdate} 
+                id={component.state.id}/>
+                
         </React.Fragment>
     )
 

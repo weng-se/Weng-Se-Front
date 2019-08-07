@@ -16,17 +16,6 @@ import {
 } from 'react-toastify';
 import { FormattedMessage } from 'react-intl';
 
-const colors = [
-    'Red',
-    'Orange',
-    'Yellow',
-    'Green',
-    'Blue',
-    'Purple',
-    'Black',
-    'White',
-];
-
 
 const status = [
     {
@@ -123,6 +112,7 @@ const Template = (component) => {
                         <CardHeader titleTypographyProps={{ align: 'left' }} title={<FormattedMessage id="pages.createNewCheck" />} />
                         <div className="align-items-center justify-content-between">
                             <ValidatorForm style={{ width: '100%' }} onSubmit={component.saveCheck} noValidate autoComplete="off">
+
 
                                 <Grid container spacing={3}>
                                     <Grid item xs={12}>

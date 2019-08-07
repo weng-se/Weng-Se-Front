@@ -33,6 +33,7 @@
     "jquery": "^3.4.0",
     "jss-rtl": "^0.2.3",
     "material-ui-pickers": "^2.0.1",
+    "material-ui-superselectfield": "^1.10.0",
     "moment": "^2.24.0",
     "mui-datatables": "^2.5.1",
     "node-sass": "^4.10.0",

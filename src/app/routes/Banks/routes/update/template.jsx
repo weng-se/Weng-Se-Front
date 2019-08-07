@@ -22,7 +22,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { FormattedMessage } from 'react-intl';
 
 
-const status = [
+const Status = [
     {
         value: '',
         label: '',
@@ -40,7 +40,7 @@ const status = [
 
 const Template = (component) => {
     const {
-        bank,
+        bank
     } = component.state;
     return (
         <React.Fragment>
@@ -113,7 +113,7 @@ const Template = (component) => {
                                         }}
                                         value={bank.status}
                                     >
-                                        {status.map(option => (
+                                        {Status.map(option => (
                                             <option key={option.value} value={option.value}>
                                                 {option.label}
                                             </option>

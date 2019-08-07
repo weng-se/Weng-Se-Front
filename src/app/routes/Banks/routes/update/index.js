@@ -12,7 +12,8 @@ import PropTypes from 'prop-types';
 import compose from 'recompose/compose';
 import Template from './template';
 import {
-    createBankRequest
+    createBankRequest, 
+    getBankRequest
 } from '../../../../../actions/Banks';
 
 const styles = {
@@ -27,7 +28,7 @@ const styles = {
 };
 
 
-class Create extends React.Component {
+class Update extends React.Component {
 
     constructor(props) {
         super(props);
@@ -44,6 +45,13 @@ class Create extends React.Component {
         }
     }
 
+
+    componentDidUpdate() {
+        if(this.props.id != null)
+            this.props.getBank(this.props.id);
+    }
+
+
     handleChange = (e) => {
         this.setState({
             bank: {
@@ -54,37 +62,37 @@ class Create extends React.Component {
     }
 
     handleSubmit = () => {
-        this.props.createBank(this.state.bank);
+        this.props.updateBank(this.state.bank);
     }
 
 
     componentWillReceiveProps(nextProps) {
 
-        if (nextProps.bank && nextProps.created) {
-            if (!toast.isActive('success')) {
-                toast.success('Successfully Created !', {
-                    delay: 1000,
-                    autoClose: true,
-                    closeButton: true,
-                    toastId: 'success'
-                });
-            }
-            setTimeout(() => {
-                this.formReset();
-                //this.props.history.push('/app/banks/lists');
-            }, 100);
-        }
+        // if (nextProps.bank && nextProps.updated) {
+        //     if (!toast.isActive('success')) {
+        //         toast.success('Successfully Updated !', {
+        //             delay: 1000,
+        //             autoClose: true,
+        //             closeButton: true,
+        //             toastId: 'success'
+        //         });
+        //     }
+        //     setTimeout(() => {
+        //         this.formReset();
+        //         //this.props.history.push('/app/banks/lists');
+        //     }, 100);
+        // }
 
-        if (nextProps.error) {
-            if (!toast.isActive('error')) {
-                toast.error('Fix: “something went wrong” while creating account !', {
-                    delay: 1000,
-                    autoClose: true,
-                    closeButton: true,
-                    toastId: 'error'
-                });
-            }
-        }
+        // if (nextProps.error) {
+        //     if (!toast.isActive('error')) {
+        //         toast.error('Fix: “something went wrong” while creating account !', {
+        //             delay: 1000,
+        //             autoClose: true,
+        //             closeButton: true,
+        //             toastId: 'error'
+        //         });
+        //     }
+        // }
 
     }
 
@@ -115,15 +123,16 @@ class Create extends React.Component {
 
 }
 
-Create.propTypes = {
+Update.propTypes = {
     error: PropTypes.bool,
-    created: PropTypes.bool,
+    update: PropTypes.bool,
     progress: PropTypes.number.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createBank: (formData) => dispatch(createBankRequest(formData)),
+        updateBank: (formData) => dispatch(createBankRequest(formData)),
+        getBank : (id) => dispatch(getBankRequest(id))
     }
 }
 
@@ -147,4 +156,4 @@ export default compose(
     connect(
         mapStateToProps,
         mapDispatchToProps
-    ))(Create);
+    ))(Update);

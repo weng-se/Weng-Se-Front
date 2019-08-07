@@ -37,7 +37,7 @@ function* getChecks() {
         error = null;
     try {
         yield put(fetchChecksProgress());
-        yield axios.get(`http://localhost:4000/api/checks?filter={%22include%22:[%22customer%22,%22remise%22]}`, {
+        yield axios.get(`http://localhost:4000/api/checks/findAll?status=VALIDATED&filter={%22include%22:[%22customer%22,%22remise%22]}`, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
