@@ -675,5 +675,8 @@
   "label.wantToDelete": "Are you sure you want to delete ?",
   "pages.titleUpdateBank": "Update Bank",
   "label.createNewCustomer": "Create customer",
-  "label.createNewUser": "Create User"
+  "label.createNewUser": "Create User",
+  "label.checkInformation": "Check Informations",
+  "label.systemInformation": "System Informations",
+  "label.createNewRemise": "Create new remise"
 }

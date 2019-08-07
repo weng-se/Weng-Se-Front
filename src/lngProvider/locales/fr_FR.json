@@ -668,5 +668,8 @@
   "label.wantToDelete": "Etes-vous sûr que vous voulez supprimer ?",
   "pages.titleUpdateBank": "Modifier une banque",
   "label.createNewCustomer": "Ajouter un client",
-  "label.createNewUser": "Ajouter un utilisateur"
+  "label.createNewUser": "Ajouter un utilisateur",
+  "label.checkInformation": "Informations chèque",
+  "label.systemInformation": "Informations Système",
+  "label.createNewRemise": "Créer une nouvelle remise"
 }

@@ -78,21 +78,23 @@ const Template = (component) => {
 
 
             <Dialog open={component.state.show} onClose={component.closeRemiseDialog}>
-                <DialogTitle>Nouvelle remise</DialogTitle>
+                <DialogTitle><FormattedMessage id="label.createNewRemise" /></DialogTitle>
                 <DialogContent>
-                    <DialogContentText>
-                        Veuillez saisir les détails de la remise.
-                        </DialogContentText>
                     <TextField
                         name="number"
                         label="Numero de remise"
                         margin="normal"
+                        variant="outlined"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
                         fullWidth
                         value={component.state.number}
                         onChange={component.handleInputChange}
                     />
-                    <FormControl fullWidth margin="normal">
-                        <InputLabel htmlFor="bank">Banque</InputLabel>
+                    <FormControl fullWidth margin="normal" variant="outlined" InputLabelProps={{
+                                shrink: true,
+                            }}>
                         <Select
                             inputProps={{
                                 name: 'bank',
@@ -113,6 +115,12 @@ const Template = (component) => {
                     <DatePicker
                         id="remiseDate"
                         label="Date de remise"
+                        SelectProps={{ native: true }}
+                        margin="dense"
+                        variant="outlined"
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
                         value={component.state.issuedDate}
                         onChange={component.handleDateChange}
                         fullWidth
@@ -135,21 +143,21 @@ const Template = (component) => {
                 onClose={component.closeUpdateDialog}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description">
-                <DialogTitle id="alert-dialog-slide-title">{<FormattedMessage id="pages.updateCheckTitle"/>}</DialogTitle>
+                <DialogTitle id="alert-dialog-slide-title">{<FormattedMessage id="pages.updateCheckTitle" />}</DialogTitle>
                 <DialogContent>
                     <Update />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={component.closeUpdateDialog} color="primary">
-                        <FormattedMessage id="label.discard"/>
+                        <FormattedMessage id="label.discard" />
                     </Button>
                     <Button type="submit" onClick={component.closeAfterSubmit} form="updateCheckFrom" color="primary">
-                        <FormattedMessage id="label.save"/>
+                        <FormattedMessage id="label.save" />
                     </Button>
                 </DialogActions>
             </Dialog>
 
-            
+
         </React.Fragment>
 
     )

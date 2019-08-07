@@ -105,7 +105,7 @@ class Checks extends React.Component {
                 name: "remise.issuedDate",
                 label: <FormattedMessage id="label.issuedDate"/>,
                 options: {
-                    sort: false,
+                    sort: true,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <span>{ moment(value).format('L')  }</span>
                     )
@@ -124,8 +124,10 @@ class Checks extends React.Component {
             },
             {
                 name: "number",
-                label: <FormattedMessage id="label.number"/>,
-                options: {}
+                label: <FormattedMessage id="label.checkNumber"/>,
+                options: {
+                    sort: false
+                }
             },
             {
                 name: "bank",
@@ -138,7 +140,7 @@ class Checks extends React.Component {
                 name: "amount",
                 label: <FormattedMessage id="label.amount"/>,
                 options: {
-                    sort: false,
+                    sort: true,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <Chip
                             size="small"
@@ -159,7 +161,7 @@ class Checks extends React.Component {
                 name: "cashingDateDesired",
                 label: <FormattedMessage id="label.cashingDateDesired"/>,
                 options: {
-                    sort: false,
+                    sort: true,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <span>{ moment(value).format('L')  }</span>
                     )
@@ -170,7 +172,7 @@ class Checks extends React.Component {
                 name: 'status',
                 label: <FormattedMessage id="label.status"/>,
                 options: {
-                    sort: false,
+                    sort: true,
                     customBodyRender: (value, tableMeta, updateValue) => {
                         if(value === 'VALIDATED') {
                             return (
@@ -204,7 +206,7 @@ class Checks extends React.Component {
                             )
                         }
 
-                        if(value === 'PARTIEL') {
+                        if(value === 'TOCHANGE') {
                             return (
                                 <Chip
                                     size="small"
@@ -216,13 +218,6 @@ class Checks extends React.Component {
                         }
 
                     }
-                }
-            },
-            {
-                name: "remise.number",
-                label: <FormattedMessage id="label.number"/>,
-                options: {
-
                 }
             },
             {
@@ -265,7 +260,7 @@ class Checks extends React.Component {
                 return (
                     <React.Fragment>
                         <Tooltip title={"Create Remise"}>
-                            <Button onClick={this.openRemiseDialog}>
+                            <Button size="small" variant="contained" onClick={this.openRemiseDialog}>
                                 <FormattedMessage id="label.createRemise"/> 
                             </Button>
                         </Tooltip>

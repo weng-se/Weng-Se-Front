@@ -48,7 +48,8 @@ class Update extends React.Component {
             selectedDate: null,
             setSelectedDate: null,
             customers: [],
-            remises: []
+            remises: [],
+            banks: []
         }
     }
 
@@ -70,6 +71,7 @@ class Update extends React.Component {
     componentDidMount() {
         this.getCustomers();
         this.getRemises();
+        this.getBanks();
     }
 
     getCustomers = () => {
@@ -86,6 +88,15 @@ class Update extends React.Component {
             .then((response) => response.json())
             .then((remises) => this.setState({
                 remises
+            }))
+            .catch((error) => console.error(error));
+    }
+
+    getBanks = () => {
+        fetch('http://localhost:4000/api/banks')
+            .then((response) => response.json())
+            .then((banks) => this.setState({
+                banks
             }))
             .catch((error) => console.error(error));
     }
@@ -140,6 +151,10 @@ class Update extends React.Component {
                     toastId: 'editToastSuccess'
                 });
             }
+
+            setTimeout(() => {
+                window.location.assign('/app/checks/lists');
+            }, 200)
             
         }
 

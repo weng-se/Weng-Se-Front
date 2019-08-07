@@ -11,6 +11,7 @@ import { DatePicker } from 'material-ui-pickers';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import { FormattedMessage } from 'react-intl';
 
 
 
@@ -47,26 +48,24 @@ class FormDialog extends React.Component {
         return (
             <div>
                 <Dialog open={true} onClose={this.handleRequestClose}>
-                    <DialogTitle>Nouvelle remise</DialogTitle>
+                    <DialogTitle><FormattedMessage id="label.createNewRemise"/></DialogTitle>
                     <DialogContent>
-                        <DialogContentText>
-                            Veuillez saisir les détails de la remise.
-                        </DialogContentText>
                         <TextField
                         name="number"
                         label="Numero de remise"
                         margin="normal"
+                        variant="outlined"
                         fullWidth
                         value={this.state.number}
                         onChange={this.handleInputChange}
                         />
                         <FormControl fullWidth margin="normal">
-                            <InputLabel htmlFor="bank">Banque</InputLabel>
                             <Select
                                 inputProps={{
-                                name: 'bank',
+                                    name: 'bank',
                                 }}
                                 value={this.state.bank}
+                                variant="outlined"
                                 onChange={this.handleInputChange}
                             >
                                 <MenuItem value="">
@@ -81,6 +80,7 @@ class FormDialog extends React.Component {
                         </FormControl>
                         <DatePicker
                         id="remiseDate"
+                        variant="outlined"
                         label="Date de remise"
                         value={this.state.issuedDate}
                         onChange={this.handleDateChange}
