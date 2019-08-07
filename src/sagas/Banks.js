@@ -10,6 +10,7 @@ import {
     REQUEST_FETCH_BANK, 
     REQUEST_DELETE_BANK, 
     REQUEST_GET_BANK,
+    REQUEST_EDIT_BANK,
 } from "../constants/ActionTypes";
 import {
     createBankProgress, 
@@ -23,7 +24,10 @@ import {
     deleteBankError,
     getBankSuccess,
     getBankError,
-    getBankProgress
+    getBankProgress,
+    updateBankSuccess,
+    updateBankError,
+    updateBankProgress
 } from "../actions/Banks";
 import axios from 'axios';
 
@@ -147,11 +151,39 @@ export function* watchGetBank() {
 
 
 
+
+
+
+
+function* updateBank(data) {
+    let payload = null,
+        error = null;
+    try {
+        yield put(updateBankProgress());
+        yield axios.post(`http://localhost:4000/api/banks/update?where={"id":"${data.formData.id}"}`, data.formData)
+            .then((res) => payload = res.data)
+            .catch((error) => error = error);
+        if (payload) yield put(updateBankSuccess(payload));
+        else yield put(updateBankError(error));
+    } catch (error) {
+        yield put(updateBankError(error));
+    }
+}
+
+
+export function* watchUpdateCheck() {
+    yield takeLatest(REQUEST_EDIT_BANK, updateBank);
+}
+
+
+
+
 export default function* rootSaga() {
     yield all([
         fork(watchCreateBank),
         fork(watchFetchBanks),
         fork(watchDeleteBank),
-        fork(watchGetBank)
+        fork(watchGetBank),
+        fork(watchUpdateCheck)
     ]);
 }

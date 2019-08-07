@@ -131,8 +131,7 @@ Update.propTypes = {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        updateBank: (formData) => dispatch(createBankRequest(formData)),
-        getBank : (id) => dispatch(getBankRequest(id))
+        
     }
 }
 
@@ -140,12 +139,14 @@ const mapStateToProps = (state) => {
     const {
         bank,
         created,
+        updated,
         progress,
         error
     } = state.banks;
     return {
         bank,
         created,
+        updated,
         progress,
         error
     }

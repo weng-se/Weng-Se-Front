@@ -16,12 +16,12 @@ import {
     fetchBanksRequest, 
     deleteBankRequest,
     getBankRequest,
+    updateBankRequest,
 } from '../../../../../actions/Banks';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Chip from '@material-ui/core/Chip';
-import DoneIcon from '@material-ui/icons/Done';
 import Tooltip from "@material-ui/core/Tooltip";
 import AddIcon from "@material-ui/icons/Add";
 import { FormattedMessage } from 'react-intl';
@@ -53,13 +53,14 @@ class Banks extends React.Component {
             open: false,
             setOpen: false,
             bank: {
-            status: "",
-              title: "",
-              name: "",
-              contact: "",
-              createdBy: "",
-              editedBy: "",
-              comment: ""
+                id: "",
+                status: "",
+                title: "",
+                name: "",
+                contact: "",
+                createdBy: "",
+                editedBy: "",
+                comment: ""
             }
         }
     }
@@ -193,6 +194,15 @@ class Banks extends React.Component {
         }
     }
 
+    handleChange = (e) => {
+        this.setState({
+            bank: {
+                ...this.state.bank,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+
     componentWillReceiveProps(nextProps) {
 
         if(nextProps.banks) {
@@ -202,6 +212,18 @@ class Banks extends React.Component {
         }
 
         if(nextProps.bank) {
+
+            this.setState({
+                bank: {
+                    ...this.state.bank,
+                    id: nextProps.bank.id,
+                    status: nextProps.bank.status,
+                    title: nextProps.bank.title,
+                    name: nextProps.bank.name,
+                    contact: nextProps.contact,
+                    comment: nextProps.bank.comment
+                }
+            })
 
             if(nextProps.bank.count === 1 && nextProps.deleted) {  
                 if (!toast.isActive('success')) {
@@ -228,6 +250,21 @@ class Banks extends React.Component {
                 }
             }
 
+
+            if(nextProps.bank.count === 1 && nextProps.updated) {  
+                if (!toast.isActive('updateSuccess')) {
+                    toast.success('successfully updated !', {
+                        delay: 1000,
+                        autoClose: true,
+                        closeButton: true,
+                        toastId: 'updateSuccess'
+                    });
+                }
+                setTimeout(() => {
+                    this.props.fetchBanks();
+                }, 200);
+            }
+
         }
 
         if(nextProps.error) {
@@ -237,8 +274,7 @@ class Banks extends React.Component {
 
 
     handleClickOpen = (id) => {
-        // this.props.getBank(id);
-        this.setState({ id: id });
+        this.props.getBank(id);
         this.setState({ open: true });
     }
 
@@ -249,11 +285,28 @@ class Banks extends React.Component {
     }
 
 
-    handleUpdate = () => {
-        alert('submit request update');
-        this.setState({ 
-            open: false
+    formReset = () => {
+        this.setState({
+            bank: {
+                ...this.state.bank,
+                status: "",
+                title: "",
+                name: "",
+                contact: "",
+                createdBy: "",
+                editedBY: "",
+                comment: "",
+            }
         })
+    }
+
+    handleSubmit = () => {
+        this.props.updateBank(this.state.bank);
+        this.formReset();
+        setTimeout(() => {
+            this.setState({  open: false })
+            this.props.fetchBanks();
+        }, 100);
     }
 
     render() {
@@ -270,7 +323,9 @@ Banks.propTypes = {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchBanks: () => dispatch(fetchBanksRequest()),
-        deleteBank: (id) => dispatch(deleteBankRequest(id))
+        deleteBank: (id) => dispatch(deleteBankRequest(id)),
+        getBank : (id) => dispatch(getBankRequest(id)),
+        updateBank: (formData) => dispatch(updateBankRequest(formData)),
     }
 }
 
