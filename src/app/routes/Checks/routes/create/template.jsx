@@ -17,7 +17,6 @@ import {
 import Select from 'react-select';
 import { FormattedMessage } from 'react-intl';
 
-
 const status = [
     {
         value: 'VALIDATED',
@@ -37,66 +36,6 @@ const status = [
     }
 ];
 
-// const banks = [
-//     {
-//         value: '',
-//         label: '',
-//     },
-//     {
-//         value: 'SG',
-//         label: 'SG',
-//     },
-//     {
-//         value: 'BRED',
-//         label: 'BRED',
-//     },
-//     {
-//         value: 'BP',
-//         label: 'BP',
-//     },
-//     {
-//         value: 'BQ POST',
-//         label: 'BQ POST',
-//     },
-//     {
-//         value: 'LCL',
-//         label: 'LCL',
-//     },
-//     {
-//         value: 'CIC',
-//         label: 'CIC',
-//     },
-//     {
-//         value: 'BNP',
-//         label: 'BNP',
-//     },
-//     {
-//         value: 'HSBC',
-//         label: 'HSBC',
-//     },
-//     {
-//         value: 'CDN',
-//         label: 'CDN',
-//     },
-//     {
-//         value: 'CA',
-//         label: 'CA',
-//     },
-//     {
-//         value: 'BQ KOLB',
-//         label: 'BQ KOLB',
-//     },
-//     {
-//         value: 'CAIXA DEPOSITOS',
-//         label: 'CAIXA DEPOSITOS',
-//     },
-//     {
-//         value: 'BDC',
-//         label: 'BDC',
-//     }
-// ];
-
-
 const Template = (component) => {
     const {
         check,
@@ -104,9 +43,18 @@ const Template = (component) => {
         remises,
         banks
     } = component.state;
-    const now = new Date();
-    const minDate = new Date(now.getFullYear() - 100, 0, 1);
-    const maxDate = new Date(now.getFullYear() + 30, 11, 31);
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    today = yyyy + '-' + mm + '-' + dd;
     return (
         <React.Fragment>
             <div className="row animated slideInUpTiny animation-duration-3">
@@ -146,6 +94,7 @@ const Template = (component) => {
                                                     </option>
                                                 ))}
                                             </TextValidator>
+
 
                                         </FormControl>
 
@@ -233,9 +182,8 @@ const Template = (component) => {
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
-                                                min={minDate}
-                                                max={maxDate}
                                                 value={check.issuedDate}
+                                                InputProps={{ inputProps: { max: today } }}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -253,6 +201,7 @@ const Template = (component) => {
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
+                                                InputProps={{ inputProps: { max: today } }}
                                                 value={check.cashingDateDesired}
                                                 InputLabelProps={{
                                                     shrink: true,

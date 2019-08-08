@@ -15,6 +15,7 @@ import {
     createCheckRequest
 } from '../../../../../actions/Checks';
 
+
 const styles = {
     checked: {},
     size: {
@@ -28,7 +29,7 @@ const styles = {
 
 
 class Create extends React.Component {
-    
+
 
     constructor(props) {
         super(props);
@@ -122,14 +123,11 @@ class Create extends React.Component {
                     toastId: 'success'
                 });
             }
-            
-            this.reset();
 
-            // if(nextProps.other) {
-            //     setTimeout(() => {
-            //         this.props.history.push('/app/checks/lists');
-            //     }, 100);
-            // }
+            this.reset();
+            setTimeout(() => {
+                this.props.history.push('/app/checks/lists');
+            }, 100);
 
 
         }
@@ -149,9 +147,9 @@ class Create extends React.Component {
 
     setBool = (val) => {
         this.setState({
-            bool : val
+            bool: val
         })
-    } 
+    }
 
     reset = () => {
         this.setState({
@@ -185,7 +183,7 @@ class Create extends React.Component {
         return (Template(this));
     }
 
-    
+
 }
 
 Create.propTypes = {
