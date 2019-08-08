@@ -31,6 +31,7 @@ import Toolbar from '../../Components/Toolbar';
 import Template from './template';
 import './style.css';
 import { FormattedMessage } from 'react-intl';
+import { orange } from '@material-ui/core/colors';
 
 
 const styles = {
@@ -179,7 +180,7 @@ class Checks extends React.Component {
                                 <Chip
                                     size="small"
                                     color="primary"
-                                    label={value}
+                                    label={<FormattedMessage id="label.validated"/>}
                                     deleteIcon={<DoneIcon />}
                                 />
                             )
@@ -188,8 +189,8 @@ class Checks extends React.Component {
                             return (
                                 <Chip
                                     size="small"
-                                    color="secondary"
-                                    label={value}
+                                    label={<FormattedMessage id="label.waiting"/>}
+                                    style={{ backgroundColor: "orange", color : "#FFF" }}
                                     deleteIcon={<DoneIcon />}
                                 />
                             )
@@ -199,8 +200,8 @@ class Checks extends React.Component {
                             return (
                                 <Chip
                                     size="small"
-                                    color="secondary"
-                                    label={value}
+                                    label={<FormattedMessage id="label.rejected"/>}
+                                    style={{ backgroundColor: "red", color : "#FFF" }}
                                     deleteIcon={<DoneIcon />}
                                 />
                             )
@@ -211,7 +212,7 @@ class Checks extends React.Component {
                                 <Chip
                                     size="small"
                                     color="secondary"
-                                    label={value}
+                                    label={<FormattedMessage id="label.toChange"/>}
                                     deleteIcon={<DoneIcon />}
                                 />
                             )
@@ -250,6 +251,7 @@ class Checks extends React.Component {
             responsive: 'scroll',
             rowsPerPage: 10,
             resizableColumns: false,
+            selectableRowsOnClick: true,
             rowsPerPageOptions: [5,10,15,20,25,50],
             customToolbar: () => {
                 return (
@@ -259,13 +261,16 @@ class Checks extends React.Component {
             customToolbarSelect: (selectedRows) => {
                 return (
                     <React.Fragment>
-                        <Tooltip title={"Create Remise"}>
+                        <Tooltip title={<FormattedMessage id="label.createRemise"/> }>
                             <Button size="small" variant="contained" onClick={this.openRemiseDialog}>
                                 <FormattedMessage id="label.createRemise"/> 
                             </Button>
                         </Tooltip>
                     </React.Fragment>
                 );
+            },
+            onRowsSelect : (currentRowsSelected, allRowsSelected) => {
+                console.log('allRowsSelected', allRowsSelected);
             }
         };
     }
@@ -296,8 +301,6 @@ class Checks extends React.Component {
           [event.target.name]: event.target.value
         });
     }
-
-
 
     getUpdatedCheck = (checkId) => {
         this.setState({ openUpdateDialog: true });

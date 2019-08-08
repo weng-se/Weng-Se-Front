@@ -671,5 +671,9 @@
   "label.createNewUser": "Ajouter un utilisateur",
   "label.checkInformation": "Informations chèque",
   "label.systemInformation": "Informations Système",
-  "label.createNewRemise": "Créer une nouvelle remise"
+  "label.createNewRemise": "Créer une nouvelle remise",
+  "label.waiting": "En attente",
+  "label.rejected": "Rejeter",
+  "label.validated": "Validé",
+  "label.toChange": "A Changer"
 }

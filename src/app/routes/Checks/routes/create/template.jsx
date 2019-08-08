@@ -14,6 +14,7 @@ import {
 import {
     toast
 } from 'react-toastify';
+import Select from 'react-select';
 import { FormattedMessage } from 'react-intl';
 
 
@@ -96,7 +97,6 @@ const status = [
 // ];
 
 
-
 const Template = (component) => {
     const {
         check,
@@ -104,6 +104,9 @@ const Template = (component) => {
         remises,
         banks
     } = component.state;
+    const now = new Date();
+    const minDate = new Date(now.getFullYear() - 100, 0, 1);
+    const maxDate = new Date(now.getFullYear() + 30, 11, 31);
     return (
         <React.Fragment>
             <div className="row animated slideInUpTiny animation-duration-3">
@@ -112,6 +115,7 @@ const Template = (component) => {
                         <CardHeader titleTypographyProps={{ align: 'left' }} title={<FormattedMessage id="pages.createNewCheck" />} />
                         <div className="align-items-center justify-content-between">
                             <ValidatorForm style={{ width: '100%' }} onSubmit={component.saveCheck} noValidate autoComplete="off">
+
 
 
                                 <Grid container spacing={3}>
@@ -132,6 +136,8 @@ const Template = (component) => {
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
+                                                validators={['required']}
+                                                errorMessages={['Client field is required']}
                                             >
                                                 <option value={""}></option>
                                                 {customers.map(option => (
@@ -142,6 +148,7 @@ const Template = (component) => {
                                             </TextValidator>
 
                                         </FormControl>
+
 
                                     </Grid>
 
@@ -161,6 +168,8 @@ const Template = (component) => {
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
+                                                validators={['required']}
+                                                errorMessages={['Bank field is required']}
                                             >
                                                 <option value=""></option>
                                                 {banks.map(option => (
@@ -176,7 +185,7 @@ const Template = (component) => {
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
                                                 id="number"
-                                                type="text"
+                                                type="number"
                                                 name="number"
                                                 label={<FormattedMessage id="label.checkNumber" />}
                                                 onChange={component.handleChange}
@@ -198,6 +207,7 @@ const Template = (component) => {
                                             <TextValidator
                                                 id="amount"
                                                 name="amount"
+                                                type="number"
                                                 label={<FormattedMessage id="label.amount" />}
                                                 onChange={component.handleChange}
                                                 margin="dense"
@@ -223,13 +233,12 @@ const Template = (component) => {
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
-                                                required="true"
+                                                min={minDate}
+                                                max={maxDate}
                                                 value={check.issuedDate}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
-                                                validators={['required']}
-                                                errorMessages={['Issued Date field is required']}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -244,13 +253,10 @@ const Template = (component) => {
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
-                                                required="true"
                                                 value={check.cashingDateDesired}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
-                                                validators={['required']}
-                                                errorMessages={['Cashing Date Desired field is required']}
                                             />
                                         </FormControl>
                                     </Grid>

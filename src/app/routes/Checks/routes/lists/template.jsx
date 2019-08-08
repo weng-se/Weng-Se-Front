@@ -11,6 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import { DatePicker } from 'material-ui-pickers';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Update from './../update/';
@@ -78,13 +79,13 @@ const Template = (component) => {
 
 
             <Dialog open={component.state.show} onClose={component.closeRemiseDialog}>
-                <DialogTitle><FormattedMessage id="label.createNewRemise" /></DialogTitle>
+                <DialogTitle>
+                    <FormattedMessage id="label.createNewRemise" /></DialogTitle>
                 <DialogContent>
                     <TextField
                         name="number"
                         label="Numero de remise"
                         margin="normal"
-                        variant="outlined"
                         InputLabelProps={{
                             shrink: true,
                         }}
@@ -92,10 +93,10 @@ const Template = (component) => {
                         value={component.state.number}
                         onChange={component.handleInputChange}
                     />
-                    <FormControl fullWidth margin="normal" variant="outlined" InputLabelProps={{
-                                shrink: true,
-                            }}>
+                    <FormControl fullWidth margin="normal" label="Numero de remise">
                         <Select
+                            variant="outlined"
+                            
                             inputProps={{
                                 name: 'bank',
                             }}
@@ -117,7 +118,6 @@ const Template = (component) => {
                         label="Date de remise"
                         SelectProps={{ native: true }}
                         margin="dense"
-                        variant="outlined"
                         InputLabelProps={{
                             shrink: true,
                         }}

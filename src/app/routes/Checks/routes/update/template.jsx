@@ -81,6 +81,8 @@ const Template = (component) => {
                                         disabled={(localStorage.getItem("user_role") == "ROLE_ADMIN") ? false : true}
                                         required="true"
                                         value={check.customerId}
+                                        validators={['required']}
+                                        errorMessages={['Client field is required']}
                                         InputLabelProps={{
                                             shrink: true,
                                         }}
@@ -114,6 +116,8 @@ const Template = (component) => {
                                         InputLabelProps={{
                                             shrink: true,
                                         }}
+                                        validators={['required']}
+                                        errorMessages={['Bank field is required']}
                                     >
                                         {banks.map(option => (
                                             <option key={option.id} value={option.name}>
@@ -180,7 +184,6 @@ const Template = (component) => {
                                         margin="dense"
                                         variant="outlined"
                                         disabled={(localStorage.getItem("user_role") == "ROLE_ADMIN") ? false : true}
-                                        required="true"
                                         value={check.status}
                                         InputLabelProps={{
                                             shrink: true,
@@ -207,14 +210,11 @@ const Template = (component) => {
                                         onChange={component.handleChange}
                                         margin="dense"
                                         variant="outlined"
-                                        required="true"
                                         disabled={(localStorage.getItem("user_role") == "ROLE_ADMIN") ? false : true}
                                         value={check.issuedDate}
                                         InputLabelProps={{
                                             shrink: true,
                                         }}
-                                        validators={['required']}
-                                        errorMessages={['Issued Date field is required']}
                                     />
                                 </FormControl>
                             </Grid>
@@ -230,13 +230,10 @@ const Template = (component) => {
                                         margin="dense"
                                         variant="outlined"
                                         disabled={(localStorage.getItem("user_role") == "ROLE_ADMIN") ? false : true}
-                                        required="true"
                                         InputLabelProps={{
                                             shrink: true,
                                         }}
                                         value={check.cashingDateDesired}
-                                        validators={['required']}
-                                        errorMessages={['Cashing Date Desired field is required']}
                                     />
                                 </FormControl>
                             </Grid>
@@ -251,7 +248,6 @@ const Template = (component) => {
                                         onChange={component.handleChange}
                                         margin="dense"
                                         variant="outlined"
-                                        required="true"
                                         multiline={true}
                                         value={check.comment}
                                         InputLabelProps={{

@@ -46,6 +46,8 @@ export default (state = INIT_STATE, action) => {
                 ...state,
                 error: false,
                 progress: 100,
+                updated: false,
+                deleted: false,
                 checks: action.payload
             }
         }

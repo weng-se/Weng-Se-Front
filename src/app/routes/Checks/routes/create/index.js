@@ -28,6 +28,7 @@ const styles = {
 
 
 class Create extends React.Component {
+    
 
     constructor(props) {
         super(props);
@@ -41,7 +42,7 @@ class Create extends React.Component {
                 status: 'WAITING',
                 issuedDate: new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) + '-' + ('0' + new Date().getDate()).slice(-2),
                 comment: '',
-                cashingDateDesired: new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) + '-' + ('0' + new Date().getDate()).slice(-2),
+                cashingDateDesired: new Date('now')
             },
             bool: false,
             selectedDate: null,
@@ -72,6 +73,8 @@ class Create extends React.Component {
         this.getCustomers();
         this.getRemises();
         this.getBanks();
+
+
     }
 
     getCustomers = () => {
@@ -110,6 +113,7 @@ class Create extends React.Component {
     componentWillReceiveProps(nextProps) {
 
         if (nextProps.check && nextProps.created) {
+
             if (!toast.isActive('success')) {
                 toast.success('Successfully Created !', {
                     delay: 1000,
@@ -163,7 +167,7 @@ class Create extends React.Component {
                 customerId: '',
                 status: 'WAITING',
                 issuedDate: new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) + '-' + ('0' + new Date().getDate()).slice(-2),
-                cashingDateDesired: new Date().getFullYear() + '-' + ('0' + (new Date().getMonth() + 1)).slice(-2) + '-' + ('0' + new Date().getDate()).slice(-2)
+                cashingDateDesired: ''
             },
             selectedDate: null,
             setSelectedDate: null,
@@ -183,7 +187,6 @@ class Create extends React.Component {
 
     
 }
-
 
 Create.propTypes = {
     error: PropTypes.bool,

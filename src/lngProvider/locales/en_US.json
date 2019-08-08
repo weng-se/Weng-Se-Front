@@ -678,5 +678,9 @@
   "label.createNewUser": "Create User",
   "label.checkInformation": "Check Informations",
   "label.systemInformation": "System Informations",
-  "label.createNewRemise": "Create new remise"
+  "label.createNewRemise": "Create new remise",
+  "label.waiting": "Waiting",
+  "label.rejected": "Rejected",
+  "label.validated": "Validated",
+  "label.toChange": "To Change"
 }
