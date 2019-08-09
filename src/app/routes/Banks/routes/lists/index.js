@@ -163,6 +163,42 @@ class Banks extends React.Component {
             responsive: 'stacked',
             rowsPerPage: 10,
             rowsPerPageOptions: [10,15,20,25,50],
+            expandableRows: false,
+            resizableColumns: false,
+            selectableRowsOnClick: true,
+            textLabels: {
+                body: {
+                  noMatch: "Sorry, no matching records found",
+                  toolTip: "Sort",
+                },
+                pagination: {
+                  next: "Next Page",
+                  previous: "Previous Page",
+                  rowsPerPage: "Rows per page:",
+                  displayRows: "of",
+                },
+                toolbar: {
+                  search: <FormattedMessage id="label.search"/>,
+                  downloadCsv: <FormattedMessage id="label.downloadCsv"/>,
+                  print: <FormattedMessage id="label.print"/>,
+                  viewColumns: <FormattedMessage id="label.viewColumns"/>,
+                  filterTable: <FormattedMessage id="label.filterTable"/>,
+                },
+                filter: {
+                  all: "All",
+                  title: "FILTERS",
+                  reset: "RESET",
+                },
+                viewColumns: {
+                  title: "Show Columns",
+                  titleAria: "Show/Hide Table Columns",
+                },
+                selectedRows: {
+                  text: "row(s) selected",
+                  delete: "Delete",
+                  deleteAria: "Delete Selected Rows",
+                },
+            },
             customToolbar: () => {
                 return (
                   <Toolbar/>

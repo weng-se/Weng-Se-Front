@@ -675,5 +675,10 @@
   "label.waiting": "En attente",
   "label.rejected": "Rejeter",
   "label.validated": "Validé",
-  "label.toChange": "A Changer"
+  "label.toChange": "A Changer",
+  "label.search": "Rechercher",
+  "label.downloadCsv": "Télécharger CSV",
+  "label.print": "Imprimer",
+  "label.viewColumns": "Voir les colonnes",
+  "label.filterTable": "Filter la Table"
 }

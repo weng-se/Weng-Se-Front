@@ -682,5 +682,10 @@
   "label.waiting": "Waiting",
   "label.rejected": "Rejected",
   "label.validated": "Validated",
-  "label.toChange": "To Change"
+  "label.toChange": "To Change",
+  "label.search": "Search",
+  "label.downloadCsv": "Download CSV",
+  "label.print": "Print",
+  "label.viewColumns": "View Columns",
+  "label.filterTable": "Filter Table"
 }

@@ -116,6 +116,7 @@ class Checks extends React.Component {
                 name: "customer",
                 label: <FormattedMessage id="label.customer"/>,
                 options: {
+                    filter: true,
                     customBodyRender: (value, tableMeta, updateValue) =>  {
                         if(value) {
                             return(<span>{ value.firstName + ' ' + value.lastName }</span>)
@@ -127,7 +128,8 @@ class Checks extends React.Component {
                 name: "number",
                 label: <FormattedMessage id="label.checkNumber"/>,
                 options: {
-                    sort: false
+                    sort: false,
+                    filter: true
                 }
             },
             {
@@ -135,6 +137,7 @@ class Checks extends React.Component {
                 label: <FormattedMessage id="label.bank"/>,
                 options: {
                     sort: false,
+                    filter: true
                 }
             },
             {
@@ -142,6 +145,7 @@ class Checks extends React.Component {
                 label: <FormattedMessage id="label.amount"/>,
                 options: {
                     sort: true,
+                    filter: true,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <Chip
                             size="small"
@@ -155,7 +159,8 @@ class Checks extends React.Component {
                 name: 'comment',
                 label: <FormattedMessage id="label.comment"/>,
                 options: {
-                    sort: false
+                    sort: false,
+                    filter: true
                 }
             },
             {
@@ -163,6 +168,7 @@ class Checks extends React.Component {
                 label: <FormattedMessage id="label.cashingDateDesired"/>,
                 options: {
                     sort: true,
+                    filter: true,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <span>{ moment(value).format('L')  }</span>
                     )
@@ -174,6 +180,7 @@ class Checks extends React.Component {
                 label: <FormattedMessage id="label.status"/>,
                 options: {
                     sort: true,
+                    filter: true,
                     customBodyRender: (value, tableMeta, updateValue) => {
                         if(value === 'VALIDATED') {
                             return (
@@ -250,9 +257,43 @@ class Checks extends React.Component {
             filterType: 'dropdown',
             responsive: 'scroll',
             rowsPerPage: 10,
+            expandableRows: false,
             resizableColumns: false,
             selectableRowsOnClick: true,
             rowsPerPageOptions: [5,10,15,20,25,50],
+            textLabels: {
+                body: {
+                  noMatch: "Sorry, no matching records found",
+                  toolTip: "Sort",
+                },
+                pagination: {
+                  next: "Next Page",
+                  previous: "Previous Page",
+                  rowsPerPage: "Rows per page:",
+                  displayRows: "of",
+                },
+                toolbar: {
+                  search: <FormattedMessage id="label.search"/>,
+                  downloadCsv: <FormattedMessage id="label.downloadCsv"/>,
+                  print: <FormattedMessage id="label.print"/>,
+                  viewColumns: <FormattedMessage id="label.viewColumns"/>,
+                  filterTable: <FormattedMessage id="label.filterTable"/>,
+                },
+                filter: {
+                  all: "All",
+                  title: "FILTERS",
+                  reset: "RESET",
+                },
+                viewColumns: {
+                  title: "Show Columns",
+                  titleAria: "Show/Hide Table Columns",
+                },
+                selectedRows: {
+                  text: "row(s) selected",
+                  delete: "Delete",
+                  deleteAria: "Delete Selected Rows",
+                },
+            },
             customToolbar: () => {
                 return (
                   <Toolbar/>
@@ -270,7 +311,17 @@ class Checks extends React.Component {
                 );
             },
             onRowsSelect : (currentRowsSelected, allRowsSelected) => {
-                console.log('allRowsSelected', allRowsSelected);
+               
+            },
+            onRowClick: (rowData, rowMeta) => {
+                
+            },
+            onTableChange : (action, tableState)  => {
+                var data =  tableState.data;
+                var index = tableState.selectedRows.data;
+                for(let i=0; i <index.length; i++) {
+                    console.log( data[index[i].index].data.slice(-1).pop() );
+                }
             }
         };
     }
