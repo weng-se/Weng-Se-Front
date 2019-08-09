@@ -82,7 +82,7 @@ const Template = (component) => {
                                         required="true"
                                         value={check.customerId}
                                         validators={['required']}
-                                        errorMessages={['Client field is required']}
+                                        errorMessages={[<FormattedMessage id="label.msgClientRequired"/>]}
                                         InputLabelProps={{
                                             shrink: true,
                                         }}
@@ -102,7 +102,7 @@ const Template = (component) => {
                             <Grid item xs={12}>
                                 <FormControl style={{ width: '100%', padding: '5px' }} >
                                     <TextValidator
-                                        id="standard-select-status-native"
+                                        id="bank"
                                         select
                                         name="bank"
                                         label={<FormattedMessage id="label.bank" />}
@@ -117,7 +117,7 @@ const Template = (component) => {
                                             shrink: true,
                                         }}
                                         validators={['required']}
-                                        errorMessages={['Bank field is required']}
+                                        errorMessages={[<FormattedMessage id="label.msgBankRequired"/>]}
                                     >
                                         {banks.map(option => (
                                             <option key={option.id} value={option.name}>
@@ -132,7 +132,7 @@ const Template = (component) => {
                                 <FormControl style={{ width: '100%', padding: '5px' }} >
                                     <TextValidator
                                         id="number"
-                                        type="text"
+                                        type="number"
                                         name="number"
                                         label={<FormattedMessage id="label.checkNumber" />}
                                         onChange={component.handleChange}
@@ -145,7 +145,7 @@ const Template = (component) => {
                                             shrink: true,
                                         }}
                                         validators={['required']}
-                                        errorMessages={['numberOfCheque field is required']}
+                                        errorMessages={[<FormattedMessage id="label.msgCheckNumberRequired"/>]}
                                     />
                                 </FormControl>
                             </Grid>
@@ -155,6 +155,7 @@ const Template = (component) => {
                                     <TextValidator
                                         id="amount"
                                         name="amount"
+                                        type="number"
                                         label={<FormattedMessage id="label.amount" />}
                                         onChange={component.handleChange}
                                         margin="dense"
@@ -166,7 +167,7 @@ const Template = (component) => {
                                             shrink: true,
                                         }}
                                         validators={['required']}
-                                        errorMessages={['Amount field is required']}
+                                        errorMessages={[<FormattedMessage id="label.msgAmountRequired"/>]}
                                     />
                                 </FormControl>
                             </Grid>
@@ -212,6 +213,9 @@ const Template = (component) => {
                                         variant="outlined"
                                         disabled={(localStorage.getItem("user_role") == "ROLE_ADMIN") ? false : true}
                                         value={check.issuedDate}
+                                        required="true"
+                                        validators={['required']}
+                                        errorMessages={[<FormattedMessage id="label.msgIssuedDateRequired"/>]}
                                         InputLabelProps={{
                                             shrink: true,
                                         }}
@@ -234,6 +238,9 @@ const Template = (component) => {
                                             shrink: true,
                                         }}
                                         value={check.cashingDateDesired}
+                                        required="true"
+                                        validators={['required']}
+                                        errorMessages={[<FormattedMessage id="label.msgCashingDateDesiredRequired"/>]}
                                     />
                                 </FormControl>
                             </Grid>

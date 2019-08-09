@@ -680,5 +680,11 @@
   "label.downloadCsv": "Télécharger CSV",
   "label.print": "Imprimer",
   "label.viewColumns": "Voir les colonnes",
-  "label.filterTable": "Filter la Table"
+  "label.filterTable": "Filter la Table",
+  "label.msgClientRequired": "Client est obligatoire",
+  "label.msgBankRequired": "Banque est obligatoire",
+  "label.msgCheckNumberRequired": "Chèque number est obligatoire",
+  "label.msgAmountRequired": "Montant est obligatoire",
+  "label.msgIssuedDateRequired": "Date de réception est obligatoire",
+  "label.msgCashingDateDesiredRequired": "Date d'encaissement souhaitée est obligatoire"
 }

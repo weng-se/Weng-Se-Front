@@ -687,5 +687,12 @@
   "label.downloadCsv": "Download CSV",
   "label.print": "Print",
   "label.viewColumns": "View Columns",
-  "label.filterTable": "Filter Table"
+  "label.filterTable": "Filter Table",
+  "label.msgClientRequired": "Customer is required",
+  "label.msgBankRequired": "Bank is required",
+  "label.msgCheckNumberRequired": "Check number is required",
+  "label.msgAmountRequired": "Amount is required",
+  "label.msgIssuedDateRequired": "Issued Date is required",
+  "label.msgCashingDateDesiredRequired": "Cashing date desired is required",
+  "label.msgCheckNumber": "Check number is required"
 }

@@ -85,7 +85,7 @@ const Template = (component) => {
                                                     shrink: true,
                                                 }}
                                                 validators={['required']}
-                                                errorMessages={['Client field is required']}
+                                                errorMessages={[<FormattedMessage id="label.msgClientRequired"/>]}
                                             >
                                                 <option value={""}></option>
                                                 {customers.map(option => (
@@ -118,7 +118,7 @@ const Template = (component) => {
                                                     shrink: true,
                                                 }}
                                                 validators={['required']}
-                                                errorMessages={['Bank field is required']}
+                                                errorMessages={[<FormattedMessage id="label.msgBankRequired"/>]}
                                             >
                                                 <option value=""></option>
                                                 {banks.map(option => (
@@ -146,7 +146,7 @@ const Template = (component) => {
                                                     shrink: true,
                                                 }}
                                                 validators={['required']}
-                                                errorMessages={['numberOfCheque field is required']}
+                                                errorMessages={[<FormattedMessage id="label.msgCheckNumberRequired"/>]}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -167,7 +167,7 @@ const Template = (component) => {
                                                     shrink: true,
                                                 }}
                                                 validators={['required']}
-                                                errorMessages={['Amount field is required']}
+                                                errorMessages={[<FormattedMessage id="label.msgAmountRequired"/>]}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -182,6 +182,9 @@ const Template = (component) => {
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
+                                                validators={['required']}
+                                                errorMessages={[<FormattedMessage id="label.msgIssuedDateRequired"/>]}
                                                 value={check.issuedDate}
                                                 InputProps={{ inputProps: { max: today } }}
                                                 InputLabelProps={{
@@ -201,6 +204,9 @@ const Template = (component) => {
                                                 onChange={component.handleChange}
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
+                                                validators={['required']}
+                                                errorMessages={[<FormattedMessage id="label.msgCashingDateDesiredRequired" />]}
                                                 InputProps={{ inputProps: { max: today } }}
                                                 value={check.cashingDateDesired}
                                                 InputLabelProps={{
