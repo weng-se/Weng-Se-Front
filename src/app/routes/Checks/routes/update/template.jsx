@@ -89,8 +89,8 @@ const Template = (component) => {
                                     >
                                         <option value={""}></option>
                                         {customers.map(option => (
-                                            <option key={option.id} value={option.id}>
-                                                {option.firstName + ' ' + option.lastName}
+                                            <option key={option.id} value={option.name}>
+                                                {option.name}
                                             </option>
                                         ))}
                                     </TextValidator>
