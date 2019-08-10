@@ -215,6 +215,9 @@ function* createRemise(data) {
         error = null,
         payloadCheck = null;
 
+        data.data.amount = localStorage.getItem('totalAmount');
+        data.data.numberCheck = localStorage.getItem('numberCheck');
+
     try {
 
         yield axios.post(`http://localhost:4000/api/remises`, data.data)

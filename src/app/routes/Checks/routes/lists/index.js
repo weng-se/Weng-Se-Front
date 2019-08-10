@@ -278,12 +278,15 @@ class Checks extends React.Component {
             onTableChange : (action, tableState)  => {
                 var data =  tableState.data;
                 var index = tableState.selectedRows.data;
+                var totalAmount = 0;
                 var ids = [];
                 for(let i=0; i <index.length; i++) {
                     ids[i] = data[index[i].index].data.slice(-1).pop();
+                    totalAmount += data[index[i].index].data[4];
                 }
                 this.getChecks(ids);
                 localStorage.setItem('ids', ids);
+                localStorage.setItem('totalAmount', totalAmount);
             }
         };
     }
@@ -314,6 +317,7 @@ class Checks extends React.Component {
     getChecks = (ids) => {
         console.log("zbi", ids);
         console.log(ids.length);
+        localStorage.setItem('numberCheck', ids.length);
     }
 
     componentWillReceiveProps(nextProps) {

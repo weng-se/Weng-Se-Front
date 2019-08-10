@@ -49,7 +49,6 @@ class ToolbarSelect extends React.Component {
                 status: "En attente",
             },
             ids: [],
-            totalAmount: 0,
             banks: []
         }
     }
@@ -59,7 +58,7 @@ class ToolbarSelect extends React.Component {
     }
     
     handleCloseModal = () => {
-        this.setState({openModal: false});
+        this.setState({ openModal: false });
     }
 
     handleChange = (e) => {
