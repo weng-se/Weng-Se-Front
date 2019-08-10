@@ -80,7 +80,7 @@ class ToolbarSelect extends React.Component {
 
 
     getBanks = () => {
-        fetch('http://localhost:4000/api/banks')
+        fetch('http://localhost:4000/api/banks?filter[where][wengseAccount]=true')
             .then((response) => response.json())
             .then((banks) => this.setState({
                 banks
