@@ -75,7 +75,7 @@ class Update extends React.Component {
     }
 
     getCustomers = () => {
-        fetch('http://localhost:4000/api/costumers')
+        fetch('http://localhost:4000/api/customers')
             .then((response) => response.json())
             .then((customers) => this.setState({
                 customers
