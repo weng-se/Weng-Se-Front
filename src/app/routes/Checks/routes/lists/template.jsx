@@ -24,6 +24,7 @@ import {
 } from 'react-toastify';
 import Card from '@material-ui/core/Card';
 import { FormattedMessage } from 'react-intl';
+import FormDialog from '../../Components/FormDialog';
 
 const styles = theme => ({
     datatables: {
@@ -56,52 +57,34 @@ const Template = (component) => {
                 </Card>
             </div>
 
-            <Dialog
-                open={component.state.open}
-                onClose={component.handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description">
-                <DialogTitle id="alert-dialog-title">{"Are you sure to delete?"}</DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        {"Are you sure you want to delete user permanently ?"}
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={component.handleClose} color="primary">
-                        Cancel
-                    </Button>
-                    <Button onClick={component.handleConfirm} color="primary" autoFocus>
-                        Confirm
-                        </Button>
-                </DialogActions>
-            </Dialog>
+            <div id="page-landing">
 
+            </div>
 
-            <Dialog open={component.state.show} onClose={component.closeRemiseDialog}>
+            {/* <FormDialog open={component.state.show}/> */}
+
+            {/* <Dialog open={component.state.show} onClose={component.closeRemiseDialog}>
                 <DialogTitle>
-                    <FormattedMessage id="label.createNewRemise" /></DialogTitle>
+                    <FormattedMessage id="label.createNewRemise" />
+                </DialogTitle>
+
                 <DialogContent>
                     <TextField
                         name="number"
                         label="Numero de remise"
                         margin="normal"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
                         fullWidth
                         value={component.state.number}
-                        onChange={component.handleInputChange}
+                        onChange={component.handleChange}
                     />
-                    <FormControl fullWidth margin="normal" label="Numero de remise">
+                    <FormControl fullWidth margin="normal">
+                        <InputLabel htmlFor="bank">Banque</InputLabel>
                         <Select
-                            variant="outlined"
-                            
                             inputProps={{
                                 name: 'bank',
                             }}
                             value={component.state.bank}
-                            onChange={component.handleInputChange}
+                            onChange={component.handleChange}
                         >
                             <MenuItem value="">
                                 <em>None</em>
@@ -116,26 +99,22 @@ const Template = (component) => {
                     <DatePicker
                         id="remiseDate"
                         label="Date de remise"
-                        SelectProps={{ native: true }}
-                        margin="dense"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
                         value={component.state.issuedDate}
-                        onChange={component.handleDateChange}
+                        onChange={component.handleChange}
                         fullWidth
                         margin="normal"
                     />
                 </DialogContent>
+
                 <DialogActions>
-                    <Button onClick={component.closeRemiseDialog} color="secondary">
+                    <Button onClick={component.closeRemiseDialog} color="primary">
                         <FormattedMessage id="label.discard" />
                     </Button>
-                    <Button onClick={component.saveRemise} color="primary">
+                    <Button onClick={component.addRemise()} color="primary">
                         <FormattedMessage id="label.save" />
                     </Button>
                 </DialogActions>
-            </Dialog>
+            </Dialog> */}
 
 
             <Dialog
@@ -151,7 +130,7 @@ const Template = (component) => {
                     <Button onClick={component.closeUpdateDialog} color="primary">
                         <FormattedMessage id="label.discard" />
                     </Button>
-                    <Button type="submit" onClick={component.closeAfterSubmit} form="updateCheckFrom" color="primary">
+                    <Button type="submit" onClick={() => component.addRemise()} form="updateCheckFrom" color="primary">
                         <FormattedMessage id="label.save" />
                     </Button>
                 </DialogActions>

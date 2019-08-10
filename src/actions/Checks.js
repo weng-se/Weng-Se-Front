@@ -23,7 +23,14 @@ import {
     REQUEST_EDIT_CHECK,
     REQUEST_EDIT_CHECK_SUCCESS,
     REQUEST_EDIT_CHECK_FAILURE,
-} from '../constants/ActionTypes'
+
+    REQUEST_CREATE_REMISE,
+    REQUEST_CREATE_REMISE_SUCCESS,
+    REQUEST_CREATE_REMISE_FAILURE,
+    REQUEST_EDIT_CHECK_REMISE_SUCCESS,
+    REQUEST_EDIT_CHECK_REMISE_FAILURE
+
+} from '../constants/ActionTypes';
 
 
 /**
@@ -195,3 +202,44 @@ export const checkEditError = (error) => {
         progress: 100
     }
 }
+
+/**
+ *  ADD REMISE
+ */
+export const createRemiseRequest = (payload) => {
+    return {
+        type: REQUEST_CREATE_REMISE,
+        progress: 0,
+        data: payload
+    };
+};
+
+export const createRemiseSuccess = (payload) => {
+    return {
+        type: REQUEST_CREATE_REMISE_SUCCESS,
+        progress: 0,
+        data: payload
+    };
+};
+export const createRemiseError = (error) => {
+    return {
+        type: REQUEST_CREATE_REMISE_FAILURE,
+        progress: 0,
+        error: error
+    };
+};
+
+export const editCheckRemiseSuccess = (payload) => {
+    return {
+        type: REQUEST_EDIT_CHECK_REMISE_SUCCESS,
+        progress: 0,
+        data: payload
+    };
+};
+export const editCheckRemiseError = (payload) => {
+    return {
+        type: REQUEST_EDIT_CHECK_REMISE_FAILURE,
+        progress: 0,
+        data: payload
+    };
+};

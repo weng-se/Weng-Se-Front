@@ -15,16 +15,13 @@ import {
 import { 
     fetchChecksRequest, 
     deleteCheckRequest, 
-    getCheckRequest
+    getCheckRequest,
+    createRemiseRequest
 } from '../../../../../actions/Checks';
 import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
 import Chip from '@material-ui/core/Chip';
 import DoneIcon from '@material-ui/icons/Done';
-import Tooltip from "@material-ui/core/Tooltip";
-import AddIcon from "@material-ui/icons/Add";
 import compose from 'recompose/compose';
 import moment from 'moment';
 import Toolbar from '../../Components/Toolbar';
@@ -32,6 +29,7 @@ import Template from './template';
 import './style.css';
 import { FormattedMessage } from 'react-intl';
 import { orange } from '@material-ui/core/colors';
+import ToolbarSelect from '../../Components/ToolbarSelect';
 
 
 const styles = {
@@ -52,14 +50,10 @@ class Checks extends React.Component {
         super(props);
         this.state = {
             checks: [],
-            open: false,
-            setOpen: false,
             show: false,
             openUpdateDialog: false,
             check: null,
-            remise: {
-
-            }
+            banks: []
         }
     }
 
@@ -79,26 +73,6 @@ class Checks extends React.Component {
           }
         }
     })
-
-    handleClickOpen = (check) => {
-        this.setState({ 
-            open: true,
-            check: check
-        })
-    }
-
-    handleClose = () => {
-        this.setState({ open: false });
-    }
-
-    removeCheck = (check) => {
-        this.handleClickOpen(check);
-    }
-
-    handleConfirm = () => {
-        this.setState({ open: false })
-        this.props.deleteCheck(this.state.uid);
-    } 
 
     componentWillMount() {
         this.columns = [
@@ -238,9 +212,6 @@ class Checks extends React.Component {
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <React.Fragment>
                             <div size="small">
-                                {/* <IconButton size="small" onClick={() => this.removeCheck(value)}>
-                                    <DeleteIcon fontSize="small" />
-                                </IconButton> */}
                                 <IconButton size="small" onClick={() => this.getUpdatedCheck(value)}>
                                     <EditIcon fontSize="small" />
                                 </IconButton>
@@ -292,7 +263,7 @@ class Checks extends React.Component {
                   text: "row(s) selected",
                   delete: "Delete",
                   deleteAria: "Delete Selected Rows",
-                },
+                }
             },
             customToolbar: () => {
                 return (
@@ -301,50 +272,24 @@ class Checks extends React.Component {
             },
             customToolbarSelect: (selectedRows) => {
                 return (
-                    <React.Fragment>
-                        <Tooltip title={<FormattedMessage id="label.createRemise"/> }>
-                            <Button size="small" variant="contained" onClick={this.openRemiseDialog}>
-                                <FormattedMessage id="label.createRemise"/> 
-                            </Button>
-                        </Tooltip>
-                    </React.Fragment>
+                    <ToolbarSelect/>
                 );
-            },
-            onRowsSelect : (currentRowsSelected, allRowsSelected) => {
-               
-            },
-            onRowClick: (rowData, rowMeta) => {
-                
             },
             onTableChange : (action, tableState)  => {
                 var data =  tableState.data;
                 var index = tableState.selectedRows.data;
+                var ids = [];
                 for(let i=0; i <index.length; i++) {
-                    console.log( data[index[i].index].data.slice(-1).pop() );
+                    ids[i] = data[index[i].index].data.slice(-1).pop();
                 }
+                this.getChecks(ids);
+                localStorage.setItem('ids', ids);
             }
         };
     }
 
     componentDidMount() {
         this.props.getChecks();
-    }
-
-    openRemiseDialog = () => {
-        this.setState({
-            show: true
-        })
-    }
-
-    closeRemiseDialog = () => {
-        this.setState({
-            show: false
-        })
-    };
-
-    saveRemise = () => {
-        this.setState({ show: false })
-        this.props.saveRemise(this.state.remise)
     }
 
     handleInputChange = (event) => {
@@ -364,6 +309,11 @@ class Checks extends React.Component {
 
     handleConfirmUpdate = () => {
         window.alert('Successfully Updated!');
+    }
+
+    getChecks = (ids) => {
+        console.log("zbi", ids);
+        console.log(ids.length);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -405,6 +355,7 @@ class Checks extends React.Component {
         }
     }
 
+
     render() {
         return (Template(this));
     }
@@ -420,8 +371,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getChecks: () => dispatch(fetchChecksRequest()),
         deleteCheck: (id) => dispatch(deleteCheckRequest(id)),
-        getCheck : (id) => dispatch(getCheckRequest(id)),
-        saveRemise : () => {}
+        getCheck : (id) => dispatch(getCheckRequest(id))
     }
 }
 

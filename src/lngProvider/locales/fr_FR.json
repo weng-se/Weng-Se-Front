@@ -686,5 +686,6 @@
   "label.msgCheckNumberRequired": "Chèque number est obligatoire",
   "label.msgAmountRequired": "Montant est obligatoire",
   "label.msgIssuedDateRequired": "Date de réception est obligatoire",
-  "label.msgCashingDateDesiredRequired": "Date d'encaissement souhaitée est obligatoire"
+  "label.msgCashingDateDesiredRequired": "Date d'encaissement souhaitée est obligatoire",
+  "label.date": "Date"
 }

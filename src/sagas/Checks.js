@@ -11,6 +11,7 @@ import {
     REQUEST_CREATE_CHECK,
     REQUEST_GET_CHECK,
     REQUEST_EDIT_CHECK,
+    REQUEST_CREATE_REMISE,
 } from "../constants/ActionTypes";
 import {
     fetchChecksProgress,
@@ -27,7 +28,11 @@ import {
     getCheckError,
     checkEditSuccess,
     checkEditError,
-    createOtherCheckSuccess
+    createOtherCheckSuccess,
+    createRemiseSuccess,
+    createRemiseError,
+    editCheckRemiseSuccess,
+    editCheckRemiseError
 } from "../actions/Checks";
 import axios from 'axios';
 
@@ -82,10 +87,10 @@ function* createCheck(data) {
                 error = error
             });
 
-        if(data.bool)  {   
+        if (data.bool) {
             if (payload) yield put(createCheckSuccess(payload));
             else yield put(createCheckError(error));
-        }else {
+        } else {
             if (payload) yield put(createOtherCheckSuccess(payload));
             else yield put(createCheckError(error));
         }
@@ -194,12 +199,78 @@ export function* watchEditCheck() {
 }
 
 
+
+
+
+/**
+ * CREATE CHECK
+ */
+
+
+function* createRemise(data) {
+
+    var dataCheck;
+
+    let payload = null,
+        error = null,
+        payloadCheck = null;
+
+    try {
+
+        yield axios.post(`http://localhost:4000/api/remises`, data.data)
+            .then((res) => {
+                if (res.status == 200) {
+                    payload = res.data;
+                }
+            }).catch((error) => {
+                error = error
+            });
+        if (payload) {
+
+            dataCheck = {
+                "remise_id": payload.id,
+                "remiseId": payload.id
+            }
+
+            let ids = localStorage.getItem('ids').split(',');
+
+            for (var i = 0; i < ids.length; i++) {
+                yield axios.post(`http://localhost:4000/api/checks/update?where={"id":"${ids[i]}"}`, dataCheck)
+                    .then((res) => payloadCheck = res.data)
+                    .catch((error) => error = error);
+            }
+            if (payloadCheck) {
+                yield put(editCheckRemiseSuccess(payloadCheck))
+            } else {
+                yield put(editCheckRemiseError(error))
+            }
+
+        }
+        if (data.bool) {
+            if (payload) yield put(createRemiseSuccess(payload));
+            else yield put(createRemiseError(error));
+        } else {
+
+            yield put(createRemiseError(error));
+        }
+
+    } catch (error) {
+        yield put(createCheckError(error));
+    }
+}
+
+export function* watchCreateRemise() {
+    yield takeLatest(REQUEST_CREATE_REMISE, createRemise);
+}
+
+
 export default function* rootSaga() {
     yield all([
         fork(watchFetchChecks),
         fork(watchDeleteChecks),
         fork(watchCreateCheck),
         fork(watchGetCheck),
-        fork(watchEditCheck)
+        fork(watchEditCheck),
+        fork(watchCreateRemise)
     ]);
 }

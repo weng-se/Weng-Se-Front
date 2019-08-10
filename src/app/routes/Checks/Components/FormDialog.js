@@ -11,11 +11,12 @@ import { DatePicker } from 'material-ui-pickers';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl'; 
 
 
 
 class FormDialog extends React.Component {
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -34,42 +35,41 @@ class FormDialog extends React.Component {
         this.setState({
           [name]: value
         });
-      }
+    }
 
-      handleDateChange = date => {
+    handleDateChange = date => {
         this.setState({ issuedDate: date._d });
-      };
+    };
 
-      saveRemise = () => {
+    saveRemise = () => {
         this.props.saveRemise(this.state)
-      }
+    }
 
     render() {
         return (
             <div>
                 <Dialog open={true} onClose={this.handleRequestClose}>
-                    <DialogTitle><FormattedMessage id="label.createNewRemise"/></DialogTitle>
+                    <DialogTitle>
+                        <FormattedMessage id="label.createNewRemise"/>
+                    </DialogTitle>
                     <DialogContent>
                         <TextField
                         name="number"
                         label="Numero de remise"
                         margin="normal"
-                        variant="outlined"
                         fullWidth
                         value={this.state.number}
                         onChange={this.handleInputChange}
                         />
                         <FormControl fullWidth margin="normal">
+                            <InputLabel htmlFor="bank">Banque</InputLabel>
                             <Select
-                                inputProps={{
-                                    name: 'bank',
-                                }}
+                                inputProps={{ name: 'bank'}}
                                 value={this.state.bank}
                                 variant="outlined"
-                                onChange={this.handleInputChange}
-                            >
+                                onChange={this.handleInputChange}>
                                 <MenuItem value="">
-                                <em>None</em>
+                                    <em>None</em>
                                 </MenuItem>
                                 <MenuItem value={'SG'}>SG</MenuItem>
                                 <MenuItem value={'BNP'}>BNP</MenuItem>
@@ -80,7 +80,6 @@ class FormDialog extends React.Component {
                         </FormControl>
                         <DatePicker
                         id="remiseDate"
-                        variant="outlined"
                         label="Date de remise"
                         value={this.state.issuedDate}
                         onChange={this.handleDateChange}
@@ -90,10 +89,10 @@ class FormDialog extends React.Component {
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={this.handleRequestClose} color="secondary">
-                            Annuler
+                            <FormattedMessage id="label.discard" />
                         </Button>
                         <Button onClick={this.saveRemise} color="primary">
-                            Créer
+                            <FormattedMessage id="label.save" />
                         </Button>
                     </DialogActions>
                 </Dialog>

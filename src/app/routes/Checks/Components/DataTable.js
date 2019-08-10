@@ -130,7 +130,7 @@ class EnhancedTableToolbar extends React.Component {
   }
   
   handleOpenModal = () => {
-    this.setState({openModal: true});
+    this.setState({ openModal: true });
   }
 
   handleCloseModal = () => {
@@ -147,8 +147,7 @@ class EnhancedTableToolbar extends React.Component {
       <Toolbar
         className={classNames(classes.root, {
           [classes.highlight]: numSelected > 0,
-        })}
-      >
+        })}>
         <div className={classes.title}>
           {numSelected > 0 ? (
             <Typography color="inherit" variant="subheading">
