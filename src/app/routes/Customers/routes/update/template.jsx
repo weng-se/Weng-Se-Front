@@ -56,7 +56,7 @@ const Template = (component) => {
                                 }}
                                 value={customer.firstName}
                                 validators={['required']}
-                                errorMessages={['firstName field is required']}
+                                errorMessages={['Nom est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -76,7 +76,7 @@ const Template = (component) => {
                                 }}
                                 value={customer.lastName}
                                 validators={['required']}
-                                errorMessages={['lastName field is required']}
+                                errorMessages={['Prenom est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -97,7 +97,7 @@ const Template = (component) => {
                                 }}
                                 value={customer.type}
                                 validators={['required']}
-                                errorMessages={['Type field is required']}
+                                errorMessages={['Type est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -113,8 +113,7 @@ const Template = (component) => {
                                 SelectProps={{ native: true }}
                                 margin="dense"
                                 variant="outlined"
-                                value={customer.civility}
-                            >
+                                value={customer.civility}>
                                 {civilities.map(option => (
                                     <option key={option.value} value={option.value}>
                                         {option.label}
@@ -141,7 +140,7 @@ const Template = (component) => {
                                 }}
                                 value={customer.email}
                                 validators={['required', 'isEmail']}
-                                errorMessages={['Email field is required', 'email is not valid']}
+                                errorMessages={['Email est obligatoire', 'email est non valide']}
                             />
                         </FormControl>
                     </Grid>
@@ -180,7 +179,7 @@ const Template = (component) => {
                                 }}
                                 value={customer.department}
                                 validators={['required']}
-                                errorMessages={['Department field is required']}
+                                errorMessages={['Department est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -199,7 +198,7 @@ const Template = (component) => {
                                 }}
                                 value={customer.address}
                                 validators={['required']}
-                                errorMessages={['Address field is required']}
+                                errorMessages={['Adresse est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -219,7 +218,7 @@ const Template = (component) => {
                                 }}
                                 value={customer.country}
                                 validators={['required']}
-                                errorMessages={['Country field is required']}
+                                errorMessages={['Pays est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -238,7 +237,7 @@ const Template = (component) => {
                                 }}
                                 value={customer.city}
                                 validators={['required']}
-                                errorMessages={['City field is required']}
+                                errorMessages={['Ville est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -256,6 +255,9 @@ const Template = (component) => {
                                     shrink: true,
                                 }}
                                 value={customer.websiteURL}
+                                required="true"
+                                validators={['required']}
+                                errorMessages={['Site web est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -273,6 +275,9 @@ const Template = (component) => {
                                     shrink: true,
                                 }}
                                 value={customer.skype}
+                                required="true"
+                                validators={['required']}
+                                errorMessages={['Skype est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -289,6 +294,9 @@ const Template = (component) => {
                                     shrink: true,
                                 }}
                                 value={customer.phone}
+                                required="true"
+                                validators={['required']}
+                                errorMessages={['Téléphone est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -305,6 +313,9 @@ const Template = (component) => {
                                     shrink: true,
                                 }}
                                 value={customer.mobile}
+                                required="true"
+                                validators={['required']}
+                                errorMessages={['Mobile est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -321,6 +332,9 @@ const Template = (component) => {
                                     shrink: true,
                                 }}
                                 value={customer.fax}
+                                required="true"
+                                validators={['required']}
+                                errorMessages={['Fax est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -338,6 +352,9 @@ const Template = (component) => {
                                     shrink: true,
                                 }}
                                 value={customer.bank}
+                                required="true"
+                                validators={['required']}
+                                errorMessages={['Bank est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -354,6 +371,9 @@ const Template = (component) => {
                                     shrink: true,
                                 }}
                                 value={customer.iban}
+                                required="true"
+                                validators={['required']}
+                                errorMessages={['Iban est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -370,6 +390,9 @@ const Template = (component) => {
                                     shrink: true,
                                 }}
                                 value={customer.bic}
+                                required="true"
+                                validators={['required']}
+                                errorMessages={['Bic est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -386,6 +409,9 @@ const Template = (component) => {
                                     shrink: true,
                                 }}
                                 value={customer.siren}
+                                required="true"
+                                validators={['required']}
+                                errorMessages={['Siren est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -403,6 +429,9 @@ const Template = (component) => {
                                     shrink: true,
                                 }}
                                 value={customer.siret}
+                                required="true"
+                                validators={['required']}
+                                errorMessages={['Siret est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -420,6 +449,9 @@ const Template = (component) => {
                                     shrink: true,
                                 }}
                                 value={customer.siret}
+                                required="true"
+                                validators={['required']}
+                                errorMessages={['Tva Export est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -436,6 +468,9 @@ const Template = (component) => {
                                     shrink: true,
                                 }}
                                 value={customer.tva}
+                                required="true"
+                                validators={['required']}
+                                errorMessages={['TVA est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -453,6 +488,9 @@ const Template = (component) => {
                                     shrink: true,
                                 }}
                                 value={customer.tvaCode}
+                                required="true"
+                                validators={['required']}
+                                errorMessages={['Code TVA est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -469,6 +507,9 @@ const Template = (component) => {
                                     shrink: true,
                                 }}
                                 value={customer.family}
+                                required="true"
+                                validators={['required']}
+                                errorMessages={['Famille est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -485,6 +526,9 @@ const Template = (component) => {
                                     shrink: true,
                                 }}
                                 value={customer.paymentMethod}
+                                required="true"
+                                validators={['required']}
+                                errorMessages={['Methode de paiment est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -504,7 +548,7 @@ const Template = (component) => {
                                 }}
                                 value={customer.title}
                                 validators={['required']}
-                                errorMessages={['Title field is required']}
+                                errorMessages={['Title est obligatoire']}
                             />
                         </FormControl>
                     </Grid>
@@ -522,6 +566,9 @@ const Template = (component) => {
                                     shrink: true,
                                 }}
                                 value={customer.status}
+                                required="true"
+                                validators={['required']}
+                                errorMessages={['Titre est obligatoire']}
                             />
                         </FormControl>
                     </Grid>

@@ -88,6 +88,14 @@ class ToolbarSelect extends React.Component {
             .catch((error) => console.error(error));
     } 
 
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.remise) {
+            window.location.reload();
+        }
+    }
+
+
     render() {
         const { classes } = this.props;
         return (
@@ -198,8 +206,11 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
+    const {
+        remise
+    } = state;
     return {
-        
+        remise
     }
 }
   

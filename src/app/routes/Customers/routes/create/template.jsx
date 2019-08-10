@@ -69,7 +69,7 @@ const Template = (component) => {
                                                 }}
                                                 value={customer.firstName}
                                                 validators={['required']}
-                                                errorMessages={['firstName field is required']}
+                                                errorMessages={['Nom est obligatoire']}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -89,7 +89,7 @@ const Template = (component) => {
                                                 }}
                                                 value={customer.lastName}
                                                 validators={['required']}
-                                                errorMessages={['lastName field is required']}
+                                                errorMessages={['Prénom est obligatoire']}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -110,7 +110,7 @@ const Template = (component) => {
                                                 }}
                                                 value={customer.type}
                                                 validators={['required']}
-                                                errorMessages={['Type field is required']}
+                                                errorMessages={['Type est obligatoire']}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -154,7 +154,7 @@ const Template = (component) => {
                                                 }}
                                                 value={customer.email}
                                                 validators={['required', 'isEmail']}
-                                                errorMessages={['Email field is required', 'email is not valid']}
+                                                errorMessages={['Email est obigatoire', 'email est non valide']}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -193,7 +193,7 @@ const Template = (component) => {
                                                 }}
                                                 value={customer.department}
                                                 validators={['required']}
-                                                errorMessages={['Department field is required']}
+                                                errorMessages={['Department est obligatoire']}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -212,7 +212,7 @@ const Template = (component) => {
                                                 }}
                                                 value={customer.address}
                                                 validators={['required']}
-                                                errorMessages={['Address field is required']}
+                                                errorMessages={['Adrese est obligatoire']}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -232,7 +232,7 @@ const Template = (component) => {
                                                 }}
                                                 value={customer.country}
                                                 validators={['required']}
-                                                errorMessages={['Country field is required']}
+                                                errorMessages={['Pays est obligatoire']}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -251,7 +251,7 @@ const Template = (component) => {
                                                 }}
                                                 value={customer.city}
                                                 validators={['required']}
-                                                errorMessages={['City field is required']}
+                                                errorMessages={['Ville est obligatoire']}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -265,6 +265,9 @@ const Template = (component) => {
                                                 name="websiteURL"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
+                                                validators={['required']}
+                                                errorMessages={['Website est obligatoire']}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -282,6 +285,9 @@ const Template = (component) => {
                                                 name="skype"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
+                                                validators={['required']}
+                                                errorMessages={['Skype est obligatoire']}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -298,6 +304,9 @@ const Template = (component) => {
                                                 name="phone"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
+                                                validators={['required']}
+                                                errorMessages={['Téléphone est obligatoire']}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -314,6 +323,9 @@ const Template = (component) => {
                                                 name="mobile"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
+                                                validators={['required']}
+                                                errorMessages={['Mobile est obligatoire']}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -330,6 +342,9 @@ const Template = (component) => {
                                                 name="fax"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
+                                                validators={['required']}
+                                                errorMessages={['Fax est obligatoire']}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -347,6 +362,9 @@ const Template = (component) => {
                                                 name="bank"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
+                                                validators={['required']}
+                                                errorMessages={['Bank est obligatoire']}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -363,6 +381,9 @@ const Template = (component) => {
                                                 name="iban"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
+                                                validators={['required']}
+                                                errorMessages={['Iban est obligatoire']}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -374,11 +395,14 @@ const Template = (component) => {
                                     <Grid item xs={3}>
                                         <FormControl style={{ width: '100%', padding: '5px' }} >
                                             <TextValidator
-                                                label={<FormattedMessage id="label.mobile"/>}
+                                                label={<FormattedMessage id="label.bic"/>}
                                                 onChange={component.handleChange}
                                                 name="bic"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
+                                                validators={['required']}
+                                                errorMessages={['Bic est obligatoire']}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -395,6 +419,9 @@ const Template = (component) => {
                                                 name="siren"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
+                                                validators={['required']}
+                                                errorMessages={['Siren est obligatoire']}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -412,6 +439,9 @@ const Template = (component) => {
                                                 name="siret"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
+                                                validators={['required']}
+                                                errorMessages={['Siret est obligatoire']}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -429,6 +459,9 @@ const Template = (component) => {
                                                 name="tvaExport"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
+                                                validators={['required']}
+                                                errorMessages={['TVA Export est obligatoire']}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -445,6 +478,9 @@ const Template = (component) => {
                                                 name="tva"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
+                                                validators={['required']}
+                                                errorMessages={['TVA est obligatoire']}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -462,6 +498,9 @@ const Template = (component) => {
                                                 name="tvaCode"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
+                                                validators={['required']}
+                                                errorMessages={['Code TVA est obligatoire']}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -478,6 +517,9 @@ const Template = (component) => {
                                                 name="family"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
+                                                validators={['required']}
+                                                errorMessages={['Famille est obligatoire']}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -494,10 +536,13 @@ const Template = (component) => {
                                                 name="paymentMethod"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
                                                 value={customer.paymentMethod}
+                                                validators={['required']}
+                                                errorMessages={['Methode de paiment est obligatoire']}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -531,10 +576,13 @@ const Template = (component) => {
                                                 name="status"
                                                 margin="dense"
                                                 variant="outlined"
+                                                required="true"
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
                                                 value={customer.status}
+                                                validators={['required']}
+                                                errorMessages={['Status field is required']}
                                             />
                                         </FormControl>
                                     </Grid>
