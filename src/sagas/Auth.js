@@ -183,10 +183,12 @@ function* signOut() {
     try {
         const signOutUser = yield call(signOutRequest);
         if (signOutUser === undefined) {
+
             localStorage.removeItem('user_id');
             localStorage.removeItem('user_token');
             localStorage.removeItem('user_username');
             localStorage.removeItem('user_role');
+
             yield put(userSignOutSuccess(signOutUser));
         } else {
             yield put(showAuthMessage(signOutUser.message));
@@ -240,13 +242,19 @@ function* userLogin(action) {
 
         if (payload) {
             if (!payload.data.user.disabled) {
+                localStorage.setItem('credentials', JSON.stringify({ 
+                        'USER_ID': payload.data.userId, 
+                        'USER_ROLE': payload.data.user.role,
+                        'USER_TOKEN': payload.data.id
+                    }
+                ))
                 localStorage.setItem('user_id', payload.data.userId);
                 localStorage.setItem('user_role', payload.data.user.role);
                 if (payload.data.user.username)
                     localStorage.setItem('user_username', payload.data.user.username);
                 else
                     localStorage.setItem('user_username', payload.data.user.email);
-                localStorage.setItem('user_token', payload.data.id);
+                    localStorage.setItem('user_token', payload.data.id);
                 yield put(userLogInSuccess(payload.data))
             } else {
                 yield put(userLogInError(true));

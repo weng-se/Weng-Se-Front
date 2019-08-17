@@ -32,6 +32,30 @@ const RestrictedRoute = ({component: Component, authUser, ...rest}) =>
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    
+    window.addEventListener('storage', (event) => {
+      
+      const credentials = window.sessionStorage.getItem('user_id');
+
+      if(event.key === 'REQUESTING_SHARED_CREDENTIALS' && credentials) {
+        window.localStorage.setItem('CREDENTIALS_SHARING', credentials);
+        window.localStorage.removeItem('CREDENTIALS_SHARING')
+      }
+
+      if(event.key === 'CREDENTIALS_SHARING' && !credentials){
+        window.sessionStorage.setItem('user_id', event.newValue)
+      }
+      
+    })
+  }
+
+  componentDidMount() {
+    window.localStorage.setItem ('REQUESTING_SHARED_CREDENTIALS', Date.now (). toString ()) 
+    window.localStorage.removeItem ('REQUESTING_SHARED_CREDENTIALS') 
+  }
+
   componentWillMount() {
     window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
     if (this.props.initURL === '') {
@@ -88,7 +112,13 @@ class App extends Component {
 const mapStateToProps = ({settings, auth}) => {
   const {sideNavColor, locale, isDirectionRTL} = settings;
   const {authUser, initURL} = auth;
-  return {sideNavColor, locale, isDirectionRTL, authUser, initURL}
+  return {
+    sideNavColor, 
+    locale, 
+    isDirectionRTL, 
+    authUser, 
+    initURL
+  }
 };
 
 export default connect(mapStateToProps, {setInitUrl})(App);

@@ -315,7 +315,7 @@ class Checks extends React.Component {
     }
 
     getChecks = (ids) => {
-        console.log("zbi", ids);
+        console.log("ids", ids);
         console.log(ids.length);
         localStorage.setItem('numberCheck', ids.length);
     }
