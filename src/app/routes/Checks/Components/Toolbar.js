@@ -22,13 +22,21 @@ class Toolbar extends React.Component {
     const { classes } = this.props;
     return (
       <React.Fragment>
+
         <Tooltip title={<FormattedMessage id="pages.createCheck"/>}>
-            <Button size="small" variant="contained" className={classes.button}>
+            <Button size="small" variant="contained" color="default" className={classes.button}>
               <NavLink to="create" style={{ color: '#666' }}>
                 <FormattedMessage id="pages.createCheck"/>
               </NavLink>
             </Button>
         </Tooltip>
+        &nbsp;
+        <Tooltip title={<FormattedMessage id="label.smartDiscount"/>}>
+            <Button size="small" variant="contained" color="primary" className={classes.button}>
+              <FormattedMessage id="label.smartDiscount"/>
+            </Button>
+        </Tooltip>
+
       </React.Fragment>
     );
   }

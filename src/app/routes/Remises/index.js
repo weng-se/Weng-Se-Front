@@ -180,29 +180,30 @@ class Remises extends React.Component {
                 }
                 
                 return (
-                  rowData[6].map(row => 
-                    ((
-                      <React.Fragment>
-                          <TableRow>
-                            <TableCell></TableCell>
-                            <TableCell>{row.number}</TableCell>
-                            <TableCell>{row.bank}</TableCell>
-                            <TableCell>
-                              <Chip
-                                size="small"
-                                color="default"
-                                label={"€" + row.amount}
-                              />
+                    rowData[6].map(row => 
+                      ((
+                        <React.Fragment>
+                            <TableRow>
+                              <TableCell></TableCell>
+                              <TableCell align="left">{row.number}</TableCell>
+                              <TableCell align="left">{row.bank}</TableCell>
+                              <TableCell align="left">
+                                <Chip
+                                  size="small"
+                                  color="default"
+                                  label={"€" + row.amount}
+                                />
+                              </TableCell>
+                              <TableCell align="left">{row.comment}</TableCell>
+                              <TableCell align="left">
+                                { getStatus(row.status) }                       
                             </TableCell>
-                            <TableCell>{row.comment}</TableCell>
-                            <TableCell>
-                              { getStatus(row.status) }                       
-                          </TableCell>
-                          <TableCell>{moment(row.issuedDate).format('L')}</TableCell>
-                          </TableRow>
-                      </React.Fragment>
-                    ))
-              ))
+                            <TableCell align="left">{moment(row.issuedDate).format('L')}</TableCell>
+                            </TableRow>
+                        </React.Fragment>
+                      ))
+                )
+              )
             },
             rowsPerPage: 10,
             rowsPerPageOptions: [5,10,15,20,25,50],
