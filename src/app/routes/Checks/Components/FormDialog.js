@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import Tooltip from "@material-ui/core/Tooltip";
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import Dialog from '@material-ui/core/Dialog';
@@ -11,8 +12,15 @@ import { DatePicker } from 'material-ui-pickers';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import {
+    Grid
+} from '@material-ui/core';
+import {
+    ValidatorForm,
+    TextValidator
+} from 'react-material-ui-form-validator';
 import { FormattedMessage } from 'react-intl'; 
-
+import axios from 'axios';
 
 
 class FormDialog extends React.Component {
@@ -20,20 +28,50 @@ class FormDialog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            issuedDate: new Date()
+            remise: {
+                bank: null,
+                number: null,
+                issuedDate: null,
+                numberCheck: 0,
+                amount: 0,
+                status: "WAITING"
+            },
+            banks: []
         }
     }
 
-    handleRequestClose = () => {
-        this.props.handleCloseModal()
-    };
+    componentWillMount(props) {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if(dd<10) dd = '0'+dd
+        if(mm<10) mm = '0'+mm
+        
+        today = yyyy + '-' + mm + '-' + dd;
+        
+        this.setState({
+            issuedDate : today
+        });
+    }
+
+    componentDidMount() {
+        this.getBanks();
+    }
+
+    getBanks = () => {
+        fetch('http://localhost:4000/api/banks?filter[where][wengseAccount]=true')
+            .then((response) => response.json())
+            .then((banks) => this.setState({
+                banks
+            }))
+            .catch((error) => console.error(error));
+    } 
 
     handleInputChange = (event) => {
-        const target = event.target;
-        const value = target.value;
-        const name = target.name;
         this.setState({
-          [name]: value
+          [event.target.name]: event.target.value
         });
     }
 
@@ -41,62 +79,110 @@ class FormDialog extends React.Component {
         this.setState({ issuedDate: date._d });
     };
 
-    saveRemise = () => {
-        this.props.saveRemise(this.state)
+    createSmartDiscount = () => {
+        console.log(this.props.checks);
+        axios.post("http://localhost:4000/api/remises", {
+            bank: "string",
+            number: "string",
+            issuedDate: new Date('now'),
+            numberCheck: 0,
+            amount: 0,
+            status: "En attente",
+          })
+        .then(function(res) { console.log(res) })
+        .catch(function(res) { console.log(res) })
     }
 
     render() {
         return (
-            <div>
-                <Dialog open={true} onClose={this.handleRequestClose}>
+            <React.Fragment>
+
+                <Dialog open={this.props.open} onClose={this.props.close}>
                     <DialogTitle>
                         <FormattedMessage id="label.createNewRemise"/>
                     </DialogTitle>
                     <DialogContent>
-                        <TextField
-                        name="number"
-                        label="Numero de remise"
-                        margin="normal"
-                        fullWidth
-                        value={this.state.number}
-                        onChange={this.handleInputChange}
-                        />
-                        <FormControl fullWidth margin="normal">
-                            <InputLabel htmlFor="bank">Banque</InputLabel>
-                            <Select
-                                inputProps={{ name: 'bank'}}
-                                value={this.state.bank}
-                                variant="outlined"
-                                onChange={this.handleInputChange}>
-                                <MenuItem value="">
-                                    <em>None</em>
-                                </MenuItem>
-                                <MenuItem value={'SG'}>SG</MenuItem>
-                                <MenuItem value={'BNP'}>BNP</MenuItem>
-                                <MenuItem value={'LCL'}>LCL</MenuItem>
-                                <MenuItem value={'HSBC'}>HSBC</MenuItem>
-                                <MenuItem value={'LBP'}>LBP</MenuItem>
-                            </Select>
-                        </FormControl>
-                        <DatePicker
-                        id="remiseDate"
-                        label="Date de remise"
-                        value={this.state.issuedDate}
-                        onChange={this.handleDateChange}
-                        fullWidth
-                        margin="normal"
-                        />
+
+                        <ValidatorForm style={{ width: '100%' }} onSubmit={this.createSmartDiscount} id="formRemise" noValidate autoComplete="off">
+                            <Grid container spacing={3}>
+                                <Grid item xs={12}>
+                                    <FormControl style={{ width: '100%', padding: '5px' }} >
+                                        <TextValidator
+                                            id="number"
+                                            type="text"
+                                            name="number"
+                                            label={<FormattedMessage id="label.checkNumber" />}
+                                            onChange={this.handleChange}
+                                            margin="dense"
+                                            variant="outlined"
+                                            // required="true"
+                                            value={this.state.remise.number}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                            // validators={['required']}
+                                            // errorMessages={[<FormattedMessage id="label.msgCheckNumberRequired"/>]}
+                                        />
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <FormControl style={{ width: '100%', padding: '5px' }}>
+                                        <TextValidator
+                                            id="bank"
+                                            select
+                                            name="bank"
+                                            label={<FormattedMessage id="label.bank" />}
+                                            onChange={this.handleChange}
+                                            SelectProps={{ native: true }}
+                                            margin="dense"
+                                            variant="outlined"
+                                            // required="true"
+                                            value={this.state.remise.bank}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                        >
+                                        <option value={""}></option>
+                                        {this.state.banks.map(option => (
+                                            <option key={option.id} value={option.name}>
+                                                {option.title}
+                                            </option>
+                                        ))}
+                                        </TextValidator>
+                                    </FormControl>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <FormControl style={{ width: '100%', padding: '5px' }} >
+                                        <TextValidator
+                                            type="date"
+                                            id="issuedDate"
+                                            name="issuedDate"
+                                            label={<FormattedMessage id="label.date" />}
+                                            onChange={this.handleChange}
+                                            margin="dense"
+                                            variant="outlined"
+                                            value={this.state.remise.remiseDate}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                        />
+                                    </FormControl>
+                                </Grid>
+                            </Grid>           
+                        </ValidatorForm>
+    
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.handleRequestClose} color="secondary">
+                        <Button onClick={this.props.close} color="secondary">
                             <FormattedMessage id="label.discard" />
                         </Button>
-                        <Button onClick={this.saveRemise} color="primary">
+                        <Button type="submit" color="primary" form="formRemise">
                             <FormattedMessage id="label.save" />
                         </Button>
                     </DialogActions>
                 </Dialog>
-            </div>
+
+            </React.Fragment>
         );
     }
 }
