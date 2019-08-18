@@ -34,7 +34,7 @@ class FormDialog extends React.Component {
                 issuedDate: null,
                 numberCheck: 0,
                 amount: 0,
-                status: "WAITING"
+                status: "En attente"
             },
             banks: [],
             data: []
@@ -54,6 +54,7 @@ class FormDialog extends React.Component {
         
         this.setState({
             remise: {
+                ...this.state.remise,
                 issuedDate : today
             }
         });
@@ -72,11 +73,11 @@ class FormDialog extends React.Component {
             .catch((error) => console.error(error));
     } 
 
-    handleChange = (event) => {
+    handleChange = (e) => {
         this.setState({
             remise: {
                 ...this.state.remise,
-                [event.target.name]: event.target.value
+                [e.target.name]: e.target.value
             }
         });
     }
@@ -94,7 +95,7 @@ class FormDialog extends React.Component {
                 issuedDate: '',
                 numberCheck: 0,
                 amount: 0,
-                status: "WAITING"
+                status: "En attente"
             }
           
         });
@@ -105,6 +106,7 @@ class FormDialog extends React.Component {
         if(this.state.remise.numberCheck != nextProps.count) {
             this.setState({ 
                 remise: {
+                    ...this.state.remise,
                     numberCheck : nextProps.count 
                 }
             })
