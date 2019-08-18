@@ -52,6 +52,7 @@ class Toolbar extends React.Component {
         .then(res => res.json())
         .then(checks => this.setState({ checks }))
         .catch((error) => console.error(error));
+
   } 
 
   render() {

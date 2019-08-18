@@ -82,13 +82,13 @@ class FormDialog extends React.Component {
     createSmartDiscount = () => {
         console.log(this.props.checks);
         axios.post("http://localhost:4000/api/remises", {
-            bank: "string",
-            number: "string",
-            issuedDate: new Date('now'),
-            numberCheck: 0,
-            amount: 0,
-            status: "En attente",
-          })
+            "issuedDate": "2019-08-09T00:00:00.000Z",
+            "bank": "HSBC",
+            "amount": 7331.22,
+            "number": "13324",
+            "numberCheck": 3,
+            "status": "En attente"
+        })
         .then(function(res) { console.log(res) })
         .catch(function(res) { console.log(res) })
     }
