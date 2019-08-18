@@ -29,15 +29,15 @@ class FormDialog extends React.Component {
         super(props);
         this.state = {
             remise: {
-                bank: null,
-                number: null,
-                issuedDate: null,
+                bank: "",
+                number: "",
+                issuedDate: "",
                 numberCheck: 0,
                 amount: 0,
                 status: "En attente"
             },
             banks: [],
-            data: []
+            checks: []
         }
     }
 
@@ -90,14 +90,13 @@ class FormDialog extends React.Component {
         this.setState({
             remise: {
                 ...this.state.remise,
-                bank: '',
-                number: '',
-                issuedDate: '',
+                bank: "",
+                number: "",
+                issuedDate: "",
                 numberCheck: 0,
                 amount: 0,
                 status: "En attente"
             }
-          
         });
     }
 
@@ -105,16 +104,23 @@ class FormDialog extends React.Component {
 
         var total = 0;
         if(nextProps.checks.length > 0) {
+
+            this.setState({
+                checks: nextProps.checks
+            })
+            
             for(let i=0; i<=nextProps.checks.length; i++) {
                 if(nextProps.checks[i])
                     total += nextProps.checks[i].amount;
             }
+            
             this.setState({
                 remise: {
                     ...this.state.remise,
                     amount : total
                 }
             })
+
         }
 
         if(this.state.remise.numberCheck != nextProps.count) {
@@ -127,9 +133,17 @@ class FormDialog extends React.Component {
         }
 
     }
+
+
+    editcheck = () => {
+        Array.from(this.state.checks).map((check) => {
+            console.log('check', check);
+        })
+    }
     
 
     createSmartDiscount = () => {
+        
         axios.post("http://localhost:4000/api/remises", this.state.remise)
         .then((res) => {
             if(res.status === 200 && res.statusText === "OK") {
@@ -142,13 +156,15 @@ class FormDialog extends React.Component {
                     });
                 }
                 this.reset();
-                this.setState({ data: res.data });
+                this.setState({ checks: res.data });
                 setTimeout(() => this.closeModal(), 500);
+                this.editcheck();
             } 
         })
         .catch((res) => { 
             console.log(res) 
         })
+
     }
 
 

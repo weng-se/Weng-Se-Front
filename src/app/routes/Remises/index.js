@@ -12,6 +12,11 @@ import Template from './template';
 import { FormattedMessage } from 'react-intl';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import {
+    toast, ToastContainer
+} from 'react-toastify';
 // import IntlMessages from '../Customers/node_modules/util/IntlMessages';
 // import ContainerHeader from '../Customers/node_modules/components/ContainerHeader/index';
 
@@ -157,6 +162,24 @@ class Remises extends React.Component {
                     download: false,
                     print: false
                 }
+            },
+            {
+                name: "id",
+                label: <FormattedMessage id="label.options"/>,
+                options: {
+                    sort: false,
+                    print: false,
+                    download: false,
+                    customBodyRender: (value, tableMeta, updateValue) => (
+                        <React.Fragment>
+                            <div size="small">
+                                <IconButton size="small" onClick={() => this.delete(value)}>
+                                    <DeleteIcon fontSize="small" />
+                                </IconButton>
+                            </div>
+                        </React.Fragment>
+                    )
+                }
             }
         ];
         this.options = {
@@ -165,7 +188,7 @@ class Remises extends React.Component {
             filterType: 'dropdown',
             responsive: 'scroll',
             expandableRows: true,
-            expandableRowsOnClick: true,
+            expandableRowsOnClick: false,
             rowsExpanded: [0, 2, 3],
             renderExpandableRow: (rowData, rowMeta) => {
                 
@@ -256,6 +279,31 @@ class Remises extends React.Component {
 
     componentDidMount() {
         this.fetchData();
+    }
+
+    delete = (id) => {
+        if(window.confirm("Are you sure you want to delete ?")) {
+            
+            fetch(`http://localhost:4000/api/remises/${id}`, {
+                method: `delete`
+              }).then(response =>
+                response.json().then(json => {
+                    console.log(json.count)
+                  if(json.count === 1) {
+                    if (!toast.isActive('deleted')) {
+                        toast.success('Successfully deleted !', {
+                            delay: 1000,
+                            autoClose: true,
+                            closeButton: true,
+                            toastId: 'deleted'
+                        });
+                    }
+                    this.fetchData();
+                  }
+                })
+              );
+            
+        }
     }
 
     fetchData = () => {

@@ -50,7 +50,8 @@ const Template = (component) => {
                         </MuiThemeProvider>
                     </Card>
                 </div>
-            </div>
+            </div>            
+            <ToastContainer position={toast.POSITION.TOP_RIGHT} />
         </React.Fragment>
 
     )
