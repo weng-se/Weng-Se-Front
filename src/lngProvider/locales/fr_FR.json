@@ -688,5 +688,6 @@
   "label.msgIssuedDateRequired": "Date de réception est obligatoire",
   "label.msgCashingDateDesiredRequired": "Date d'encaissement souhaitée est obligatoire",
   "label.date": "Date",
-  "label.smartDiscount": "Remise intelligente"
+  "label.smartDiscount": "Remise intelligente",
+  "label.numberCheck": "Nombre de chèque"
 }

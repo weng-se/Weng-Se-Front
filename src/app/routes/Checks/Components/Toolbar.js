@@ -23,9 +23,11 @@ class Toolbar extends React.Component {
     }
   }
 
+  componentDidMount() {
+    this.findChecks();
+  }
 
   openModalDialog = () => {
-    this.findChecks();
     this.setState({
       open: true
     })

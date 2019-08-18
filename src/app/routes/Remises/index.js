@@ -103,7 +103,7 @@ class Remises extends React.Component {
             },
             {
                 name: "numberCheck",
-                label: "Nombre de cheque",
+                label: <FormattedMessage id="label.numberCheck"/>,
                 options: {
                     sort: false,
                     filter: true

@@ -696,5 +696,6 @@
   "label.msgCashingDateDesiredRequired": "Cashing date desired is required",
   "label.msgCheckNumber": "Check number is required",
   "label.date": "Date",
-  "label.smartDiscount": "Smart Discount"
+  "label.smartDiscount": "Smart Discount",
+  "label.numberCheck": "Number check"
 }

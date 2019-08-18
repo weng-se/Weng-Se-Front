@@ -36,7 +36,8 @@ class FormDialog extends React.Component {
                 amount: 0,
                 status: "WAITING"
             },
-            banks: []
+            banks: [],
+            data: null
         }
     }
 
@@ -89,9 +90,10 @@ class FormDialog extends React.Component {
     reset = () => {
         this.setState({
             remise: {
-                bank: null,
-                number: null,
-                issuedDate: null,
+                ...this.state.remise,
+                bank: '',
+                number: '',
+                issuedDate: '',
                 numberCheck: 0,
                 amount: 0,
                 status: "WAITING"
@@ -100,10 +102,17 @@ class FormDialog extends React.Component {
         });
     }
 
+
     createSmartDiscount = () => {
-        console.log(this.props.checks);
-        axios.post("http://localhost:4000/api/remises", this.state.remise)
-        .then(function(res) {
+        axios.post("http://localhost:4000/api/remises", {
+            "issuedDate": "2019-08-09T00:00:00.000Z",
+            "bank": "HSBC",
+            "amount": 7331.22,
+            "number": "13324",
+            "numberCheck": 3,
+            "status": "En attente"
+        })
+        .then((res) => {
             if(res.status === 200 && res.statusText === "OK") {
                 if (!toast.isActive('smartDiscountSuccess')) {
                     toast.success('Successfully Created !', {
@@ -114,14 +123,17 @@ class FormDialog extends React.Component {
                     });
                 }
                 this.reset();
+                setTimeout(() => this.closeModal());
             } 
         })
-        .catch(function(res) { 
+        .catch((res) => { 
             console.log(res) 
         })
     }
 
+
     render() {
+        const check = this.props.checks.length;
         return (
             <React.Fragment>
 
@@ -188,7 +200,7 @@ class FormDialog extends React.Component {
                                             onChange={this.handleChange}
                                             margin="dense"
                                             variant="outlined"
-                                            value={this.state.remise.remiseDate}
+                                            value={this.state.remise.issuedDate}
                                             InputLabelProps={{
                                                 shrink: true,
                                             }}
