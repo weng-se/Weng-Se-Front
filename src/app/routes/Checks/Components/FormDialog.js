@@ -37,7 +37,7 @@ class FormDialog extends React.Component {
                 status: "WAITING"
             },
             banks: [],
-            data: null
+            data: []
         }
     }
 
@@ -53,7 +53,9 @@ class FormDialog extends React.Component {
         today = yyyy + '-' + mm + '-' + dd;
         
         this.setState({
-            issuedDate : today
+            remise: {
+                issuedDate : today
+            }
         });
     }
 
@@ -79,10 +81,6 @@ class FormDialog extends React.Component {
         });
     }
 
-    handleDateChange = date => {
-        this.setState({ issuedDate: date._d });
-    };
-
     closeModal = () => {
         this.props.close();
     }
@@ -102,16 +100,23 @@ class FormDialog extends React.Component {
         });
     }
 
+    componentWillReceiveProps(nextProps) {
+        
+        if(this.state.remise.numberCheck != nextProps.count) {
+            this.setState({ 
+                remise: {
+                    numberCheck : nextProps.count 
+                }
+            })
+        }
+
+        console.log("nextProps.cehck", nextProps.checks)
+
+    }
+    
 
     createSmartDiscount = () => {
-        axios.post("http://localhost:4000/api/remises", {
-            "issuedDate": "2019-08-09T00:00:00.000Z",
-            "bank": "HSBC",
-            "amount": 7331.22,
-            "number": "13324",
-            "numberCheck": 3,
-            "status": "En attente"
-        })
+        axios.post("http://localhost:4000/api/remises", this.state.remise)
         .then((res) => {
             if(res.status === 200 && res.statusText === "OK") {
                 if (!toast.isActive('smartDiscountSuccess')) {
@@ -123,7 +128,8 @@ class FormDialog extends React.Component {
                     });
                 }
                 this.reset();
-                setTimeout(() => this.closeModal());
+                this.setState({ data: res.data });
+                setTimeout(() => this.closeModal(), 500);
             } 
         })
         .catch((res) => { 
@@ -133,7 +139,6 @@ class FormDialog extends React.Component {
 
 
     render() {
-        const check = this.props.checks.length;
         return (
             <React.Fragment>
 

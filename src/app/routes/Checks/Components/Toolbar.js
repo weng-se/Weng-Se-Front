@@ -23,14 +23,14 @@ class Toolbar extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.findChecks();
-  }
-
   openModalDialog = () => {
     this.setState({
       open: true
     })
+  }
+
+  componentDidMount() {
+    this.findChecks();
   }
 
   closeModalDialog = () => {
@@ -79,7 +79,8 @@ class Toolbar extends React.Component {
         <FormDialog 
           open={this.state.open}
           close={this.closeModalDialog}
-          checks={this.state.checks}/>
+          checks={this.state.checks}
+          count={this.state.checks.length}/>
 
       </React.Fragment>
     );
