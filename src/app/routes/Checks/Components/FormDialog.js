@@ -6,12 +6,12 @@ import Select from '@material-ui/core/Select';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { DatePicker } from 'material-ui-pickers';
 import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
+import {
+    toast, ToastContainer
+} from 'react-toastify';
 import {
     Grid
 } from '@material-ui/core';
@@ -69,9 +69,12 @@ class FormDialog extends React.Component {
             .catch((error) => console.error(error));
     } 
 
-    handleInputChange = (event) => {
+    handleChange = (event) => {
         this.setState({
-          [event.target.name]: event.target.value
+            remise: {
+                ...this.state.remise,
+                [event.target.name]: event.target.value
+            }
         });
     }
 
@@ -79,18 +82,43 @@ class FormDialog extends React.Component {
         this.setState({ issuedDate: date._d });
     };
 
+    closeModal = () => {
+        this.props.close();
+    }
+
+    reset = () => {
+        this.setState({
+            remise: {
+                bank: null,
+                number: null,
+                issuedDate: null,
+                numberCheck: 0,
+                amount: 0,
+                status: "WAITING"
+            }
+          
+        });
+    }
+
     createSmartDiscount = () => {
         console.log(this.props.checks);
-        axios.post("http://localhost:4000/api/remises", {
-            "issuedDate": "2019-08-09T00:00:00.000Z",
-            "bank": "HSBC",
-            "amount": 7331.22,
-            "number": "13324",
-            "numberCheck": 3,
-            "status": "En attente"
+        axios.post("http://localhost:4000/api/remises", this.state.remise)
+        .then(function(res) {
+            if(res.status === 200 && res.statusText === "OK") {
+                if (!toast.isActive('smartDiscountSuccess')) {
+                    toast.success('Successfully Created !', {
+                        delay: 1000,
+                        autoClose: true,
+                        closeButton: true,
+                        toastId: 'smartDiscountSuccess'
+                    });
+                }
+                this.reset();
+            } 
         })
-        .then(function(res) { console.log(res) })
-        .catch(function(res) { console.log(res) })
+        .catch(function(res) { 
+            console.log(res) 
+        })
     }
 
     render() {
@@ -115,13 +143,13 @@ class FormDialog extends React.Component {
                                             onChange={this.handleChange}
                                             margin="dense"
                                             variant="outlined"
-                                            // required="true"
+                                            required="true"
                                             value={this.state.remise.number}
                                             InputLabelProps={{
                                                 shrink: true,
                                             }}
-                                            // validators={['required']}
-                                            // errorMessages={[<FormattedMessage id="label.msgCheckNumberRequired"/>]}
+                                            validators={['required']}
+                                            errorMessages={[<FormattedMessage id="label.msgCheckNumberRequired"/>]}
                                         />
                                     </FormControl>
                                 </Grid>
@@ -136,7 +164,6 @@ class FormDialog extends React.Component {
                                             SelectProps={{ native: true }}
                                             margin="dense"
                                             variant="outlined"
-                                            // required="true"
                                             value={this.state.remise.bank}
                                             InputLabelProps={{
                                                 shrink: true,
@@ -181,6 +208,8 @@ class FormDialog extends React.Component {
                         </Button>
                     </DialogActions>
                 </Dialog>
+
+                <ToastContainer position={toast.POSITION.TOP_RIGHT} />
 
             </React.Fragment>
         );
