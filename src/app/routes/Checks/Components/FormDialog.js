@@ -102,7 +102,21 @@ class FormDialog extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        
+
+        var total = 0;
+        if(nextProps.checks.length > 0) {
+            for(let i=0; i<=nextProps.checks.length; i++) {
+                if(nextProps.checks[i])
+                    total += nextProps.checks[i].amount;
+            }
+            this.setState({
+                remise: {
+                    ...this.state.remise,
+                    amount : total
+                }
+            })
+        }
+
         if(this.state.remise.numberCheck != nextProps.count) {
             this.setState({ 
                 remise: {
@@ -111,8 +125,6 @@ class FormDialog extends React.Component {
                 }
             })
         }
-
-        console.log("nextProps.cehck", nextProps.checks)
 
     }
     
