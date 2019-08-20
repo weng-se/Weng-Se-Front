@@ -62,19 +62,19 @@ class Toolbar extends React.Component {
     return (
       <React.Fragment>
 
-        <Tooltip title={<FormattedMessage id="pages.createCheck"/>}>
-            <Button size="small" variant="contained" color="default" className={classes.button}>
-              <NavLink to="create" style={{ color: '#666' }}>
-                <FormattedMessage id="pages.createCheck"/>
-              </NavLink>
-            </Button>
-        </Tooltip>
-        &nbsp;
         <Tooltip title={<FormattedMessage id="label.smartDiscount"/>}>
             <Button size="small" variant="contained" color="primary" style={{ backgroundColor: "#5aac44" }} onClick={this.openModalDialog} className={classes.button}>
               <FormattedMessage id="label.smartDiscount"/>
             </Button>
         </Tooltip>
+        &nbsp;
+        <Tooltip title={<FormattedMessage id="pages.createCheck"/>}>
+          <NavLink to="create">
+            <Button size="small" variant="contained" color="primary">
+              <FormattedMessage id="pages.createCheck"/>
+            </Button>
+          </NavLink>  
+        </Tooltip>        
 
         <FormDialog 
           open={this.state.open}

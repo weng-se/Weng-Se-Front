@@ -43,6 +43,7 @@ const Template = (component) => {
         remises,
         banks
     } = component.state;
+
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth() + 1; //January is 0!
@@ -186,7 +187,7 @@ const Template = (component) => {
                                                 validators={['required']}
                                                 errorMessages={[<FormattedMessage id="label.msgIssuedDateRequired"/>]}
                                                 value={check.issuedDate}
-                                                InputProps={{ inputProps: { max: today } }}
+                                                InputProps={{ inputProps: { min: today } }}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -207,7 +208,7 @@ const Template = (component) => {
                                                 required="true"
                                                 validators={['required']}
                                                 errorMessages={[<FormattedMessage id="label.msgCashingDateDesiredRequired" />]}
-                                                InputProps={{ inputProps: { max: today } }}
+                                                InputProps={{ inputProps: { min: today } }}
                                                 value={check.cashingDateDesired}
                                                 InputLabelProps={{
                                                     shrink: true,

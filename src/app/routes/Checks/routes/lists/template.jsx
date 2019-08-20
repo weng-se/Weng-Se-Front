@@ -25,6 +25,7 @@ import {
 import Card from '@material-ui/core/Card';
 import { FormattedMessage } from 'react-intl';
 import FormDialog from '../../Components/FormDialog';
+import { CardContent, Typography } from '@material-ui/core';
 
 const styles = theme => ({
     datatables: {
@@ -37,7 +38,75 @@ const styles = theme => ({
 const Template = (component) => {
     return (
         <React.Fragment>
+
             <div className="row animated slideInUpTiny animation-duration-3">
+
+                <div className="col-lg-3 col-sm-6 col-12">
+                    <Card>
+                        <CardContent>
+                            <Typography gutterBottom variant="h6" component="h6">
+                                Aujourd'hui
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                Nombre de chèque : 598
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                Montant Total : 598
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </div>
+
+                <div className="col-lg-3 col-sm-6 col-12">
+                    <Card>
+                        <CardContent>
+                            <Typography gutterBottom variant="h6" component="h6">
+                                Demain
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                Nombre de chèque : 598
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                Montant Total : 598
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </div>
+
+                <div className="col-lg-3 col-sm-6 col-12">
+                    <Card>
+                        <CardContent>
+                            <Typography gutterBottom variant="h6" component="h6">
+                                Semaine en cours
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                Nombre de chèque : 598
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                Montant Total : 598
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </div>
+
+                <div className="col-lg-3 col-sm-6 col-12">
+                    <Card>
+                        <CardContent>
+                            <Typography gutterBottom variant="h6" component="h6">
+                                Reste
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                Nombre de chèque : 598
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                Montant Total : 598
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </div>
+
+                <br/><br/><br/><br/><br/><br/><br/>
+
                 <Card>
                     <MuiThemeProvider theme={component.getMuiTheme()}>
                         <MUIDataTable

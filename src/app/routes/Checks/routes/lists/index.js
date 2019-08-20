@@ -209,6 +209,7 @@ class Checks extends React.Component {
                     sort: false,
                     print: false,
                     download: false,
+                    filter: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <React.Fragment>
                             <div size="small">

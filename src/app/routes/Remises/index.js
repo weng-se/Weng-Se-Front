@@ -14,13 +14,49 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import {
-    toast, ToastContainer
-} from 'react-toastify';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputBase from '@material-ui/core/InputBase';
+import Select from '@material-ui/core/Select';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 // import IntlMessages from '../Customers/node_modules/util/IntlMessages';
 // import ContainerHeader from '../Customers/node_modules/components/ContainerHeader/index';
 
 
+const BootstrapInput = withStyles(theme => ({
+    root: {
+      'label + &': {
+        marginTop: theme.spacing(3),
+      },
+    },
+    input: {
+      borderRadius: 4,
+      position: 'relative',
+      backgroundColor: theme.palette.background.paper,
+      border: '1px solid #ced4da',
+      fontSize: 16,
+      padding: '10px 26px 10px 12px',
+      transition: theme.transitions.create(['border-color', 'box-shadow']),
+      // Use the system font instead of the default Roboto font.
+      fontFamily: [
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
+      '&:focus': {
+        borderRadius: 4,
+        borderColor: '#80bdff',
+        boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+      },
+    },
+  }))(InputBase);
 
 const styles = theme => ({
     root: {
@@ -52,7 +88,8 @@ class Remises extends React.Component {
         super(props);
         this.state = {
             expanded: null,
-            remises: []
+            remises: [],
+            status: null
         };
     }
 
@@ -72,6 +109,18 @@ class Remises extends React.Component {
           }
         }
     })
+
+    handleChangeStatus = () => {
+        fetch(`http://localhost:4000/api/remises/${'5d4ed6062823840f5880e1c5'}`)
+            .then(res => res.json())
+            .then(remise => {
+                console.log(remise);
+            });
+    }
+
+    updateStatus = (data) => {
+        
+    }
 
     componentWillMount() {
         this.columns = [
@@ -132,6 +181,9 @@ class Remises extends React.Component {
                             case 'Validee':
                                 color = "primary"
                                 break;
+                            case 'Rejeter':
+                                color = "secondary"
+                                break;
                         }
                         return (
                             <Chip icon={<FaceIcon />}
@@ -164,12 +216,39 @@ class Remises extends React.Component {
                 }
             },
             {
+                name: "status",
+                label: <FormattedMessage id="label.status"/>,
+                options: {
+                    sort: false,
+                    filter: false,
+                    download: false,
+                    print: false,
+                    customBodyRender: (value, tableMeta, updateValue) => {
+                        return(
+                            <Select
+                                value={value}
+                                onChange={this.handleChangeStatus}
+                                variant="outlined"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}>
+                                <MenuItem value={"En attente"}><FormattedMessage id="label.waiting"/></MenuItem>
+                                <MenuItem value={"Valide"}><FormattedMessage id="label.validated"/></MenuItem>
+                                <MenuItem value={"Partiel"}><FormattedMessage id="label.toChange"/></MenuItem>
+                                <MenuItem value={"Rejeter"}><FormattedMessage id="label.rejected"/></MenuItem>
+                            </Select>
+                        )
+                    }
+                }
+            },
+            {
                 name: "id",
                 label: <FormattedMessage id="label.options"/>,
                 options: {
                     sort: false,
                     print: false,
                     download: false,
+                    filter: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <React.Fragment>
                             <div size="small">
@@ -222,6 +301,8 @@ class Remises extends React.Component {
                                 { getStatus(row.status) }                       
                             </TableCell>
                             <TableCell align="left">{moment(row.issuedDate).format('L')}</TableCell>
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
                             </TableRow>
                         </React.Fragment>
                       ))
@@ -272,6 +353,9 @@ class Remises extends React.Component {
                 // return (
                 //     <ToolbarSelect/>
                 // );
+            },
+            onTableChange : (action, tableState)  => {
+                console.log(action);
             }
         };
 
@@ -283,7 +367,6 @@ class Remises extends React.Component {
 
     delete = (id) => {
         if(window.confirm("Are you sure you want to delete ?")) {
-            
             fetch(`http://localhost:4000/api/remises/${id}`, {
                 method: `delete`
               }).then(response =>
@@ -302,12 +385,11 @@ class Remises extends React.Component {
                   }
                 })
               );
-            
         }
     }
 
     fetchData = () => {
-        fetch('http://localhost:4000/api/remises?filter[include]=checks')
+        fetch('http://localhost:4000/api/remises?filter[include]=checks&filter[order]=issuedDate%20DESC')
             .then(res => res.json())
             .then(remises => {
                 this.setState({
@@ -315,6 +397,8 @@ class Remises extends React.Component {
                 });
             });
     }
+
+    
 
     render() {
         return (Template(this));

@@ -9,6 +9,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { DatePicker } from 'material-ui-pickers';
 import FormControl from '@material-ui/core/FormControl';
+import Checkbox from '@material-ui/core/Checkbox';
 import {
     toast, ToastContainer
 } from 'react-toastify';
@@ -37,11 +38,13 @@ class FormDialog extends React.Component {
                 status: "En attente"
             },
             banks: [],
-            checks: []
+            checks: [],
+            date: []
         }
     }
 
     componentWillMount(props) {
+
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth()+1; //January is 0!
@@ -58,6 +61,7 @@ class FormDialog extends React.Component {
                 issuedDate : today
             }
         });
+
     }
 
     componentDidMount() {
@@ -135,10 +139,9 @@ class FormDialog extends React.Component {
     }
 
 
+
     editcheck = () => {
-        Array.from(this.state.checks).map((check) => {
-            console.log('check', check);
-        })
+        
     }
     
 
@@ -179,7 +182,9 @@ class FormDialog extends React.Component {
                     <DialogContent>
 
                         <ValidatorForm style={{ width: '100%' }} onSubmit={this.createSmartDiscount} id="formRemise" noValidate autoComplete="off">
+                            
                             <Grid container spacing={3}>
+                                
                                 <Grid item xs={12}>
                                     <FormControl style={{ width: '100%', padding: '5px' }} >
                                         <TextValidator

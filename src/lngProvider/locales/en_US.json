@@ -682,7 +682,7 @@
   "label.waiting": "Waiting",
   "label.rejected": "Rejected",
   "label.validated": "Validated",
-  "label.toChange": "To Change",
+  "label.toChange": "Partiel",
   "label.search": "Search",
   "label.downloadCsv": "Download CSV",
   "label.print": "Print",

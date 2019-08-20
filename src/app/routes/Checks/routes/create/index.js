@@ -74,8 +74,6 @@ class Create extends React.Component {
         this.getCustomers();
         this.getRemises();
         this.getBanks();
-
-
     }
 
     getCustomers = () => {

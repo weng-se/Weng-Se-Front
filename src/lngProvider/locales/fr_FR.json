@@ -675,7 +675,7 @@
   "label.waiting": "En attente",
   "label.rejected": "Rejeter",
   "label.validated": "Validé",
-  "label.toChange": "A Changer",
+  "label.toChange": "Partiel",
   "label.search": "Rechercher",
   "label.downloadCsv": "Télécharger CSV",
   "label.print": "Imprimer",
