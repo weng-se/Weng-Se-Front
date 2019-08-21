@@ -159,10 +159,7 @@ class Lists extends React.Component {
                 options: {
                     customBodyRender: (value, tableMeta, updateValue) => {
                         return (
-                            <Link 
-                                href={ "http://" + value}
-                                target="_blank"
-                            >{value}</Link>
+                            <Link href={ "http://" + value} target="_blank">{value}</Link>
                         )
                     }
                 }

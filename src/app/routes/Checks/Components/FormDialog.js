@@ -177,7 +177,7 @@ class FormDialog extends React.Component {
 
                 <Dialog open={this.props.open} onClose={this.props.close}>
                     <DialogTitle>
-                        <FormattedMessage id="label.createNewRemise"/>
+                        <FormattedMessage id="label.createNewSmartRemise"/>
                     </DialogTitle>
                     <DialogContent>
 

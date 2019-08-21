@@ -672,6 +672,7 @@
   "label.checkInformation": "Informations chèque",
   "label.systemInformation": "Informations Système",
   "label.createNewRemise": "Créer une nouvelle remise",
+  "label.createNewSmartRemise": "Créer une nouvelle remise intelligente",
   "label.waiting": "En attente",
   "label.rejected": "Rejeter",
   "label.validated": "Validé",
@@ -689,5 +690,9 @@
   "label.msgCashingDateDesiredRequired": "Date d'encaissement souhaitée est obligatoire",
   "label.date": "Date",
   "label.smartDiscount": "Remise intelligente",
-  "label.numberCheck": "Nombre de chèque"
+  "label.numberCheck": "Nombre de chèque",
+  "label.today": "Aujourd'hui",
+  "label.tomorrow": "Demain",
+  "label.currentWeek": "Semaine en cours",
+  "label.rest": "Reste"
 }

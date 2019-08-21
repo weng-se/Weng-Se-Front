@@ -53,7 +53,11 @@ class Checks extends React.Component {
             show: false,
             openUpdateDialog: false,
             check: null,
-            banks: []
+            banks: [],
+            countWeek: 0,
+            countTomorrow: 0,
+            countToday: 0,
+            count: 0
         }
     }
 
@@ -294,6 +298,10 @@ class Checks extends React.Component {
 
     componentDidMount() {
         this.props.getChecks();
+        this.getCountWeek();
+        this.getCountTomorrow();
+        this.getCountToday();
+        this.getCount();
     }
 
     handleInputChange = (event) => {
@@ -319,6 +327,54 @@ class Checks extends React.Component {
         console.log("ids", ids);
         console.log(ids.length);
         localStorage.setItem('numberCheck', ids.length);
+    }
+
+
+    getCountWeek = () => {
+        var curr = new Date; // get current date
+        var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+        var firstday = new Date(curr.setDate(first)).toUTCString();    
+        fetch(`http://localhost:4000/api/checks/count?[where][issuedDate][gt]=${firstday}`)
+            .then(res => res.json())
+            .then(data => this.setState({ countWeek: data.count }));
+    }
+
+    getCountTomorrow = () => {
+        var tomorrow = new Date();
+        var dd = tomorrow.getDate()+1;
+        var mm = tomorrow.getMonth()+1; //January is 0!
+        var yyyy = tomorrow.getFullYear();
+        
+        if(dd<10) dd = '0'+dd
+        if(mm<10) mm = '0'+mm
+        tomorrow = yyyy + '-' + mm + '-' + dd;
+        
+        fetch(`http://localhost:4000/api/checks/count?[where][issuedDate]=${tomorrow}`)
+            .then(res => res.json())
+            .then(data => this.setState({ countTomorrow: data.count }));
+    }
+
+
+    getCountToday = () => {
+        
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+        
+        if(dd<10) dd = '0'+dd
+        if(mm<10) mm = '0'+mm
+        today = yyyy + '-' + mm + '-' + dd;;
+
+        fetch(`http://localhost:4000/api/checks/count?[where][issuedDate]=${today}`)
+            .then(res => res.json())
+            .then(data => this.setState({ countToday: data.count }));
+    }
+
+    getCount = () => {
+        fetch(`http://localhost:4000/api/checks/count`)
+            .then(res => res.json())
+            .then(data => this.setState({ count: data.count }));
     }
 
     componentWillReceiveProps(nextProps) {

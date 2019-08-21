@@ -23,41 +23,6 @@ import axios from 'axios';
 // import ContainerHeader from '../Customers/node_modules/components/ContainerHeader/index';
 
 
-const BootstrapInput = withStyles(theme => ({
-    root: {
-      'label + &': {
-        marginTop: theme.spacing(3),
-      },
-    },
-    input: {
-      borderRadius: 4,
-      position: 'relative',
-      backgroundColor: theme.palette.background.paper,
-      border: '1px solid #ced4da',
-      fontSize: 16,
-      padding: '10px 26px 10px 12px',
-      transition: theme.transitions.create(['border-color', 'box-shadow']),
-      // Use the system font instead of the default Roboto font.
-      fontFamily: [
-        '-apple-system',
-        'BlinkMacSystemFont',
-        '"Segoe UI"',
-        'Roboto',
-        '"Helvetica Neue"',
-        'Arial',
-        'sans-serif',
-        '"Apple Color Emoji"',
-        '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"',
-      ].join(','),
-      '&:focus': {
-        borderRadius: 4,
-        borderColor: '#80bdff',
-        boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
-      },
-    },
-  }))(InputBase);
-
 const styles = theme => ({
     root: {
         width: '100%',
@@ -110,16 +75,24 @@ class Remises extends React.Component {
         }
     })
 
-    handleChangeStatus = () => {
-        fetch(`http://localhost:4000/api/remises/${'5d4ed6062823840f5880e1c5'}`)
+    handleChangeStatus = (id, e) => {
+        this.setState({ status: e.target.value }) 
+        fetch(`http://localhost:4000/api/remises/${id}`)
             .then(res => res.json())
-            .then(remise => {
-                console.log(remise);
+            .then(data => {
+                data["status"] = this.state.status;
+                delete data["id"];
+                this.updateStatus(id, data);
             });
     }
 
-    updateStatus = (data) => {
-        
+    updateStatus = (id, data) => {
+        axios.post(`http://localhost:4000/api/remises/${id}/replace`, data)
+            .then(res => {
+                if(res.data) 
+                    this.fetchData();
+            })
+            .catch(err => console.log(err));
     }
 
     componentWillMount() {
@@ -186,7 +159,7 @@ class Remises extends React.Component {
                                 break;
                         }
                         return (
-                            <Chip icon={<FaceIcon />}
+                            <Chip
                                 label={value}
                                 clickable
                                 color={color}/>
@@ -227,7 +200,8 @@ class Remises extends React.Component {
                         return(
                             <Select
                                 value={value}
-                                onChange={this.handleChangeStatus}
+                                name="status"
+                                onChange={(e) => this.handleChangeStatus(tableMeta.rowData[8], e)}
                                 variant="outlined"
                                 InputLabelProps={{
                                     shrink: true,
@@ -258,6 +232,28 @@ class Remises extends React.Component {
                             </div>
                         </React.Fragment>
                     )
+                }
+            },
+            {
+                name: "validateDate",
+                label: "",
+                options: {
+                    sort: false,
+                    print: false,
+                    download: false,
+                    filter: false,
+                    display: false
+                }
+            },
+            {
+                name: "comment",
+                label: "",
+                options: {
+                    sort: false,
+                    print: false,
+                    download: false,
+                    filter: false,
+                    display: false
                 }
             }
         ];
@@ -366,7 +362,7 @@ class Remises extends React.Component {
     }
 
     delete = (id) => {
-        if(window.confirm("Are you sure you want to delete ?")) {
+        if(window.confirm(`Are you sure you want to delete ?`)) {
             fetch(`http://localhost:4000/api/remises/${id}`, {
                 method: `delete`
               }).then(response =>

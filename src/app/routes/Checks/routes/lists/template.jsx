@@ -45,13 +45,10 @@ const Template = (component) => {
                     <Card>
                         <CardContent>
                             <Typography gutterBottom variant="h6" component="h6">
-                                Aujourd'hui
+                                <FormattedMessage id="label.today"/>
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                Nombre de chèque : 598
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                Montant Total : 598
+                                Nombre de chèque : { component.state.countToday }
                             </Typography>
                         </CardContent>
                     </Card>
@@ -61,13 +58,10 @@ const Template = (component) => {
                     <Card>
                         <CardContent>
                             <Typography gutterBottom variant="h6" component="h6">
-                                Demain
+                                <FormattedMessage id="label.tomorrow"/>
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                Nombre de chèque : 598
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                Montant Total : 598
+                                Nombre de chèque : { component.state.countTomorrow }
                             </Typography>
                         </CardContent>
                     </Card>
@@ -77,13 +71,10 @@ const Template = (component) => {
                     <Card>
                         <CardContent>
                             <Typography gutterBottom variant="h6" component="h6">
-                                Semaine en cours
+                                <FormattedMessage id="label.currentWeek"/>
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                Nombre de chèque : 598
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                Montant Total : 598
+                                Nombre de chèque : { component.state.countWeek }
                             </Typography>
                         </CardContent>
                     </Card>
@@ -93,19 +84,16 @@ const Template = (component) => {
                     <Card>
                         <CardContent>
                             <Typography gutterBottom variant="h6" component="h6">
-                                Reste
+                                <FormattedMessage id="label.rest"/>
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                Nombre de chèque : 598
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                Montant Total : 598
+                                Nombre de chèque : { component.state.count }
                             </Typography>
                         </CardContent>
                     </Card>
                 </div>
 
-                <br/><br/><br/><br/><br/><br/><br/>
+                <br/><br/><br/><br/><br/><br/>
 
                 <Card>
                     <MuiThemeProvider theme={component.getMuiTheme()}>

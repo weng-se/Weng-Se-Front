@@ -679,6 +679,7 @@
   "label.checkInformation": "Check Informations",
   "label.systemInformation": "System Informations",
   "label.createNewRemise": "Create new remise",
+  "label.createNewSmartRemise": "Create new smart remise",
   "label.waiting": "Waiting",
   "label.rejected": "Rejected",
   "label.validated": "Validated",
@@ -697,5 +698,9 @@
   "label.msgCheckNumber": "Check number is required",
   "label.date": "Date",
   "label.smartDiscount": "Smart Discount",
-  "label.numberCheck": "Number check"
+  "label.numberCheck": "Number check",
+  "label.today": "Today",
+  "label.tomorrow": "Tomorrow",
+  "label.currentWeek": "Current week",
+  "label.rest": "Rest"
 }
