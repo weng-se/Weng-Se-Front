@@ -34,6 +34,9 @@ import {
     editCheckRemiseSuccess,
     editCheckRemiseError
 } from "../actions/Checks";
+import { 
+    Properties 
+} from '../constants/Properties';
 import axios from 'axios';
 
 
@@ -42,7 +45,7 @@ function* getChecks() {
         error = null;
     try {
         yield put(fetchChecksProgress());
-        yield axios.get(`http://localhost:4000/api/checks/findAll?status=VALIDATED&filter={%22include%22:[%22customer%22,%22remise%22]}`, {
+        yield axios.get(`http://${Properties.host}:${Properties.port}/api/checks/findAll?status=VALIDATED&filter={%22include%22:[%22customer%22,%22remise%22]}`, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -79,7 +82,7 @@ function* createCheck(data) {
     try {
 
         yield put(createCheckProgress());
-        yield axios.post(`http://localhost:4000/api/checks`, data.formData)
+        yield axios.post(`http://${Properties.host}:${Properties.port}/api/checks`, data.formData)
             .then((res) => {
                 if (res.status == 200)
                     payload = res.data
@@ -114,7 +117,7 @@ function* deleteCheck(data) {
         error = null;
     try {
         yield put(deleteCheckProgress());
-        yield axios.delete(`http://localhost:4000/api/checks/${data.id}`, {
+        yield axios.delete(`http://${Properties.host}:${Properties.port}/api/checks/${data.id}`, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -137,10 +140,6 @@ export function* watchDeleteChecks() {
     yield takeLatest(REQUEST_DELETE_CHECK, deleteCheck);
 }
 
-
-
-
-
 /**
  * GET CHECK
  */
@@ -150,7 +149,7 @@ function* getCheck(data) {
         error = null;
     try {
         yield put(getCheckProgress());
-        yield axios.get(`http://localhost:4000/api/checks/${data.id}`, {
+        yield axios.get(`http://${Properties.host}:${Properties.port}/api/checks/${data.id}`, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -173,8 +172,6 @@ export function* watchGetCheck() {
     yield takeLatest(REQUEST_GET_CHECK, getCheck);
 }
 
-
-
 /**
  * ÈDIT USER
  */
@@ -183,7 +180,7 @@ function* editCheck(data) {
     let payload = null,
         error = null;
     try {
-        yield axios.post(`http://localhost:4000/api/checks/update?where={"id":"${data.formData.id}"}`, data.formData)
+        yield axios.post(`http://${Properties.host}:4000/api/checks/update?where={"id":"${data.formData.id}"}`, data.formData)
             .then((res) => payload = res.data)
             .catch((error) => error = error);
         if (payload) yield put(checkEditSuccess(payload));
@@ -199,13 +196,9 @@ export function* watchEditCheck() {
 }
 
 
-
-
-
 /**
  * CREATE CHECK
  */
-
 
 function* createRemise(data) {
 
@@ -220,7 +213,7 @@ function* createRemise(data) {
 
     try {
 
-        yield axios.post(`http://localhost:4000/api/remises`, data.data)
+        yield axios.post(`http://${Properties.host}:${Properties.port}/api/remises`, data.data)
             .then((res) => {
                 if (res.status == 200) {
                     payload = res.data;
@@ -238,7 +231,7 @@ function* createRemise(data) {
             let ids = localStorage.getItem('ids').split(',');
 
             for (var i = 0; i < ids.length; i++) {
-                yield axios.post(`http://localhost:4000/api/checks/update?where={"id":"${ids[i]}"}`, dataCheck)
+                yield axios.post(`http://${Properties.host}:${Properties.port}/api/checks/update?where={"id":"${ids[i]}"}`, dataCheck)
                     .then((res) => payloadCheck = res.data)
                     .catch((error) => error = error);
             }
@@ -265,7 +258,6 @@ function* createRemise(data) {
 export function* watchCreateRemise() {
     yield takeLatest(REQUEST_CREATE_REMISE, createRemise);
 }
-
 
 export default function* rootSaga() {
     yield all([

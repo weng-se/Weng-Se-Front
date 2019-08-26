@@ -16,29 +16,23 @@ import {
     REQUEST_EDIT_SUPPLIER
     
 } from "../constants/ActionTypes";
-
 import {
     fetchSuppliersSuccess,
     fetchSuppliersError,
-    
-
     createSupplierSuccess,
     createSupplierFailure,
     createSupplierProgress,
-
     deleteSupplierSuccess,
     deleteSupplierFailure,
     deleteSupplierProgress,
-
     getSupplierFailure,
     getSupplierSuccess,
-
     editSupplierSuccess,
     editSupplierFailure
-
-
-   
 } from "../actions/Suppliers";
+import { 
+    Properties 
+} from './../constants/Properties';
 import axios from 'axios';
 
 
@@ -52,7 +46,7 @@ function* getSuppliers() {
   
 try {
     
-    yield axios.get('http://localhost:4000/api/Suppliers', {
+    yield axios.get(`http://${Properties.host}:${Properties.port}/api/Suppliers`, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -91,7 +85,7 @@ function* createSupplier(data) {
         
     try {
         yield put(createSupplierProgress());
-        yield axios.post('http://localhost:4000/api/suppliers', data.payload)
+        yield axios.post(`http://${Properties.host}:${Properties.port}/api/suppliers`, data.payload)
             .then((res) => {
                 if (res.status == 200)
                     payload = res.data
@@ -121,7 +115,7 @@ function* deleteSupplier(data) {
         error = null;
     try {
         yield put(deleteSupplierProgress());
-        yield axios.delete(`http://localhost:4000/api/suppliers/${data.id}`, {
+        yield axios.delete(`http://${Properties.host}:${Properties.port}/api/suppliers/${data.id}`, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -153,7 +147,7 @@ function* getSupplier(data) {
         error = null;
     try {
         
-        yield axios.get(`http://localhost:4000/api/suppliers/${data.id}`, {
+        yield axios.get(`http://${Properties.host}:${Properties.port}/api/suppliers/${data.id}`, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -188,7 +182,7 @@ function* editSupplier(action) {
     let payload = null,
         error = null;
     try {
-        yield axios.post(`http://localhost:4000/api/suppliers/update?where={"id":"${action.formData.id}"}`, action.formData)
+        yield axios.post(`http://${Properties.host}:${Properties.port}/api/suppliers/update?where={"id":"${action.formData.id}"}`, action.formData)
             .then((res) => payload = res.data)
             .catch((error) => error = error);
         if (payload) yield put(editSupplierSuccess(payload));

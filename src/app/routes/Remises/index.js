@@ -385,7 +385,7 @@ class Remises extends React.Component {
     }
 
     fetchData = () => {
-        fetch('http://localhost:4000/api/remises?filter[include]=checks&filter[order]=issuedDate%20DESC')
+        fetch(`http://localhost:4000/api/remises?filter[include]=checks&filter[order]=issuedDate%20DESC`)
             .then(res => res.json())
             .then(remises => {
                 this.setState({
@@ -393,8 +393,6 @@ class Remises extends React.Component {
                 });
             });
     }
-
-    
 
     render() {
         return (Template(this));

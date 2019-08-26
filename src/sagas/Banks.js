@@ -29,6 +29,9 @@ import {
     updateBankError,
     updateBankProgress
 } from "../actions/Banks";
+import { 
+    Properties 
+} from '../constants/Properties';
 import axios from 'axios';
 
 function* create(data) {
@@ -36,7 +39,7 @@ function* create(data) {
         error = null;
     try {
         yield put(createBankProgress());
-        yield axios.post(`http://localhost:4000/api/banks`, data.formData)
+        yield axios.post(`http://${Properties.host}:${Properties.port}/api/banks`, data.formData)
             .then((res) => {
                 if (res.status == 200)
                     payload = res.data
@@ -56,13 +59,12 @@ export function* watchCreateBank() {
 }
 
 
-
 function* fetchBanks() {
     let payload = null,
         error = null;
     try {
         yield put(fetchBankProgress());
-        yield axios.get(`http://localhost:4000/api/banks`, {
+        yield axios.get(`http://${Properties.host}:${Properties.port}/api/banks`, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -86,15 +88,13 @@ export function* watchFetchBanks() {
 }
 
 
-
-
 function* deleteBank(data) {
     let payload = null,
         error = null;
 
     try {
         yield put(deleteBankProgress());
-        yield axios.delete(`http://localhost:4000/api/banks/${data.id}`, {
+        yield axios.delete(`http://${Properties.host}:${Properties.port}/api/banks/${data.id}`, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -118,15 +118,12 @@ export function* watchDeleteBank() {
 }
 
 
-
-
-
 function* getBank(data) {
     let payload = null,
         error = null;
     try {
         yield put(getBankProgress());
-        yield axios.get(`http://localhost:4000/api/banks/${data.id}`, {
+        yield axios.get(`http://${Properties.host}:${Properties.port}/api/banks/${data.id}`, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -151,16 +148,12 @@ export function* watchGetBank() {
 
 
 
-
-
-
-
 function* updateBank(data) {
     let payload = null,
         error = null;
     try {
         yield put(updateBankProgress());
-        yield axios.post(`http://localhost:4000/api/banks/update?where={"id":"${data.formData.id}"}`, data.formData)
+        yield axios.post(`http://${Properties.host}:${Properties.port}/api/banks/update?where={"id":"${data.formData.id}"}`, data.formData)
             .then((res) => payload = res.data)
             .catch((error) => error = error);
         if (payload) yield put(updateBankSuccess(payload));
@@ -170,12 +163,9 @@ function* updateBank(data) {
     }
 }
 
-
 export function* watchUpdateCheck() {
     yield takeLatest(REQUEST_EDIT_BANK, updateBank);
 }
-
-
 
 
 export default function* rootSaga() {

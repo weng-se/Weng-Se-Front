@@ -37,6 +37,9 @@ import {
     userLogInSuccess,
     userLogInError
 } from "../actions/Auth";
+import {
+    Properties
+} from './../constants/Properties';
 import axios from 'axios';
 
 const createUserWithEmailPasswordRequest = async (email, password) =>
@@ -236,25 +239,25 @@ function* userLogin(action) {
         formData = action.formData;
 
     try {
-        yield axios.post('http://localhost:4000/api/Users/login?include=user', formData)
+        yield axios.post(`http://${Properties.host}:${Properties.port}/api/Users/login?include=user`, formData)
             .then((authUser) => payload = authUser)
             .catch((error) => error = error.response)
 
         if (payload) {
             if (!payload.data.user.disabled) {
-                localStorage.setItem('credentials', JSON.stringify({ 
+                localStorage.setItem(`credentials`, JSON.stringify({ 
                         'USER_ID': payload.data.userId, 
                         'USER_ROLE': payload.data.user.role,
                         'USER_TOKEN': payload.data.id
                     }
                 ))
-                localStorage.setItem('user_id', payload.data.userId);
-                localStorage.setItem('user_role', payload.data.user.role);
+                localStorage.setItem(`user_id`, payload.data.userId);
+                localStorage.setItem(`user_role`, payload.data.user.role);
                 if (payload.data.user.username)
-                    localStorage.setItem('user_username', payload.data.user.username);
+                    localStorage.setItem(`user_username`, payload.data.user.username);
                 else
-                    localStorage.setItem('user_username', payload.data.user.email);
-                    localStorage.setItem('user_token', payload.data.id);
+                    localStorage.setItem(`user_username`, payload.data.user.email);
+                    localStorage.setItem(`user_token`, payload.data.id);
                 yield put(userLogInSuccess(payload.data))
             } else {
                 yield put(userLogInError(true));

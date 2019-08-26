@@ -26,6 +26,9 @@ import {
     getUserSuccess,
     getUserError
 } from "../actions/Users";
+import {
+    Properties
+} from './../constants/Properties';
 import axios from 'axios';
 
 
@@ -35,7 +38,7 @@ function* getUsers() {
         error = null;
     try {
         yield put(fetchUsersProgress());
-        yield axios.get('http://localhost:4000/api/Users', {
+        yield axios.get(`http://${Properties.host}:${Properties.port}/api/Users`, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -68,7 +71,7 @@ function* createUser(data) {
         userData = data.formData;
     try {
         yield put(createUserProgress());
-        yield axios.post('http://localhost:4000/api/Users', userData)
+        yield axios.post(`http://${Properties.host}:${Properties.port}/api/Users`, userData)
             .then((res) => {
                 if (res.status == 200)
                     payload = res.data
@@ -96,7 +99,7 @@ function* deleteUser(data) {
         error = null;
     try {
         yield put(createUserProgress());
-        yield axios.delete(`http://localhost:4000/api/Users/${data.uid}`)
+        yield axios.delete(`http://${Properties.host}:${Properties.port}/api/Users/${data.uid}`)
             .then((res) => {
                 if (res.status == 200)
                     payload = res.data
@@ -125,7 +128,7 @@ function* editUser(data) {
 
 
     try {
-        yield axios.post(`http://localhost:4000/api/Users/update?where={"id":"${data.formData.id}"}`, data.formData)
+        yield axios.post(`http://${Properties.host}:${Properties.port}/api/Users/update?where={"id":"${data.formData.id}"}`, data.formData)
             .then((res) => payload = res.data)
             .catch((error) => error = error);
         if (payload) yield put(userEditSuccess(payload));
@@ -149,7 +152,7 @@ function* getUser(action) {
         error = null;
 
     try {
-        yield axios.get(`http://localhost:4000/api/Users/${action.user}`)
+        yield axios.get(`http://${Properties.host}:${Properties.port}/api/Users/${action.user}`)
             .then((res) => payload = res.data)
             .catch((error) => error = error);
         if (payload) yield put(getUserSuccess(payload));

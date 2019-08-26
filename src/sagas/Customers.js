@@ -31,6 +31,9 @@ import {
 import {
 
 } from "../actions/Users";
+import { 
+    Properties 
+} from '../constants/Properties';
 import axios from 'axios';
 
 
@@ -41,7 +44,7 @@ function* getCustomers() {
         error = null;
     try {
         yield put(fetchCustomersProgress());
-        yield axios.get('http://localhost:4000/api/customers', {
+        yield axios.get(`http://${Properties.host}:${Properties.port}/api/customers`, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -74,7 +77,7 @@ function* createCustomer(data) {
 
     try {
         yield put(createCustomerProgress());
-        yield axios.post('http://localhost:4000/api/customers', data.formData.customer)
+        yield axios.post(`http://${Properties.host}:${Properties.port}/api/customers`, data.formData.customer)
             .then((res) => {
                 if (res.status == 200)
                     payload = res.data
@@ -102,7 +105,7 @@ function* deleteCustomer(data) {
         error = null;
     try {
         yield put(deleteCustomerProgress());
-        yield axios.delete(`http://localhost:4000/api/customers/${data.uid}`)
+        yield axios.delete(`http://${Properties.host}:${Properties.port}/api/customers/${data.uid}`)
             .then((res) => {
                 if (res.status == 200)
                     payload = res.data
@@ -131,7 +134,7 @@ function* editCustomer(data) {
 
     try {
         yield put(editCustomerProgress());
-        yield axios.post(`http://localhost:4000/api/customers/update?where={"id":"${data.formData.id}"}`, data.formData)
+        yield axios.post(`http://${Properties.host}:${Properties.port}/api/customers/update?where={"id":"${data.formData.id}"}`, data.formData)
             .then((res) => payload = res.data)
             .catch((error) => error = error);
         if (payload) yield put(editCustomerSuccess(payload));
@@ -155,7 +158,7 @@ function* getCustomer(action) {
         error = null;
 
     try {
-        yield axios.get(`http://localhost:4000/api/customers/${action.customer}`)
+        yield axios.get(`http://${Properties.host}:${Properties.port}/api/customers/${action.customer}`)
             .then((res) => payload = res.data)
             .catch((error) => error = error);
         if (payload) yield put(getcustomerSuccess(payload));
