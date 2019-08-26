@@ -12,9 +12,6 @@ const defaultToolbarStyles = {
 
 class Toolbar extends React.Component {
   
-  handleClick = () => {
-    console.log("clicked on icon!");
-  }
 
   render() {
     const { classes } = this.props;
@@ -22,7 +19,7 @@ class Toolbar extends React.Component {
       <React.Fragment>
         <Tooltip title={<FormattedMessage id="label.createNewUser"/>}>
           <NavLink to="create" style={{ textDecoration: "none" }}>
-            <Button size="small" variant="contained" className={classes.button} onClick={this.handleClick}>
+            <Button size="small" color="primary" variant="contained" className={classes.button}>
               <FormattedMessage id="label.createNewUser"/>
             </Button>
           </NavLink>

@@ -21,11 +21,11 @@ class Toolbar extends React.Component {
     return (
       <React.Fragment>
         <Tooltip title={<FormattedMessage id="label.addBank"/>}>
-            <Button size="small" variant="contained" className={classes.button}>
-              <NavLink to="create" style={{ color: '#666' }}>
+          <NavLink to="create">
+            <Button size="small" color="primary" variant="contained" className={classes.button}>
                 <FormattedMessage id="label.addBank"/>
-              </NavLink>
             </Button>
+          </NavLink>
         </Tooltip>
       </React.Fragment>
     );
