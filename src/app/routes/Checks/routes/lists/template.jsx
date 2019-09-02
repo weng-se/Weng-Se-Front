@@ -42,77 +42,95 @@ const Template = (component) => {
             <div className="row animated slideInUpTiny animation-duration-3">
 
                 <div className="col-lg-3 col-sm-6 col-12">
-                    <Card>
+                    <Card style={{ backgroundColor: `#FEA47F` }}>
                         <CardContent>
                             <Typography gutterBottom variant="h6" component="h6">
                                 <FormattedMessage id="label.today"/>
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                Nombre de chèque : { component.state.countToday }
+                                <FormattedMessage id="label.numberOfCheck"/> : { component.state.countToday }
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                <FormattedMessage id="label.totalAmount"/> : { component.state.sumToday }
                             </Typography>
                         </CardContent>
                     </Card>
                 </div>
 
                 <div className="col-lg-3 col-sm-6 col-12">
-                    <Card>
+                    <Card style={{ backgroundColor: `#55E6C1` }}>
                         <CardContent>
                             <Typography gutterBottom variant="h6" component="h6">
                                 <FormattedMessage id="label.tomorrow"/>
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                Nombre de chèque : { component.state.countTomorrow }
+                                <FormattedMessage id="label.numberOfCheck"/> : { component.state.countTomorrow }
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                <FormattedMessage id="label.totalAmount"/> : { component.state.sumTomorrow }
                             </Typography>
                         </CardContent>
                     </Card>
                 </div>
 
                 <div className="col-lg-3 col-sm-6 col-12">
-                    <Card>
+                    <Card style={{ backgroundColor: `#EAB543` }}>
                         <CardContent>
                             <Typography gutterBottom variant="h6" component="h6">
                                 <FormattedMessage id="label.currentWeek"/>
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                Nombre de chèque : { component.state.countWeek }
+                                <FormattedMessage id="label.numberOfCheck"/> : { component.state.countWeek }
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                <FormattedMessage id="label.totalAmount"/> : { component.state.sumWeek }
                             </Typography>
                         </CardContent>
                     </Card>
                 </div>
 
                 <div className="col-lg-3 col-sm-6 col-12">
-                    <Card>
+                    <Card style={{ backgroundColor: `#25CCF7` }}>
                         <CardContent>
                             <Typography gutterBottom variant="h6" component="h6">
                                 <FormattedMessage id="label.rest"/>
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                Nombre de chèque : { component.state.count }
+                                <FormattedMessage id="label.numberOfCheck"/> : { component.state.count }
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                <FormattedMessage id="label.totalAmount"/> : { component.state.sumRest }
                             </Typography>
                         </CardContent>
                     </Card>
                 </div>
 
-                <br/><br/><br/><br/><br/><br/>
+                <div className="col-lg-12 col-sm-12 col-12">
 
-                <Card>
-                    <MuiThemeProvider theme={component.getMuiTheme()}>
-                        <MUIDataTable
-                            key={"fr"}
-                            title={<FormattedMessage id="pages.listChecks" />}
-                            id="muiChecksDataTable"
-                            data={Array.from(component.state.checks)}
-                            columns={component.columns}
-                            options={component.options}
-                        />
-                    </MuiThemeProvider>
-                    {component.props.progress !== 100 &&
-                        <div className="loader-view">
-                            <CircularProgress />
-                        </div>
-                    }
-                </Card>
+                    <Card style={{ marginTop: `20px` }}>
+                        <MuiThemeProvider theme={component.getMuiTheme()}>
+                            <MUIDataTable
+                                key={"fr"}
+                                title={<FormattedMessage id="pages.listChecks" />}
+                                id="muiChecksDataTable"
+                                data={Array.from(component.state.checks)}
+                                columns={component.columns}
+                                options={component.options}
+                            />
+                        </MuiThemeProvider>
+                        {component.props.progress !== 100 &&
+                            <div className="loader-view">
+                                <CircularProgress />
+                            </div>
+                        }
+                    </Card>
+
+                </div>
+
+
             </div>
+
+
 
             <div id="page-landing">
 

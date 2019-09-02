@@ -10,6 +10,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { DatePicker } from 'material-ui-pickers';
 import FormControl from '@material-ui/core/FormControl';
 import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import {
     toast, ToastContainer
 } from 'react-toastify';
@@ -39,7 +40,8 @@ class FormDialog extends React.Component {
             },
             banks: [],
             checks: [],
-            date: []
+            today: true,
+            tomorrow: false
         }
     }
 
@@ -137,12 +139,6 @@ class FormDialog extends React.Component {
         }
 
     }
-
-
-
-    editcheck = () => {
-        
-    }
     
 
     createSmartDiscount = () => {
@@ -161,13 +157,36 @@ class FormDialog extends React.Component {
                 this.reset();
                 this.setState({ checks: res.data });
                 setTimeout(() => this.closeModal(), 500);
-                this.editcheck();
+
+                if(this.state.today) {
+                    console.log('check today');
+                } 
+
+                if(this.state.tomorrow) {
+                    console.log('check tomorrow');
+                }
+                
             } 
         })
         .catch((res) => { 
             console.log(res) 
         })
 
+    }
+
+
+
+    setTodayDate = () => {
+        this.setState({
+            today: !this.state.today
+        })
+    }
+
+
+    setTomorrowDate = () => {
+        this.setState({
+            tomorrow: !this.state.tomorrow
+        })
     }
 
 
@@ -184,6 +203,45 @@ class FormDialog extends React.Component {
                         <ValidatorForm style={{ width: '100%' }} onSubmit={this.createSmartDiscount} id="formRemise" noValidate autoComplete="off">
                             
                             <Grid container spacing={3}>
+                                
+                                <Grid item xs={4}>
+                                    <FormControl style={{ width: '100%', padding: '5px' }} >
+                                        <FormControlLabel
+                                            control={
+                                                <Checkbox
+                                                    checked={this.state.today}
+                                                    value={this.state.today}
+                                                    onChange={this.setTodayDate}
+                                                    color="default"
+                                                />
+                                                }
+                                                label={<FormattedMessage id="label.today" />}
+                                        />
+                                    </FormControl>
+                                </Grid>
+
+                                <Grid item xs={4}>
+                                    <FormControl style={{ width: '100%', padding: '5px' }} >
+                                        <FormControlLabel
+                                            control={
+                                                <Checkbox
+                                                    checked={this.state.tomorrow}
+                                                    value={this.state.tomorrow}
+                                                    onChange={this.setTomorrowDate}
+                                                    color="default"
+                                                />
+                                                }
+                                                label={<FormattedMessage id="label.tomorrow" />}
+                                        />
+                                    </FormControl>
+                                </Grid>
+
+                                <Grid item xs={4}>
+                                    <FormControl style={{ width: '100%', padding: '5px' }} >
+                                        
+                                    </FormControl>
+                                </Grid>
+                                
                                 
                                 <Grid item xs={12}>
                                     <FormControl style={{ width: '100%', padding: '5px' }} >
@@ -205,6 +263,8 @@ class FormDialog extends React.Component {
                                         />
                                     </FormControl>
                                 </Grid>
+
+
                                 <Grid item xs={12}>
                                     <FormControl style={{ width: '100%', padding: '5px' }}>
                                         <TextValidator

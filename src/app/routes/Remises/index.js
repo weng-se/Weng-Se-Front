@@ -151,7 +151,7 @@ class Remises extends React.Component {
                             case 'Partiel':
                                 color = "default"
                                 break;
-                            case 'Validee':
+                            case 'Valide':
                                 color = "primary"
                                 break;
                             case 'Rejeter':
@@ -273,7 +273,7 @@ class Remises extends React.Component {
                     case "WAITING":   return (<Chip size="small" label={<FormattedMessage id="label.waiting"/>} style={{ backgroundColor: "orange", color : "#FFF" }} />);
                     case "REJECTED":  return (<Chip size="small" label={<FormattedMessage id="label.rejected"/>} style={{ backgroundColor: "red", color : "#FFF" }} />);
                     case "TOCHANGE":  return (<Chip size="small" color="secondary" label={<FormattedMessage id="label.toChange"/>}/>);
-                    default:  return <span>No project match</span>
+                    default:  return <span>None</span>
                   }
                 }
                 

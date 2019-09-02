@@ -29,6 +29,9 @@ import Template from './template';
 import './style.css';
 import { FormattedMessage } from 'react-intl';
 import { orange } from '@material-ui/core/colors';
+import {
+    Properties
+} from './../../../../../constants/Properties';
 import ToolbarSelect from '../../Components/ToolbarSelect';
 
 
@@ -57,7 +60,11 @@ class Checks extends React.Component {
             countWeek: 0,
             countTomorrow: 0,
             countToday: 0,
-            count: 0
+            count: 0,
+            sumToday: 0,
+            sumTomorrow: 0,
+            sumWeek: 0,
+            sumRest: 0
         }
     }
 
@@ -81,7 +88,7 @@ class Checks extends React.Component {
     componentWillMount() {
         this.columns = [
             {
-                name: "remise.issuedDate",
+                name: "issuedDate",
                 label: <FormattedMessage id="label.issuedDate"/>,
                 options: {
                     sort: true,
@@ -302,6 +309,10 @@ class Checks extends React.Component {
         this.getCountTomorrow();
         this.getCountToday();
         this.getCount();
+        this.getSumToday();
+        this.getSumTomorrow();
+        this.getSumWeek();
+        this.getSumRest();
     }
 
     handleInputChange = (event) => {
@@ -334,7 +345,7 @@ class Checks extends React.Component {
         var curr = new Date; // get current date
         var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
         var firstday = new Date(curr.setDate(first)).toUTCString();    
-        fetch(`http://localhost:4000/api/checks/count?[where][issuedDate][gt]=${firstday}`)
+        fetch(`http://${Properties.host}:${Properties.port}/api/checks/count?[where][issuedDate][gt]=${firstday}`)
             .then(res => res.json())
             .then(data => this.setState({ countWeek: data.count }));
     }
@@ -349,7 +360,7 @@ class Checks extends React.Component {
         if(mm<10) mm = '0'+mm
         tomorrow = yyyy + '-' + mm + '-' + dd;
         
-        fetch(`http://localhost:4000/api/checks/count?[where][issuedDate]=${tomorrow}`)
+        fetch(`http://${Properties.host}:${Properties.port}/api/checks/count?[where][issuedDate]=${tomorrow}`)
             .then(res => res.json())
             .then(data => this.setState({ countTomorrow: data.count }));
     }
@@ -366,15 +377,53 @@ class Checks extends React.Component {
         if(mm<10) mm = '0'+mm
         today = yyyy + '-' + mm + '-' + dd;;
 
-        fetch(`http://localhost:4000/api/checks/count?[where][issuedDate]=${today}`)
+        fetch(`http://${Properties.host}:${Properties.port}/api/checks/count?[where][issuedDate]=${today}`)
             .then(res => res.json())
             .then(data => this.setState({ countToday: data.count }));
     }
 
     getCount = () => {
-        fetch(`http://localhost:4000/api/checks/count`)
+        fetch(`http://${Properties.host}:${Properties.port}/api/checks/count`)
             .then(res => res.json())
             .then(data => this.setState({ count: data.count }));
+    }
+
+
+    getSumToday = () => {
+        let fromTime = moment(new Date()).format("YYYY-MM-DD")
+        let toTime = moment(new Date()).format("YYYY-MM-DD")
+
+        fetch(`http://localhost:4000/api/checks/getSumCheck?fromTime=${fromTime}&toTime=${toTime}`)
+            .then(res => res.json())
+            .then(data => this.setState({ sumToday: `€${data}` }));
+    }
+    getSumTomorrow = () => {
+
+        var fromTime = moment().startOf('isoWeek').format("YYYY-MM-DD");
+        var toTime = moment().endOf('isoWeek').format("YYYY-MM-DD");
+
+        fetch(`http://${Properties.host}:${Properties.port}/api/checks/getSumCheck?fromTime=${fromTime}&toTime=${toTime}`)
+            .then(res => res.json())
+            .then(data => this.setState({ sumTomorrow: `€${data}`  }));
+    }
+
+    getSumWeek = () => {
+        let fromTime = moment(new Date()).add(1, 'days').format("YYYY-MM-DD")
+        let toTime = moment(new Date()).add(1, 'days').format("YYYY-MM-DD")
+
+        fetch(`http://${Properties.host}:${Properties.port}/api/checks/getSumCheck?fromTime=${fromTime}&toTime=${toTime}`)
+            .then(res => res.json())
+            .then(data => this.setState({ sumWeek: `€${data}` }));
+    }
+
+    getSumRest = () => {
+        
+        let fromTime = "1900-01-01";
+        let toTime =  moment().startOf('isoWeek').subtract(1, 'days').format("YYYY-MM-DD");
+        
+        fetch(`http://${Properties.host}:${Properties.port}/api/checks/getSumCheck?fromTime=${fromTime}&toTime=${toTime}`)
+            .then(res => res.json())
+            .then(data => this.setState({ sumRest: `€${data}` }));
     }
 
     componentWillReceiveProps(nextProps) {

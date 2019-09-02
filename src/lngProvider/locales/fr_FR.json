@@ -694,5 +694,7 @@
   "label.today": "Aujourd'hui",
   "label.tomorrow": "Demain",
   "label.currentWeek": "Semaine en cours",
-  "label.rest": "Reste"
+  "label.rest": "Reste",
+  "label.totalAmount": "Montant total",
+  "label.numberOfCheck": "Nombre de chèque"
 }
