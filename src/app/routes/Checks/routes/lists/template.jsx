@@ -35,6 +35,7 @@ const styles = theme => ({
     }
 });
 
+
 const Template = (component) => {
     return (
         <React.Fragment>
@@ -130,66 +131,9 @@ const Template = (component) => {
 
             </div>
 
-
-
             <div id="page-landing">
 
             </div>
-
-            {/* <FormDialog open={component.state.show}/> */}
-
-            {/* <Dialog open={component.state.show} onClose={component.closeRemiseDialog}>
-                <DialogTitle>
-                    <FormattedMessage id="label.createNewRemise" />
-                </DialogTitle>
-
-                <DialogContent>
-                    <TextField
-                        name="number"
-                        label="Numero de remise"
-                        margin="normal"
-                        fullWidth
-                        value={component.state.number}
-                        onChange={component.handleChange}
-                    />
-                    <FormControl fullWidth margin="normal">
-                        <InputLabel htmlFor="bank">Banque</InputLabel>
-                        <Select
-                            inputProps={{
-                                name: 'bank',
-                            }}
-                            value={component.state.bank}
-                            onChange={component.handleChange}
-                        >
-                            <MenuItem value="">
-                                <em>None</em>
-                            </MenuItem>
-                            <MenuItem value={'SG'}>SG</MenuItem>
-                            <MenuItem value={'BNP'}>BNP</MenuItem>
-                            <MenuItem value={'LCL'}>LCL</MenuItem>
-                            <MenuItem value={'HSBC'}>HSBC</MenuItem>
-                            <MenuItem value={'LBP'}>LBP</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <DatePicker
-                        id="remiseDate"
-                        label="Date de remise"
-                        value={component.state.issuedDate}
-                        onChange={component.handleChange}
-                        fullWidth
-                        margin="normal"
-                    />
-                </DialogContent>
-
-                <DialogActions>
-                    <Button onClick={component.closeRemiseDialog} color="primary">
-                        <FormattedMessage id="label.discard" />
-                    </Button>
-                    <Button onClick={component.addRemise()} color="primary">
-                        <FormattedMessage id="label.save" />
-                    </Button>
-                </DialogActions>
-            </Dialog> */}
 
 
             <Dialog

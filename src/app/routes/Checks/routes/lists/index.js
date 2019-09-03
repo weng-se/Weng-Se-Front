@@ -342,12 +342,14 @@ class Checks extends React.Component {
 
 
     getCountWeek = () => {
-        var curr = new Date; // get current date
-        var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
-        var firstday = new Date(curr.setDate(first)).toUTCString();    
-        fetch(`http://${Properties.host}:${Properties.port}/api/checks/count?[where][issuedDate][gt]=${firstday}`)
+        
+        let fromTime = moment().startOf('isoWeek').format("YYYY-MM-DD");
+        let toTime = moment().endOf('isoWeek').format("YYYY-MM-DD");
+    
+        fetch(`http://localhost:4000/api/checks/getCountCheck?fromTime=${fromTime}&toTime=${toTime}`)
             .then(res => res.json())
             .then(data => this.setState({ countWeek: data.count }));
+
     }
 
     getCountTomorrow = () => {

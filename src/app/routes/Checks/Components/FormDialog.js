@@ -11,6 +11,7 @@ import { DatePicker } from 'material-ui-pickers';
 import FormControl from '@material-ui/core/FormControl';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import moment from 'moment';
 import {
     toast, ToastContainer
 } from 'react-toastify';
@@ -155,15 +156,24 @@ class FormDialog extends React.Component {
                     });
                 }
                 this.reset();
-                this.setState({ checks: res.data });
                 setTimeout(() => this.closeModal(), 500);
 
                 if(this.state.today) {
-                    console.log('check today');
+                    
+                    let today = moment(new Date()).format("YYYY-MM-DD")
+                    axios.get(`http://localhost:4000/api/checks?filter[where][issuedDate]=${today}`)
+                        .then(res => { console.log(`res`, res) })
+                        .catch(err => { console.error(`err`, err) })
+
                 } 
 
                 if(this.state.tomorrow) {
-                    console.log('check tomorrow');
+
+                    let tomorrow  = moment(new Date()).add(1,'days').format("YYYY-MM-DD");
+                    axios.get(`http://localhost:4000/api/checks?filter[where][issuedDate]=${tomorrow}`)
+                        .then(res => { console.log(`res`, res) })
+                        .catch(err => { console.error(`err`, err) })
+
                 }
                 
             } 
@@ -174,21 +184,17 @@ class FormDialog extends React.Component {
 
     }
 
-
-
     setTodayDate = () => {
         this.setState({
             today: !this.state.today
         })
     }
 
-
     setTomorrowDate = () => {
         this.setState({
             tomorrow: !this.state.tomorrow
         })
     }
-
 
     render() {
         return (
