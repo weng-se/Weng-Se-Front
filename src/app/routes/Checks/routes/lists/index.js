@@ -60,7 +60,7 @@ class Checks extends React.Component {
             countWeek: 0,
             countTomorrow: 0,
             countToday: 0,
-            count: 0,
+            countRest: 0,
             sumToday: 0,
             sumTomorrow: 0,
             sumWeek: 0,
@@ -308,7 +308,7 @@ class Checks extends React.Component {
         this.getCountWeek();
         this.getCountTomorrow();
         this.getCountToday();
-        this.getCount();
+        this.getCountRest();
         this.getSumToday();
         this.getSumTomorrow();
         this.getSumWeek();
@@ -384,21 +384,29 @@ class Checks extends React.Component {
             .then(data => this.setState({ countToday: data.count }));
     }
 
-    getCount = () => {
-        fetch(`http://${Properties.host}:${Properties.port}/api/checks/count`)
+
+    getCountRest = () => {
+        
+        let fromTime = "1900-01-01";
+        let toTime =  moment().startOf('isoWeek').subtract(1, 'days').format("YYYY-MM-DD");
+        
+        fetch(`http://${Properties.host}:${Properties.port}/api/checks/getCountCheck?fromTime=${fromTime}&toTime=${toTime}`)
             .then(res => res.json())
-            .then(data => this.setState({ count: data.count }));
+            .then(data => this.setState({ countRest: data.count }));
     }
 
 
     getSumToday = () => {
+    
         let fromTime = moment(new Date()).format("YYYY-MM-DD")
         let toTime = moment(new Date()).format("YYYY-MM-DD")
 
         fetch(`http://localhost:4000/api/checks/getSumCheck?fromTime=${fromTime}&toTime=${toTime}`)
             .then(res => res.json())
             .then(data => this.setState({ sumToday: `€${data}` }));
+    
     }
+
     getSumTomorrow = () => {
 
         var fromTime = moment().startOf('isoWeek').format("YYYY-MM-DD");
@@ -407,6 +415,7 @@ class Checks extends React.Component {
         fetch(`http://${Properties.host}:${Properties.port}/api/checks/getSumCheck?fromTime=${fromTime}&toTime=${toTime}`)
             .then(res => res.json())
             .then(data => this.setState({ sumTomorrow: `€${data}`  }));
+
     }
 
     getSumWeek = () => {

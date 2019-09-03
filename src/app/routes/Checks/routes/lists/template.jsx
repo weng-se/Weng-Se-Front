@@ -97,7 +97,7 @@ const Template = (component) => {
                                 <FormattedMessage id="label.rest"/>
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
-                                <FormattedMessage id="label.numberOfCheck"/> : { component.state.count }
+                                <FormattedMessage id="label.numberOfCheck"/> : { component.state.countRest }
                             </Typography>
                             <Typography variant="body2" color="textSecondary" component="p">
                                 <FormattedMessage id="label.totalAmount"/> : { component.state.sumRest }
