@@ -145,107 +145,77 @@ class FormDialog extends React.Component {
 
     createSmartDiscount = () => {
         
-        // axios.post("http://localhost:4000/api/remises", this.state.remise)
-        // .then((res) => {
-        //     if(res.status === 200 && res.statusText === "OK") {
-        //         if (!toast.isActive('smartDiscountSuccess')) {
-        //             toast.success('Successfully Created !', {
-        //                 delay: 1000,
-        //                 autoClose: true,
-        //                 closeButton: true,
-        //                 toastId: 'smartDiscountSuccess'
-        //             });
-        //         }
-        //         this.reset();
-        //         this.setState({ checks: res.data })
-        //         this.setState({ remise_id: res.data.id })
-        //         setTimeout(() => this.closeModal(), 500);
+        axios.post("http://localhost:4000/api/remises", this.state.remise)
+        .then((res) => {
+            if(res.status === 200 && res.statusText === "OK") {
+                if (!toast.isActive('smartDiscountSuccess')) {
+                    toast.success('Successfully Created !', {
+                        delay: 1000,
+                        autoClose: true,
+                        closeButton: true,
+                        toastId: 'smartDiscountSuccess'
+                    });
+                }
+                this.reset();
+                this.setState({ checks: res.data })
+                this.setState({ remise_id: res.data.id })
+                setTimeout(() => this.closeModal(), 500);
 
 
-        //         if(this.state.remise_id != null) {
+                if(this.state.remise_id != null) {
                 
-        //             if(this.state.today) {   
-        //                 let arr = []; 
-        //                 let today = moment(new Date()).format("YYYY-MM-DD");
-        //                 axios.get(`http://localhost:4000/api/checks?filter[where][issuedDate]=${today}`)
-        //                     .then(res => {
-        //                         res.data.map(check => {
-        //                             arr.push({
-        //                                 'id': check.id,
-        //                                 'remise_id': this.state.remise_id
-        //                             }) ;
-        //                         })
-
-        //                         // console.log(`Array of objects today: `, arr);
-
-        //                         axios.post(`http://localhost:4000/api/checks/updateAllCheck`, [{
-        //                             'id': '5d6eaf10003ddd97f040368e',
-        //                             'remise_id': '5d6eb4b8003ddd97f0403696'
-        //                         }]) 
-        //                             .then(res => console.log(res))
-        //                             .catch(err => { console.error(`err`, err) })
-
-        //                     })
-        //                     .catch(err => { console.error(`err`, err) })
-        //             } 
-                    
-                    
-
-        //             if(this.state.tomorrow) {
-        //                 let arr = []; 
-        //                 let tomorrow  = moment(new Date()).add(1,'days').format("YYYY-MM-DD");
-        //                 axios.get(`http://localhost:4000/api/checks?filter[where][issuedDate]=${tomorrow}`)
-        //                     .then(res => { 
-        //                         res.data.map(check => {
-        //                             arr.push({
-        //                                 'id': check.id,
-        //                                 'remise_id': this.state.remise_id
-        //                             }) ;
-        //                         })
-
-        //                         // console.log(`Array of objects tomorrow: `, arr);
-        //                         axios.post(`http://localhost:4000/api/checks/updateAllCheck`, arr) 
-        //                             .then(res => console.log(res))
-        //                             .catch(err => { console.error(`err`, err) })
-        //                     })
-        //                     .catch(err => { console.error(`err`, err) })
-        //             }
-
-        //         }
-
-                
-        //     } 
-        // })
-        // .catch(err => { 
-        //     console.error(err) 
-        // })
-
-
-                
-                     if(this.state.today) {   
-                        let arr = []; 
+                    if(this.state.today) {   
+                        let arr = [this.state.remise_id]; 
                         let today = moment(new Date()).format("YYYY-MM-DD");
                         axios.get(`http://localhost:4000/api/checks?filter[where][issuedDate]=${today}`)
                             .then(res => {
                                 res.data.map(check => {
-                                    arr.push({
-                                        'id': check.id,
-                                        'remise_id': this.state.remise_id
-                                    }) ;
+                                    arr.push(check.id) ;
                                 })
 
-                                // console.log(`Array of objects today: `, arr);
-
-                                axios.post(`http://localhost:4000/api/checks/updateAllCheck`, [{
-                                    'id': '5d6eaf10003ddd97f040368e',
-                                    'remise_id': '5d6eb4b8003ddd97f0403696'
-                                }])
+                                axios.post(`http://localhost:4000/api/checks/updateAllCheck`, arr)
                                     .then(res => console.log(res))
-                                    .catch(err => { console.error(`err`, err) })
+                                    .catch(err => { console.log(err) })
+
 
                             })
-                            .catch(err => { console.error(`err`, err) })
+                            .catch(err => { console.log(`err`, err) })
                     } 
+
+                    
+                    
+
+                    if(this.state.tomorrow) {
+                        let arr = []; 
+                        let tomorrow  = moment(new Date()).add(1,'days').format("YYYY-MM-DD");
+                        axios.get(`http://localhost:4000/api/checks?filter[where][issuedDate]=${tomorrow}`)
+                            .then(res => { 
+                                res.data.map(check => {
+                                    arr.push(check.id);
+                                })
+
+                                // console.log(`Array of objects tomorrow: `, arr);
+                                axios.post(`http://localhost:4000/api/checks/updateAllCheck`, arr)
+                                    .then(res => console.log(res))
+                                    .catch(err => { console.log(err) })
+
+                                
+                            })
+                            .catch(err => { console.error(`err`, err) })
+                    }
+
+                }
+
+                
+            } 
+        })
+        .catch(err => { 
+            console.error(err) 
+        })
+
+
+                
+                     
                 
 
     }
