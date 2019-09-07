@@ -10,6 +10,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { DatePicker } from 'material-ui-pickers';
 import FormControl from '@material-ui/core/FormControl';
 import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import moment from 'moment';
 import {
     toast, ToastContainer
 } from 'react-toastify';
@@ -39,7 +41,9 @@ class FormDialog extends React.Component {
             },
             banks: [],
             checks: [],
-            date: []
+            remise_id: null,
+            today: true,
+            tomorrow: false
         }
     }
 
@@ -137,12 +141,6 @@ class FormDialog extends React.Component {
         }
 
     }
-
-
-
-    editcheck = () => {
-        
-    }
     
 
     createSmartDiscount = () => {
@@ -159,17 +157,80 @@ class FormDialog extends React.Component {
                     });
                 }
                 this.reset();
-                this.setState({ checks: res.data });
+                this.setState({ checks: res.data })
+                this.setState({ remise_id: res.data.id })
                 setTimeout(() => this.closeModal(), 500);
-                this.editcheck();
+
+
+                if(this.state.remise_id != null) {
+                
+                    if(this.state.today) {   
+                        let arr = [this.state.remise_id]; 
+                        let today = moment(new Date()).format("YYYY-MM-DD");
+                        axios.get(`http://localhost:4000/api/checks?filter[where][issuedDate]=${today}`)
+                            .then(res => {
+                                res.data.map(check => {
+                                    arr.push(check.id) ;
+                                })
+
+                                axios.post(`http://localhost:4000/api/checks/updateAllCheck`, arr)
+                                    .then(res => console.log(res))
+                                    .catch(err => { console.log(err) })
+
+
+                            })
+                            .catch(err => { console.log(`err`, err) })
+                    } 
+
+                    
+                    
+
+                    if(this.state.tomorrow) {
+                        let arr = [this.state.remise_id]; 
+                        let tomorrow  = moment(new Date()).add(1,'days').format("YYYY-MM-DD");
+                        axios.get(`http://localhost:4000/api/checks?filter[where][issuedDate]=${tomorrow}`)
+                            .then(res => { 
+                                res.data.map(check => {
+                                    arr.push(check.id);
+                                })
+
+                                // console.log(`Array of objects tomorrow: `, arr);
+                                axios.post(`http://localhost:4000/api/checks/updateAllCheck`, arr)
+                                    .then(res => console.log(res))
+                                    .catch(err => { console.log(err) })
+
+                                
+                            })
+                            .catch(err => { console.error(`err`, err) })
+                    }
+
+                }
+
+                
             } 
         })
-        .catch((res) => { 
-            console.log(res) 
+        .catch(err => { 
+            console.error(err) 
         })
+
+
+                
+                     
+                
 
     }
 
+    setTodayDate = () => {
+        this.setState({
+            today: !this.state.today
+        })
+    }
+
+    setTomorrowDate = () => {
+        this.setState({
+            tomorrow: !this.state.tomorrow
+        })
+    }
 
     render() {
         return (
@@ -184,6 +245,45 @@ class FormDialog extends React.Component {
                         <ValidatorForm style={{ width: '100%' }} onSubmit={this.createSmartDiscount} id="formRemise" noValidate autoComplete="off">
                             
                             <Grid container spacing={3}>
+                                
+                                <Grid item xs={4}>
+                                    <FormControl style={{ width: '100%', padding: '5px' }} >
+                                        <FormControlLabel
+                                            control={
+                                                <Checkbox
+                                                    checked={this.state.today}
+                                                    value={this.state.today}
+                                                    onChange={this.setTodayDate}
+                                                    color="default"
+                                                />
+                                                }
+                                                label={<FormattedMessage id="label.today" />}
+                                        />
+                                    </FormControl>
+                                </Grid>
+
+                                <Grid item xs={4}>
+                                    <FormControl style={{ width: '100%', padding: '5px' }} >
+                                        <FormControlLabel
+                                            control={
+                                                <Checkbox
+                                                    checked={this.state.tomorrow}
+                                                    value={this.state.tomorrow}
+                                                    onChange={this.setTomorrowDate}
+                                                    color="default"
+                                                />
+                                                }
+                                                label={<FormattedMessage id="label.tomorrow" />}
+                                        />
+                                    </FormControl>
+                                </Grid>
+
+                                <Grid item xs={4}>
+                                    <FormControl style={{ width: '100%', padding: '5px' }} >
+                                        
+                                    </FormControl>
+                                </Grid>
+                                
                                 
                                 <Grid item xs={12}>
                                     <FormControl style={{ width: '100%', padding: '5px' }} >
@@ -205,6 +305,8 @@ class FormDialog extends React.Component {
                                         />
                                     </FormControl>
                                 </Grid>
+
+
                                 <Grid item xs={12}>
                                     <FormControl style={{ width: '100%', padding: '5px' }}>
                                         <TextValidator

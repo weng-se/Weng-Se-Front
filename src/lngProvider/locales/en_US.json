@@ -702,5 +702,7 @@
   "label.today": "Today",
   "label.tomorrow": "Tomorrow",
   "label.currentWeek": "Current week",
-  "label.rest": "Rest"
+  "label.rest": "Rest",
+  "label.totalAmount": "Total amount",
+  "label.numberOfCheck": "Number of check"
 }
