@@ -31,7 +31,7 @@ class UserInfo extends React.Component {
       <div className="user-profile d-flex flex-row align-items-center">
         <Avatar
           alt='...'
-          src={require("assets/images/avatar-setong.jpeg")}
+          src={require("assets/images/placeholder.jpg")}
           className="user-avatar "
         />
         <div className="user-detail">
@@ -52,16 +52,18 @@ class UserInfo extends React.Component {
                 }
               }}
         >
+          {/* 
           <MenuItem>
               <NavLink to="/app/profile">
                 <i className="zmdi zmdi-account zmdi-hc-fw mr-2"/>
-                <IntlMessages id="popup.profile"/>
+                <IntlMessages id="popup.profilez"/>
               </NavLink>
           </MenuItem>
           <MenuItem onClick={this.handleRequestClose}>
             <i className="zmdi zmdi-settings zmdi-hc-fw mr-2"/>
             <IntlMessages id="popup.setting"/>
-          </MenuItem>
+          </MenuItem> 
+          */}
           <MenuItem onClick={() => {
             this.handleRequestClose();
             this.props.userSignOut()

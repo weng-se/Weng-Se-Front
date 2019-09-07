@@ -694,5 +694,6 @@
   "label.today": "Aujourd'hui",
   "label.tomorrow": "Demain",
   "label.currentWeek": "Semaine en cours",
-  "label.rest": "Reste"
+  "label.rest": "Reste",
+  "label.idea": "Soumettre une idée"
 }
