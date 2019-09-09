@@ -409,10 +409,9 @@ class Checks extends React.Component {
 
     getSumTomorrow = () => {
 
-        let fromTime = moment(new Date()).add(1, 'days').format("YYYY-MM-DD")
-        let toTime = moment(new Date()).add(1, 'days').format("YYYY-MM-DD")
+        var fromTime = moment().startOf('isoWeek').format("YYYY-MM-DD");
+        var toTime = moment().endOf('isoWeek').format("YYYY-MM-DD");
 
-        
         fetch(`http://${Properties.host}:${Properties.port}/api/checks/getSumCheck?fromTime=${fromTime}&toTime=${toTime}`)
             .then(res => res.json())
             .then(data => this.setState({ sumTomorrow: `€${data}`  }));
@@ -420,9 +419,8 @@ class Checks extends React.Component {
     }
 
     getSumWeek = () => {
-        var fromTime = moment().startOf('isoWeek').format("YYYY-MM-DD");
-        var toTime = moment().endOf('isoWeek').format("YYYY-MM-DD");
-
+        let fromTime = moment(new Date()).add(1, 'days').format("YYYY-MM-DD")
+        let toTime = moment(new Date()).add(1, 'days').format("YYYY-MM-DD")
 
         fetch(`http://${Properties.host}:${Properties.port}/api/checks/getSumCheck?fromTime=${fromTime}&toTime=${toTime}`)
             .then(res => res.json())
@@ -436,7 +434,7 @@ class Checks extends React.Component {
         
         fetch(`http://${Properties.host}:${Properties.port}/api/checks/getSumCheck?fromTime=${fromTime}&toTime=${toTime}`)
             .then(res => res.json())
-            .then(data => this.setState({ sumRest: `€${data}` }))
+            .then(data => this.setState({ sumRest: `€${data}` }));
     }
 
     componentWillReceiveProps(nextProps) {
