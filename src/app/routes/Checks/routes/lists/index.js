@@ -57,9 +57,7 @@ class Checks extends React.Component {
             openUpdateDialog: false,
             check: null,
             banks: [],
-            countWeek: 0,
             countRest: 0,
-            sumWeek: 0,
             sumRest: 0
         }
     }
@@ -301,9 +299,7 @@ class Checks extends React.Component {
 
     componentDidMount() {
         this.props.getChecks();
-        this.getCountWeek();
         this.getCountRest();
-        this.getSumWeek();
         this.getSumRest();
     }
 
@@ -332,17 +328,6 @@ class Checks extends React.Component {
         localStorage.setItem('numberCheck', ids.length);
     }
 
-    getCountWeek = () => {
-        
-        let fromTime = moment().startOf('isoWeek').format("YYYY-MM-DD");
-        let toTime = moment().endOf('isoWeek').format("YYYY-MM-DD");
-    
-        fetch(`http://localhost:4000/api/checks/getCountCheck?fromTime=${fromTime}&toTime=${toTime}`)
-            .then(res => res.json())
-            .then(data => this.setState({ countWeek: data.count }));
-
-    }
-
     getCountRest = () => {
         
         let fromTime = "1900-01-01";
@@ -351,17 +336,6 @@ class Checks extends React.Component {
         fetch(`http://${Properties.host}:${Properties.port}/api/checks/getCountCheck?fromTime=${fromTime}&toTime=${toTime}`)
             .then(res => res.json())
             .then(data => this.setState({ countRest: data.count }));
-    }
-
-    
-    getSumWeek = () => {
-        var fromTime = moment().startOf('isoWeek').format("YYYY-MM-DD");
-        var toTime = moment().endOf('isoWeek').format("YYYY-MM-DD");
-
-
-        fetch(`http://${Properties.host}:${Properties.port}/api/checks/getSumCheck?fromTime=${fromTime}&toTime=${toTime}`)
-            .then(res => res.json())
-            .then(data => this.setState({ sumWeek: `€${data}` }));
     }
 
     getSumRest = () => {
