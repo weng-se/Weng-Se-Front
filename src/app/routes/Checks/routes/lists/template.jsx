@@ -28,6 +28,7 @@ import { CardContent, Typography } from '@material-ui/core';
 import ChartToday from './../../Components/ChartToday/';
 import ChartTomorrow from './../../Components/ChartTomorrow/';
 import ChartWeek from './../../Components/ChartWeek/';
+import ChartRest from './../../Components/ChartRest/'
 
 const styles = theme => ({
     datatables: {
@@ -57,19 +58,7 @@ const Template = (component) => {
                 </div>
 
                 <div className="col-lg-3 col-sm-6 col-12">
-                    <Card style={{ backgroundColor: `#25CCF7` }}>
-                        <CardContent>
-                            <Typography gutterBottom variant="h6" component="h6">
-                                <FormattedMessage id="label.rest"/>
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                <FormattedMessage id="label.numberOfCheck"/> : { component.state.countRest }
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                <FormattedMessage id="label.totalAmount"/> : { component.state.sumRest }
-                            </Typography>
-                        </CardContent>
-                    </Card>
+                    <ChartRest/>
                 </div>
 
                 <div className="col-lg-12 col-sm-12 col-12">

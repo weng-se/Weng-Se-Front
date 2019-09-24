@@ -56,9 +56,7 @@ class Checks extends React.Component {
             show: false,
             openUpdateDialog: false,
             check: null,
-            banks: [],
-            countRest: 0,
-            sumRest: 0
+            banks: []
         }
     }
 
@@ -299,8 +297,6 @@ class Checks extends React.Component {
 
     componentDidMount() {
         this.props.getChecks();
-        this.getCountRest();
-        this.getSumRest();
     }
 
     handleInputChange = (event) => {
@@ -326,26 +322,6 @@ class Checks extends React.Component {
         console.log("ids", ids);
         console.log(ids.length);
         localStorage.setItem('numberCheck', ids.length);
-    }
-
-    getCountRest = () => {
-        
-        let fromTime = "1900-01-01";
-        let toTime =  moment().startOf('isoWeek').subtract(1, 'days').format("YYYY-MM-DD");
-        
-        fetch(`http://${Properties.host}:${Properties.port}/api/checks/getCountCheck?fromTime=${fromTime}&toTime=${toTime}`)
-            .then(res => res.json())
-            .then(data => this.setState({ countRest: data.count }));
-    }
-
-    getSumRest = () => {
-        
-        let fromTime = "1900-01-01";
-        let toTime =  moment().startOf('isoWeek').subtract(1, 'days').format("YYYY-MM-DD");
-        
-        fetch(`http://${Properties.host}:${Properties.port}/api/checks/getSumCheck?fromTime=${fromTime}&toTime=${toTime}`)
-            .then(res => res.json())
-            .then(data => this.setState({ sumRest: `€${data}` }))
     }
 
     componentWillReceiveProps(nextProps) {
