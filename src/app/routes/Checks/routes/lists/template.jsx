@@ -26,6 +26,7 @@ import Card from '@material-ui/core/Card';
 import { FormattedMessage } from 'react-intl';
 import { CardContent, Typography } from '@material-ui/core';
 import ChartToday from './../../Components/ChartToday/';
+import ChartTomorrow from './../../Components/ChartTomorrow/';
 
 const styles = theme => ({
     datatables: {
@@ -47,19 +48,7 @@ const Template = (component) => {
                 </div>
 
                 <div className="col-lg-3 col-sm-6 col-12">
-                    <Card style={{ backgroundColor: `#55E6C1` }}>
-                        <CardContent>
-                            <Typography gutterBottom variant="h6" component="h6">
-                                <FormattedMessage id="label.tomorrow"/>
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                <FormattedMessage id="label.numberOfCheck"/> : { component.state.countTomorrow }
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                <FormattedMessage id="label.totalAmount"/> : { component.state.sumTomorrow }
-                            </Typography>
-                        </CardContent>
-                    </Card>
+                    <ChartTomorrow/>
                 </div>
 
                 <div className="col-lg-3 col-sm-6 col-12">

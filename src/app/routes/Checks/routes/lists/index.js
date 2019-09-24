@@ -58,11 +58,7 @@ class Checks extends React.Component {
             check: null,
             banks: [],
             countWeek: 0,
-            countTomorrow: 0,
-            countToday: 0,
             countRest: 0,
-            sumToday: 0,
-            sumTomorrow: 0,
             sumWeek: 0,
             sumRest: 0
         }
@@ -306,9 +302,7 @@ class Checks extends React.Component {
     componentDidMount() {
         this.props.getChecks();
         this.getCountWeek();
-        this.getCountTomorrow();
         this.getCountRest();
-        this.getSumTomorrow();
         this.getSumWeek();
         this.getSumRest();
     }
@@ -338,7 +332,6 @@ class Checks extends React.Component {
         localStorage.setItem('numberCheck', ids.length);
     }
 
-
     getCountWeek = () => {
         
         let fromTime = moment().startOf('isoWeek').format("YYYY-MM-DD");
@@ -350,23 +343,6 @@ class Checks extends React.Component {
 
     }
 
-    getCountTomorrow = () => {
-        var tomorrow = new Date();
-        var dd = tomorrow.getDate()+1;
-        var mm = tomorrow.getMonth()+1; //January is 0!
-        var yyyy = tomorrow.getFullYear();
-        
-        if(dd<10) dd = '0'+dd
-        if(mm<10) mm = '0'+mm
-        tomorrow = yyyy + '-' + mm + '-' + dd;
-        
-        fetch(`http://${Properties.host}:${Properties.port}/api/checks/count?[where][issuedDate]=${tomorrow}`)
-            .then(res => res.json())
-            .then(data => this.setState({ countTomorrow: data.count }));
-    }
-
-
-
     getCountRest = () => {
         
         let fromTime = "1900-01-01";
@@ -377,21 +353,7 @@ class Checks extends React.Component {
             .then(data => this.setState({ countRest: data.count }));
     }
 
-
     
-
-    getSumTomorrow = () => {
-
-        let fromTime = moment(new Date()).add(1, 'days').format("YYYY-MM-DD")
-        let toTime = moment(new Date()).add(1, 'days').format("YYYY-MM-DD")
-
-        
-        fetch(`http://${Properties.host}:${Properties.port}/api/checks/getSumCheck?fromTime=${fromTime}&toTime=${toTime}`)
-            .then(res => res.json())
-            .then(data => this.setState({ sumTomorrow: `€${data}`  }));
-
-    }
-
     getSumWeek = () => {
         var fromTime = moment().startOf('isoWeek').format("YYYY-MM-DD");
         var toTime = moment().endOf('isoWeek').format("YYYY-MM-DD");

@@ -26,8 +26,8 @@ const higherOrderComponent = (WrappedComponent) => {
 
     getSum = () => {
 
-      let fromTime = moment(new Date()).format("YYYY-MM-DD")
-      let toTime = moment(new Date()).format("YYYY-MM-DD")
+      let fromTime = moment(new Date()).add(1, 'days').format("YYYY-MM-DD")
+      let toTime = moment(new Date()).add(1, 'days').format("YYYY-MM-DD")
 
       fetch(`http://${Properties.host}:${Properties.port}/api/checks/getSumCheck?fromTime=${fromTime}&toTime=${toTime}`)
         .then(res => res.json())
@@ -38,18 +38,19 @@ const higherOrderComponent = (WrappedComponent) => {
     }
 
 
+
     getCount = () => {
 
-      var today = new Date();
-      var dd = today.getDate();
-      var mm = today.getMonth() + 1; //January is 0!
-      var yyyy = today.getFullYear();
+      var tomorrow = new Date();
+      var dd = tomorrow.getDate() + 1;
+      var mm = tomorrow.getMonth() + 1; //January is 0!
+      var yyyy = tomorrow.getFullYear();
 
       if (dd < 10) dd = '0' + dd
       if (mm < 10) mm = '0' + mm
-      today = yyyy + '-' + mm + '-' + dd;;
+      tomorrow = yyyy + '-' + mm + '-' + dd;
 
-      fetch(`http://${Properties.host}:${Properties.port}/api/checks/count?[where][issuedDate]=${today}`)
+      fetch(`http://${Properties.host}:${Properties.port}/api/checks/count?[where][issuedDate]=${tomorrow}`)
         .then(res => res.json())
         .then(data => this.setState({
           count: data.count
