@@ -1,12 +1,12 @@
-import React from "react";
-import IconButton from "@material-ui/core/IconButton";
-import Button from "@material-ui/core/Button";
-import Tooltip from "@material-ui/core/Tooltip";
-import AddIcon from "@material-ui/icons/Add";
-import { withStyles } from "@material-ui/core/styles";
+import React from 'react';
+import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
+import AddIcon from '@material-ui/icons/Add';
+import { withStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
-import { FormattedMessage } from "react-intl";
-import FormDialog from './FormDialog';
+import { FormattedMessage } from 'react-intl';
+import FormDialog from './../FormDialog';
 
 const styles = {
   iconButton: {

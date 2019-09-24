@@ -1,8 +1,8 @@
 import React, {
   Component
 } from 'react';
-import { 
-  Properties 
+import {
+  Properties
 } from '../../../../../constants/Properties';
 import moment from 'moment';
 
@@ -10,6 +10,13 @@ const higherOrderComponent = (WrappedComponent) => {
 
   class HOC extends Component {
 
+    constructor(props) {
+      super(props);
+      this.state = {
+        sum: 0,
+        count: 0
+      }
+    }
 
     componentDidMount() {
       this.getSum();
@@ -51,7 +58,7 @@ const higherOrderComponent = (WrappedComponent) => {
     }
 
     render() {
-      return <WrappedComponent / > ;
+      return <WrappedComponent {...this.state} /> ;
     }
 
   }

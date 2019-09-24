@@ -24,9 +24,8 @@ import {
 } from 'react-toastify';
 import Card from '@material-ui/core/Card';
 import { FormattedMessage } from 'react-intl';
-import FormDialog from '../../Components/FormDialog';
 import { CardContent, Typography } from '@material-ui/core';
-import ChartToday from '../../Components/ChartToday/index';
+import ChartToday from './../../Components/ChartToday/';
 
 const styles = theme => ({
     datatables: {

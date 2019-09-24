@@ -19,7 +19,7 @@ import {
 import {
     withStyles
 } from '@material-ui/core/styles';
-import { createRemiseRequest } from "../../../../actions/Checks";
+import { createRemiseRequest } from "../../../../../actions/Checks";
 import {
     Grid
 } from '@material-ui/core';

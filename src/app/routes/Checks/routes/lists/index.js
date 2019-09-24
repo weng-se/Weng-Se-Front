@@ -24,15 +24,15 @@ import Chip from '@material-ui/core/Chip';
 import DoneIcon from '@material-ui/icons/Done';
 import compose from 'recompose/compose';
 import moment from 'moment';
-import Toolbar from '../../Components/Toolbar';
+import Toolbar from './../../Components/Toolbar/';
+import ToolbarSelect from './../../Components/ToolbarSelect/';
 import Template from './template';
-import './style.css';
 import { FormattedMessage } from 'react-intl';
-import { orange } from '@material-ui/core/colors';
 import {
     Properties
 } from './../../../../../constants/Properties';
-import ToolbarSelect from '../../Components/ToolbarSelect';
+import './style.css';
+
 
 
 const styles = {
