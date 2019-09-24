@@ -26,6 +26,7 @@ import Card from '@material-ui/core/Card';
 import { FormattedMessage } from 'react-intl';
 import FormDialog from '../../Components/FormDialog';
 import { CardContent, Typography } from '@material-ui/core';
+import ChartToday from '../../Components/ChartToday/index';
 
 const styles = theme => ({
     datatables: {
@@ -43,19 +44,7 @@ const Template = (component) => {
             <div className="row animated slideInUpTiny animation-duration-3">
 
                 <div className="col-lg-3 col-sm-6 col-12">
-                    <Card style={{ backgroundColor: `#FEA47F` }}>
-                        <CardContent>
-                            <Typography gutterBottom variant="h6" component="h6">
-                                <FormattedMessage id="label.today"/>
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                <FormattedMessage id="label.numberOfCheck"/> : { component.state.countToday }
-                            </Typography>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                <FormattedMessage id="label.totalAmount"/> : { component.state.sumToday }
-                            </Typography>
-                        </CardContent>
-                    </Card>
+                    <ChartToday/>
                 </div>
 
                 <div className="col-lg-3 col-sm-6 col-12">

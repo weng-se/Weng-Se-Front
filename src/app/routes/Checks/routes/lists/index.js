@@ -307,9 +307,7 @@ class Checks extends React.Component {
         this.props.getChecks();
         this.getCountWeek();
         this.getCountTomorrow();
-        this.getCountToday();
         this.getCountRest();
-        this.getSumToday();
         this.getSumTomorrow();
         this.getSumWeek();
         this.getSumRest();
@@ -368,22 +366,6 @@ class Checks extends React.Component {
     }
 
 
-    getCountToday = () => {
-        
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1; //January is 0!
-        var yyyy = today.getFullYear();
-        
-        if(dd<10) dd = '0'+dd
-        if(mm<10) mm = '0'+mm
-        today = yyyy + '-' + mm + '-' + dd;;
-
-        fetch(`http://${Properties.host}:${Properties.port}/api/checks/count?[where][issuedDate]=${today}`)
-            .then(res => res.json())
-            .then(data => this.setState({ countToday: data.count }));
-    }
-
 
     getCountRest = () => {
         
@@ -396,16 +378,7 @@ class Checks extends React.Component {
     }
 
 
-    getSumToday = () => {
     
-        let fromTime = moment(new Date()).format("YYYY-MM-DD")
-        let toTime = moment(new Date()).format("YYYY-MM-DD")
-
-        fetch(`http://localhost:4000/api/checks/getSumCheck?fromTime=${fromTime}&toTime=${toTime}`)
-            .then(res => res.json())
-            .then(data => this.setState({ sumToday: `€${data}` }));
-    
-    }
 
     getSumTomorrow = () => {
 
