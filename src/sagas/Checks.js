@@ -206,7 +206,8 @@ function* createRemise(data) {
 
     let payload = null,
         error = null,
-        payloadCheck = null;
+        payloadCheck = null,
+        ids = [];
 
         data.data.amount = localStorage.getItem('totalAmount');
         data.data.numberCheck = localStorage.getItem('numberCheck');
@@ -228,13 +229,21 @@ function* createRemise(data) {
                 "remiseId": payload.id
             }
 
-            let ids = localStorage.getItem('ids').split(',');
+            //ids = ["test","5d6d2bcd66fc7efdb6435625", "5d6d2d1566fc7efdb6435627"]
+           
+           ids.push(payload.id)
+            let idCheck = []
+            idCheck.push(localStorage.getItem('ids').split(','))
+             
+             ids.push(...idCheck[0])
 
-            for (var i = 0; i < ids.length; i++) {
-                yield axios.post(`http://${Properties.host}:${Properties.port}/api/checks/update?where={"id":"${ids[i]}"}`, dataCheck)
+            
+
+            
+                yield axios.post(`http://localhost:4000/api/checks/updateAllCheck`, ids)
                     .then((res) => payloadCheck = res.data)
                     .catch((error) => error = error);
-            }
+            
             if (payloadCheck) {
                 yield put(editCheckRemiseSuccess(payloadCheck))
             } else {
