@@ -89,7 +89,7 @@ class SidenavContent extends Component {
       <CustomScrollbars className=" scrollbar">
         <ul className="nav-menu">
 
-          <li className="nav-header">
+          {/* <li className="nav-header">
             <IntlMessages id="sidebar.main" />
           </li>
 
@@ -122,7 +122,7 @@ class SidenavContent extends Component {
                 </NavLink>
               </li>
             </ul>
-          </li>
+          </li>*/}
 
           <li className="nav-header">
             <IntlMessages id="sidebar.management" />
@@ -295,7 +295,7 @@ class SidenavContent extends Component {
           }
 
 
-          <li className="nav-header">
+          {/* <li className="nav-header">
             <IntlMessages id="sidebar.administration" />
           </li>
 
@@ -307,13 +307,13 @@ class SidenavContent extends Component {
               </span>
             </Button>
             <ul className="sub-menu">
-              {/* <li>
+              <li>
                 <NavLink className="prepend-icon" to="/app/batch">
                   <span className="nav-text"><IntlMessages id="pages.batch" /></span>
                 </NavLink>
-              </li> */}
+              </li> 
             </ul>
-          </li>
+          </li>*/}
 
         </ul>
       </CustomScrollbars>

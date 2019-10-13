@@ -696,5 +696,6 @@
   "label.currentWeek": "Semaine en cours",
   "label.rest": "Reste",
   "label.totalAmount": "Montant total",
-  "label.numberOfCheck": "Nombre de chèque"
+  "label.numberOfCheck": "Nombre de chèque",
+  "label.submitIdea" : "Soumettre une idée"
 }

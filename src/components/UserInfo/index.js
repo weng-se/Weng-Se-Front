@@ -31,7 +31,7 @@ class UserInfo extends React.Component {
       <div className="user-profile d-flex flex-row align-items-center">
         <Avatar
           alt='...'
-          src={require("assets/images/avatar-setong.jpeg")}
+          src={require("assets/images/placeholder.jpg")}
           className="user-avatar "
         />
         <div className="user-detail">
