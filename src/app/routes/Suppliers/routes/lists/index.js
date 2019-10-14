@@ -29,6 +29,7 @@ import {
 import Template from './template';
 import Toolbar from './Toolbar';
 import './style.css';
+import Fab from '@material-ui/core/Fab';
 //import IntlMessages from '../../../Customers/node_modules/util/IntlMessages';
 //import DataTable from './Components/DataTable';
 //import ContainerHeader from '../../../Customers/node_modules/components/ContainerHeader/index';
@@ -133,12 +134,20 @@ class Suppliers extends React.Component {
                         customBodyRender: (value, tableMeta, updateValue) => (
                             <React.Fragment>
                                 <div size="small">
-                                    <IconButton size="small" >
+                                    {/*<IconButton size="small" >
                                         <DeleteIcon fontSize="small" onClick={() => this.removeSupplier(value) }/>
                                     </IconButton>
                                     <IconButton size="small" >
                                         <EditIcon fontSize="small" onClick={() => this.getUpdatedSupplier(value)}/>
                                     </IconButton>
+                        */}
+                                    <Fab color="primary" size="small" aria-label="edit" onClick={() => this.getUpdatedSupplier(value)}>
+                                    <EditIcon />
+                                </Fab>
+                                &nbsp;&nbsp;&nbsp;
+                                <Fab color="secondary" size="small" aria-label="delete" onClick={() => this.removeSupplier(value) } >
+                                    <DeleteIcon />
+                                </Fab>
                                 </div>
                             </React.Fragment>
                         )
@@ -206,7 +215,7 @@ class Suppliers extends React.Component {
             selectableRows: 'none',
             filterType: 'dropdown',
             responsive: 'scroll',
-            rowsPerPage: 10,
+            rowsPerPage: 15,
             rowsPerPageOptions: [5,10,15,20,25,50],
             expandableRows: false,
             resizableColumns: false,

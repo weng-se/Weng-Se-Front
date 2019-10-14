@@ -231,7 +231,7 @@ class Checks extends React.Component {
             selectableRows: 'multiple',
             filterType: 'dropdown',
             responsive: 'scroll',
-            rowsPerPage: 10,
+            rowsPerPage: 15,
             expandableRows: false,
             resizableColumns: false,
             selectableRowsOnClick: true,

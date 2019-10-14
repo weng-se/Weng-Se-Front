@@ -19,6 +19,7 @@ import InputBase from '@material-ui/core/InputBase';
 import Select from '@material-ui/core/Select';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import Fab from '@material-ui/core/Fab';
 // import IntlMessages from '../Customers/node_modules/util/IntlMessages';
 // import ContainerHeader from '../Customers/node_modules/components/ContainerHeader/index';
 
@@ -226,9 +227,13 @@ class Remises extends React.Component {
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <React.Fragment>
                             <div size="small">
-                                <IconButton size="small" onClick={() => this.delete(value)}>
+                                {/*<IconButton size="small" onClick={() => this.delete(value)}>
                                     <DeleteIcon fontSize="small" />
                                 </IconButton>
+                    */}
+                                <Fab color="secondary" size="small" aria-label="delete" onClick={() => this.delete(value)} >
+                                    <DeleteIcon />
+                                </Fab>
                             </div>
                         </React.Fragment>
                     )
@@ -305,7 +310,7 @@ class Remises extends React.Component {
                 )
               )
             },
-            rowsPerPage: 10,
+            rowsPerPage: 15,
             rowsPerPageOptions: [5,10,15,20,25,50],
             textLabels: {
                 body: {

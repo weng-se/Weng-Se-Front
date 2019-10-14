@@ -29,6 +29,7 @@ import compose from 'recompose/compose';
 import Template from './template';
 import { FormattedMessage } from 'react-intl';
 import './style.css';
+import Fab from '@material-ui/core/Fab';
 
 const styles = {
     checked: {},
@@ -92,12 +93,21 @@ class Lists extends React.Component {
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <React.Fragment>
                             <div size="small">
-                                <IconButton size="sm" onClick={() => this.removeCustomer(value)}>
+                               {/* <IconButton size="sm" onClick={() => this.removeCustomer(value)}>
                                     <DeleteIcon fontSize="small" />
                                 </IconButton>
                                 <IconButton size="sm" onClick={() => this._handleClickOpen(value)}>
                                     <EditIcon fontSize="small"/>
                                 </IconButton>
+                    */}
+
+                                <Fab color="primary" size="small" aria-label="edit" onClick={() => this._handleClickOpen(value)}>
+                                    <EditIcon />
+                                </Fab>
+                                &nbsp;&nbsp;&nbsp;
+                                <Fab color="secondary" size="small" aria-label="delete" onClick={() => this.removeCustomer(value)} >
+                                    <DeleteIcon />
+                                </Fab>
                             </div>
                         </React.Fragment>
                     )
@@ -186,7 +196,7 @@ class Lists extends React.Component {
             selectableRows: 'none',
             filterType: 'dropdown',
             responsive: 'scroll',
-            rowsPerPage: 10,
+            rowsPerPage: 15,
             rowsPerPageOptions: [5,10,15,20,25,50],
             expandableRows: false,
             resizableColumns: false,

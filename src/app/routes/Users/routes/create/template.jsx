@@ -26,10 +26,6 @@ const roles = [
         label: 'GESTIONNAIRE',
     },
     {
-        value: 'ROLE_SUPERVISOR',
-        label: 'SUPERVISOR',
-    },
-    {
         value: 'ROLE_ADMIN',
         label: 'ADMINISTRATEUR',
     }

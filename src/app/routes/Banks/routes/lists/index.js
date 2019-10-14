@@ -30,6 +30,7 @@ import moment from 'moment';
 import Toolbar from "./Toolbar";
 import Template from './template';
 import './style.css';
+import Fab from '@material-ui/core/Fab';
 
 
 const styles = {
@@ -94,12 +95,20 @@ class Banks extends React.Component {
                     customBodyRender: (id, tableMeta, updateValue) => (
                         <React.Fragment>
                             <div size="small">
-                                <IconButton size="small" onClick={() => this.removeBank(id)}>
+                                {/*<IconButton size="small" onClick={() => this.removeBank(id)}>
                                     <DeleteIcon fontSize="small" />
                                 </IconButton>
                                 <IconButton size="small" onClick={() => this.handleClickOpen(id)}>
                                     <EditIcon fontSize="small" />
                                 </IconButton>
+                    */}
+                                <Fab color="primary" size="small" aria-label="edit" onClick={() => this.handleClickOpen(id)}>
+                                    <EditIcon />
+                                </Fab>
+                                &nbsp;&nbsp;&nbsp;
+                                <Fab color="secondary" size="small" aria-label="delete" onClick={() => this.removeBank(id)} >
+                                    <DeleteIcon />
+                                </Fab>
                             </div>
                         </React.Fragment>
                     )
@@ -160,8 +169,8 @@ class Banks extends React.Component {
             filter: true,
             selectableRows: 'single',
             filterType: 'dropdown',
-            responsive: 'stacked',
-            rowsPerPage: 10,
+            responsive: 'scroll',
+            rowsPerPage: 15,
             rowsPerPageOptions: [10,15,20,25,50],
             expandableRows: false,
             resizableColumns: false,

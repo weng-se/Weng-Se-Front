@@ -141,11 +141,12 @@ class SidenavContent extends Component {
                   <span className="nav-text"><IntlMessages id="pages.listSuppliers" /></span>
                 </NavLink>
               </li>
-              <li>
-                <NavLink className="prepend-icon" to="/app/suppliers/import">
+              {/*<li>
+               <NavLink className="prepend-icon" to="/app/suppliers/import">
                   <span className="nav-text"><IntlMessages id="pages.importSuppliers" /></span>
                 </NavLink>
               </li>
+              */}
             </ul>
           </li>
 
@@ -162,16 +163,17 @@ class SidenavContent extends Component {
                   <span className="nav-text"><IntlMessages id="pages.listCustomers" /></span>
                 </NavLink>
               </li>
-              <li>
+              {/*<li>
                 <NavLink className="prepend-icon" to="/app/customers/create">
                   <span className="nav-text"><IntlMessages id="pages.addCustomers" /></span>
                 </NavLink>
               </li>
-              <li>
+              */}
+             {/* <li>
                 <NavLink className="prepend-icon" to="/app/customers/import">
                   <span className="nav-text"><IntlMessages id="pages.importCustomers" /></span>
                 </NavLink>
-              </li>
+              </li> */}
             </ul>
           </li>
 
@@ -258,11 +260,11 @@ class SidenavContent extends Component {
                   <span className="nav-text"><IntlMessages id="pages.addBank" /></span>
                 </NavLink>
               </li>
-              <li>
+              {/*<li>
                 <NavLink className="prepend-icon" to="/app/banks/import">
                   <span className="nav-text"><IntlMessages id="pages.importBank" /></span>
                 </NavLink>
-              </li>
+              </li> */}
             </ul>
           </li>
 
@@ -280,16 +282,17 @@ class SidenavContent extends Component {
                   <span className="nav-text"><IntlMessages id="pages.listUsers" /></span>
                 </NavLink>
               </li>
-              <li>
+             {/*  <li>
                 <NavLink className="prepend-icon" to="/app/users/create">
                   <span className="nav-text"><IntlMessages id="pages.addUsers" /></span>
                 </NavLink>
               </li>
-              <li>
+              */}
+            {/*  <li>
                 <NavLink className="prepend-icon" to="/app/users/import">
                   <span className="nav-text"><IntlMessages id="pages.importUsers" /></span>
                 </NavLink>
-              </li>
+              </li> */}
             </ul>
           </li>
           }

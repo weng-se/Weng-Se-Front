@@ -11,10 +11,11 @@ import Switch from '@material-ui/core/Switch';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import CancelIcon from '@material-ui/icons/Cancel';
 import Chip from '@material-ui/core/Chip';
 import DoneIcon from '@material-ui/icons/Done';
-import { 
-    createMuiTheme 
+import {
+    createMuiTheme
 } from '@material-ui/core/styles';
 import Toolbar from "./Toolbar";
 import {
@@ -31,6 +32,7 @@ import Template from './template';
 import './style.css';
 import axios from 'axios';
 import { FormattedMessage } from 'react-intl';
+import Fab from '@material-ui/core/Fab';
 
 const styles = {
     checked: {},
@@ -63,39 +65,39 @@ class Lists extends React.Component {
 
     getMuiTheme = () => createMuiTheme({
         overrides: {
-          MUIDataTableBodyCell: {
-            root:  {
-                padding: '2px 6px 2px 20px' 
+            MUIDataTableBodyCell: {
+                root: {
+                    padding: '2px 6px 2px 20px'
+                }
+            },
+            MUIDataTableBodyRow: {
+                root: {
+                    '&:nth-child(odd)': {
+                        backgroundColor: '#F2F2F2'
+                    }
+                }
             }
-          },
-          MUIDataTableBodyRow: {
-            root: {
-              '&:nth-child(odd)': { 
-                backgroundColor: '#F2F2F2'
-              }
-            }
-          }
         }
     })
 
 
     updateStatus(id) {
-        var index = this.state.users.findIndex(x=> x.id === id);
+        var index = this.state.users.findIndex(x => x.id === id);
         if (index === -1)
             console.log('error')
         else {
             this.setState({
                 users: [
-                   ...this.state.users.slice(0,index),
-                   Object.assign({}, this.state.users[index], { disabled: !this.state.users[index].disabled }),
-                   ...this.state.users.slice(index+1)
+                    ...this.state.users.slice(0, index),
+                    Object.assign({}, this.state.users[index], { disabled: !this.state.users[index].disabled }),
+                    ...this.state.users.slice(index + 1)
                 ]
             });
             axios.post(`http://localhost:4000/api/Users/update?where={"id":"${id}"}`, { 'disabled': !this.state.users[index].disabled })
-                .then((response) => {console.log(response)})
+                .then((response) => { console.log(response) })
                 .catch((error) => console.log('status', error));
         }
-          
+
 
     }
 
@@ -103,7 +105,7 @@ class Lists extends React.Component {
         this.columns = [
             {
                 name: "id",
-                label: <FormattedMessage id="label.options"/>,
+                label: <FormattedMessage id="label.options" />,
                 options: {
                     sort: false,
                     print: false,
@@ -111,12 +113,20 @@ class Lists extends React.Component {
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <React.Fragment>
                             <div size="small">
-                                <IconButton size="sm" onClick={() => this.removeUser(value)}>
+                                {/*<IconButton size="sm" onClick={() => this.removeUser(value)}>
                                     <DeleteIcon fontSize="small" />
-                                </IconButton>
-                                <IconButton size="sm" onClick={() => this._handleClickOpen(value)}>
-                                    <EditIcon fontSize="small"/>
-                                </IconButton>
+                    </IconButton> */}
+                                
+                                <Fab color="primary" size="small" aria-label="edit" onClick={() => this._handleClickOpen(value)}>
+                                    <EditIcon />
+                                </Fab>
+                                &nbsp;&nbsp;&nbsp;
+                                <Fab color="secondary" size="small" aria-label="delete" onClick={() => this.removeUser(value)} >
+                                    <DeleteIcon />
+                                </Fab>
+                               {/*  <IconButton size="sm" onClick={() => this._handleClickOpen(value)}>
+                                    <EditIcon fontSize="small" />
+                                </IconButton>*/}
                             </div>
                         </React.Fragment>
                     )
@@ -131,9 +141,9 @@ class Lists extends React.Component {
                     download: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <Avatar className={"mui-avatar-datatables"}>
-                            { value && 
-                                value !== '' ? 
-                                value.slice(0,1)  : 
+                            {value &&
+                                value !== '' ?
+                                value.slice(0, 1) :
                                 ''
                             }
                         </Avatar>
@@ -176,7 +186,7 @@ class Lists extends React.Component {
                 options: {
                     sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => {
-                        if(value) {
+                        if (value) {
                             return (
                                 <Chip
                                     size="small"
@@ -186,7 +196,7 @@ class Lists extends React.Component {
                                 />
                             )
                         }
-                        if(!value) {
+                        if (!value) {
                             return (
                                 <Chip
                                     size="small"
@@ -205,8 +215,8 @@ class Lists extends React.Component {
                 options: {
                     sort: false,
                     print: false,
-                    customBodyRender: (value, tableMeta, updateValue) => ( 
-                        <Switch 
+                    customBodyRender: (value, tableMeta, updateValue) => (
+                        <Switch
                             color="primary"
                             checked={value}
                             onChange={() => this.handleSwitch(tableMeta.rowData[0])}
@@ -220,42 +230,42 @@ class Lists extends React.Component {
             selectableRows: 'none',
             filterType: 'dropdown',
             responsive: 'scroll',
-            rowsPerPage: 10,
-            rowsPerPageOptions: [5,10,15,20,25,50],
+            rowsPerPage: 15,
+            rowsPerPageOptions: [5, 10, 15, 20, 25, 50],
             expandableRows: false,
             resizableColumns: false,
             selectableRowsOnClick: true,
             textLabels: {
                 body: {
-                  noMatch: "Sorry, no matching records found",
-                  toolTip: "Sort",
+                    noMatch: "Sorry, no matching records found",
+                    toolTip: "Sort",
                 },
                 pagination: {
-                  next: "Next Page",
-                  previous: "Previous Page",
-                  rowsPerPage: "Rows per page:",
-                  displayRows: "of",
+                    next: "Next Page",
+                    previous: "Previous Page",
+                    rowsPerPage: "Rows per page:",
+                    displayRows: "of",
                 },
                 toolbar: {
-                  search: <FormattedMessage id="label.search"/>,
-                  downloadCsv: <FormattedMessage id="label.downloadCsv"/>,
-                  print: <FormattedMessage id="label.print"/>,
-                  viewColumns: <FormattedMessage id="label.viewColumns"/>,
-                  filterTable: <FormattedMessage id="label.filterTable"/>,
+                    search: <FormattedMessage id="label.search" />,
+                    downloadCsv: <FormattedMessage id="label.downloadCsv" />,
+                    print: <FormattedMessage id="label.print" />,
+                    viewColumns: <FormattedMessage id="label.viewColumns" />,
+                    filterTable: <FormattedMessage id="label.filterTable" />,
                 },
                 filter: {
-                  all: "All",
-                  title: "FILTERS",
-                  reset: "RESET",
+                    all: "All",
+                    title: "FILTERS",
+                    reset: "RESET",
                 },
                 viewColumns: {
-                  title: "Show Columns",
-                  titleAria: "Show/Hide Table Columns",
+                    title: "Show Columns",
+                    titleAria: "Show/Hide Table Columns",
                 },
                 selectedRows: {
-                  text: "row(s) selected",
-                  delete: "Delete",
-                  deleteAria: "Delete Selected Rows",
+                    text: "row(s) selected",
+                    delete: "Delete",
+                    deleteAria: "Delete Selected Rows",
                 },
             },
             onRowsDelete: (rowsDeleted) => {
@@ -263,7 +273,7 @@ class Lists extends React.Component {
             },
             customToolbar: () => {
                 return (
-                  <Toolbar />
+                    <Toolbar />
                 );
             }
         };
@@ -278,15 +288,15 @@ class Lists extends React.Component {
     }
 
     handleClickOpen = (uid) => {
-        this.setState({ 
-            open: true, 
-            uid: uid 
+        this.setState({
+            open: true,
+            uid: uid
         })
     }
 
     handleConfirm = () => {
-        this.setState({ 
-            open: false 
+        this.setState({
+            open: false
         })
         this.props.removeUser(this.state.uid)
     }
@@ -296,32 +306,32 @@ class Lists extends React.Component {
     }
 
     handleSwitch = (id) => {
-       this.updateStatus(id);
+        this.updateStatus(id);
     }
 
     _handleClickOpen = (uid) => {
         this.props.getUser(uid);
-        this.setState({ 
-            _open: true 
+        this.setState({
+            _open: true
         })
     }
 
     _handleClose = () => {
-        this.setState({ 
-            _open: false 
+        this.setState({
+            _open: false
         })
     }
 
     componentWillReceiveProps(nextProps) {
 
-        if (nextProps.users)  {
-            this.setState({ 
-                users: nextProps.users 
+        if (nextProps.users) {
+            this.setState({
+                users: nextProps.users
             })
         }
 
-        if(typeof(nextProps.users.count) !== undefined) {
-            if(nextProps.users.count === 1) {
+        if (typeof (nextProps.users.count) !== undefined) {
+            if (nextProps.users.count === 1) {
                 if (!toast.isActive('success')) {
                     toast.success('Successfully deleted user !', {
                         delay: 1000,
@@ -375,6 +385,6 @@ const mapStateToProps = (state) => {
 export default compose(
     withStyles(styles),
     connect(
-        mapStateToProps, 
+        mapStateToProps,
         mapDispatchToProps
-))(Lists);
+    ))(Lists);
