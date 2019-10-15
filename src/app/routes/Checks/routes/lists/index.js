@@ -83,7 +83,7 @@ class Checks extends React.Component {
                 name: "issuedDate",
                 label: <FormattedMessage id="label.issuedDate"/>,
                 options: {
-                    sort: true,
+                    sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <span>{ moment(value).format('L')  }</span>
                     )
@@ -121,7 +121,7 @@ class Checks extends React.Component {
                 name: "amount",
                 label: <FormattedMessage id="label.amount"/>,
                 options: {
-                    sort: true,
+                    sort:false,
                     filter: true,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <Chip
@@ -144,7 +144,7 @@ class Checks extends React.Component {
                 name: "cashingDateDesired",
                 label: <FormattedMessage id="label.cashingDateDesired"/>,
                 options: {
-                    sort: true,
+                    sort: false,
                     filter: true,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <span>{ moment(value).format('L')  }</span>
@@ -156,7 +156,7 @@ class Checks extends React.Component {
                 name: 'status',
                 label: <FormattedMessage id="label.status"/>,
                 options: {
-                    sort: true,
+                    sort: false,
                     filter: true,
                     customBodyRender: (value, tableMeta, updateValue) => {
                         if(value === 'VALIDATED') {

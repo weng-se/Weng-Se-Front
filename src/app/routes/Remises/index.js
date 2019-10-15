@@ -20,6 +20,7 @@ import Select from '@material-ui/core/Select';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import Fab from '@material-ui/core/Fab';
+import "./style.css";
 // import IntlMessages from '../Customers/node_modules/util/IntlMessages';
 // import ContainerHeader from '../Customers/node_modules/components/ContainerHeader/index';
 
@@ -145,9 +146,11 @@ class Remises extends React.Component {
                     filter: true,
                     customBodyRender: (value, tableMeta, updateValue) => {
                         let color = null;
+                        let className= null;
                         switch (value) {
                             case 'En attente':
                                 color = "secondary"
+                                className= "valid-status"
                                 break;
                             case 'Partiel':
                                 color = "default"
@@ -268,7 +271,7 @@ class Remises extends React.Component {
             filterType: 'dropdown',
             responsive: 'scroll',
             expandableRows: true,
-            expandableRowsOnClick: false,
+            expandableRowsOnClick: true,
             rowsExpanded: [0, 2, 3],
             renderExpandableRow: (rowData, rowMeta) => {
                 

@@ -120,7 +120,7 @@ class ToolbarSelect extends React.Component {
                                             id="number"
                                             type="text"
                                             name="number"
-                                            label={<FormattedMessage id="label.checkNumber" />}
+                                            label={<FormattedMessage id="label.remiseNumber" />}
                                             onChange={this.handleChange}
                                             margin="dense"
                                             variant="outlined"

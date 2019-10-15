@@ -697,5 +697,6 @@
   "label.rest": "Reste",
   "label.totalAmount": "Montant total",
   "label.numberOfCheck": "Nombre de chèque",
-  "label.submitIdea" : "Soumettre une idée"
+  "label.submitIdea" : "Soumettre une idée",
+  "label.ncheck": "Nbr Chéque"
 }

@@ -43,7 +43,7 @@ const Template = (component) => {
     return (
         <React.Fragment>
 
-            <div className="row animated slideInUpTiny animation-duration-3">
+            <div className="row animated slideInUpTiny animation-duration-3" style={{ marginTop: `10px` }}>
 
                 <div className="col-lg-3 col-sm-6 col-12">
                     <ChartToday/>
@@ -63,7 +63,7 @@ const Template = (component) => {
 
                 <div className="col-lg-12 col-sm-12 col-12">
 
-                    <Card style={{ marginTop: `20px` }}>
+                    <Card style={{ marginTop: `10px` }}>
                         <MuiThemeProvider theme={component.getMuiTheme()}>
                             <MUIDataTable
                                 key={"fr"}

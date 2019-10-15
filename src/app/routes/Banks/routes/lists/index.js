@@ -142,7 +142,9 @@ class Banks extends React.Component {
                                 <Chip
                                     size="small"
                                     color="primary"
+                                    className= "valid-status"
                                     label={<FormattedMessage id="label.valid"/>}
+
                                 />
                             )
                         }else {
@@ -150,6 +152,7 @@ class Banks extends React.Component {
                                 <Chip
                                     size="small"
                                     color="secondary"
+                                    className= "invalid-status"
                                     label={<FormattedMessage id="label.invalid"/>}
                                 />
                             )
