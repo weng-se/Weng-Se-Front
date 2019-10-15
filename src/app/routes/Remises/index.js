@@ -146,27 +146,30 @@ class Remises extends React.Component {
                     filter: true,
                     customBodyRender: (value, tableMeta, updateValue) => {
                         let color = null;
-                        let className= null;
+                        let _class = null;
                         switch (value) {
                             case 'En attente':
                                 color = "secondary"
-                                className= "valid-status"
+                                _class = "waiting-status"
                                 break;
                             case 'Partiel':
                                 color = "default"
+                                _class = "waiting-status"
                                 break;
                             case 'Valide':
                                 color = "primary"
+                                _class = "valid-status"
                                 break;
                             case 'Rejeter':
                                 color = "secondary"
+                                _class = "invalid-status"
                                 break;
                         }
                         return (
                             <Chip
                                 label={value}
                                 clickable
-                                color={color}/>
+                                className={_class}/>
                             )
                     }
                 }

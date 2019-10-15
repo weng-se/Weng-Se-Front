@@ -2,10 +2,7 @@
 table tbody td:nth-child(13) {padding-right: 5px!important;padding-left: 5px!important;}
 table tbody td button {padding: 6px!important;}
 a:hover, a:active {text-decoration: none;}
-
-
-table thead th {background-color: transparent!important; font-weight: bold;  color: #FFF!important;}
-
-table thead {
-    background-color: #3f51b5!important;
-}
+table thead th {background-color: transparent!important; font-weight: bold;  color: #333!important;}
+table thead {border-top: 1px solid #eee;background-color: #f5f6f7!important;background-image: linear-gradient(#fff, #efefef)!important;}
+.valid-status, .invalid-status, .waiting-status { color: #fff; }
+.waiting-status { background-color: #ffb64d; }
