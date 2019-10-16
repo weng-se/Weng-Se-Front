@@ -189,6 +189,17 @@ class Checks extends React.Component {
                             )
                         }
 
+                        if(value === 'CASHED') {
+                            return (
+                                <Chip
+                                    size="small"
+                                    label={<FormattedMessage id="label.cashed"/>}
+                                    style={{ backgroundColor: "orange", color : "#FFF" }}
+                                    deleteIcon={<DoneIcon />}
+                                />
+                            )
+                        }
+
                         if(value === 'REJECTED') {
                             return (
                                 <Chip

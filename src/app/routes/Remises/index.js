@@ -2,8 +2,8 @@ import React from 'react';
 import {
     withStyles
 } from '@material-ui/core/styles';
-import { 
-    createMuiTheme 
+import {
+    createMuiTheme
 } from '@material-ui/core/styles';
 import moment from 'moment';
 import Chip from '@material-ui/core/Chip';
@@ -68,18 +68,18 @@ class Remises extends React.Component {
 
     getMuiTheme = () => createMuiTheme({
         overrides: {
-          MUIDataTableBodyCell: {
-            root:  {
-                padding: '2px 6px 2px 20px' 
+            MUIDataTableBodyCell: {
+                root: {
+                    padding: '2px 6px 2px 20px'
+                }
+            },
+            MUIDataTableBodyRow: {
+                root: {
+                    '&:nth-child(odd)': {
+                        backgroundColor: '#F2F2F2'
+                    }
+                }
             }
-          },
-          MUIDataTableBodyRow: {
-            root: {
-              '&:nth-child(odd)': { 
-                backgroundColor: '#F2F2F2'
-              }
-            }
-          }
         }
     })
 
@@ -90,7 +90,7 @@ class Remises extends React.Component {
     }
 
     handleChangeStatus = (id, e) => {
-        this.setState({ status: e.target.value }) 
+        this.setState({ status: e.target.value })
         fetch(`http://localhost:4000/api/remises/${id}`)
             .then(res => res.json())
             .then(data => {
@@ -106,39 +106,42 @@ class Remises extends React.Component {
     }
 
     confirmUpdateStatus = () => {
+
         const { id, data, status } = this.state;
+        console.log("id", id)
         var arr = [];
-         axios.post(`http://localhost:4000/api/remises/${id}/replace`, data)
-                .then(res => {
-                    if(res.data) 
-                        this.fetchData();
-                        this.handleClose();
+        var output= [];
+        var final= [];
 
-                        if(this.getChecksByRemiseId(id)) {
-                            arr[0] = id;
-                            arr[1] = status;
-                            console.log(`jddjjdjdjd`, this.state.ids);
+
+        axios.post(`http://localhost:4000/api/remises/${id}/replace`, data)
+            .then(res => {
+                if (res.data)
+                    this.fetchData();
+                this.handleClose();
+                axios.get(`http://localhost:4000/api/remises/${id}/checks`)
+                    .then(res => {
+                        if (res.data) {
+                            for (var i = 2; i < res.data.length; i++)
+                                output[i] =res.data[i].id ;
                         }
-
                         
-                        console.log(`hna dir appel dialk 3la api`, arr);
-                })
-                .catch(err => console.log(err));
+                    })
+                    .catch(err => console.log(err));
+        
+                        output[0] = status
+                        
+                        console.log("final", output);
+               
+            })
+            .catch(err => console.log(err));
+            let test = ["Valide", "5d6d2b9f66fc7efdb6435624",  "5d6d2d1566fc7efdb6435627", "5d6e7e4be9192c3ba2da13fd"];
+            axios.post(`http://localhost:4000/api/checks/updateAllCheckRemise`, test)
+            .then((res) => console.log(res) )
+            .catch((error) => console.log(error));
+
     }
 
-
-    getChecksByRemiseId = (id) => {
-        var output = [];
-        axios.get(`http://localhost:4000/api/remises/${id}/checks`)
-                .then(res => {
-                    if(res.data) {
-                    for (var i=0; i < res.data.length ; i++)
-                        output.push(res.data[i].id);
-                    }
-                    this.setState({ ids: output });
-                })
-                .catch(err => console.log(err));
-    }
 
     handleClickOpen = () => {
         this.setState({ open: true })
@@ -152,7 +155,7 @@ class Remises extends React.Component {
         this.columns = [
             {
                 name: "number",
-                label: <FormattedMessage id="label.checkNumber"/>,
+                label: <FormattedMessage id="label.checkNumber" />,
                 options: {
                     sort: false,
                     filter: true
@@ -160,7 +163,7 @@ class Remises extends React.Component {
             },
             {
                 name: "bank",
-                label: <FormattedMessage id="label.bank"/>,
+                label: <FormattedMessage id="label.bank" />,
                 options: {
                     sort: false,
                     filter: true
@@ -168,7 +171,7 @@ class Remises extends React.Component {
             },
             {
                 name: "amount",
-                label: <FormattedMessage id="label.amount"/>,
+                label: <FormattedMessage id="label.amount" />,
                 options: {
                     sort: false,
                     filter: true,
@@ -183,7 +186,7 @@ class Remises extends React.Component {
             },
             {
                 name: "numberCheck",
-                label: <FormattedMessage id="label.numberCheck"/>,
+                label: <FormattedMessage id="label.numberCheck" />,
                 options: {
                     sort: false,
                     filter: true
@@ -191,7 +194,7 @@ class Remises extends React.Component {
             },
             {
                 name: 'status',
-                label: <FormattedMessage id="label.status"/>,
+                label: <FormattedMessage id="label.status" />,
                 options: {
                     sort: false,
                     filter: true,
@@ -220,18 +223,18 @@ class Remises extends React.Component {
                             <Chip
                                 label={value}
                                 clickable
-                                className={_class}/>
-                            )
+                                className={_class} />
+                        )
                     }
                 }
             },
             {
                 name: "issuedDate",
-                label: <FormattedMessage id="label.issuedDate"/>,
+                label: <FormattedMessage id="label.issuedDate" />,
                 options: {
                     sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
-                        <span>{ moment(value).format('L')  }</span>
+                        <span>{moment(value).format('L')}</span>
                     )
                 }
             },
@@ -248,14 +251,14 @@ class Remises extends React.Component {
             },
             {
                 name: "status",
-                label: <FormattedMessage id="label.status"/>,
+                label: <FormattedMessage id="label.status" />,
                 options: {
                     sort: false,
                     filter: false,
                     download: false,
                     print: false,
                     customBodyRender: (value, tableMeta, updateValue) => {
-                        return(
+                        return (
                             <Select
                                 value={value}
                                 name="status"
@@ -264,10 +267,10 @@ class Remises extends React.Component {
                                 InputLabelProps={{
                                     shrink: true,
                                 }}>
-                                <MenuItem value={"En attente"}><FormattedMessage id="label.waiting"/></MenuItem>
-                                <MenuItem value={"Valide"}><FormattedMessage id="label.validated"/></MenuItem>
-                                <MenuItem value={"Partiel"}><FormattedMessage id="label.toChange"/></MenuItem>
-                                <MenuItem value={"Rejeter"}><FormattedMessage id="label.rejected"/></MenuItem>
+                                <MenuItem value={"En attente"}><FormattedMessage id="label.waiting" /></MenuItem>
+                                <MenuItem value={"Valide"}><FormattedMessage id="label.validated" /></MenuItem>
+                                <MenuItem value={"Partiel"}><FormattedMessage id="label.toChange" /></MenuItem>
+                                <MenuItem value={"Rejeter"}><FormattedMessage id="label.rejected" /></MenuItem>
                             </Select>
                         )
                     }
@@ -275,7 +278,7 @@ class Remises extends React.Component {
             },
             {
                 name: "id",
-                label: <FormattedMessage id="label.options"/>,
+                label: <FormattedMessage id="label.options" />,
                 options: {
                     sort: false,
                     print: false,
@@ -328,78 +331,78 @@ class Remises extends React.Component {
             expandableRowsOnClick: true,
             rowsExpanded: [0, 2, 3],
             renderExpandableRow: (rowData, rowMeta) => {
-                
+
                 const getStatus = (_status) => {
-                  switch(_status) {
-                    case "VALIDATED": return (<Chip size="small" color="primary" label={<FormattedMessage id="label.validated"/>} />);
-                    case "WAITING":   return (<Chip size="small" label={<FormattedMessage id="label.waiting"/>} style={{ backgroundColor: "orange", color : "#FFF" }} />);
-                    case "REJECTED":  return (<Chip size="small" label={<FormattedMessage id="label.rejected"/>} style={{ backgroundColor: "red", color : "#FFF" }} />);
-                    case "TOCHANGE":  return (<Chip size="small" color="secondary" label={<FormattedMessage id="label.toChange"/>}/>);
-                    default:  return <span>None</span>
-                  }
+                    switch (_status) {
+                        case "VALIDATED": return (<Chip size="small" color="primary" label={<FormattedMessage id="label.validated" />} />);
+                        case "WAITING": return (<Chip size="small" label={<FormattedMessage id="label.waiting" />} style={{ backgroundColor: "orange", color: "#FFF" }} />);
+                        case "REJECTED": return (<Chip size="small" label={<FormattedMessage id="label.rejected" />} style={{ backgroundColor: "red", color: "#FFF" }} />);
+                        case "TOCHANGE": return (<Chip size="small" color="secondary" label={<FormattedMessage id="label.toChange" />} />);
+                        default: return <span>None</span>
+                    }
                 }
-                
+
                 return (
-                    rowData[6].map(row => 
-                      ((
-                        <React.Fragment>
-                            <TableRow>
-                              <TableCell></TableCell>
-                              <TableCell align="left">{row.number}</TableCell>
-                              <TableCell align="left">{row.bank}</TableCell>
-                              <TableCell align="left">
-                                <Chip
-                                  size="small"
-                                  color="default"
-                                  label={"€" + row.amount}
-                                />
-                              </TableCell>
-                              <TableCell align="left">{row.comment}</TableCell>
-                              <TableCell align="left">
-                                { getStatus(row.status) }                       
-                            </TableCell>
-                            <TableCell align="left">{moment(row.issuedDate).format('L')}</TableCell>
-                            <TableCell></TableCell>
-                            <TableCell></TableCell>
-                            </TableRow>
-                        </React.Fragment>
-                      ))
+                    rowData[6].map(row =>
+                        ((
+                            <React.Fragment>
+                                <TableRow>
+                                    <TableCell></TableCell>
+                                    <TableCell align="left">{row.number}</TableCell>
+                                    <TableCell align="left">{row.bank}</TableCell>
+                                    <TableCell align="left">
+                                        <Chip
+                                            size="small"
+                                            color="default"
+                                            label={"€" + row.amount}
+                                        />
+                                    </TableCell>
+                                    <TableCell align="left">{row.comment}</TableCell>
+                                    <TableCell align="left">
+                                        {getStatus(row.status)}
+                                    </TableCell>
+                                    <TableCell align="left">{moment(row.issuedDate).format('L')}</TableCell>
+                                    <TableCell></TableCell>
+                                    <TableCell></TableCell>
+                                </TableRow>
+                            </React.Fragment>
+                        ))
+                    )
                 )
-              )
             },
             rowsPerPage: 15,
-            rowsPerPageOptions: [5,10,15,20,25,50],
+            rowsPerPageOptions: [5, 10, 15, 20, 25, 50],
             textLabels: {
                 body: {
-                  noMatch: "Sorry, no matching records found",
-                  toolTip: "Sort",
+                    noMatch: "Sorry, no matching records found",
+                    toolTip: "Sort",
                 },
                 pagination: {
-                  next: "Next Page",
-                  previous: "Previous Page",
-                  rowsPerPage: "Rows per page:",
-                  displayRows: "of",
+                    next: "Next Page",
+                    previous: "Previous Page",
+                    rowsPerPage: "Rows per page:",
+                    displayRows: "of",
                 },
                 toolbar: {
-                  search: <FormattedMessage id="label.search"/>,
-                  downloadCsv: <FormattedMessage id="label.downloadCsv"/>,
-                  print: <FormattedMessage id="label.print"/>,
-                  viewColumns: <FormattedMessage id="label.viewColumns"/>,
-                  filterTable: <FormattedMessage id="label.filterTable"/>,
+                    search: <FormattedMessage id="label.search" />,
+                    downloadCsv: <FormattedMessage id="label.downloadCsv" />,
+                    print: <FormattedMessage id="label.print" />,
+                    viewColumns: <FormattedMessage id="label.viewColumns" />,
+                    filterTable: <FormattedMessage id="label.filterTable" />,
                 },
                 filter: {
-                  all: "All",
-                  title: "FILTERS",
-                  reset: "RESET",
+                    all: "All",
+                    title: "FILTERS",
+                    reset: "RESET",
                 },
                 viewColumns: {
-                  title: "Show Columns",
-                  titleAria: "Show/Hide Table Columns",
+                    title: "Show Columns",
+                    titleAria: "Show/Hide Table Columns",
                 },
                 selectedRows: {
-                  text: "row(s) selected",
-                  delete: "Delete",
-                  deleteAria: "Delete Selected Rows",
+                    text: "row(s) selected",
+                    delete: "Delete",
+                    deleteAria: "Delete Selected Rows",
                 }
             },
             customToolbar: () => {
@@ -412,7 +415,7 @@ class Remises extends React.Component {
                 //     <ToolbarSelect/>
                 // );
             },
-            onTableChange : (action, tableState)  => {
+            onTableChange: (action, tableState) => {
                 console.log(action);
             }
         };
@@ -424,25 +427,25 @@ class Remises extends React.Component {
     }
 
     delete = (id) => {
-        if(window.confirm(`Are you sure you want to delete ?`)) {
+        if (window.confirm(`Are you sure you want to delete ?`)) {
             fetch(`http://localhost:4000/api/remises/${id}`, {
                 method: `delete`
-              }).then(response =>
+            }).then(response =>
                 response.json().then(json => {
                     console.log(json.count)
-                  if(json.count === 1) {
-                    if (!toast.isActive('deleted')) {
-                        toast.success('Successfully deleted !', {
-                            delay: 1000,
-                            autoClose: true,
-                            closeButton: true,
-                            toastId: 'deleted'
-                        });
+                    if (json.count === 1) {
+                        if (!toast.isActive('deleted')) {
+                            toast.success('Successfully deleted !', {
+                                delay: 1000,
+                                autoClose: true,
+                                closeButton: true,
+                                toastId: 'deleted'
+                            });
+                        }
+                        this.fetchData();
                     }
-                    this.fetchData();
-                  }
                 })
-              );
+            );
         }
     }
 
