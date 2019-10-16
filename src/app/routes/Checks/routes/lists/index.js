@@ -169,6 +169,16 @@ class Checks extends React.Component {
                                 />
                             )
                         }
+                        if(value === 'ONGOING') {
+                            return (
+                                <Chip
+                                    size="small"
+                                    label={<FormattedMessage id="label.ongoing"/>}
+                                    style={{ backgroundColor: "orange", color : "#FFF" }}
+                                    deleteIcon={<DoneIcon />}
+                                />
+                            )
+                        }
                         if(value === 'WAITING') {
                             return (
                                 <Chip

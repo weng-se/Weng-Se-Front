@@ -706,6 +706,7 @@
   "label.totalAmount": "Total amount",
   "label.numberOfCheck": "Number of check",
   "label.submitIdea" : "Submit an idea",
-   "label.ncheck": "Nbr Check"
+   "label.ncheck": "Nbr Check",
+   "label.ongoing": "Ongoing"
 
 }
