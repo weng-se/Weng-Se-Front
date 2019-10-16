@@ -150,7 +150,6 @@ class Checks extends React.Component {
                         <span>{ moment(value).format('L')  }</span>
                     )
                 }
-                
             },
             {
                 name: 'status',

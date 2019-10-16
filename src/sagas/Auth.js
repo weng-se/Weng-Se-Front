@@ -243,6 +243,8 @@ function* userLogin(action) {
             .then((authUser) => payload = authUser)
             .catch((error) => error = error.response)
 
+            console.log(`playload from saga`, payload)
+
         if (payload) {
             if (!payload.data.user.disabled) {
                 localStorage.setItem(`credentials`, JSON.stringify({ 

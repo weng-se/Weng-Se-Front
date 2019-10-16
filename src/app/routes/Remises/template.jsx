@@ -15,6 +15,9 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import {
+    ValidatorForm
+} from 'react-material-ui-form-validator';
+import {
     MuiThemeProvider
 } from '@material-ui/core/styles';
 import {
@@ -50,7 +53,48 @@ const Template = (component) => {
                         </MuiThemeProvider>
                     </Card>
                 </div>
-            </div>            
+            </div>
+
+
+            <Dialog
+                open={component.state.open}
+                onClose={component.handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                fullWidth="true"
+            >
+                <DialogTitle id="alert-dialog-title"><FormattedMessage id="sweetAlerts.areYouSure"/></DialogTitle>
+                <DialogContent>
+                    <ValidatorForm>
+                        <FormControl style={{ width: '100%', padding: '5px' }} >
+                            <TextField
+                                type="textarea"
+                                id="comment"
+                                name="comment"
+                                label={<FormattedMessage id="label.comment" />}
+                                onChange={component.handleChange}
+                                margin="dense"
+                                variant="outlined"
+                                multiline={true}
+                                rows={3}
+                                rowsMax={4}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
+                        </FormControl>
+                    </ValidatorForm>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={component.handleClose} color="primary">
+                        <FormattedMessage id="label.disagree"/>
+                    </Button>
+                    <Button onClick={component.handleClose} color="primary" autoFocus>
+                        <FormattedMessage id="label.agree"/>
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
             <ToastContainer position={toast.POSITION.TOP_RIGHT} />
         </React.Fragment>
 
