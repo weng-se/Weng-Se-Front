@@ -78,6 +78,7 @@ const Template = (component) => {
                                 multiline={true}
                                 rows={3}
                                 rowsMax={4}
+                                value={component.state.comment}
                                 InputLabelProps={{
                                     shrink: true,
                                 }}

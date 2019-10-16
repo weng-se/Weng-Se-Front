@@ -60,7 +60,8 @@ class Remises extends React.Component {
             open: false,
             setOpen: false,
             id: null,
-            data: null
+            data: null,
+            comment: null 
         };
     }
 
@@ -81,6 +82,12 @@ class Remises extends React.Component {
         }
     })
 
+    handleChange = (e) => {
+        this.setState({
+            comment: e.target.value
+        })
+    }
+
     handleChangeStatus = (id, e) => {
         this.setState({ status: e.target.value }) 
         fetch(`http://localhost:4000/api/remises/${id}`)
@@ -98,11 +105,32 @@ class Remises extends React.Component {
     }
 
     confirmUpdateStatus = () => {
-         axios.post(`http://localhost:4000/api/remises/${this.state.id}/replace`, this.state.data)
+        const { id, data, status } = this.state;
+        var arr = [];
+         axios.post(`http://localhost:4000/api/remises/${id}/replace`, data)
                 .then(res => {
                     if(res.data) 
                         this.fetchData();
                         this.handleClose();
+                        arr[0] = id;
+                        arr[1] = status;
+
+                        console.log(this.getChecksByRemiseId(id));
+                        console.log(`hna dir appel dialk 3la api`, arr);
+                })
+                .catch(err => console.log(err));
+    }
+
+
+    getChecksByRemiseId = (id) => {
+        var output = [];
+        axios.get(`http://localhost:4000/api/remises/${id}/checks`)
+                .then(res => {
+                    if(res.data) {
+                    for (var i=0; i < res.data.length ; ++i)
+                        output.push(res.data[i].id);
+                    }
+                    return output;
                 })
                 .catch(err => console.log(err));
     }

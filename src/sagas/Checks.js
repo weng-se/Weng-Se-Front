@@ -34,8 +34,8 @@ import {
     editCheckRemiseSuccess,
     editCheckRemiseError
 } from "../actions/Checks";
-import { 
-    Properties 
+import {
+    Properties
 } from '../constants/Properties';
 import axios from 'axios';
 
@@ -209,8 +209,8 @@ function* createRemise(data) {
         payloadCheck = null,
         ids = [];
 
-        data.data.amount = localStorage.getItem('totalAmount');
-        data.data.numberCheck = localStorage.getItem('numberCheck');
+    data.data.amount = localStorage.getItem('totalAmount');
+    data.data.numberCheck = localStorage.getItem('numberCheck');
 
     try {
 
@@ -230,20 +230,20 @@ function* createRemise(data) {
             }
 
             //ids = ["test","5d6d2bcd66fc7efdb6435625", "5d6d2d1566fc7efdb6435627"]
-           
-           ids.push(payload.id)
+
+            ids.push(payload.id)
             let idCheck = []
             idCheck.push(localStorage.getItem('ids').split(','))
-             
-             ids.push(...idCheck[0])
 
-            
+            ids.push(...idCheck[0])
 
-            
-                yield axios.post(`http://localhost:4000/api/checks/updateAllCheck`, ids)
-                    .then((res) => payloadCheck = res.data)
-                    .catch((error) => error = error);
-            
+
+
+
+            yield axios.post(`http://localhost:4000/api/checks/updateAllCheck`, ids)
+                .then((res) => payloadCheck = res.data)
+                .catch((error) => error = error);
+
             if (payloadCheck) {
                 yield put(editCheckRemiseSuccess(payloadCheck))
             } else {
