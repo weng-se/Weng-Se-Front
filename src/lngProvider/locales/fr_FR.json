@@ -701,5 +701,6 @@
   "label.ncheck": "Nbr Chéque",
   "label.ongoing": "En Cours",
   "label.agree": "Confirmer",
-  "label.disagree": "Annuler"
+  "label.disagree": "Annuler",
+  "label.cashed": "ENCAISSE"
 }

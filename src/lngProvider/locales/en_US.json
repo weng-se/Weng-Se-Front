@@ -709,5 +709,6 @@
   "label.ncheck": "Nbr Check",
   "label.ongoing": "Ongoing", 
   "label.agree": "I Agree",
-  "label.disagree": "I Disagree"
+  "label.disagree": "I Disagree",
+  "label.cashed": "CASHED"
 }
