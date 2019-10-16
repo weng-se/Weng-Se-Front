@@ -6,3 +6,4 @@ table thead th {background-color: transparent!important; font-weight: bold;  col
 table thead th {border-top: 1px solid #eee;background-color: #f5f6f7;background-image: linear-gradient(#fff, #efefef);}
 .valid-status, .invalid-status, .waiting-status { color: #fff; }
 .waiting-status { background-color: #ffb64d; }
+.small-icon { font-size: 15px; }

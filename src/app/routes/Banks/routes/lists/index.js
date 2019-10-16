@@ -95,19 +95,12 @@ class Banks extends React.Component {
                     customBodyRender: (id, tableMeta, updateValue) => (
                         <React.Fragment>
                             <div size="small">
-                                {/*<IconButton size="small" onClick={() => this.removeBank(id)}>
-                                    <DeleteIcon fontSize="small" />
-                                </IconButton>
-                                <IconButton size="small" onClick={() => this.handleClickOpen(id)}>
-                                    <EditIcon fontSize="small" />
-                                </IconButton>
-                    */}
                                 <Fab color="primary" size="small" aria-label="edit" onClick={() => this.handleClickOpen(id)}>
-                                    <EditIcon />
+                                    <EditIcon className="small-icon"  />
                                 </Fab>
                                 &nbsp;&nbsp;&nbsp;
                                 <Fab color="secondary" size="small" aria-label="delete" onClick={() => this.removeBank(id)} >
-                                    <DeleteIcon />
+                                    <DeleteIcon className="small-icon"  />
                                 </Fab>
                             </div>
                         </React.Fragment>

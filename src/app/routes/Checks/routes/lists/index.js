@@ -28,6 +28,7 @@ import Toolbar from './../../Components/Toolbar/';
 import ToolbarSelect from './../../Components/ToolbarSelect/';
 import Template from './template';
 import { FormattedMessage } from 'react-intl';
+import Fab from '@material-ui/core/Fab';
 import {
     Properties
 } from './../../../../../constants/Properties';
@@ -237,9 +238,9 @@ class Checks extends React.Component {
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <React.Fragment>
                             <div size="small">
-                                <IconButton size="small" onClick={() => this.getUpdatedCheck(value)}>
-                                    <EditIcon fontSize="small" />
-                                </IconButton>
+                                <Fab color="primary" size="small" aria-label="edit" onClick={() => this.getUpdatedCheck(value)}>
+                                    <EditIcon className="small-icon" />
+                                </Fab>
                             </div>
                         </React.Fragment>
                     )

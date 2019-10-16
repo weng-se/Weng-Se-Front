@@ -106,7 +106,9 @@ class Remises extends React.Component {
     }
 
     confirmUpdateStatus = () => {
+        
         const { id, data, status, comment } = this.state;
+
         var arr = [];
         var output= [];
         var final= [];
@@ -134,8 +136,8 @@ class Remises extends React.Component {
             .catch(err => console.log(err));
             let test = ["Valide", "5d6d2b9f66fc7efdb6435624",  "5d6d2d1566fc7efdb6435627", "5d6e7e4be9192c3ba2da13fd"];
             axios.post(`http://localhost:4000/api/checks/updateAllCheckRemise`, test)
-            .then((res) => console.log(res) )
-            .catch((error) => console.log(error));
+                .then((res) => console.log(res) )
+                .catch((error) => console.log(error));
 
     }
 
@@ -284,10 +286,6 @@ class Remises extends React.Component {
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <React.Fragment>
                             <div size="small">
-                                {/*<IconButton size="small" onClick={() => this.delete(value)}>
-                                    <DeleteIcon fontSize="small" />
-                                </IconButton>
-                    */}
                                 <Fab color="secondary" size="small" aria-label="delete" onClick={() => this.delete(value)} >
                                     <DeleteIcon />
                                 </Fab>
@@ -424,26 +422,28 @@ class Remises extends React.Component {
     }
 
     delete = (id) => {
-        if (window.confirm(`Are you sure you want to delete ?`)) {
-            fetch(`http://localhost:4000/api/remises/${id}`, {
-                method: `delete`
-            }).then(response =>
-                response.json().then(json => {
-                    console.log(json.count)
-                    if (json.count === 1) {
-                        if (!toast.isActive('deleted')) {
-                            toast.success('Successfully deleted !', {
-                                delay: 1000,
-                                autoClose: true,
-                                closeButton: true,
-                                toastId: 'deleted'
-                            });
+        if( localStorage.getItem('user_role') === 'ROLE_ADMIN' ) {
+            if (window.confirm(`Are you sure you want to delete ?`)) {
+                fetch(`http://localhost:4000/api/remises/${id}`, {
+                    method: `delete`
+                }).then(response =>
+                    response.json().then(json => {
+                        console.log(json.count)
+                        if (json.count === 1) {
+                            if (!toast.isActive('deleted')) {
+                                toast.success('Successfully deleted !', {
+                                    delay: 1000,
+                                    autoClose: true,
+                                    closeButton: true,
+                                    toastId: 'deleted'
+                                });
+                            }
+                            this.fetchData();
                         }
-                        this.fetchData();
-                    }
-                })
-            );
-        }
+                    })
+                );
+            }
+        }else window.alert("Désolé, vous n'avez pas la permission");
     }
 
     fetchData = () => {

@@ -134,19 +134,12 @@ class Suppliers extends React.Component {
                         customBodyRender: (value, tableMeta, updateValue) => (
                             <React.Fragment>
                                 <div size="small">
-                                    {/*<IconButton size="small" >
-                                        <DeleteIcon fontSize="small" onClick={() => this.removeSupplier(value) }/>
-                                    </IconButton>
-                                    <IconButton size="small" >
-                                        <EditIcon fontSize="small" onClick={() => this.getUpdatedSupplier(value)}/>
-                                    </IconButton>
-                        */}
-                                    <Fab color="primary" size="small" aria-label="edit" onClick={() => this.getUpdatedSupplier(value)}>
-                                    <EditIcon />
+                                <Fab color="primary" size="small" aria-label="edit" onClick={() => this.getUpdatedSupplier(value)}>
+                                    <EditIcon className="small-icon"  />
                                 </Fab>
                                 &nbsp;&nbsp;&nbsp;
                                 <Fab color="secondary" size="small" aria-label="delete" onClick={() => this.removeSupplier(value) } >
-                                    <DeleteIcon />
+                                    <DeleteIcon className="small-icon" />
                                 </Fab>
                                 </div>
                             </React.Fragment>
