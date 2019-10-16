@@ -237,6 +237,8 @@ function* createRemise(data) {
 
             ids.push(...idCheck[0])
 
+            console.log("remise", ids)
+
 
 
 

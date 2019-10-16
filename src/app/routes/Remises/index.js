@@ -108,39 +108,35 @@ class Remises extends React.Component {
     confirmUpdateStatus = () => {
 
         const { id, data, status } = this.state;
-        console.log("id", id)
-        var arr = [];
-        var output= [];
-        var final= [];
-
+        var allData = [];
 
         axios.post(`http://localhost:4000/api/remises/${id}/replace`, data)
             .then(res => {
-                if (res.data)
+                if (res.data){
                     this.fetchData();
-                this.handleClose();
+                    this.handleClose();
                 axios.get(`http://localhost:4000/api/remises/${id}/checks`)
                     .then(res => {
                         if (res.data) {
-                            for (var i = 2; i < res.data.length; i++)
-                                output[i] =res.data[i].id ;
+                            for (var i = 1; i < res.data.length; i++)
+                            allData.push(res.data[i].id);
                         }
-                        
-                    })
-                    .catch(err => console.log(err));
-        
-                        output[0] = status
-                        
-                        console.log("final", output);
-               
+                        allData[0] = status
+
+                console.log("final", allData);
             })
             .catch(err => console.log(err));
-            let test = ["Valide", "5d6d2b9f66fc7efdb6435624",  "5d6d2d1566fc7efdb6435627", "5d6e7e4be9192c3ba2da13fd"];
-            axios.post(`http://localhost:4000/api/checks/updateAllCheckRemise`, test)
-            .then((res) => console.log(res) )
+        }
+
+        let test = ["Rejeter", "5d6d2b9f66fc7efdb6435624", "5d6d2d1566fc7efdb6435627", "5d6e7e4be9192c3ba2da13fd"];
+        console.log("ss", test);
+        axios.post(`http://localhost:4000/api/checks/updateAllCheckRemise`, allData)
+            .then((res) => console.log(res))
             .catch((error) => console.log(error));
 
-    }
+    })
+
+}
 
 
     handleClickOpen = () => {
