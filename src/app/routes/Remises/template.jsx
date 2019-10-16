@@ -89,7 +89,7 @@ const Template = (component) => {
                     <Button onClick={component.handleClose} color="primary">
                         <FormattedMessage id="label.disagree"/>
                     </Button>
-                    <Button onClick={component.handleClose} color="primary" autoFocus>
+                    <Button onClick={component.confirmUpdateStatus} color="primary" autoFocus>
                         <FormattedMessage id="label.agree"/>
                     </Button>
                 </DialogActions>

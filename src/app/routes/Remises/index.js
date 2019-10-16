@@ -58,7 +58,9 @@ class Remises extends React.Component {
             remises: [],
             status: null,
             open: false,
-            setOpen: false
+            setOpen: false,
+            id: null,
+            data: null
         };
     }
 
@@ -92,15 +94,18 @@ class Remises extends React.Component {
 
     updateStatus = (id, data) => {
         this.handleClickOpen();
-            axios.post(`http://localhost:4000/api/remises/${id}/replace`, data)
+        this.setState({ id, data })
+    }
+
+    confirmUpdateStatus = () => {
+         axios.post(`http://localhost:4000/api/remises/${this.state.id}/replace`, this.state.data)
                 .then(res => {
                     if(res.data) 
                         this.fetchData();
+                        this.handleClose();
                 })
                 .catch(err => console.log(err));
     }
-
-    confirmUpdateStatus = () => {}
 
     handleClickOpen = () => {
         this.setState({ open: true })
