@@ -106,7 +106,7 @@ class Remises extends React.Component {
     }
 
     confirmUpdateStatus = () => {
-        const { id, data, status } = this.state;
+        const { id, data, status, comment } = this.state;
         var arr = [];
          axios.post(`http://localhost:4000/api/remises/${id}/replace`, data)
                 .then(res => {
@@ -117,6 +117,7 @@ class Remises extends React.Component {
                         if(this.getChecksByRemiseId(id)) {
                             arr[0] = id;
                             arr[1] = status;
+                            arr[2] = comment;
                             console.log(`jddjjdjdjd`, this.state.ids);
                         }
 

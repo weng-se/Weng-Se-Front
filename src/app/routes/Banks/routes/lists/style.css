@@ -1,13 +1,5 @@
 a:hover, a:active { text-decoration: none!important; }
 
-.valid-status{
-    background-color: #1cc88a!important;
-}
-
-.invalid-status{
-    background-color: #e74a3b!important;
-}
-
-.wait-status{
-    background-color: #f6c23e!important;
-}
+.valid-status, .valid-status:hover { background-color: #1cc88a!important; }
+.invalid-status, .invalid-status:hover { background-color: #e74a3b!important; }
+.wait-status , .wait-status:hover { background-color: #f6c23e!important; }
