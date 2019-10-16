@@ -61,7 +61,8 @@ class Remises extends React.Component {
             setOpen: false,
             id: null,
             data: null,
-            comment: null 
+            comment: null,
+            ids: null
         };
     }
 
@@ -112,10 +113,14 @@ class Remises extends React.Component {
                     if(res.data) 
                         this.fetchData();
                         this.handleClose();
-                        arr[0] = id;
-                        arr[1] = status;
 
-                        console.log(this.getChecksByRemiseId(id));
+                        if(this.getChecksByRemiseId(id)) {
+                            arr[0] = id;
+                            arr[1] = status;
+                            console.log(`jddjjdjdjd`, this.state.ids);
+                        }
+
+                        
                         console.log(`hna dir appel dialk 3la api`, arr);
                 })
                 .catch(err => console.log(err));
@@ -127,10 +132,10 @@ class Remises extends React.Component {
         axios.get(`http://localhost:4000/api/remises/${id}/checks`)
                 .then(res => {
                     if(res.data) {
-                    for (var i=0; i < res.data.length ; ++i)
+                    for (var i=0; i < res.data.length ; i++)
                         output.push(res.data[i].id);
                     }
-                    return output;
+                    this.setState({ ids: output });
                 })
                 .catch(err => console.log(err));
     }
