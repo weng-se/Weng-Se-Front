@@ -229,7 +229,7 @@ class Remises extends React.Component {
                 options: {
                     sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
-                        <span>{moment(value).format('L')}</span>
+                        <span>{moment(value).format('DD/MM/YYYY')}</span>
                     )
                 }
             },

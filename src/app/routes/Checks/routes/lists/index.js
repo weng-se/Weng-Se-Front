@@ -86,7 +86,7 @@ class Checks extends React.Component {
                 options: {
                     sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
-                        <span>{ moment(value).format('L')  }</span>
+                        <span>{ moment(value).format('DD/MM/YYYY')  }</span>
                     )
                 }
             },
@@ -148,7 +148,7 @@ class Checks extends React.Component {
                     sort: false,
                     filter: true,
                     customBodyRender: (value, tableMeta, updateValue) => (
-                        <span>{ moment(value).format('L')  }</span>
+                        <span>{ moment(value).format('DD/MM/YYYY')  }</span>
                     )
                 }
             },
