@@ -3,6 +3,7 @@ table tbody td:nth-child(13) {padding-right: 5px!important;padding-left: 5px!imp
 table tbody td button {padding: 6px!important;}
 a:hover, a:active {text-decoration: none;}
 table thead th {background-color: transparent!important; font-weight: bold;  color: #333!important;}
-table thead {border-top: 1px solid #eee;background-color: #f5f6f7;background-image: linear-gradient(#fff, #efefef);}
+table thead th {border-top: 1px solid #eee;background-color: #f5f6f7;background-image: linear-gradient(#fff, #efefef);}
 .valid-status, .invalid-status, .waiting-status { color: #fff; }
 .waiting-status { background-color: #ffb64d; }
+.small-icon { font-size: 15px; }

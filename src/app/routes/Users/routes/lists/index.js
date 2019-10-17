@@ -118,11 +118,11 @@ class Lists extends React.Component {
                     </IconButton> */}
                                 
                                 <Fab color="primary" size="small" aria-label="edit" onClick={() => this._handleClickOpen(value)}>
-                                    <EditIcon />
+                                    <EditIcon className="small-icon" />
                                 </Fab>
                                 &nbsp;&nbsp;&nbsp;
                                 <Fab color="secondary" size="small" aria-label="delete" onClick={() => this.removeUser(value)} >
-                                    <DeleteIcon />
+                                    <DeleteIcon className="small-icon" />
                                 </Fab>
                                {/*  <IconButton size="sm" onClick={() => this._handleClickOpen(value)}>
                                     <EditIcon fontSize="small" />

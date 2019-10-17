@@ -28,6 +28,7 @@ import Toolbar from './../../Components/Toolbar/';
 import ToolbarSelect from './../../Components/ToolbarSelect/';
 import Template from './template';
 import { FormattedMessage } from 'react-intl';
+import Fab from '@material-ui/core/Fab';
 import {
     Properties
 } from './../../../../../constants/Properties';
@@ -163,6 +164,7 @@ class Checks extends React.Component {
                                 <Chip
                                     size="small"
                                     color="primary"
+                                    style={{ backgroundColor: "#1cc88a", color : "#fff" }}
                                     label={<FormattedMessage id="label.validated"/>}
                                     deleteIcon={<DoneIcon />}
                                 />
@@ -173,7 +175,7 @@ class Checks extends React.Component {
                                 <Chip
                                     size="small"
                                     label={<FormattedMessage id="label.ongoing"/>}
-                                    style={{ backgroundColor: "orange", color : "#FFF" }}
+                                    style={{ backgroundColor: "#ffb64d", color : "#fff" }}
                                     deleteIcon={<DoneIcon />}
                                 />
                             )
@@ -183,7 +185,7 @@ class Checks extends React.Component {
                                 <Chip
                                     size="small"
                                     label={<FormattedMessage id="label.waiting"/>}
-                                    style={{ backgroundColor: "orange", color : "#FFF" }}
+                                    style={{ backgroundColor: "#ffb64d", color : "#fff" }}
                                     deleteIcon={<DoneIcon />}
                                 />
                             )
@@ -205,7 +207,7 @@ class Checks extends React.Component {
                                 <Chip
                                     size="small"
                                     label={<FormattedMessage id="label.rejected"/>}
-                                    style={{ backgroundColor: "red", color : "#FFF" }}
+                                    style={{ backgroundColor: "#e74a3b", color : "#FFF" }}
                                     deleteIcon={<DoneIcon />}
                                 />
                             )
@@ -236,9 +238,9 @@ class Checks extends React.Component {
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <React.Fragment>
                             <div size="small">
-                                <IconButton size="small" onClick={() => this.getUpdatedCheck(value)}>
-                                    <EditIcon fontSize="small" />
-                                </IconButton>
+                                <Fab color="primary" size="small" aria-label="edit" onClick={() => this.getUpdatedCheck(value)}>
+                                    <EditIcon className="small-icon" />
+                                </Fab>
                             </div>
                         </React.Fragment>
                     )

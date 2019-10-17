@@ -93,20 +93,12 @@ class Lists extends React.Component {
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <React.Fragment>
                             <div size="small">
-                               {/* <IconButton size="sm" onClick={() => this.removeCustomer(value)}>
-                                    <DeleteIcon fontSize="small" />
-                                </IconButton>
-                                <IconButton size="sm" onClick={() => this._handleClickOpen(value)}>
-                                    <EditIcon fontSize="small"/>
-                                </IconButton>
-                    */}
-
                                 <Fab color="primary" size="small" aria-label="edit" onClick={() => this._handleClickOpen(value)}>
-                                    <EditIcon />
+                                    <EditIcon className="small-icon"  />
                                 </Fab>
                                 &nbsp;&nbsp;&nbsp;
                                 <Fab color="secondary" size="small" aria-label="delete" onClick={() => this.removeCustomer(value)} >
-                                    <DeleteIcon />
+                                    <DeleteIcon className="small-icon"  />
                                 </Fab>
                             </div>
                         </React.Fragment>

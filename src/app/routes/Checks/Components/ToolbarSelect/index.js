@@ -101,7 +101,7 @@ class ToolbarSelect extends React.Component {
         return (
             <React.Fragment>
                 <Tooltip title={<FormattedMessage id="label.createRemise"/> }>
-                    <Button size="small" variant="contained" onClick={this.handleOpenModal}>
+                    <Button size="small" variant="contained" color="primary" onClick={this.handleOpenModal}>
                         <FormattedMessage id="label.createRemise"/> 
                     </Button>
                 </Tooltip>
