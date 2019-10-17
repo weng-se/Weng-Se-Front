@@ -106,39 +106,36 @@ class Remises extends React.Component {
     }
 
     confirmUpdateStatus = () => {
-        
+
         const { id, data, status } = this.state;
         var allData = [];
 
         axios.post(`http://localhost:4000/api/remises/${id}/replace`, data)
             .then(res => {
-                if (res.data){
+                if (res.data) {
                     this.fetchData();
                     this.handleClose();
-                axios.get(`http://localhost:4000/api/remises/${id}/checks`)
-                    .then(res => {
-                        if (res.data) {
-                            for (var i = 1; i < res.data.length; i++)
-                            allData.push(res.data[i].id);
-                        }
-                        allData[0] = status
+                    axios.get(`http://localhost:4000/api/remises/${id}/checks`)
+                        .then(res => {
+                            if (res.data) {
+                                for (var i = 1; i < res.data.length; i++)
+                                    allData.push(res.data[i].id);
+                            }
+                            allData[0] = status
 
-                console.log("final", allData);
+                            axios.post(`http://localhost:4000/api/checks/updateAllCheckRemise`, allData)
+                                .then((res) => console.log(res))
+                                .catch((error) => console.log(error));
+                        })
+                        .catch(err => console.log(err));
+                }
+
+
+
+
             })
-            .catch(err => console.log(err));
-        }
 
-        let test = ["Rejeter", "5d6d2b9f66fc7efdb6435624", "5d6d2d1566fc7efdb6435627", "5d6e7e4be9192c3ba2da13fd"];
-        console.log("ss", test);
-        axios.post(`http://localhost:4000/api/checks/updateAllCheckRemise`, allData)
-            .then((res) => console.log(res))
-            .catch((error) => console.log(error));
-
-
-
-    })
-
-}
+    }
 
 
     handleClickOpen = () => {
@@ -421,7 +418,7 @@ class Remises extends React.Component {
     }
 
     delete = (id) => {
-        if( localStorage.getItem('user_role') === 'ROLE_ADMIN' ) {
+        if (localStorage.getItem('user_role') === 'ROLE_ADMIN') {
             if (window.confirm(`Are you sure you want to delete ?`)) {
                 fetch(`http://localhost:4000/api/remises/${id}`, {
                     method: `delete`
@@ -442,7 +439,7 @@ class Remises extends React.Component {
                     })
                 );
             }
-        }else window.alert("Désolé, vous n'avez pas la permission");
+        } else window.alert("Désolé, vous n'avez pas la permission");
     }
 
     fetchData = () => {
