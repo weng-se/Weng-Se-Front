@@ -62,7 +62,8 @@ class Remises extends React.Component {
             id: null,
             data: null,
             comment: null,
-            ids: null
+            ids: null,
+            show: false
         };
     }
 
@@ -443,7 +444,7 @@ class Remises extends React.Component {
     }
 
     fetchData = () => {
-        fetch(`http://localhost:4000/api/remises?filter[include]=checks&filter[order]=issuedDate%20DESC`)
+        fetch(`http://localhost:4000/api/remises?filter[include]=checks&filter[order]=issuedDate%20DESC&filter[where][status][neq]=Valide`)
             .then(res => res.json())
             .then(remises => {
                 this.setState({

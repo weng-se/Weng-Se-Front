@@ -43,9 +43,11 @@ import axios from 'axios';
 function* getChecks() {
     let payload = null,
         error = null;
+
+        // http://${Properties.host}:${Properties.port}/api/checks/findAll?status=VALIDATED&filter={%22include%22:[%22customer%22,%22remise%22]}
     try {
         yield put(fetchChecksProgress());
-        yield axios.get(`http://${Properties.host}:${Properties.port}/api/checks/findAll?status=VALIDATED&filter={%22include%22:[%22customer%22,%22remise%22]}`, {
+        yield axios.get(`http://${Properties.host}:${Properties.port}/api/checks?filter[where][status][neq]=ONGOING&[where][status][neq]=VALIDATED&filter={%22include%22:[%22customer%22,%22remise%22]}`, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
