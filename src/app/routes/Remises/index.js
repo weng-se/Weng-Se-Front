@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import {
     withStyles
 } from '@material-ui/core/styles';
@@ -15,8 +15,9 @@ import TableCell from '@material-ui/core/TableCell';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MenuItem from '@material-ui/core/MenuItem';
-import InputBase from '@material-ui/core/InputBase';
 import Select from '@material-ui/core/Select';
+import Tooltip from "@material-ui/core/Tooltip";
+import Switch from "@material-ui/core/Switch";
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import Fab from '@material-ui/core/Fab';
@@ -49,7 +50,7 @@ const styles = theme => ({
 });
 
 
-class Remises extends React.Component {
+class Remises extends Component {
 
     constructor(props) {
         super(props);
@@ -398,9 +399,21 @@ class Remises extends React.Component {
                 }
             },
             customToolbar: () => {
-                // return (
-                //   <Toolbar/>
-                // );
+                return (
+                  <Fragment>
+                      <Tooltip title={"Status valide"}>
+                      <Switch
+                            checked={this.state.show}
+                            onChange={this.handleSwicth}
+                            value="checkedB"
+                            color="primary"
+                            name="disabled"
+                            id="disabled"
+                            inputProps={{ 'aria-label': 'primary checkbox' }}
+                        />
+                    </Tooltip>
+                  </Fragment>
+                );
             },
             customToolbarSelect: (selectedRows) => {
                 // return (
@@ -408,16 +421,29 @@ class Remises extends React.Component {
                 // );
             },
             onTableChange: (action, tableState) => {
-                console.log(action);
+                
             }
         };
 
+    }
+
+
+    handleSwicth = () => {
+        this.setState({
+            show: !this.state.show
+        })
     }
 
     componentDidMount() {
         this.fetchData();
     }
 
+    /**
+     * delete remise 
+     * @method delete 
+     * @param {id} 
+     * @return {Void}
+    */
     delete = (id) => {
         if (localStorage.getItem('user_role') === 'ROLE_ADMIN') {
             if (window.confirm(`Are you sure you want to delete ?`)) {
@@ -443,15 +469,23 @@ class Remises extends React.Component {
         } else window.alert("Désolé, vous n'avez pas la permission");
     }
 
+
+    /**
+     * fetch remise 
+     * @method fetchData 
+     * @param {Object} 
+     * @return {Void}
+    */
     fetchData = () => {
         fetch(`http://localhost:4000/api/remises?filter[include]=checks&filter[order]=issuedDate%20DESC&filter[where][status][neq]=Valide`)
-            .then(res => res.json())
-            .then(remises => {
-                this.setState({
-                    remises
+                .then(res => res.json())
+                .then(remises => {
+                    this.setState({
+                        remises
+                    });
                 });
-            });
     }
+
 
     render() {
         return (Template(this));
