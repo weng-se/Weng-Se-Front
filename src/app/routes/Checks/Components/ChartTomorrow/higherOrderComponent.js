@@ -50,7 +50,7 @@ const higherOrderComponent = (WrappedComponent) => {
       if (mm < 10) mm = '0' + mm
       tomorrow = yyyy + '-' + mm + '-' + dd;
 
-      fetch(`http://${Properties.host}:${Properties.port}/api/checks/count?[where][issuedDate]=${tomorrow}`)
+      fetch(`http://${Properties.host}:${Properties.port}/api/checks/count?[where][cashingDateDesired]=${tomorrow}&[where][status]=WAITING`)
         .then(res => res.json())
         .then(data => this.setState({
           count: data.count

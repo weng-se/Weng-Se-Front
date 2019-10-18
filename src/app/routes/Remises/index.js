@@ -329,11 +329,14 @@ class Remises extends Component {
             renderExpandableRow: (rowData, rowMeta) => {
 
                 const getStatus = (_status) => {
+                    console.log("status", _status)
                     switch (_status) {
                         case "VALIDATED": return (<Chip size="small" color="primary" label={<FormattedMessage id="label.validated" />} />);
                         case "WAITING": return (<Chip size="small" label={<FormattedMessage id="label.waiting" />} style={{ backgroundColor: "orange", color: "#FFF" }} />);
                         case "REJECTED": return (<Chip size="small" label={<FormattedMessage id="label.rejected" />} style={{ backgroundColor: "red", color: "#FFF" }} />);
-                        case "TOCHANGE": return (<Chip size="small" color="secondary" label={<FormattedMessage id="label.toChange" />} />);
+                        case "ONGOING": return (<Chip size="small"  label={<FormattedMessage id="label.ongoing" style={{ backgroundColor: "#f6c23e!important", color: "#FFF" }}/>}  />);
+                        case "CASHED": return (<Chip size="small" label={<FormattedMessage id="label.cashed" style={{ backgroundColor: "#f6c23e!important", color: "#FFF" }}/>} />);
+
                         default: return <span>None</span>
                     }
                 }
@@ -480,7 +483,7 @@ class Remises extends Component {
      * @return {Void}
     */
     fetchData = () => {
-        fetch(`http://localhost:4000/api/remises?filter[include]=checks&filter[order]=issuedDate%20DESC&filter[where][status][neq]=Valide`)
+        fetch(`http://localhost:4000/api/remises?filter[include]=checks&filter[order]=issuedDate%20DESC`)
                 .then(res => res.json())
                 .then(remises => {
                     this.setState({
