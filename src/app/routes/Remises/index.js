@@ -110,6 +110,7 @@ class Remises extends Component {
     confirmUpdateStatus = () => {
 
         const { id, data, status } = this.state;
+        var idsCheck = [];
         var allData = [];
 
         axios.post(`http://localhost:4000/api/remises/${id}/replace`, data)
@@ -119,12 +120,14 @@ class Remises extends Component {
                     this.handleClose();
                     axios.get(`http://localhost:4000/api/remises/${id}/checks`)
                         .then(res => {
+                            console.log("data", res.data.id)
                             if (res.data) {
-                                for (var i = 1; i < res.data.length; i++)
-                                    allData.push(res.data[i].id);
+                                for (var i = 0; i < res.data.length; i++)
+                                    idsCheck.push(res.data[i].id);
                             }
-                            allData[0] = status
-
+                             allData.push(status);
+                             allData.push(...idsCheck);
+                            
                             axios.post(`http://localhost:4000/api/checks/updateAllCheckRemise`, allData)
                                 .then((res) => console.log(res))
                                 .catch((error) => console.log(error));
