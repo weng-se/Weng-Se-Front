@@ -186,6 +186,7 @@ class FormDialog extends React.Component {
                     
 
                     if(this.state.tomorrow) {
+                        
                         let arr = [this.state.remise_id]; 
                         let tomorrow  = moment(new Date()).add(1,'days').format("YYYY-MM-DD");
                         axios.get(`http://localhost:4000/api/checks?filter[where][issuedDate]=${tomorrow}`)
