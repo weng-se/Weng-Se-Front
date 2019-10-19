@@ -333,7 +333,7 @@ class Remises extends Component {
                     switch (_status) {
                         case "VALIDATED": return (<Chip size="small" color="primary" label={<FormattedMessage id="label.validated" />} />);
                         case "WAITING": return (<Chip size="small" label={<FormattedMessage id="label.waiting" />} style={{ backgroundColor: "orange", color: "#FFF" }} />);
-                        case "REJECTED": return (<Chip size="small" label={<FormattedMessage id="label.rejected" />} style={{ backgroundColor: "red", color: "#FFF" }} />);
+                        case "REJECTED": return (<Chip size="small" label={<FormattedMessage id="label.rejected" />} style={{backroundColor:'green'}} />);
                         case "ONGOING": return (<Chip size="small"  label={<FormattedMessage id="label.ongoing" style={{ backgroundColor: "#f6c23e!important", color: "#FFF" }}/>}  />);
                         case "CASHED": return (<Chip size="small" label={<FormattedMessage id="label.cashed" style={{ backgroundColor: "#f6c23e!important", color: "#FFF" }}/>} />);
 
