@@ -267,7 +267,7 @@ class Remises extends Component {
                                 InputLabelProps={{
                                     shrink: true,
                                 }}>
-                                <MenuItem value={"En attente"}><FormattedMessage id="label.waiting" /></MenuItem>
+                                <MenuItem disabled  value={"En attente"}><FormattedMessage id="label.waiting" htmlFor="name-multiple"/></MenuItem>
                                 <MenuItem value={"Valide"}><FormattedMessage id="label.validated" /></MenuItem>
                                 <MenuItem value={"Partiel"}><FormattedMessage id="label.toChange" /></MenuItem>
                                 <MenuItem value={"Rejeter"}><FormattedMessage id="label.rejected" /></MenuItem>
