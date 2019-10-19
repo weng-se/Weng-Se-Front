@@ -128,6 +128,7 @@ class Update extends React.Component {
                     cashingDateDesired: this.formatTime(nextProps.check.cashingDateDesired)
                 }
             })
+
         }
 
 
