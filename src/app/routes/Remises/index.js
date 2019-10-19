@@ -156,7 +156,7 @@ class Remises extends Component {
         this.columns = [
             {
                 name: "number",
-                label: <FormattedMessage id="label.checkNumber" />,
+                label: <FormattedMessage id="label.remiseNumber" />,
                 options: {
                     sort: false,
                     filter: true

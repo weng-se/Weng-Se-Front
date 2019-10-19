@@ -65,8 +65,6 @@ const Template = (component) => {
                         <div className="align-items-center justify-content-between">
                             <ValidatorForm style={{ width: '100%' }} onSubmit={component.saveCheck} noValidate autoComplete="off">
 
-
-
                                 <Grid container spacing={3}>
                                     <Grid item xs={12}>
                                         <FormControl style={{ width: '100%', padding: '5px' }}>
@@ -187,7 +185,7 @@ const Template = (component) => {
                                                 validators={['required']}
                                                 errorMessages={[<FormattedMessage id="label.msgIssuedDateRequired"/>]}
                                                 value={check.issuedDate}
-                                                InputProps={{ inputProps: { min: today } }}
+                                                InputProps={{ inputProps: { max: today } }}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}
@@ -239,8 +237,6 @@ const Template = (component) => {
                                     </Grid>
 
                                 </Grid>
-
-
 
                                 <div style={{ float: 'right', marginBottom: '20px' }}>
                                     <Button type="button" variant="contained" color="default" onClick={() => component.discard()}>
