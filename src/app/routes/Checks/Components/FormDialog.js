@@ -91,6 +91,7 @@ class FormDialog extends React.Component {
     }
 
     closeModal = () => {
+        
         this.props.close();
     }
 
@@ -355,7 +356,7 @@ class FormDialog extends React.Component {
     
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.props.close} color="secondary">
+                        <Button onClick={this.props.close } color="secondary">
                             <FormattedMessage id="label.discard" />
                         </Button>
                         <Button type="submit" color="primary" form="formRemise">

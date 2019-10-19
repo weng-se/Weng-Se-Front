@@ -129,16 +129,17 @@ class Remises extends Component {
                              allData.push(...idsCheck);
                             
                             axios.post(`http://localhost:4000/api/checks/updateAllCheckRemise`, allData)
-                                .then((res) => console.log(res))
+                                .then((res) => this.fetchData())
                                 .catch((error) => console.log(error));
                         })
                         .catch(err => console.log(err));
                 }
-
-
+                
+                
 
 
             })
+            .catch(err => console.log(err));
 
     }
 
