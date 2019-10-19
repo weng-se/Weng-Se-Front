@@ -231,7 +231,7 @@ class Remises extends Component {
             },
             {
                 name: "issuedDate",
-                label: <FormattedMessage id="label.issuedDate" />,
+                label: <FormattedMessage id="label.dateOfIssue" />,
                 options: {
                     sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
@@ -409,17 +409,16 @@ class Remises extends Component {
             customToolbar: () => {
                 return (
                   <Fragment>
-                      <Tooltip title={"Status valide"}>
+                      {/* <Tooltip title={"Status valide"}>
                       <Switch
                             checked={this.state.show}
                             onChange={this.handleSwicth}
                             value="checkedB"
                             color="primary"
                             name="disabled"
-                            id="disabled"
                             inputProps={{ 'aria-label': 'primary checkbox' }}
                         />
-                    </Tooltip>
+                    </Tooltip> */}
                   </Fragment>
                 );
             },
@@ -485,6 +484,7 @@ class Remises extends Component {
      * @return {Void}
     */
     fetchData = () => {
+        // &filter[where][status][neq]=Valide
         fetch(`http://localhost:4000/api/remises?filter[include]=checks&filter[order]=issuedDate%20DESC`)
                 .then(res => res.json())
                 .then(remises => {
