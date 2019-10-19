@@ -285,6 +285,7 @@ class Remises extends Component {
                     print: false,
                     download: false,
                     filter: false,
+                    display: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <React.Fragment>
                             <div size="small">
