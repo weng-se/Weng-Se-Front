@@ -28,6 +28,7 @@ const higherOrderComponent = (WrappedComponent) => {
 
       let fromTime = moment(new Date()).format("YYYY-MM-DD")
       let toTime = moment(new Date()).format("YYYY-MM-DD")
+      
 
       fetch(`http://${Properties.host}:${Properties.port}/api/checks/getSumCheck?fromTime=${fromTime}&toTime=${toTime}`)
         .then(res => res.json())
@@ -49,7 +50,7 @@ const higherOrderComponent = (WrappedComponent) => {
       if (mm < 10) mm = '0' + mm
       today = yyyy + '-' + mm + '-' + dd;;
 
-      fetch(`http://${Properties.host}:${Properties.port}/api/checks/count?[where][issuedDate]=${today}`)
+      fetch(`http://${Properties.host}:${Properties.port}/api/checks/count?[where][cashingDateDesired]=${today}&[where][status]=WAITING`)
         .then(res => res.json())
         .then(data => this.setState({
           count: data.count

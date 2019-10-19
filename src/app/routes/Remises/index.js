@@ -129,16 +129,17 @@ class Remises extends Component {
                              allData.push(...idsCheck);
                             
                             axios.post(`http://localhost:4000/api/checks/updateAllCheckRemise`, allData)
-                                .then((res) => console.log(res))
+                                .then((res) => this.fetchData())
                                 .catch((error) => console.log(error));
                         })
                         .catch(err => console.log(err));
                 }
-
-
+                
+                
 
 
             })
+            .catch(err => console.log(err));
 
     }
 
@@ -267,7 +268,7 @@ class Remises extends Component {
                                 InputLabelProps={{
                                     shrink: true,
                                 }}>
-                                <MenuItem value={"En attente"}><FormattedMessage id="label.waiting" /></MenuItem>
+                                {/*<MenuItem disabled  value={"En attente"}><FormattedMessage id="label.waiting" htmlFor="name-multiple"/></MenuItem> */}
                                 <MenuItem value={"Valide"}><FormattedMessage id="label.validated" /></MenuItem>
                                 <MenuItem value={"Partiel"}><FormattedMessage id="label.toChange" /></MenuItem>
                                 <MenuItem value={"Rejeter"}><FormattedMessage id="label.rejected" /></MenuItem>
@@ -329,11 +330,14 @@ class Remises extends Component {
             renderExpandableRow: (rowData, rowMeta) => {
 
                 const getStatus = (_status) => {
+                    console.log("status", _status)
                     switch (_status) {
                         case "VALIDATED": return (<Chip size="small" color="primary" label={<FormattedMessage id="label.validated" />} />);
                         case "WAITING": return (<Chip size="small" label={<FormattedMessage id="label.waiting" />} style={{ backgroundColor: "orange", color: "#FFF" }} />);
-                        case "REJECTED": return (<Chip size="small" label={<FormattedMessage id="label.rejected" />} style={{ backgroundColor: "red", color: "#FFF" }} />);
-                        case "TOCHANGE": return (<Chip size="small" color="secondary" label={<FormattedMessage id="label.toChange" />} />);
+                        case "REJECTED": return (<Chip size="small" label={<FormattedMessage id="label.rejected" />} style={{backroundColor:'green'}} />);
+                        case "ONGOING": return (<Chip size="small"  label={<FormattedMessage id="label.ongoing" style={{ backgroundColor: "#f6c23e!important", color: "#FFF" }}/>}  />);
+                        case "CASHED": return (<Chip size="small" label={<FormattedMessage id="label.cashed" style={{ backgroundColor: "#f6c23e!important", color: "#FFF" }}/>} />);
+
                         default: return <span>None</span>
                     }
                 }

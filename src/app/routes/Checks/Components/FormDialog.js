@@ -91,6 +91,7 @@ class FormDialog extends React.Component {
     }
 
     closeModal = () => {
+        
         this.props.close();
     }
 
@@ -186,6 +187,7 @@ class FormDialog extends React.Component {
                     
 
                     if(this.state.tomorrow) {
+                        
                         let arr = [this.state.remise_id]; 
                         let tomorrow  = moment(new Date()).add(1,'days').format("YYYY-MM-DD");
                         axios.get(`http://localhost:4000/api/checks?filter[where][issuedDate]=${tomorrow}`)
@@ -354,7 +356,7 @@ class FormDialog extends React.Component {
     
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.props.close} color="secondary">
+                        <Button onClick={this.props.close } color="secondary">
                             <FormattedMessage id="label.discard" />
                         </Button>
                         <Button type="submit" color="primary" form="formRemise">
