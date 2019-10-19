@@ -703,5 +703,6 @@
   "label.agree": "Confirmer",
   "label.disagree": "Annuler",
   "label.cashed": "ENCAISSE",
-  "label.messagePermission": "Désolé, vous n'avez pas la permission"
+  "label.messagePermission": "Désolé, vous n'avez pas la permission",
+  "label.dateOfIssue": "date d'émission"
 }
