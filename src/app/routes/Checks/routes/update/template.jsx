@@ -54,18 +54,7 @@ const Template = (component) => {
         <React.Fragment>
             <ValidatorForm style={{ width: '100%' }} onSubmit={component.editCheck} id="updateCheckFrom" noValidate autoComplete="off">
 
-
-                <ExpansionPanel expanded={true}>
-                    <ExpansionPanelSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                    >
-                        <Typography><FormattedMessage id="label.checkInformation"/></Typography>
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails>
-
-                        <Grid container spacing={3}>
+                    <Grid container spacing={3}>
                             <Grid item xs={12}>
                                 <FormControl style={{ width: '100%', padding: '5px' }}>
 
@@ -267,27 +256,6 @@ const Template = (component) => {
                             </Grid>
 
                         </Grid>
-
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
-
-
-                <ExpansionPanel expanded={true}>
-                    <ExpansionPanelSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel2a-content"
-                        id="panel2a-header"
-                    >
-                        <Typography><FormattedMessage id="label.systemInformation"/></Typography>
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails>
-                        <Grid container spacing={3}>
-                            
-                        </Grid>
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
-
-
 
                 {/* <div style={{ float: 'right', marginBottom: '20px' }}>
                     <Button type="button" variant="contained" color="default" onClick={component.discard}> <FormattedMessage id="label.discard"/> </Button>
