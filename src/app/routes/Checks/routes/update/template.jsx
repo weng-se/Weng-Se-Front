@@ -50,6 +50,7 @@ const Template = (component) => {
         remises,
         banks,
     } = component.state;
+    console.log('update check', check);
     return (
         <React.Fragment>
             <ValidatorForm style={{ width: '100%' }} onSubmit={component.editCheck} id="updateCheckFrom" noValidate autoComplete="off">

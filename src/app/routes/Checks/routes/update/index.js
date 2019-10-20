@@ -15,6 +15,7 @@ import {
     checkEditRequest
 } from '../../../../../actions/Checks';
 import { FormattedMessage } from 'react-intl';
+import moment from 'moment';
 
 const styles = {
     checked: {},
@@ -43,7 +44,7 @@ class Update extends React.Component {
                 status: '',
                 issuedDate: '',
                 comment: '',
-                cashingDateDesired: '',
+                cashingDateDesired: ''
             },
             selectedDate: null,
             setSelectedDate: null,
@@ -123,9 +124,11 @@ class Update extends React.Component {
                     customerId: nextProps.check.customerId,
                     remise_id: nextProps.check.remise_id,
                     status: nextProps.check.status,
-                    issuedDate: this.formatTime(nextProps.check.issuedDate),
+                    // issuedDate: this.formatTime(nextProps.check.issuedDate),
+                    issuedDate : moment(nextProps.check.issuedDate).format('YYYY-MM-DD'),
                     comment: nextProps.check.comment,
-                    cashingDateDesired: this.formatTime(nextProps.check.cashingDateDesired)
+                    // cashingDateDesired: this.formatTime(nextProps.check.cashingDateDesired)
+                    cashingDateDesired: moment(nextProps.check.cashingDateDesired).format('YYYY-MM-DD')
                 }
             })
 
