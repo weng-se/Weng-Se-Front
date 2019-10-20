@@ -154,6 +154,17 @@ class Remises extends Component {
 
     componentWillMount() {
         this.columns = [
+
+            {
+                name: "issuedDate",
+                label: <FormattedMessage id="label.dateOfIssue" />,
+                options: {
+                    sort: false,
+                    customBodyRender: (value, tableMeta, updateValue) => (
+                        <span>{moment(value).format('DD/MM/YYYY')}</span>
+                    )
+                }
+            },
             {
                 name: "number",
                 label: <FormattedMessage id="label.remiseNumber" />,
@@ -165,6 +176,14 @@ class Remises extends Component {
             {
                 name: "bank",
                 label: <FormattedMessage id="label.bank" />,
+                options: {
+                    sort: false,
+                    filter: true
+                }
+            },
+            {
+                name: "numberCheck",
+                label: <FormattedMessage id="label.numberCheck" />,
                 options: {
                     sort: false,
                     filter: true
@@ -185,14 +204,7 @@ class Remises extends Component {
                     )
                 }
             },
-            {
-                name: "numberCheck",
-                label: <FormattedMessage id="label.numberCheck" />,
-                options: {
-                    sort: false,
-                    filter: true
-                }
-            },
+           
             {
                 name: 'status',
                 label: <FormattedMessage id="label.status" />,
@@ -229,16 +241,7 @@ class Remises extends Component {
                     }
                 }
             },
-            {
-                name: "issuedDate",
-                label: <FormattedMessage id="label.dateOfIssue" />,
-                options: {
-                    sort: false,
-                    customBodyRender: (value, tableMeta, updateValue) => (
-                        <span>{moment(value).format('DD/MM/YYYY')}</span>
-                    )
-                }
-            },
+            
             {
                 name: "checks",
                 label: "",
@@ -349,8 +352,10 @@ class Remises extends Component {
                             <React.Fragment>
                                 <TableRow>
                                     <TableCell></TableCell>
+                                    <TableCell align="left">{moment(row.issuedDate).format('L')}</TableCell>
                                     <TableCell align="left">{row.number}</TableCell>
                                     <TableCell align="left">{row.bank}</TableCell>
+                                    <TableCell align="left">{row.comment}</TableCell>
                                     <TableCell align="left">
                                         <Chip
                                             size="small"
@@ -358,11 +363,11 @@ class Remises extends Component {
                                             label={"€" + row.amount}
                                         />
                                     </TableCell>
-                                    <TableCell align="left">{row.comment}</TableCell>
+                                    
                                     <TableCell align="left">
                                         {getStatus(row.status)}
                                     </TableCell>
-                                    <TableCell align="left">{moment(row.issuedDate).format('L')}</TableCell>
+                                    
                                     <TableCell></TableCell>
                                     <TableCell></TableCell>
                                 </TableRow>

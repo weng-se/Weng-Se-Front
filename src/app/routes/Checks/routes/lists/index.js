@@ -91,18 +91,6 @@ class Checks extends React.Component {
                 }
             },
             {
-                name: "customer",
-                label: <FormattedMessage id="label.customer"/>,
-                options: {
-                    filter: true,
-                    customBodyRender: (value, tableMeta, updateValue) =>  {
-                        if(value) {
-                            return(<span>{ value.firstName + ' ' + value.lastName }</span>)
-                        }
-                    }
-                }
-            },
-            {
                 name: "number",
                 label: <FormattedMessage id="label.checkNumber"/>,
                 options: {
@@ -118,6 +106,19 @@ class Checks extends React.Component {
                     filter: true
                 }
             },
+            {
+                name: "customer",
+                label: <FormattedMessage id="label.customer"/>,
+                options: {
+                    filter: true,
+                    customBodyRender: (value, tableMeta, updateValue) =>  {
+                        if(value) {
+                            return(<span>{ value.firstName + ' ' + value.lastName }</span>)
+                        }
+                    }
+                }
+            },
+
             {
                 name: "amount",
                 label: <FormattedMessage id="label.amount"/>,
@@ -141,17 +142,7 @@ class Checks extends React.Component {
                     filter: true
                 }
             },
-            {
-                name: "cashingDateDesired",
-                label: <FormattedMessage id="label.cashingDateDesired"/>,
-                options: {
-                    sort: false,
-                    filter: true,
-                    customBodyRender: (value, tableMeta, updateValue) => (
-                        <span>{ moment(value).format('DD/MM/YYYY')  }</span>
-                    )
-                }
-            },
+            
             {
                 name: 'status',
                 label: <FormattedMessage id="label.status"/>,
@@ -225,6 +216,17 @@ class Checks extends React.Component {
                         }
 
                     }
+                }
+            },
+            {
+                name: "cashingDateDesired",
+                label: <FormattedMessage id="label.cashingDateDesired"/>,
+                options: {
+                    sort: false,
+                    filter: true,
+                    customBodyRender: (value, tableMeta, updateValue) => (
+                        <span>{ moment(value).format('DD/MM/YYYY')  }</span>
+                    )
                 }
             },
             {
