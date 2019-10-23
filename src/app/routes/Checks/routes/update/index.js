@@ -116,9 +116,6 @@ class Update extends React.Component {
 
         if (nextProps.check) {
 
-
-            console.log('update check', nextProps.check);
-
             this.setState({
                 check: {
                     ...this.state.check,
