@@ -37,7 +37,7 @@ class Update extends React.Component {
             check: {
                 id: '',
                 number: '',
-                bank: '',
+                bankId: '',
                 amount: '',
                 customerId: '',
                 remiseId: '',
@@ -115,12 +115,16 @@ class Update extends React.Component {
 
 
         if (nextProps.check) {
+
+
+            console.log('update check', nextProps.check);
+
             this.setState({
                 check: {
                     ...this.state.check,
                     id: nextProps.check.id,
                     number: nextProps.check.number,
-                    bank: nextProps.check.bank,
+                    bankId: nextProps.check.bankId,
                     amount: nextProps.check.amount,
                     customerId: nextProps.check.customerId,
                     remise_id: nextProps.check.remise_id,

@@ -105,14 +105,14 @@ const Template = (component) => {
                                             <TextValidator
                                                 id="standard-select-status-native"
                                                 select
-                                                name="bank"
+                                                name="bankId"
                                                 label={<FormattedMessage id="label.bank" />}
                                                 onChange={component.handleChange}
                                                 SelectProps={{ native: true }}
                                                 margin="dense"
                                                 variant="outlined"
                                                 required="true"
-                                                value={check.bank}
+                                                value={check.bankId}
                                                 InputLabelProps={{
                                                     shrink: true,
                                                 }}

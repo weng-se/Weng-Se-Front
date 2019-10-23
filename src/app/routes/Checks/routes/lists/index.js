@@ -99,7 +99,7 @@ class Checks extends React.Component {
                 }
             },
             {
-                name: "bank",
+                name: "bank.title",
                 label: <FormattedMessage id="label.bank"/>,
                 options: {
                     sort: false,
@@ -351,7 +351,6 @@ class Checks extends React.Component {
     componentWillReceiveProps(nextProps) {
 
         if(nextProps.checks) {
-
             this.setState({ 
                 checks: nextProps.checks 
             })

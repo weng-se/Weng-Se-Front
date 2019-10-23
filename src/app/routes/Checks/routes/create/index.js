@@ -36,7 +36,7 @@ class Create extends React.Component {
         this.state = {
             check: {
                 number: '',
-                bank: '',
+                bankId: '',
                 amount: '',
                 customerId: '',
                 remise_id: '',
@@ -156,7 +156,7 @@ class Create extends React.Component {
                 customer: '',
                 numberOfCheque: '',
                 number: '',
-                bank: '',
+                bankId: '',
                 comment: '',
                 amount: '',
                 remiseNumber: '',

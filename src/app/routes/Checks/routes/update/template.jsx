@@ -50,7 +50,6 @@ const Template = (component) => {
         remises,
         banks,
     } = component.state;
-    console.log('update check', check);
     return (
         <React.Fragment>
             <ValidatorForm style={{ width: '100%' }} onSubmit={component.editCheck} id="updateCheckFrom" noValidate autoComplete="off">
@@ -94,7 +93,7 @@ const Template = (component) => {
                                     <TextValidator
                                         id="bank"
                                         select
-                                        name="bank"
+                                        name="bankId"
                                         label={<FormattedMessage id="label.bank" />}
                                         onChange={component.handleChange}
                                         SelectProps={{ native: true }}
@@ -102,7 +101,7 @@ const Template = (component) => {
                                         variant="outlined"
                                         disabled={(localStorage.getItem("user_role") == "ROLE_ADMIN") ? false : true}
                                         required="true"
-                                        value={check.bank}
+                                        value={check.bankId}
                                         InputLabelProps={{
                                             shrink: true,
                                         }}
@@ -110,7 +109,7 @@ const Template = (component) => {
                                         errorMessages={[<FormattedMessage id="label.msgBankRequired"/>]}
                                     >
                                         {banks.map(option => (
-                                            <option key={option.id} value={option.name}>
+                                            <option key={option.id} value={option.id}>
                                                 {option.title}
                                             </option>
                                         ))}
