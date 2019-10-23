@@ -32,7 +32,7 @@ class FormDialog extends React.Component {
         super(props);
         this.state = {
             remise: {
-                bank: "",
+                bankId: "",
                 number: "",
                 issuedDate: "",
                 numberCheck: 0,
@@ -99,7 +99,7 @@ class FormDialog extends React.Component {
         this.setState({
             remise: {
                 ...this.state.remise,
-                bank: "",
+                bankId: "",
                 number: "",
                 issuedDate: "",
                 numberCheck: 0,
@@ -314,20 +314,20 @@ class FormDialog extends React.Component {
                                         <TextValidator
                                             id="bank"
                                             select
-                                            name="bank"
+                                            name="bankId"
                                             label={<FormattedMessage id="label.bank" />}
                                             onChange={this.handleChange}
                                             SelectProps={{ native: true }}
                                             margin="dense"
                                             variant="outlined"
-                                            value={this.state.remise.bank}
+                                            value={this.state.remise.bankId}
                                             InputLabelProps={{
                                                 shrink: true,
                                             }}
                                         >
                                         <option value={""}></option>
                                         {this.state.banks.map(option => (
-                                            <option key={option.id} value={option.name}>
+                                            <option key={option.id} value={option.id}>
                                                 {option.title}
                                             </option>
                                         ))}

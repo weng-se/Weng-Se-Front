@@ -41,7 +41,7 @@ class ToolbarSelect extends React.Component {
         this.state = {
             openModal: false,
             remise: {
-                bank: null,
+                bankId: null,
                 number: null,
                 issuedDate: new Date('now'),
                 numberCheck: 0,
@@ -160,7 +160,7 @@ class ToolbarSelect extends React.Component {
                                         <TextValidator
                                             id="bank"
                                             select
-                                            name="bank"
+                                            name="bankId"
                                             label={<FormattedMessage id="label.bank" />}
                                             onChange={this.handleChange}
                                             SelectProps={{ native: true }}
@@ -174,7 +174,7 @@ class ToolbarSelect extends React.Component {
                                         >
                                         <option value={""}></option>
                                         {this.state.banks.map(option => (
-                                            <option key={option.id} value={option.name}>
+                                            <option key={option.id} value={option.id}>
                                                 {option.title}
                                             </option>
                                         ))}
