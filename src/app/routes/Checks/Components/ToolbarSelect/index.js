@@ -78,6 +78,27 @@ class ToolbarSelect extends React.Component {
         this.getBanks();
     }
 
+    componentWillMount(props) {
+
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if(dd<10) dd = '0'+dd
+        if(mm<10) mm = '0'+mm
+        
+        today = yyyy + '-' + mm + '-' + dd;
+        
+        this.setState({
+            remise: {
+                ...this.state.remise,
+                remiseDate : today
+            }
+        });
+
+    }
+
 
     getBanks = () => {
         fetch('http://localhost:4000/api/banks?filter[where][wengseAccount]=true')
