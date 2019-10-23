@@ -43,7 +43,7 @@ class ToolbarSelect extends React.Component {
             remise: {
                 bank: null,
                 number: null,
-                issuedDate: new Date('now'),
+                issuedDate: "",
                 numberCheck: 0,
                 amount: 0,
                 status: "En attente",
@@ -74,6 +74,28 @@ class ToolbarSelect extends React.Component {
         this.props.createRemise(this.state.remise);
     }
 
+    componentWillMount(props) {
+
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if(dd<10) dd = '0'+dd
+        if(mm<10) mm = '0'+mm
+        
+        today = yyyy + '-' + mm + '-' + dd;
+        
+        this.setState({
+            remise: {
+                ...this.state.remise,
+                remiseDate : today
+            }
+        });
+
+    }
+
+
     componentDidMount() {
         this.getBanks();
     }
@@ -97,7 +119,9 @@ class ToolbarSelect extends React.Component {
 
 
     render() {
+        
         const { classes } = this.props;
+
         return (
             <React.Fragment>
                 <Tooltip title={<FormattedMessage id="label.createRemise"/> }>
