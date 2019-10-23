@@ -333,6 +333,8 @@ class Remises extends Component {
             rowsExpanded: [0, 2, 3],
             renderExpandableRow: (rowData, rowMeta) => {
 
+                console.log('rowData', rowData[6]);
+
                 const getStatus = (_status) => {
                     console.log("status", _status)
                     switch (_status) {
@@ -368,7 +370,6 @@ class Remises extends Component {
                                         {getStatus(row.status)}
                                     </TableCell>
                                     <TableCell align="left">{row.comment}</TableCell>
-                                    <TableCell></TableCell>
                                 </TableRow>
                             </React.Fragment>
                         ))
