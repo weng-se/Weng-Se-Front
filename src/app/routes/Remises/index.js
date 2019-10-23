@@ -174,7 +174,7 @@ class Remises extends Component {
                 }
             },
             {
-                name: "bank",
+                name: "bank.title",
                 label: <FormattedMessage id="label.bank" />,
                 options: {
                     sort: false,
@@ -367,8 +367,7 @@ class Remises extends Component {
                                     <TableCell align="left">
                                         {getStatus(row.status)}
                                     </TableCell>
-                                    
-                                    <TableCell></TableCell>
+                                    <TableCell align="left">{row.comment}</TableCell>
                                     <TableCell></TableCell>
                                 </TableRow>
                             </React.Fragment>
@@ -489,10 +488,10 @@ class Remises extends Component {
      * @return {Void}
     */
     fetchData = () => {
-        // &filter[where][status][neq]=Valide
-        fetch(`http://localhost:4000/api/remises?filter[include]=checks&filter[order]=issuedDate%20DESC`)
+        fetch(`http://localhost:4000/api/remises?filter[include]=checks&filter[include]=bank&filter[order]=issuedDate%20DESC`)
                 .then(res => res.json())
                 .then(remises => {
+                    console.log(remises);
                     this.setState({
                         remises
                     });

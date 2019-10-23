@@ -113,7 +113,7 @@ class Checks extends React.Component {
                     filter: true,
                     customBodyRender: (value, tableMeta, updateValue) =>  {
                         if(value) {
-                            return(<span>{ value.firstName + ' ' + value.lastName }</span>)
+                            return(<span>{ value.name }</span>)
                         }
                     }
                 }
@@ -351,6 +351,7 @@ class Checks extends React.Component {
     componentWillReceiveProps(nextProps) {
 
         if(nextProps.checks) {
+
             this.setState({ 
                 checks: nextProps.checks 
             })

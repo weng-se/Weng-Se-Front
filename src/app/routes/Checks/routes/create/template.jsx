@@ -121,7 +121,7 @@ const Template = (component) => {
                                             >
                                                 <option value=""></option>
                                                 {banks.map(option => (
-                                                    <option key={option.id} value={option.name}>
+                                                    <option key={option.id} value={option.id}>
                                                         {option.title}
                                                     </option>
                                                 ))}

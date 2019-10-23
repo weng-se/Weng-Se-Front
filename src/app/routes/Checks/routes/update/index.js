@@ -113,6 +113,7 @@ class Update extends React.Component {
 
     componentWillReceiveProps(nextProps) {
 
+
         if (nextProps.check) {
             this.setState({
                 check: {
