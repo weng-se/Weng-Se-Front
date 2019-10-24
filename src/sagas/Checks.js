@@ -43,11 +43,11 @@ import axios from 'axios';
 function* getChecks() {
     let payload = null,
         error = null;
-
+       // http://localhost:4000/api/checks?filter[include]=bank&filter[include]=remise&filter[include]=customer&filter[where][and][0][status][neq]=ONGOING&filter[where][and][1][status][neq]=CASHED
         // http://${Properties.host}:${Properties.port}/api/checks?filter[where][and][0][status][neq]=ONGOING&filter[where][and][1][status][neq]=CASHED&filter={%22include%22:[%22customer%22,%22remise%22]}
     try {
         yield put(fetchChecksProgress()); 
-        yield axios.get(`http://${Properties.host}:${Properties.port}/api/checks?filter={"include":["bank","remise","customer"]}`, {
+        yield axios.get(`http://${Properties.host}:${Properties.port}/api/checks?filter[include]=bank&filter[include]=remise&filter[include]=customer&filter[where][and][0][status][neq]=ONGOING&filter[where][and][1][status][neq]=CASHED`, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
