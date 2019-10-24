@@ -74,11 +74,11 @@ const Template = (component) => {
                                 options={component.options}
                             />
                         </MuiThemeProvider>
-                        {/* {component.props.progress !== 100 &&
+                        {component.props.progress !== 100 && component.props.loading &&
                             <div className="loader-view">
                                 <CircularProgress />
                             </div>
-                        } */}
+                        }
                     </Card>
 
                 </div>

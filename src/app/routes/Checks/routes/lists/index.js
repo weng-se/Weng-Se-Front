@@ -413,14 +413,16 @@ const mapStateToProps = (state) => {
         progress,
         error,
         check,
-        deleted
+        deleted,
+        loading
     } = state.checks;
     return {
         checks: checks,
         progress: progress,
         error: error,
         check: check,
-        deleted: deleted
+        deleted: deleted,
+        loading: loading
     }
 }
   

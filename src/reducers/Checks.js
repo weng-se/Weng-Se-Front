@@ -28,6 +28,7 @@ import {
 const INIT_STATE = {
     checks: null,
     progress: 0,
+    loading: true,
     error: false,
     deleted: false,
     created: false,
@@ -43,7 +44,8 @@ export default (state = INIT_STATE, action) => {
         case REQUEST_FETCH_CHECKS: {
             return {
                 ...state,
-                progress: 0
+                progress: 0,
+                loading: true
             }
         }
         case REQUEST_FETCH_CHECKS_SUCCESS: {
@@ -53,6 +55,7 @@ export default (state = INIT_STATE, action) => {
                 progress: 100,
                 updated: false,
                 deleted: false,
+                loading: false,
                 checks: action.payload
             }
         }
@@ -61,6 +64,7 @@ export default (state = INIT_STATE, action) => {
                 ...state,
                 progress: 100,
                 error: true,
+                loading: false,
                 checks: action.payload
             }
         }

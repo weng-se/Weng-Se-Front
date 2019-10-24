@@ -220,7 +220,7 @@ class ToolbarSelect extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createRemise : (formData) =>dispatch(createRemiseRequest(formData))
+        createRemise : (formData) => dispatch(createRemiseRequest(formData))
     }
 }
 
