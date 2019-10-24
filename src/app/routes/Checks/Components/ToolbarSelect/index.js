@@ -41,9 +41,9 @@ class ToolbarSelect extends React.Component {
         this.state = {
             openModal: false,
             remise: {
-                bankId: null,
-                number: null,
-                issuedDate: new Date('now'),
+                bankId: "",
+                number: "",
+                issuedDate: "",
                 numberCheck: 0,
                 amount: 0,
                 status: "En attente",
@@ -78,8 +78,7 @@ class ToolbarSelect extends React.Component {
         this.getBanks();
     }
 
-    componentWillMount(props) {
-
+    componentWillMount() {
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth()+1; //January is 0!
@@ -93,10 +92,9 @@ class ToolbarSelect extends React.Component {
         this.setState({
             remise: {
                 ...this.state.remise,
-                remiseDate : today
+                issuedDate : today
             }
         });
-
     }
 
 
@@ -191,7 +189,7 @@ class ToolbarSelect extends React.Component {
                                             onChange={this.handleChange}
                                             margin="dense"
                                             variant="outlined"
-                                            value={this.state.remise.remiseDate}
+                                            value={this.state.remise.issuedDate}
                                             InputLabelProps={{
                                                 shrink: true,
                                             }}
