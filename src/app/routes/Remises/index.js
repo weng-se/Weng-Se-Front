@@ -21,6 +21,9 @@ import Switch from "@material-ui/core/Switch";
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import Fab from '@material-ui/core/Fab';
+import { 
+    Properties 
+} from '../../../constants/Properties';
 import "./style.css";
 // import IntlMessages from '../Customers/node_modules/util/IntlMessages';
 // import ContainerHeader from '../Customers/node_modules/components/ContainerHeader/index';
@@ -93,7 +96,7 @@ class Remises extends Component {
 
     handleChangeStatus = (id, e) => {
         this.setState({ status: e.target.value })
-        fetch(`http://localhost:4000/api/remises/${id}`)
+        fetch(`http://${Properties.host}:${Properties.port}/api/remises/${id}`)
             .then(res => res.json())
             .then(data => {
                 data["status"] = this.state.status;
@@ -113,12 +116,12 @@ class Remises extends Component {
         var idsCheck = [];
         var allData = [];
 
-        axios.post(`http://localhost:4000/api/remises/${id}/replace`, data)
+        axios.post(`http://${Properties.host}:${Properties.port}/api/remises/${id}/replace`, data)
             .then(res => {
                 if (res.data) {
                     this.fetchData();
                     this.handleClose();
-                    axios.get(`http://localhost:4000/api/remises/${id}/checks`)
+                    axios.get(`http://${Properties.host}:${Properties.port}/api/remises/${id}/checks`)
                         .then(res => {
                             console.log("data", res.data.id)
                             if (res.data) {
@@ -128,7 +131,7 @@ class Remises extends Component {
                              allData.push(status);
                              allData.push(...idsCheck);
                             
-                            axios.post(`http://localhost:4000/api/checks/updateAllCheckRemise`, allData)
+                            axios.post(`http://${Properties.host}:${Properties.port}/api/checks/updateAllCheckRemise`, allData)
                                 .then((res) => this.fetchData())
                                 .catch((error) => console.log(error));
                         })
@@ -459,7 +462,7 @@ class Remises extends Component {
     delete = (id) => {
         if (localStorage.getItem('user_role') === 'ROLE_ADMIN') {
             if (window.confirm(`Are you sure you want to delete ?`)) {
-                fetch(`http://localhost:4000/api/remises/${id}`, {
+                fetch(`http://${Properties.host}:${Properties.port}/api/remises/${id}`, {
                     method: `delete`
                 }).then(response =>
                     response.json().then(json => {
@@ -493,7 +496,7 @@ class Remises extends Component {
         http://localhost:4000/api/remises?filter[include]=checks&filter[include]=bank&filter[order]=issuedDate%20DESC
 
         
-        fetch(`http://localhost:4000/api/remises?filter[include]=bank&filter[include][checks]=bank&filter[include][checks]=customer&filter[order]=issuedDate%20DESC`)
+        fetch(`http://${Properties.host}:${Properties.port}/api/remises?filter[include]=bank&filter[include][checks]=bank&filter[include][checks]=customer&filter[order]=issuedDate%20DESC`)
                 .then(res => res.json())
                 .then(remises => {
                     console.log(remises);

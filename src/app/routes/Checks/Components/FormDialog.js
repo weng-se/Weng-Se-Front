@@ -23,6 +23,7 @@ import {
     TextValidator
 } from 'react-material-ui-form-validator';
 import { FormattedMessage } from 'react-intl'; 
+import { Properties } from '../../../../constants/Properties';
 import axios from 'axios';
 
 
@@ -73,7 +74,7 @@ class FormDialog extends React.Component {
     }
 
     getBanks = () => {
-        fetch('http://localhost:4000/api/banks?filter[where][wengseAccount]=true')
+        fetch(`http://${Properties.host}:${Properties.port}/api/banks?filter[where][wengseAccount]=true`)
             .then((response) => response.json())
             .then((banks) => this.setState({
                 banks
@@ -145,8 +146,9 @@ class FormDialog extends React.Component {
     
 
     createSmartDiscount = () => {
-        
-        axios.post("http://localhost:4000/api/remises", this.state.remise)
+
+
+        axios.post(`http://${Properties.host}:${Properties.port}/api/remises`, this.state.remise)
         .then((res) => {
             if(res.status === 200 && res.statusText === "OK") {
                 if (!toast.isActive('smartDiscountSuccess')) {
@@ -168,13 +170,13 @@ class FormDialog extends React.Component {
                     if(this.state.today) {   
                         let arr = [this.state.remise_id]; 
                         let today = moment(new Date()).format("YYYY-MM-DD");
-                        axios.get(`http://localhost:4000/api/checks?filter[where][issuedDate]=${today}`)
+                        axios.get(`http://${Properties.host}:${Properties.port}/api/checks?filter[where][cashingDateDesired]=${today}&filter[where][status]=WAITING`)
                             .then(res => {
                                 res.data.map(check => {
                                     arr.push(check.id) ;
                                 })
 
-                                axios.post(`http://localhost:4000/api/checks/updateAllCheck`, arr)
+                                axios.post(`http://${Properties.host}:${Properties.port}/api/checks/updateAllCheck`, arr)
                                     .then(res => console.log(res))
                                     .catch(err => { console.log(err) })
 
@@ -190,14 +192,14 @@ class FormDialog extends React.Component {
                         
                         let arr = [this.state.remise_id]; 
                         let tomorrow  = moment(new Date()).add(1,'days').format("YYYY-MM-DD");
-                        axios.get(`http://localhost:4000/api/checks?filter[where][issuedDate]=${tomorrow}`)
+                        axios.get(`http://${Properties.host}:${Properties.port}/api/checks?filter[where][cashingDateDesired]=${tomorrow}&filter[where][status]=WAITING`)
                             .then(res => { 
                                 res.data.map(check => {
                                     arr.push(check.id);
                                 })
 
                                 // console.log(`Array of objects tomorrow: `, arr);
-                                axios.post(`http://localhost:4000/api/checks/updateAllCheck`, arr)
+                                axios.post(`http://${Properties.host}:${Properties.port}/api/checks/updateAllCheck`, arr)
                                     .then(res => console.log(res))
                                     .catch(err => { console.log(err) })
 

@@ -239,7 +239,7 @@ function* createRemise(data) {
 
             ids.push(...idCheck[0])
 
-            yield axios.post(`http://localhost:4000/api/checks/updateAllCheck`, ids)
+            yield axios.post(`http://${Properties.host}:${Properties.port}/api/checks/updateAllCheck`, ids)
                 .then((res) => payloadCheck = res.data)
                 .catch((error) => error = error);
 
