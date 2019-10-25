@@ -91,6 +91,18 @@ class Checks extends React.Component {
                 }
             },
             {
+                name: "customer",
+                label: <FormattedMessage id="label.customer"/>,
+                options: {
+                    filter: true,
+                    customBodyRender: (value, tableMeta, updateValue) =>  {
+                        if(value) {
+                            return(<span>{ value.name }</span>)
+                        }
+                    }
+                }
+            },
+            {
                 name: "number",
                 label: <FormattedMessage id="label.checkNumber"/>,
                 options: {
@@ -107,18 +119,24 @@ class Checks extends React.Component {
                 }
             },
             {
-                name: "customer",
-                label: <FormattedMessage id="label.customer"/>,
+                name: "cashingDateDesired",
+                label: <FormattedMessage id="label.cashingDateDesired"/>,
                 options: {
+                    sort: false,
                     filter: true,
-                    customBodyRender: (value, tableMeta, updateValue) =>  {
-                        if(value) {
-                            return(<span>{ value.name }</span>)
-                        }
-                    }
+                    customBodyRender: (value, tableMeta, updateValue) => (
+                        <span>{ moment(value).format('DD/MM/YYYY')  }</span>
+                    )
                 }
             },
-
+            {
+                name: 'comment',
+                label: <FormattedMessage id="label.comment"/>,
+                options: {
+                    sort: false,
+                    filter: true
+                }
+            },
             {
                 name: "amount",
                 label: <FormattedMessage id="label.amount"/>,
@@ -134,15 +152,6 @@ class Checks extends React.Component {
                     )
                 }
             },
-            {
-                name: 'comment',
-                label: <FormattedMessage id="label.comment"/>,
-                options: {
-                    sort: false,
-                    filter: true
-                }
-            },
-            
             {
                 name: 'status',
                 label: <FormattedMessage id="label.status"/>,
@@ -216,17 +225,6 @@ class Checks extends React.Component {
                         }
 
                     }
-                }
-            },
-            {
-                name: "cashingDateDesired",
-                label: <FormattedMessage id="label.cashingDateDesired"/>,
-                options: {
-                    sort: false,
-                    filter: true,
-                    customBodyRender: (value, tableMeta, updateValue) => (
-                        <span>{ moment(value).format('DD/MM/YYYY')  }</span>
-                    )
                 }
             },
             {
