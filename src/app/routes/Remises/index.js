@@ -356,8 +356,8 @@ class Remises extends Component {
                                     <TableCell></TableCell>
                                     <TableCell align="left">{moment(row.issuedDate).format('L')}</TableCell>
                                     <TableCell align="left">{row.number}</TableCell>
-                                    <TableCell align="left">{row.bank}</TableCell>
-                                    <TableCell align="left">{row.comment}</TableCell>
+                                    <TableCell align="left">{row.bank.title}</TableCell>
+                                    <TableCell align="left">{row.customer.name}</TableCell>
                                     <TableCell align="left">
                                         <Chip
                                             size="small"
@@ -489,7 +489,11 @@ class Remises extends Component {
      * @return {Void}
     */
     fetchData = () => {
-        fetch(`http://localhost:4000/api/remises?filter[include]=checks&filter[include]=bank&filter[order]=issuedDate%20DESC`)
+
+        http://localhost:4000/api/remises?filter[include]=checks&filter[include]=bank&filter[order]=issuedDate%20DESC
+
+        
+        fetch(`http://localhost:4000/api/remises?filter[include]=bank&filter[include][checks]=bank&filter[include][checks]=customer&filter[order]=issuedDate%20DESC`)
                 .then(res => res.json())
                 .then(remises => {
                     console.log(remises);
