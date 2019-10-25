@@ -354,7 +354,7 @@ class Remises extends Component {
                             <React.Fragment>
                                 <TableRow>
                                     <TableCell></TableCell>
-                                    <TableCell align="left">{moment(row.issuedDate).format('L')}</TableCell>
+                                    <TableCell align="left">{moment(row.issuedDate).format('DD/MM/YYYY')}</TableCell>
                                     <TableCell align="left">{row.number}</TableCell>
                                     <TableCell align="left">{row.bank.title}</TableCell>
                                     <TableCell align="left">{row.customer.name}</TableCell>
