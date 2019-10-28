@@ -5,7 +5,7 @@ import {
 import {
     createMuiTheme
 } from '@material-ui/core/styles';
-import moment from 'moment';
+import moment, { max } from 'moment';
 import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/Face';
 import Template from './template';
@@ -330,7 +330,7 @@ class Remises extends Component {
             filter: true,
             selectableRows: 'none',
             filterType: 'dropdown',
-            responsive: 'scroll',
+            responsive: 'scrollMaxHeight',
             expandableRows: true,
             expandableRowsOnClick: true,
             rowsExpanded: [0, 2, 3],
@@ -379,17 +379,17 @@ class Remises extends Component {
                     )
                 )
             },
-            rowsPerPage: 15,
+            rowsPerPage: 13,
             rowsPerPageOptions: [5, 10, 15, 20, 25, 50],
             textLabels: {
                 body: {
-                    noMatch: "Sorry, no matching records found",
+                    noMatch: <FormattedMessage id="label.norecords" />,
                     toolTip: "Sort",
                 },
                 pagination: {
-                    next: "Next Page",
-                    previous: "Previous Page",
-                    rowsPerPage: "Rows per page:",
+                    next: <FormattedMessage id="label.nextpage" />,
+                    previous: <FormattedMessage id="label.previouspage" />,
+                    rowsPerPage: <FormattedMessage id="label.rowsperpages" />,
                     displayRows: "of",
                 },
                 toolbar: {
@@ -400,12 +400,12 @@ class Remises extends Component {
                     filterTable: <FormattedMessage id="label.filterTable" />,
                 },
                 filter: {
-                    all: "All",
-                    title: "FILTERS",
-                    reset: "RESET",
+                    all: <FormattedMessage id="extraPages.all" />,
+                    title: <FormattedMessage id="todo.filters" />,
+                    reset: <FormattedMessage id="appModule.reset" />,
                 },
                 viewColumns: {
-                    title: "Show Columns",
+                    title: <FormattedMessage id="label.showcolumns" />,
                     titleAria: "Show/Hide Table Columns",
                 },
                 selectedRows: {

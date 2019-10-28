@@ -712,5 +712,12 @@
   "label.disagree": "I Disagree",
   "label.cashed": "Cashed",
   "label.messagePermission": "Sorry , you don't have permission",
-  "label.dateOfIssue": "Date of issue"
+  "label.dateOfIssue": "Date of issue",
+  "label.nextpage":"Next Page",
+  "label.previouspage":"Previous Page",
+  "label.rowsperpages":"Rows per pages",
+  "label.norecords":"Sorry, no matching records found",
+  "label.showcolumns":"Show Columns"
+
+
 }
