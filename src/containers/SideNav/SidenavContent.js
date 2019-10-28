@@ -152,7 +152,7 @@ class SidenavContent extends Component {
 
           <li className="menu">
             <Button>
-              <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
+              <i class="zmdi zmdi-accounts zmdi-hc-fw" />
               <span className="nav-text">
                 <IntlMessages id="sidebar.customers" />
               </span>
@@ -179,7 +179,7 @@ class SidenavContent extends Component {
 
           <li className="menu">
             <Button>
-              <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
+              <i className="zmdi zmdi-money-box zmdi-hc-fw" />
               <span className="nav-text">
                 <IntlMessages id="sidebar.remises" />
               </span>
@@ -244,7 +244,7 @@ class SidenavContent extends Component {
 
           <li className="menu">
             <Button>
-              <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
+              <i className="zmdi zmdi-balance zmdi-hc-fw" />
               <span className="nav-text">
                 <IntlMessages id="sidebar.bank" />
               </span>
@@ -271,7 +271,7 @@ class SidenavContent extends Component {
           { localStorage.getItem('user_role') === "ROLE_ADMIN" &&
           <li className="menu">
             <Button>
-              <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
+              <i className="zmdi zmdi-accounts-list zmdi-hc-fw" />
               <span className="nav-text">
                 <IntlMessages id="sidebar.users" />
               </span>
