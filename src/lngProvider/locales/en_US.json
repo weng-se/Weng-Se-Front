@@ -710,7 +710,7 @@
   "label.ongoing": "Ongoing", 
   "label.agree": "I Agree",
   "label.disagree": "I Disagree",
-  "label.cashed": "CASHED",
+  "label.cashed": "Cashed",
   "label.messagePermission": "Sorry , you don't have permission",
   "label.dateOfIssue": "Date of issue"
 }

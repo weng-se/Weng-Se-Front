@@ -128,7 +128,7 @@ class SidenavContent extends Component {
             <IntlMessages id="sidebar.management" />
           </li>
 
-          <li className="menu">
+          {/*<li className="menu">
             <Button>
               <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
               <span className="nav-text">
@@ -141,14 +141,14 @@ class SidenavContent extends Component {
                   <span className="nav-text"><IntlMessages id="pages.listSuppliers" /></span>
                 </NavLink>
               </li>
-              {/*<li>
+              li>
                <NavLink className="prepend-icon" to="/app/suppliers/import">
                   <span className="nav-text"><IntlMessages id="pages.importSuppliers" /></span>
                 </NavLink>
               </li>
-              */}
+              
             </ul>
-          </li>
+          </li>*/}
 
           <li className="menu">
             <Button>
@@ -198,7 +198,7 @@ class SidenavContent extends Component {
             </ul>
           </li>
 
-          <li className="menu">
+          {/*<li className="menu">
             <Button>
               <i className="zmdi zmdi-view-dashboard zmdi-hc-fw" />
               <span className="nav-text">
@@ -239,7 +239,7 @@ class SidenavContent extends Component {
               </li>
 
             </ul>
-          </li>
+          </li>*/}
 
 
           <li className="menu">

@@ -702,7 +702,7 @@
   "label.ongoing": "En Cours",
   "label.agree": "Confirmer",
   "label.disagree": "Annuler",
-  "label.cashed": "ENCAISSE",
+  "label.cashed": "Encaissé",
   "label.messagePermission": "Désolé, vous n'avez pas la permission",
   "label.dateOfIssue": "Date d'émission"
 }
