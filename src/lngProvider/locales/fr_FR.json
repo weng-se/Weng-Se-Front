@@ -710,5 +710,19 @@
   "label.rowsperpages":"Lignes par page",
   "label.norecords":"Désolé, aucun enregistrement correspondant n'a été trouvé ",
   "label.showcolumns":"Afficher les colonnes",
-  "label.actions": "Actions"
+  "label.actions": "Actions",
+  "label.all": "Tous",
+  "label.filters": "FILTRES",
+  "label.reset": "Réinitialiser",
+  "label.showColumns": "Afficher les colonnes",
+  "label.ShowHideTableColumns": "Afficher / masquer les colonnes du tableau",
+  "label.delete": "Supprimer",
+  "label.DeleteSelectedRows": "Supprimer les lignes sélectionnées",
+  "label.rowSelected": "rangée (s) sélectionnée (s)",
+  "label.noMatch": "Désolé, aucun enregistrement correspondant trouvé",
+  "label.sort": "Trier",
+  "label.nextPage": "Page suivante",
+  "label.previousPage": "Page précédente",
+  "label.rowsPerPage": "rangées par page",
+  "label.of": "Of"
 }

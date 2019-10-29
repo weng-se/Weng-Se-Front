@@ -262,36 +262,36 @@ class Checks extends React.Component {
             rowsPerPageOptions: [5,10,15,20,25,50],
             textLabels: {
                 body: {
-                  noMatch: "Sorry, no matching records found",
-                  toolTip: "Sort",
-                },
-                pagination: {
-                  next: "Next Page",
-                  previous: "Previous Page",
-                  rowsPerPage: "Rows per page:",
-                  displayRows: "of",
-                },
-                toolbar: {
-                  search: <FormattedMessage id="label.search"/>,
-                  downloadCsv: <FormattedMessage id="label.downloadCsv"/>,
-                  print: <FormattedMessage id="label.print"/>,
-                  viewColumns: <FormattedMessage id="label.viewColumns"/>,
-                  filterTable: <FormattedMessage id="label.filterTable"/>,
-                },
-                filter: {
-                  all: "All",
-                  title: "FILTERS",
-                  reset: "RESET",
-                },
-                viewColumns: {
-                  title: "Show Columns",
-                  titleAria: "Show/Hide Table Columns",
-                },
-                selectedRows: {
-                  text: "row(s) selected",
-                  delete: "Delete",
-                  deleteAria: "Delete Selected Rows",
-                }
+                    noMatch: <FormattedMessage id="label.noMatch"/>,
+                    toolTip: <FormattedMessage id="label.sort"/>,
+                  },
+                  pagination: {
+                    next: <FormattedMessage id="label.nextPage"/>,
+                    previous: <FormattedMessage id="label.previousPage"/>,
+                    rowsPerPage: <FormattedMessage id="label.rowsPerPage"/>,
+                    displayRows: <FormattedMessage id="label.of"/>,
+                  },
+                  toolbar: {
+                    search: <FormattedMessage id="label.search"/>,
+                    downloadCsv: <FormattedMessage id="label.downloadCsv"/>,
+                    print: <FormattedMessage id="label.print"/>,
+                    viewColumns: <FormattedMessage id="label.viewColumns"/>,
+                    filterTable: <FormattedMessage id="label.filterTable"/>,
+                  },
+                  filter: {
+                    all: <FormattedMessage id="label.all"/>,
+                    title: <FormattedMessage id="label.filters"/>,
+                    reset: <FormattedMessage id="label.reset"/>,
+                  },
+                  viewColumns: {
+                    title: <FormattedMessage id="label.showColumns"/>,
+                    titleAria: <FormattedMessage id="label.ShowHideTableColumns"/>,
+                  },
+                  selectedRows: {
+                    text: <FormattedMessage id="label.rowSelected"/>,
+                    delete: <FormattedMessage id="label.delete"/>,
+                    deleteAria: <FormattedMessage id="label.DeleteSelectedRows"/>,
+                  },
             },
             customToolbar: () => {
                 return (

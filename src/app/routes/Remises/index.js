@@ -388,36 +388,36 @@ class Remises extends Component {
             rowsPerPageOptions: [5, 10, 15, 20, 25, 50],
             textLabels: {
                 body: {
-                    noMatch: <FormattedMessage id="label.norecords" />,
-                    toolTip: "Sort",
-                },
-                pagination: {
-                    next: <FormattedMessage id="label.nextpage" />,
-                    previous: <FormattedMessage id="label.previouspage" />,
-                    rowsPerPage: <FormattedMessage id="label.rowsperpages" />,
-                    displayRows: "of",
-                },
-                toolbar: {
-                    search: <FormattedMessage id="label.search" />,
-                    downloadCsv: <FormattedMessage id="label.downloadCsv" />,
-                    print: <FormattedMessage id="label.print" />,
-                    viewColumns: <FormattedMessage id="label.viewColumns" />,
-                    filterTable: <FormattedMessage id="label.filterTable" />,
-                },
-                filter: {
-                    all: <FormattedMessage id="extraPages.all" />,
-                    title: <FormattedMessage id="todo.filters" />,
-                    reset: <FormattedMessage id="appModule.reset" />,
-                },
-                viewColumns: {
-                    title: <FormattedMessage id="label.showcolumns" />,
-                    titleAria: "Show/Hide Table Columns",
-                },
-                selectedRows: {
-                    text: "row(s) selected",
-                    delete: "Delete",
-                    deleteAria: "Delete Selected Rows",
-                }
+                    noMatch: <FormattedMessage id="label.noMatch"/>,
+                    toolTip: <FormattedMessage id="label.sort"/>,
+                  },
+                  pagination: {
+                    next: <FormattedMessage id="label.nextPage"/>,
+                    previous: <FormattedMessage id="label.previousPage"/>,
+                    rowsPerPage: <FormattedMessage id="label.rowsPerPage"/>,
+                    displayRows: <FormattedMessage id="label.of"/>,
+                  },
+                  toolbar: {
+                    search: <FormattedMessage id="label.search"/>,
+                    downloadCsv: <FormattedMessage id="label.downloadCsv"/>,
+                    print: <FormattedMessage id="label.print"/>,
+                    viewColumns: <FormattedMessage id="label.viewColumns"/>,
+                    filterTable: <FormattedMessage id="label.filterTable"/>,
+                  },
+                  filter: {
+                    all: <FormattedMessage id="label.all"/>,
+                    title: <FormattedMessage id="label.filters"/>,
+                    reset: <FormattedMessage id="label.reset"/>,
+                  },
+                  viewColumns: {
+                    title: <FormattedMessage id="label.showColumns"/>,
+                    titleAria: <FormattedMessage id="label.ShowHideTableColumns"/>,
+                  },
+                  selectedRows: {
+                    text: <FormattedMessage id="label.rowSelected"/>,
+                    delete: <FormattedMessage id="label.delete"/>,
+                    deleteAria: <FormattedMessage id="label.DeleteSelectedRows"/>,
+                  },
             },
             customToolbar: () => {
                 return (

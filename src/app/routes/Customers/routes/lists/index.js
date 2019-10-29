@@ -195,14 +195,14 @@ class Lists extends React.Component {
             selectableRowsOnClick: true,
             textLabels: {
                 body: {
-                  noMatch: "Sorry, no matching records found",
-                  toolTip: "Sort",
+                  noMatch: <FormattedMessage id="label.noMatch"/>,
+                  toolTip: <FormattedMessage id="label.sort"/>,
                 },
                 pagination: {
-                  next: "Next Page",
-                  previous: "Previous Page",
-                  rowsPerPage: "Rows per page:",
-                  displayRows: "of",
+                  next: <FormattedMessage id="label.nextPage"/>,
+                  previous: <FormattedMessage id="label.previousPage"/>,
+                  rowsPerPage: <FormattedMessage id="label.rowsPerPage"/>,
+                  displayRows: <FormattedMessage id="label.of"/>,
                 },
                 toolbar: {
                   search: <FormattedMessage id="label.search"/>,
@@ -212,18 +212,18 @@ class Lists extends React.Component {
                   filterTable: <FormattedMessage id="label.filterTable"/>,
                 },
                 filter: {
-                  all: "All",
-                  title: "FILTERS",
-                  reset: "RESET",
+                  all: <FormattedMessage id="label.all"/>,
+                  title: <FormattedMessage id="label.filters"/>,
+                  reset: <FormattedMessage id="label.reset"/>,
                 },
                 viewColumns: {
-                  title: "Show Columns",
-                  titleAria: "Show/Hide Table Columns",
+                  title: <FormattedMessage id="label.showColumns"/>,
+                  titleAria: <FormattedMessage id="label.ShowHideTableColumns"/>,
                 },
                 selectedRows: {
-                  text: "row(s) selected",
-                  delete: "Delete",
-                  deleteAria: "Delete Selected Rows",
+                  text: <FormattedMessage id="label.rowSelected"/>,
+                  delete: <FormattedMessage id="label.delete"/>,
+                  deleteAria: <FormattedMessage id="label.DeleteSelectedRows"/>,
                 },
             },
             onRowsDelete: (rowsDeleted) => {

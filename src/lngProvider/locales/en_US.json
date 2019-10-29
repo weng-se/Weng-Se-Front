@@ -718,7 +718,20 @@
   "label.rowsperpages":"Rows per pages",
   "label.norecords":"Sorry, no matching records found",
   "label.showcolumns":"Show Columns",
-  "label.actions": "Actions"
-
+  "label.actions": "Actions",
+  "label.all": "All",
+  "label.filters": "FILTRES",
+  "label.reset": "Reset",
+  "label.showColumns": "Show Columns",
+  "label.ShowHideTableColumns": "Show/Hide Table Columns",
+  "label.delete": "Delete",
+  "label.DeleteSelectedRows": "Delete Selected Rows",
+  "label.rowSelected": "row(s) selected",
+  "label.noMatch": "Sorry, no matching records found",
+  "label.sort": "Sort",
+  "label.nextPage": "Next Page",
+  "label.previousPage": "Previous Page",
+  "label.rowsPerPage": "rows Per Page",
+  "label.of": "Of"
 
 }
