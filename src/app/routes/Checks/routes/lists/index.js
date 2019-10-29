@@ -84,6 +84,7 @@ class Checks extends React.Component {
                 name: "issuedDate",
                 label: <FormattedMessage id="label.issuedDate"/>,
                 options: {
+                    filter: false,
                     sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <span>{ moment(value).format('DD/MM/YYYY')  }</span>
@@ -95,7 +96,7 @@ class Checks extends React.Component {
                 label: <FormattedMessage id="label.checkNumber"/>,
                 options: {
                     sort: false,
-                    filter: true
+                    filter: false
                 }
             },
             {
@@ -124,12 +125,12 @@ class Checks extends React.Component {
                 label: <FormattedMessage id="label.amount"/>,
                 options: {
                     sort:false,
-                    filter: true,
+                    filter: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <Chip
                             size="small"
                             color="default"
-                            label={'€' + value}
+                            label={value + ' €'}
                         />
                     )
                 }
@@ -139,7 +140,7 @@ class Checks extends React.Component {
                 label: <FormattedMessage id="label.comment"/>,
                 options: {
                     sort: false,
-                    filter: true
+                    filter: false
                 }
             },
             
@@ -223,7 +224,7 @@ class Checks extends React.Component {
                 label: <FormattedMessage id="label.cashingDateDesired"/>,
                 options: {
                     sort: false,
-                    filter: true,
+                    filter: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <span>{ moment(value).format('DD/MM/YYYY')  }</span>
                     )
@@ -254,8 +255,9 @@ class Checks extends React.Component {
             filter: true,
             selectableRows: 'multiple',
             filterType: 'dropdown',
-            responsive: 'scroll',
-            rowsPerPage: 15,
+            responsive: 'scrollMaxHeight',
+            viewColumns:false,
+            rowsPerPage: 10,
             expandableRows: false,
             resizableColumns: false,
             selectableRowsOnClick: true,

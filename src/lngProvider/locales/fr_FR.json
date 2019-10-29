@@ -656,7 +656,7 @@
   "sidebar.bank": "Banques",
   "pages.listBank": "Liste des banques",
   "pages.addBank": "Ajouter une banque",
-  "pages.createNewBank": "Créer une nouvelle banque",
+  "pages.createNewBank": "Ajouter une nouvelle banque",
   "label.addBank": "Ajouter une banque",
   "label.bankName": "Nom",
   "pages.importBank": "Importer des banques",
@@ -723,6 +723,6 @@
   "label.sort": "Trier",
   "label.nextPage": "Page suivante",
   "label.previousPage": "Page précédente",
-  "label.rowsPerPage": "rangées par page",
+  "label.rowsPerPage": "Lignes par page",
   "label.of": "Of"
 }

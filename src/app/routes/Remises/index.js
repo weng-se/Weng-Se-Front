@@ -370,7 +370,7 @@ class Remises extends Component {
                                         <Chip
                                             size="small"
                                             color="default"
-                                            label={"€" + row.amount}
+                                            label={row.amount + " €"}
                                         />
                                     </TableCell>
                                     
