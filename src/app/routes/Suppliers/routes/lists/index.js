@@ -222,7 +222,7 @@ class Suppliers extends React.Component {
                     next: <FormattedMessage id="label.nextPage"/>,
                     previous: <FormattedMessage id="label.previousPage"/>,
                     rowsPerPage: <FormattedMessage id="label.rowsPerPage"/>,
-                    displayRows: <FormattedMessage id="label.of"/>,
+                    // displayRows: <FormattedMessage id="label.of"/>,
                   },
                   toolbar: {
                     search: <FormattedMessage id="label.search"/>,
