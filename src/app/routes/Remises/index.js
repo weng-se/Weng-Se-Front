@@ -162,6 +162,7 @@ class Remises extends Component {
                 name: "issuedDate",
                 label: <FormattedMessage id="label.dateOfIssue" />,
                 options: {
+                    filter: false,
                     sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <span>{moment(value).format('DD/MM/YYYY')}</span>
@@ -173,7 +174,7 @@ class Remises extends Component {
                 label: <FormattedMessage id="label.remiseNumber" />,
                 options: {
                     sort: false,
-                    filter: true
+                    filter: false
                 }
             },
             {
@@ -189,7 +190,7 @@ class Remises extends Component {
                 label: <FormattedMessage id="label.numberCheck" />,
                 options: {
                     sort: false,
-                    filter: true
+                    filter: false
                 }
             },
             {
@@ -197,12 +198,12 @@ class Remises extends Component {
                 label: <FormattedMessage id="label.amount" />,
                 options: {
                     sort: false,
-                    filter: true,
+                    filter: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <Chip
                             size="small"
                             color="default"
-                            label={'€' + value}
+                            label={value + ' €'}
                         />
                     )
                 }
@@ -253,7 +254,8 @@ class Remises extends Component {
                     filter: false,
                     display: false,
                     download: false,
-                    print: false
+                    print: false,
+                    viewColumns:false
                 }
             },
             {
@@ -311,7 +313,8 @@ class Remises extends Component {
                     print: false,
                     download: false,
                     filter: false,
-                    display: false
+                    display: false,
+                    viewColumns:false
                 }
             },
             {
@@ -322,12 +325,14 @@ class Remises extends Component {
                     print: false,
                     download: false,
                     filter: false,
-                    display: false
+                    display: false,
+                    viewColumns:false
                 }
             }
         ];
         this.options = {
             filter: true,
+            viewColumns:false,
             selectableRows: 'none',
             filterType: 'dropdown',
             responsive: 'scrollMaxHeight',
@@ -357,7 +362,7 @@ class Remises extends Component {
                             <React.Fragment>
                                 <TableRow>
                                     <TableCell></TableCell>
-                                    <TableCell align="left">{moment(row.issuedDate).format('L')}</TableCell>
+                                    <TableCell align="left">{moment(row.issuedDate).format('DD/MM/YYYY')}</TableCell>
                                     <TableCell align="left">{row.number}</TableCell>
                                     <TableCell align="left">{row.bank.title}</TableCell>
                                     <TableCell align="left">{row.customer.name}</TableCell>

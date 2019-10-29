@@ -717,7 +717,8 @@
   "label.previouspage":"Previous Page",
   "label.rowsperpages":"Rows per pages",
   "label.norecords":"Sorry, no matching records found",
-  "label.showcolumns":"Show Columns"
+  "label.showcolumns":"Show Columns",
+  "label.actions": "Actions"
 
 
 }

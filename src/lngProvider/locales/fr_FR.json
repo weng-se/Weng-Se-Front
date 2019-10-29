@@ -704,5 +704,11 @@
   "label.disagree": "Annuler",
   "label.cashed": "Encaissé",
   "label.messagePermission": "Désolé, vous n'avez pas la permission",
-  "label.dateOfIssue": "Date d'émission"
+  "label.dateOfIssue": "Date d'émission",
+  "label.nextpage":"Page suivante",
+  "label.previouspage":"Page précédente",
+  "label.rowsperpages":"Lignes par page",
+  "label.norecords":"Désolé, aucun enregistrement correspondant n'a été trouvé ",
+  "label.showcolumns":"Afficher les colonnes",
+  "label.actions": "Actions"
 }

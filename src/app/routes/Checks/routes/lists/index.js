@@ -231,7 +231,7 @@ class Checks extends React.Component {
             },
             {
                 name: "id",
-                label: <FormattedMessage id="label.options"/>,
+                label: <FormattedMessage id="label.actions"/>,
                 options: {
                     sort: false,
                     print: false,
