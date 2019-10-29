@@ -84,43 +84,34 @@ class Lists extends React.Component {
     componentWillMount() {
         this.columns = [
             {
-                name: "id",
-                label: <FormattedMessage id="label.options"/>,
-                options: {
-                    sort: false,
-                    print: false,
-                    download: false,
-                    customBodyRender: (value, tableMeta, updateValue) => (
-                        <React.Fragment>
-                            <div size="small">
-                                <Fab color="primary" size="small" aria-label="edit" onClick={() => this._handleClickOpen(value)}>
-                                    <EditIcon className="small-icon"  />
-                                </Fab>
-                                &nbsp;&nbsp;&nbsp;
-                                <Fab color="secondary" size="small" aria-label="delete" onClick={() => this.removeCustomer(value)} >
-                                    <DeleteIcon className="small-icon"  />
-                                </Fab>
-                            </div>
-                        </React.Fragment>
-                    )
-                }
-            },
-            {
-                name: "firstName",
-                label: <FormattedMessage id="label.firstName"/>,
+                name: "oldId",
+                label: <FormattedMessage id="label.oldId"/>,
+                options: {}
+            },{
+                name: "siren",
+                label: <FormattedMessage id="label.siren"/>,
+                options: {}
+            },{
+                name: "name",
+                label: <FormattedMessage id="label.name"/>,
                 options: {}
             },
             {
-                name: "lastName",
-                label: <FormattedMessage id="label.lastName"/>,
+                name: "addressLine3",
+                label: <FormattedMessage id="label.address"/>,
                 options: {}
             },
             {
-                name: "type",
-                label: <FormattedMessage id="label.type"/>,
+                name: "zip",
+                label: <FormattedMessage id="label.zip"/>,
                 options: {}
             },
             {
+                name: "city",
+                label: <FormattedMessage id="label.city"/>,
+                options: {}
+            },
+            /*{
                 name: "civility",
                 label: <FormattedMessage id="label.civility"/>,
                 options: {
@@ -133,16 +124,6 @@ class Lists extends React.Component {
             {
                 name: "address",
                 label: <FormattedMessage id="label.address"/>,
-                options: {}
-            },
-            {
-                name: "email",
-                label: <FormattedMessage id="label.email"/>,
-                options: {}
-            },
-            {
-                name: "phone",
-                label: <FormattedMessage id="label.phone"/>,
                 options: {}
             },
             {
@@ -181,14 +162,46 @@ class Lists extends React.Component {
                         )
                     }
                 }
-            }
+            },*/
+            {
+                name: "email",
+                label: <FormattedMessage id="label.email"/>,
+                options: {}
+            },
+            {
+                name: "phone",
+                label: <FormattedMessage id="label.phone"/>,
+                options: {}
+            },
+            /*{
+                name: "id",
+                label: <FormattedMessage id="label.options"/>,
+                options: {
+                    sort: false,
+                    print: false,
+                    download: false,
+                    customBodyRender: (value, tableMeta, updateValue) => (
+                        <React.Fragment>
+                            <div size="small">
+                                <Fab color="primary" size="small" aria-label="edit" onClick={() => this._handleClickOpen(value)}>
+                                    <EditIcon className="small-icon"  />
+                                </Fab>
+                                &nbsp;&nbsp;&nbsp;
+                                <Fab color="secondary" size="small" aria-label="delete" onClick={() => this.removeCustomer(value)} >
+                                    <DeleteIcon className="small-icon"  />
+                                </Fab>
+                            </div>
+                        </React.Fragment>
+                    )
+                }
+            }*/
         ];
         this.options = {
             filter: true,
             selectableRows: 'none',
-            filterType: 'dropdown',
-            responsive: 'scroll',
-            rowsPerPage: 15,
+            filterType: 'textField',
+            responsive: 'scrollMaxHeight',
+            rowsPerPage: 13,
             rowsPerPageOptions: [5,10,15,20,25,50],
             expandableRows: false,
             resizableColumns: false,
@@ -202,7 +215,7 @@ class Lists extends React.Component {
                   next: <FormattedMessage id="label.nextPage"/>,
                   previous: <FormattedMessage id="label.previousPage"/>,
                   rowsPerPage: <FormattedMessage id="label.rowsPerPage"/>,
-                //   displayRows: <FormattedMessage id="label.of"/>,
+                  displayRows: "sur",
                 },
                 toolbar: {
                   search: <FormattedMessage id="label.search"/>,

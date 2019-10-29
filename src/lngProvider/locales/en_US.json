@@ -696,6 +696,12 @@
   "label.msgIssuedDateRequired": "Issued Date is required",
   "label.msgCashingDateDesiredRequired": "Cashing date desired is required",
   "label.msgCheckNumber": "Check number is required",
+  "label.usernameRequired": "Username field is required",
+  "label.emailRequired": "Email field is required",
+  "label.phoneRequired": "Phone number field is required",
+  "label.passwordRequired": "Password field is required",
+  "label.emailnotValide": "Email is not valid",
+  "label.passwordmismatch": "Password mismatch",
   "label.date": "Date",
   "label.smartDiscount": "Smart Discount",
   "label.numberCheck": "Number check",
@@ -732,6 +738,15 @@
   "label.nextPage": "Next Page",
   "label.previousPage": "Previous Page",
   "label.rowsPerPage": "rows Per Page",
-  "label.of": "Of"
+  "label.of": "Of",
+  "label.oldId":"Dips",
+  "label.zip":"Zip code",
+  "label.salesmanager": "Sales manager",
+  "label.administrator": "Administrator",
+  "label.stockmanager": "Stock manager",
+  "label.role": "Role"
+
+
+
 
 }

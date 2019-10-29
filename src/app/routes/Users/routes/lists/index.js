@@ -104,35 +104,6 @@ class Lists extends React.Component {
     componentWillMount() {
         this.columns = [
             {
-                name: "id",
-                label: <FormattedMessage id="label.options" />,
-                options: {
-                    sort: false,
-                    print: false,
-                    download: false,
-                    customBodyRender: (value, tableMeta, updateValue) => (
-                        <React.Fragment>
-                            <div size="small">
-                                {/*<IconButton size="sm" onClick={() => this.removeUser(value)}>
-                                    <DeleteIcon fontSize="small" />
-                    </IconButton> */}
-                                
-                                <Fab color="primary" size="small" aria-label="edit" onClick={() => this._handleClickOpen(value)}>
-                                    <EditIcon className="small-icon" />
-                                </Fab>
-                                &nbsp;&nbsp;&nbsp;
-                                <Fab color="secondary" size="small" aria-label="delete" onClick={() => this.removeUser(value)} >
-                                    <DeleteIcon className="small-icon" />
-                                </Fab>
-                               {/*  <IconButton size="sm" onClick={() => this._handleClickOpen(value)}>
-                                    <EditIcon fontSize="small" />
-                                </IconButton>*/}
-                            </div>
-                        </React.Fragment>
-                    )
-                }
-            },
-            {
                 name: "username",
                 label: "Photo",
                 options: {
@@ -171,11 +142,11 @@ class Lists extends React.Component {
                     sort: false,
                     customBodyRender: (value, tableMeta, updateValue) => {
                         if (value === "ROLE_ADMIN") {
-                            return ("ADMINISTRATEUR")
-                        } else if (value === "ROLE_SUPERVISOR") {
-                            return ("SUPERVISOR")
-                        } else if (value === "ROLE_GESTIONNAIRE") {
-                            return ("GESTIONNAIRE")
+                            return (<FormattedMessage id="label.administrator"/>)
+                        } else if (value === "ROLE_SALESMANAGER") {
+                            return (<FormattedMessage id="label.salesmanager"/>)
+                        } else if (value === "ROLE_STOCKMANAGER") {
+                            return (<FormattedMessage id="label.stockmanager"/>)
                         }
                     }
                 }
@@ -223,14 +194,44 @@ class Lists extends React.Component {
                         />
                     )
                 }
+            },
+            {
+                name: "id",
+                label: <FormattedMessage id="label.options" />,
+                options: {
+                    sort: false,
+                    print: false,
+                    download: false,
+                    customBodyRender: (value, tableMeta, updateValue) => (
+                        <React.Fragment>
+                            <div size="small">
+                                {/*<IconButton size="sm" onClick={() => this.removeUser(value)}>
+                                    <DeleteIcon fontSize="small" />
+                    </IconButton> */}
+                                
+                                <Fab color="primary" size="small" aria-label="edit" onClick={() => this._handleClickOpen(value)}>
+                                    <EditIcon className="small-icon" />
+                                </Fab>
+                                &nbsp;&nbsp;&nbsp;
+                                <Fab color="secondary" size="small" aria-label="delete" onClick={() => this.removeUser(value)} >
+                                    <DeleteIcon className="small-icon" />
+                                </Fab>
+                               {/*  <IconButton size="sm" onClick={() => this._handleClickOpen(value)}>
+                                    <EditIcon fontSize="small" />
+                                </IconButton>*/}
+                            </div>
+                        </React.Fragment>
+                    )
+                }
             }
         ];
         this.options = {
-            filter: true,
+            filter: false,
             selectableRows: 'none',
             filterType: 'dropdown',
-            responsive: 'scroll',
-            rowsPerPage: 15,
+            responsive: 'scrollMaxHeight',
+            viewColumns:false,
+            rowsPerPage: 13,
             rowsPerPageOptions: [5, 10, 15, 20, 25, 50],
             expandableRows: false,
             resizableColumns: false,

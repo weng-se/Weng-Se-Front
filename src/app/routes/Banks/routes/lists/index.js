@@ -86,43 +86,26 @@ class Banks extends React.Component {
     componentWillMount() {
         this.columns = [
             {
-                name: "id",
-                label: <FormattedMessage id="label.options"/>,
-                options: {
-                    sort: false,
-                    print: false,
-                    download: false,
-                    customBodyRender: (id, tableMeta, updateValue) => (
-                        <React.Fragment>
-                            <div size="small">
-                                <Fab color="primary" size="small" aria-label="edit" onClick={() => this.handleClickOpen(id)}>
-                                    <EditIcon className="small-icon"  />
-                                </Fab>
-                                &nbsp;&nbsp;&nbsp;
-                                <Fab color="secondary" size="small" aria-label="delete" onClick={() => this.removeBank(id)} >
-                                    <DeleteIcon className="small-icon"  />
-                                </Fab>
-                            </div>
-                        </React.Fragment>
-                    )
-                }
+                name: "name",
+                label: <FormattedMessage id="label.bankName"/>,
+                options: {}
             },
             {
                 name: "title",
                 label: <FormattedMessage id="label.title"/>,
-                options: {
-                    
-                }
-            },
-            {
-                name: "name",
-                label: <FormattedMessage id="label.bankName"/>,
                 options: {}
             },
             {
                 name: "contact",
                 label: <FormattedMessage id="label.contact"/>,
                 options: {}
+            },
+            {
+                name: 'comment',
+                label: <FormattedMessage id="label.comment"/>,
+                options: {
+                    sort: false
+                }
             },
             {
                 name: "status",
@@ -154,19 +137,35 @@ class Banks extends React.Component {
                 }
             },
             {
-                name: 'comment',
-                label: <FormattedMessage id="label.comment"/>,
+                name: "id",
+                label: <FormattedMessage id="label.options"/>,
                 options: {
-                    sort: false
+                    sort: false,
+                    print: false,
+                    download: false,
+                    customBodyRender: (id, tableMeta, updateValue) => (
+                        <React.Fragment>
+                            <div size="small">
+                                <Fab color="primary" size="small" aria-label="edit" onClick={() => this.handleClickOpen(id)}>
+                                    <EditIcon className="small-icon"  />
+                                </Fab>
+                                &nbsp;&nbsp;&nbsp;
+                                <Fab color="secondary" size="small" aria-label="delete" onClick={() => this.removeBank(id)} >
+                                    <DeleteIcon className="small-icon"  />
+                                </Fab>
+                            </div>
+                        </React.Fragment>
+                    )
                 }
             }
         ];
         this.options = {
-            filter: true,
-            selectableRows: 'single',
+            filter: false,
+            selectableRows: 'none',
             filterType: 'dropdown',
-            responsive: 'scroll',
-            rowsPerPage: 15,
+            responsive: 'scrollMaxHeight',
+            viewColumns:false,
+            rowsPerPage: 13,
             rowsPerPageOptions: [10,15,20,25,50],
             expandableRows: false,
             resizableColumns: false,

@@ -22,12 +22,19 @@ import { FormattedMessage } from 'react-intl';
 
 const roles = [
     {
-        value: 'ROLE_GESTIONNAIRE',
-        label: 'GESTIONNAIRE',
+        value: 'ROLE_SALESMANAGER',
+        label: 'Responsable vente'
+        //label: <FormattedMessage id="label.salesmanager"/>,
     },
     {
         value: 'ROLE_ADMIN',
-        label: 'ADMINISTRATEUR',
+        label: 'Administrateur'
+        //label: <FormattedMessage id="label.administrator"/>,
+    },
+    {
+        value: 'ROLE_STOCKMANAGER',
+        label: 'Responsable stock'
+        //label: <FormattedMessage id="label.stockmanager"/>,
     }
 
 ];
@@ -68,7 +75,7 @@ const Template = (component) => {
                                                     shrink: true,
                                                 }}
                                                 validators={['required']}
-                                                errorMessages={['Username field is required']}
+                                                errorMessages={[<FormattedMessage id="label.usernameRequired"/>]}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -88,7 +95,7 @@ const Template = (component) => {
                                                     shrink: true,
                                                 }}
                                                 validators={['required', 'isEmail']}
-                                                errorMessages={['Email field is required', 'email is not valid']}
+                                                errorMessages={[<FormattedMessage id="label.emailRequired"/>, <FormattedMessage id="label.emailnotValide"/>]}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -108,7 +115,7 @@ const Template = (component) => {
                                                     shrink: true,
                                                 }}
                                                 validators={['required']}
-                                                errorMessages={['Phone number field is required']}
+                                                errorMessages={[<FormattedMessage id="label.phoneRequired"/>]}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -129,7 +136,7 @@ const Template = (component) => {
                                                     shrink: true,
                                                 }}
                                                 validators={['required']}
-                                                errorMessages={['Password field is required']}
+                                                errorMessages={[<FormattedMessage id="label.passwordRequired"/>]}
                                             />
                                         </FormControl>
                                     </Grid>
@@ -148,7 +155,7 @@ const Template = (component) => {
                                                     shrink: true,
                                                 }}
                                                 validators={['isPasswordMatch', 'required']}
-                                                errorMessages={['password mismatch', 'this field is required']}
+                                                errorMessages={[<FormattedMessage id="label.passwordmismatch"/>, <FormattedMessage id="label.passwordRequired"/>]}
                                                 value={repeatPassword}
                                             />
                                         </FormControl>
@@ -160,7 +167,7 @@ const Template = (component) => {
                                                 id="standard-select-currency-native"
                                                 select
                                                 name="role"
-                                                label="Roles"
+                                                label={<FormattedMessage id="label.role"/>}
                                                 onChange={component.handleChange}
                                                 SelectProps={{ native: true }}
                                                 margin="dense"
@@ -191,7 +198,7 @@ const Template = (component) => {
                                                 id="disabled"
                                                 inputProps={{ 'aria-label': 'primary checkbox' }}
                                             />
-                                        } label="Status (Disabled)" />
+                                        } label={<FormattedMessage id="label.status" />} />
                                     </Grid>
 
                                     <Grid item xs={12}>

@@ -21,7 +21,7 @@ class Create extends React.Component {
             phoneNumber: null,
             username: null,
             disabled: false,
-            role: 'ROLE_GESTIONNAIRE',
+            role: null,
             note: null
         }
     }
@@ -93,7 +93,7 @@ class Create extends React.Component {
             phoneNumber: null,
             username: null,
             disabled: false,
-            role: 'ROLE_GESTIONNAIRE',
+            role: null,
             note: null
         });
     }
