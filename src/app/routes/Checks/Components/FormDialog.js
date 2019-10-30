@@ -92,7 +92,6 @@ class FormDialog extends React.Component {
     }
 
     closeModal = () => {
-        
         this.props.close();
     }
 
@@ -336,6 +335,7 @@ class FormDialog extends React.Component {
                                         </TextValidator>
                                     </FormControl>
                                 </Grid>
+                                
                                 <Grid item xs={12}>
                                     <FormControl style={{ width: '100%', padding: '5px' }} >
                                         <TextValidator
