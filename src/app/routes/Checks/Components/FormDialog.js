@@ -146,7 +146,7 @@ class FormDialog extends React.Component {
     }
     
 
-    createSmartDiscount = async () => {
+    createSmartDiscount = () => {
 
     
         axios.post(`http://${Properties.host}:${Properties.port}/api/remises`, this.state.remise)
@@ -163,6 +163,21 @@ class FormDialog extends React.Component {
                 this.reset();
                 this.setState({ checks: res.data })
                 this.setState({ remise_id: res.data.id })
+                
+                this.setState({
+                    remise: {
+                        ...this.state.remise,
+                        bankId: res.data.bankId,
+                        number: res.data.number,
+                        issuedDate: res.data.issuedDate,
+                        numberCheck: 0,
+                        amount: 0,
+                        status: res.data.status
+                    }
+                });
+
+                console.log('remise', res);
+
                 setTimeout(() => this.closeModal(), 500);
                 
                 
@@ -175,21 +190,28 @@ class FormDialog extends React.Component {
                         axios.get(`http://${Properties.host}:${Properties.port}/api/checks?filter[where][cashingDateDesired]=${today}&filter[where][status]=WAITING`)
                             .then(res => {
 
-        
-                                this.setState({ 
-                                    remise: {
-                                        ...this.state.remise,
-                                        numberCheck : res.data.length
-                                    }
-                                })
+                                
+                                if(res.data) {
 
-                                res.data.map(check => {
-                                    arr.push(check.id) ;
-                                })
+                                    this.setState({ 
+                                        remise: {
+                                            ...this.state.remise,
+                                            numberCheck : res.data.length
+                                        }
+                                    })
 
-                                axios.post(`http://${Properties.host}:${Properties.port}/api/checks/updateAllCheck`, arr)
-                                    .then(res => console.log(res))
-                                    .catch(err => { console.log(err) })
+                                    axios.post(`http://${Properties.host}:${Properties.port}/api/remises/${this.state.remise_id}/replace`, this.state.remise)
+                                        .then(res => console.log(res))
+                                        .catch(err => { console.log(err) })
+
+                                    res.data.map(check => {
+                                        arr.push(check.id) ;
+                                    })
+
+                                    axios.post(`http://${Properties.host}:${Properties.port}/api/checks/updateAllCheck`, arr)
+                                        .then(res => console.log(res))
+                                        .catch(err => { console.log(err) })
+                                }
 
 
                             })
@@ -205,6 +227,8 @@ class FormDialog extends React.Component {
                         let tomorrow  = moment(new Date()).add(1,'days').format("YYYY-MM-DD");
                         axios.get(`http://${Properties.host}:${Properties.port}/api/checks?filter[where][cashingDateDesired]=${tomorrow}&filter[where][status]=WAITING`)
                             .then(res => {
+
+                                if(res.data) {
                                 
                                 
                                     this.setState({ 
@@ -214,14 +238,21 @@ class FormDialog extends React.Component {
                                         }
                                     })
 
-                                res.data.map(check => {
-                                    arr.push(check.id);
-                                })
 
-                                // console.log(`Array of objects tomorrow: `, arr);
-                                axios.post(`http://${Properties.host}:${Properties.port}/api/checks/updateAllCheck`, arr)
-                                    .then(res => console.log(res))
-                                    .catch(err => { console.log(err) })
+                                    axios.post(`http://${Properties.host}:${Properties.port}/api/remises/${this.state.remise_id}/replace`, this.state.remise)
+                                            .then(res => console.log(res))
+                                            .catch(err => { console.log(err) })
+
+                                    res.data.map(check => {
+                                        arr.push(check.id);
+                                    })
+
+                                    // console.log(`Array of objects tomorrow: `, arr);
+                                    axios.post(`http://${Properties.host}:${Properties.port}/api/checks/updateAllCheck`, arr)
+                                        .then(res => console.log(res))
+                                        .catch(err => { console.log(err) })
+                                        
+                                }
 
                                 
                             })
