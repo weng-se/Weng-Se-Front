@@ -184,19 +184,24 @@ class FormDialog extends React.Component {
 
                 if(this.state.remise_id != null) {
                 
-                    if(this.state.today) {   
+                    if(this.state.today) { 
+                        let totalamount = 0;  
                         let arr = [this.state.remise_id]; 
                         let today = moment(new Date()).format("YYYY-MM-DD");
                         axios.get(`http://${Properties.host}:${Properties.port}/api/checks?filter[where][cashingDateDesired]=${today}&filter[where][status]=WAITING`)
                             .then(res => {
-
                                 
                                 if(res.data) {
+
+                                    for(let i=0; i < res.data.length; i++) {
+                                        totalamount += res.data[i].amount
+                                    }
 
                                     this.setState({ 
                                         remise: {
                                             ...this.state.remise,
-                                            numberCheck : res.data.length
+                                            numberCheck : res.data.length,
+                                            amount: totalamount
                                         }
                                     })
 
@@ -222,7 +227,7 @@ class FormDialog extends React.Component {
                     
 
                     if(this.state.tomorrow) {
-                        
+                        let totalamount = 0;
                         let arr = [this.state.remise_id]; 
                         let tomorrow  = moment(new Date()).add(1,'days').format("YYYY-MM-DD");
                         axios.get(`http://${Properties.host}:${Properties.port}/api/checks?filter[where][cashingDateDesired]=${tomorrow}&filter[where][status]=WAITING`)
@@ -230,11 +235,15 @@ class FormDialog extends React.Component {
 
                                 if(res.data) {
                                 
+                                    for(let i=0; i < res.data.length; i++) {
+                                        totalamount += res.data[i].amount
+                                    }
                                 
                                     this.setState({ 
                                         remise: {
                                             ...this.state.remise,
-                                            numberCheck : res.data.length
+                                            numberCheck : res.data.length,
+                                            amount: totalamount
                                         }
                                     })
 
@@ -251,7 +260,7 @@ class FormDialog extends React.Component {
                                     axios.post(`http://${Properties.host}:${Properties.port}/api/checks/updateAllCheck`, arr)
                                         .then(res => console.log(res))
                                         .catch(err => { console.log(err) })
-                                        
+
                                 }
 
                                 
