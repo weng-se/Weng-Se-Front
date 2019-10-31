@@ -52,7 +52,7 @@ class FormDialog extends React.Component {
 
         var today = new Date();
         var dd = today.getDate();
-        var mm = today.getMonth()+1; //January is 0!
+        var mm = today.getMonth() + 1; //January is 0!
         var yyyy = today.getFullYear();
 
         if(dd<10) dd = '0'+dd
@@ -111,46 +111,44 @@ class FormDialog extends React.Component {
 
     componentWillReceiveProps(nextProps) {
 
-        var total = 0;
-        if(nextProps.checks.length > 0) {
+        // var total = 0;
+        // if(nextProps.checks.length > 0) {
 
-            this.setState({
-                checks: nextProps.checks
-            })
+        //     this.setState({
+        //         checks: nextProps.checks
+        //     })
 
-            console.log('checks will receive', nextProps.checks);
+        //     console.log('checks will receive', nextProps.checks);
             
-            for(let i=0; i<=nextProps.checks.length; i++) {
-                if(nextProps.checks[i])
-                    total += nextProps.checks[i].amount;
-            }
+        //     for(let i=0; i<=nextProps.checks.length; i++) {
+        //         if(nextProps.checks[i])
+        //             total += nextProps.checks[i].amount;
+        //     }
             
-            this.setState({
-                remise: {
-                    ...this.state.remise,
-                    amount : total
-                }
-            })
+        //     this.setState({
+        //         remise: {
+        //             ...this.state.remise,
+        //             amount : total
+        //         }
+        //     })
 
-        }
+        // }
 
-        if(this.state.remise.numberCheck != nextProps.count) {
-            this.setState({ 
-                remise: {
-                    ...this.state.remise,
-                    numberCheck : nextProps.count 
-                }
-            })
-        }
+        // if(this.state.remise.numberCheck != nextProps.count) {
+        //     this.setState({ 
+        //         remise: {
+        //             ...this.state.remise,
+        //             numberCheck : nextProps.count 
+        //         }
+        //     })
+        // }
 
     }
     
 
-    createSmartDiscount = () => {
+    createSmartDiscount = async () => {
 
-        console.log('this.state.remise', this.state.remise);
-        return false;
-
+    
         axios.post(`http://${Properties.host}:${Properties.port}/api/remises`, this.state.remise)
         .then((res) => {
             if(res.status === 200 && res.statusText === "OK") {
@@ -176,6 +174,15 @@ class FormDialog extends React.Component {
                         let today = moment(new Date()).format("YYYY-MM-DD");
                         axios.get(`http://${Properties.host}:${Properties.port}/api/checks?filter[where][cashingDateDesired]=${today}&filter[where][status]=WAITING`)
                             .then(res => {
+
+        
+                                this.setState({ 
+                                    remise: {
+                                        ...this.state.remise,
+                                        numberCheck : res.data.length
+                                    }
+                                })
+
                                 res.data.map(check => {
                                     arr.push(check.id) ;
                                 })
@@ -197,7 +204,16 @@ class FormDialog extends React.Component {
                         let arr = [this.state.remise_id]; 
                         let tomorrow  = moment(new Date()).add(1,'days').format("YYYY-MM-DD");
                         axios.get(`http://${Properties.host}:${Properties.port}/api/checks?filter[where][cashingDateDesired]=${tomorrow}&filter[where][status]=WAITING`)
-                            .then(res => { 
+                            .then(res => {
+                                
+                                
+                                    this.setState({ 
+                                        remise: {
+                                            ...this.state.remise,
+                                            numberCheck : res.data.length
+                                        }
+                                    })
+
                                 res.data.map(check => {
                                     arr.push(check.id);
                                 })
