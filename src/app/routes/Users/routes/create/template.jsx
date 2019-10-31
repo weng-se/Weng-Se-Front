@@ -19,6 +19,7 @@ import {
     ToastContainer,
 } from 'react-toastify';
 import { FormattedMessage } from 'react-intl';
+import { renderToString } from 'react-dom/server'
 
 const roles = [
     {

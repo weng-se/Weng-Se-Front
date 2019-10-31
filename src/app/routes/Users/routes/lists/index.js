@@ -112,6 +112,7 @@ class Lists extends React.Component {
                     sort: false,
                     print: false,
                     download: false,
+                    display: false,
                     customBodyRender: (value, tableMeta, updateValue) => (
                         <React.Fragment>
                             <div size="small">
@@ -226,14 +227,41 @@ class Lists extends React.Component {
                     )
                 }
             },
-            
+            {
+                name: "id",
+                label: <FormattedMessage id="label.options" />,
+                options: {
+                    sort: false,
+                    print: false,
+                    download: false,
+                    customBodyRender: (value, tableMeta, updateValue) => (
+                        <React.Fragment>
+                            <div size="small">
+                                {/*<IconButton size="sm" onClick={() => this.removeUser(value)}>
+                                    <DeleteIcon fontSize="small" />
+                    </IconButton> */}
+                                
+                                <Fab color="primary" size="small" aria-label="edit" onClick={() => this._handleClickOpen(value)}>
+                                    <EditIcon className="small-icon" />
+                                </Fab>
+                                &nbsp;&nbsp;&nbsp;
+                                <Fab color="secondary" size="small" aria-label="delete" onClick={() => this.removeUser(value)} >
+                                    <DeleteIcon className="small-icon" />
+                                </Fab>
+                               {/*  <IconButton size="sm" onClick={() => this._handleClickOpen(value)}>
+                                    <EditIcon fontSize="small" />
+                                </IconButton>*/}
+                            </div>
+                        </React.Fragment>
+                    )
+                }
+            }
         ];
         this.options = {
             filter: false,
             selectableRows: 'none',
             filterType: 'dropdown',
-            responsive: 'scrollMaxHeight',
-            viewColumns:false,
+            responsive: 'scroll',
             rowsPerPage: 13,
             rowsPerPageOptions: [5, 10, 15, 20, 25, 50],
             expandableRows: false,

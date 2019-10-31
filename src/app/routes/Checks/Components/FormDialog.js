@@ -117,6 +117,8 @@ class FormDialog extends React.Component {
             this.setState({
                 checks: nextProps.checks
             })
+
+            console.log('checks will receive', nextProps.checks);
             
             for(let i=0; i<=nextProps.checks.length; i++) {
                 if(nextProps.checks[i])
@@ -146,6 +148,8 @@ class FormDialog extends React.Component {
 
     createSmartDiscount = () => {
 
+        console.log('this.state.remise', this.state.remise);
+        return false;
 
         axios.post(`http://${Properties.host}:${Properties.port}/api/remises`, this.state.remise)
         .then((res) => {
@@ -162,7 +166,8 @@ class FormDialog extends React.Component {
                 this.setState({ checks: res.data })
                 this.setState({ remise_id: res.data.id })
                 setTimeout(() => this.closeModal(), 500);
-
+                
+                
 
                 if(this.state.remise_id != null) {
                 
