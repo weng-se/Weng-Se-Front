@@ -30,7 +30,7 @@
     "history": "^4.7.2",
     "install": "^0.10.1",
     "isomorphic-fetch": "^2.2.1",
-    "jquery": "^3.4.0",
+    "jquery": "^3.5.0",
     "jss-rtl": "^0.2.3",
     "material-ui-pickers": "^2.0.1",
     "material-ui-superselectfield": "^1.10.0",
