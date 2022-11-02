@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@amcharts/amcharts4": "^4.0.3",
+    "@amcharts/amcharts4": "^4.10.29",
     "@amcharts/amcharts4-geodata": "^4.0.27",
     "@babel/runtime": "7.0.0-beta.55",
     "@date-io/moment": "^1.1.0",
